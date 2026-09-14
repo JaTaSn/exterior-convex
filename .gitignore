@@ -1,0 +1,9 @@
+.lake/
+build/
+*.aux
+*.log
+*.bcf
+*.blg
+*.run.xml
+*.toc
+*.out

@@ -1,0 +1,486 @@
+:PROPERTIES:
+:ID:       9c3d51e8-2a47-4f6b-b1d5-6e08a2c7f419
+:CREATED:  [2026-09-05 Sat]
+:END:
+
+#+SETUPFILE: ../../../50-writing/article-templates/latex-common.setup
+#+SETUPFILE: ../../../50-writing/article-templates/latex-variant-koma.setup
+#+OPTIONS: toc:nil H:3 num:t tags:nil email:nil
+#+STARTUP: showall inlineimages num hidedrawers
+
+#+LATEX_HEADER: \usepackage{iftex}
+#+LATEX_HEADER: \ifPDFTeX\usepackage[T1]{fontenc}\else\usepackage{fontspec}\fi
+#+LATEX_HEADER: \usepackage{orcidlink}
+#+LATEX_HEADER: \hypersetup{hidelinks}
+#+LATEX_HEADER: \newcommand{\Koz}{\operatorname{Koz}}
+#+LATEX_HEADER: \newcommand{\shift}{\operatorname{shift}}
+#+LATEX_HEADER: \newcommand{\ff}{\operatorname{ff}}
+#+LATEX_HEADER: \newcommand{\IM}{\operatorname{IM}}
+#+LATEX_HEADER: \newcommand{\inn}{\operatorname{in}}
+#+LATEX_HEADER: \newcommand{\gin}{\operatorname{gin}}
+#+LATEX_HEADER: \newcommand{\conv}{\operatorname{conv}}
+#+LATEX_HEADER: \newcommand{\indeg}{\operatorname{indeg}}
+
+#+title: Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank
+#+subtitle: III: Lattice points of the Kozlov polytope, and a corrected Kruskal--Katona theorem
+#+author: Jan Snellman \orcidlink{0009-0002-6676-5068}
+#+date: \today
+
+# ---------------------------------------------------------------------------
+# STUB, 2026-09-05.  Article 3 of the exterior-convex project; the SECOND on
+# ff-vectors.  This is a skeleton with the material carried over from draft 3's
+# section 9, which draft 4 no longer contains -- not a manuscript.  Sections
+# marked [TO WRITE] are placeholders.
+#
+# ARTICLE NUMBERING -- SETTLED by Jan, 2026-09-05:
+#   article 1  exterior-convex_article1_draft_4.org        the convex hull
+#   article 2  working-notes/counting-ff-vectors.org   counting ff-vectors
+#              (Linusson's recursion extended to rank r) -- no draft yet
+#   article 3  THIS FILE                          lattice points and open problems
+# ---------------------------------------------------------------------------
+
+#+begin_abstract
+[TO WRITE.] Companion to Part I of this series, /Minkowski sums of Kozlov simplices/, which determines the convex hull \(\Koz(n;d_1,\dots,d_r)\) of
+the Hilbert functions of quotients of a graded free module over the exterior algebra by a proper
+monomial submodule. That result is a statement about a polytope; it says nothing about which of the
+polytope's lattice points are actually achievable. Here we answer that finer question. The
+characterization is a rank-\(r\) growth bound generalizing Kruskal--Katona --- fill the generators of
+largest degree to capacity first, then apply the shadow operator to the remainder --- and the
+extremal representative of each achievable Hilbert function is the unique lex submodule realizing
+it. This is Amata and Crupi's theorem, which we state in a *repaired* form: the published version is
+false as printed whenever two or more free generators tie at the initial critical degree, and we give
+the smallest counterexample, the correct clause, and an exhaustive verification.
+#+end_abstract
+
+#+TOC: headlines 2
+
+# ------------------------------------------------------------------
+# DRAFT 1, assembled 2026-09-06.
+#
+# Sections 8.5 and 8.6 of article 1 draft 5 were moved here verbatim at Jan's
+# request. His reasoning: the lattice-points-in-a-polytope question this part
+# answers needs a PRECISE DESCRIPTION OF THE POLYTOPE, so the fine vertex and
+# facet structure belongs alongside it rather than in Part I.
+#
+# THE HOME IS PROVISIONAL. If Part III turns out not to need the full rank-r
+# facet description, this material may want a part of its own, or may go back.
+# Nothing here has been re-edited for its new context yet: cross-references to
+# Part I's numbering (cor-facets, def-angle, thm-ones, thm-kozlov-matrix,
+# cor-vdesc, prop-sumset, prop-regimes, prop-dimension, obs-pairwise) are still
+# written as if internal and MUST be converted to citations of Part I before this
+# is shown to anyone.
+# ------------------------------------------------------------------
+
+* The vertex and facet structure of the Kozlov polytope
+:PROPERTIES:
+:CUSTOM_ID: sec-structure
+:END:
+
+The lattice-point question of this paper is posed inside the polytope \(\Koz(n;\vec d)\) of Part I,
+and answering it needs that polytope described precisely rather than merely bounded. This section
+collects what is known: the vertex description at every rank for the all-ones right-angle simplex,
+and the facet description at every rank. Both were developed while Part I was being written and are
+reproduced here because this is where they are used.
+** The pairwise reduction, proved for the all-ones simplex
+:PROPERTIES:
+:CUSTOM_ID: sec-pairwise-ones
+:END:
+
+The extremal tensor of Definition =def-angle= (Part I) is a rank-\(r\) object, but for \(a=(1,\dots,1)\) it
+turns out to be determined by its rank-two restrictions, and indeed by the consecutive ones alone.
+This subsection proves that. Throughout it the leg vector is \(a=(1,\dots,1)\) and the shifts are
+sorted, so that \(d_1\le\dots\le d_r\). Define the /window/ of summand \(p\) to be the integer
+interval
+\[
+  W_p=[\,d_p+1,\;d_p+n\,],
+\]
+of length exactly \(n\). Given a choice \(\vec\jmath=(j_1,\dots,j_r)\), write \(m_p=d_p+j_p\), so
+that \(m_p\in W_p\), and let \(D=D(\vec\jmath)\) be the digraph on \(W_1\cup\dots\cup W_r\) whose
+edges are \(m_p\to x\), one for every index \(p\) and every \(x\in W_p\setminus\{m_p\}\).
+
+The first lemma trades the polytope for that digraph.
+
+#+NAME: lem-window
+#+begin_lemma
+Let \(a=(1,\dots,1)\). Then \(M[\vec\jmath]=1\) if and only if \(D(\vec\jmath)\) is acyclic.
+#+end_lemma
+
+#+begin_proof
+Let \(\varphi\) be a linear functional. Summing coordinates gives
+\[
+  \bigl\langle\varphi,\ \shift^{d_p}(v_j)\bigr\rangle=\sum_{i=1}^{j}\varphi_{d_p+i}
+  =\Phi(d_p+j)-\Phi(d_p),
+  \qquad
+  \Phi(m):=\sum_{i\le m}\varphi_i .
+\]
+The offset \(\Phi(d_p)\) does not depend on \(j\), so \(\varphi\) exposes the vertex \(v_{j_p}\) of
+summand \(p\) uniquely precisely when \(\Phi\) attains a strict maximum over \(W_p\) at \(m_p\). By
+the normal-fan criterion, \(M[\vec\jmath]=1\) exactly when some single \(\varphi\) does this for
+every \(p\) at once. Passing from \(\varphi\) to \(\Phi\) is a bijection onto real sequences, since
+\(\varphi\) is recovered by differencing, and the coordinates of \(\Phi\) outside
+\(W_1\cup\dots\cup W_r\) are unconstrained. Hence the condition is the solvability of the system
+\[
+  \Phi(m_p)>\Phi(x)
+  \qquad\text{for every }p\text{ and every }x\in W_p\setminus\{m_p\},
+\]
+whose constraints are exactly the edges of \(D\).
+
+It remains to observe that a system of strict inequalities \(X(u)>X(v)\), one for each edge of a
+finite digraph, is solvable if and only if that digraph is acyclic. A cycle
+\(u_0\to u_1\to\dots\to u_{k-1}\to u_0\) would force \(X(u_0)>X(u_1)>\dots>X(u_0)\), which is
+impossible. Conversely an acyclic digraph admits a topological order, and setting \(X(w)\) to be
+minus the position of \(w\) in that order satisfies every constraint.
+#+end_proof
+
+The next lemma is the one place where the windows being intervals of /equal/ length is used.
+
+#+NAME: lem-nesting
+#+begin_lemma
+For indices \(p\le s\le q\) one has \(W_p\cap W_q\subseteq W_s\).
+#+end_lemma
+
+#+begin_proof
+Assume the intersection is nonempty, the inclusion being trivial otherwise, and let
+\(x\in W_p\cap W_q\). From \(x\in W_q\) and \(d_s\le d_q\) we get \(x\ge d_q+1\ge d_s+1\), and from
+\(x\in W_p\) and \(d_p\le d_s\) we get \(x\le d_p+n\le d_s+n\). Hence \(x\in W_s\).
+#+end_proof
+
+#+NAME: lem-twocycle
+#+begin_lemma
+If \(D\) has a cycle, then \(D\) has a cycle of length two; that is, there are indices \(p\ne q\)
+with \(m_q\in W_p\), \(m_p\in W_q\) and \(m_p\ne m_q\).
+#+end_lemma
+
+#+begin_proof
+Every edge \(m_p\to x\) has \(x\ne m_p\), so \(D\) has no loops and every cycle has length at least
+two. Choose a cycle of minimum length \(k\), and suppose \(k\ge3\). Write it as
+\(v_0\to v_1\to\dots\to v_{k-1}\to v_0\) with indices read modulo \(k\); a cycle of minimum length
+is vertex-simple, so the values \(v_0,\dots,v_{k-1}\) are pairwise distinct. Each edge
+\(v_i\to v_{i+1}\) is witnessed by at least one summand, and we fix one, calling it \(p(i)\), so
+that \(m_{p(i)}=v_i\) and \(v_{i+1}\in W_{p(i)}\).
+
+We claim first that \(W_{p(i)}\) contains no cycle value other than \(v_i\) and \(v_{i+1}\). Suppose
+\(v_j\in W_{p(i)}\) for some \(j\not\equiv i,i+1\). The values are distinct, so
+\(v_j\ne v_i=m_{p(i)}\) and therefore \(v_i\to v_j\) is an edge. Following that edge by the arc of
+the original cycle running from \(v_j\) back to \(v_i\) produces a closed walk of length
+\(1+((i-j)\bmod k)\). Because \(j\not\equiv i+1\) we have \((i-j)\bmod k\le k-2\), so the walk has
+length at most \(k-1\); as every closed walk contains a directed cycle no longer than itself, this
+contradicts the minimality of \(k\).
+
+Now \(W_{p(i)}\) is an integer interval containing both \(v_i\) and \(v_{i+1}\), hence containing
+every integer between them, and by the previous paragraph it contains no further cycle value. So no
+cycle value lies strictly between \(v_i\) and \(v_{i+1}\), which is to say that \(v_i\) and
+\(v_{i+1}\) are neighbours in the increasing order of the \(k\) distinct cycle values. Applying this
+at the largest value \(v_{i^\ast}\), both of its cycle-neighbours \(v_{i^\ast-1}\) and
+\(v_{i^\ast+1}\) are order-adjacent to the maximum and smaller than it, so each is the
+second-largest value. Since \(k\ge3\) the indices \(i^\ast-1\) and \(i^\ast+1\) are distinct modulo
+\(k\), making \(v_{i^\ast-1}\ne v_{i^\ast+1}\); two distinct values cannot both be second-largest.
+
+Therefore \(k=2\), and the cycle reads \(v\to w\to v\) with \(v\ne w\). Some \(p\) witnesses the
+first edge, so \(m_p=v\) and \(w\in W_p\), and some \(q\) witnesses the second, so \(m_q=w\) and
+\(v\in W_q\). Finally \(m_p=v\ne w=m_q\) forces \(p\ne q\).
+#+end_proof
+
+Only the interval property of the windows entered that argument. Neither the sorting of the shifts
+nor the equality of the window lengths was used, so Lemma [[lem-twocycle]] holds verbatim for an
+arbitrary finite family of integer intervals with designated points. The next lemma is where those
+hypotheses become indispensable.
+
+#+NAME: lem-consec
+#+begin_lemma
+If \(D\) has a cycle of length two, then \(D\) has one at a consecutive pair \((p,p+1)\).
+#+end_lemma
+
+#+begin_proof
+We argue by strong induction on the gap \(g=q-p\) of a length-two cycle \((p,q)\) with \(p<q\), so
+that \(m_q\in W_p\), \(m_p\in W_q\) and \(m_p\ne m_q\). There is nothing to prove when \(g=1\), so
+let \(g\ge2\) and fix an index \(s\) with \(p<s<q\). Both \(m_p\) and \(m_q\) lie in
+\(W_p\cap W_q\), so Lemma [[lem-nesting]] places both of them in \(W_s\). Three exhaustive cases remain.
+
+Suppose first that \(m_s\in W_p\) and \(m_s\ne m_p\). Then the pair \((p,s)\) is a length-two cycle,
+since \(m_s\in W_p\) by assumption and \(m_p\in W_s\) as just observed. Its gap \(s-p\) is smaller
+than \(g\), so the induction applies.
+
+Suppose next that \(m_s=m_p\). Then the pair \((s,q)\) is a length-two cycle: we have \(m_q\in W_s\)
+as observed, while \(m_s=m_p\in W_q\) by hypothesis and \(m_s=m_p\ne m_q\). Its gap \(q-s\) is
+smaller than \(g\).
+
+Suppose finally that \(m_s\notin W_p\). From \(m_s\ge d_s+1\ge d_p+1\) and
+\(W_p=[d_p+1,d_p+n]\) we get \(m_s>d_p+n\). On the other hand \(m_q\in W_p\) gives
+\(m_q\le d_p+n\), so \(m_s>m_q\); in particular \(m_s\ne m_q\) and \(m_s>m_q\ge d_q+1\). Combining
+this with \(m_s\le d_s+n\le d_q+n\) shows \(m_s\in W_q\), so the pair \((s,q)\) is again a
+length-two cycle, of gap \(q-s<g\).
+#+end_proof
+
+#+NAME: thm-pairwise-ones
+#+begin_theorem
+Let \(a=(1,\dots,1)\), let \(n\ge1\) and \(r\ge2\), let \(0\le d_1\le\dots\le d_r\), and let
+\(\vec\jmath=(j_1,\dots,j_r)\) be any choice of vertices. The following are equivalent.
+1. \(M[\vec\jmath]=1\).
+2. \(M^{(p,q)}[j_p][j_q]=1\) for every pair \(p<q\).
+3. \(M^{(p,p+1)}[j_p][j_{p+1}]=1\) for every \(p=1,\dots,r-1\).
+
+Here \(M^{(p,q)}\) denotes the rank-two extremal matrix of the summands \(p\) and \(q\) alone.
+#+end_theorem
+
+#+begin_proof
+Write \(D(p,q)\subseteq D\) for the digraph built from summands \(p\) and \(q\) alone. Lemma
+[[lem-window]] applies at every rank, so \(M[\vec\jmath]=1\) if and only if \(D\) is acyclic, and
+\(M^{(p,q)}[j_p][j_q]=1\) if and only if \(D(p,q)\) is acyclic.
+
+For the implication from the first statement to the second, note that a cycle of \(D(p,q)\) is a
+cycle of \(D\). The second statement implies the third because the third imposes fewer conditions.
+For the remaining implication we argue by contraposition. If \(D\) has a cycle, then Lemma
+[[lem-twocycle]] supplies a length-two cycle and Lemma [[lem-consec]] a consecutive one, say at
+\((p,p+1)\). The two edges \(m_p\to m_{p+1}\) and \(m_{p+1}\to m_p\) both lie in \(D(p,p+1)\), which
+is therefore not acyclic, so \(M^{(p,p+1)}[j_p][j_{p+1}]=0\) and the third statement fails.
+#+end_proof
+
+Theorem [[thm-pairwise-ones]] is what the term /pairwise reduction/ will mean below. Its content is
+that for the all-ones simplex the constraint network on the indices \(j_1,\dots,j_r\) is a /path/
+rather than a complete graph. Combined with the closed form of the rank-two matrix in Theorem
+=thm-ones= (Part I), it determines the extremal tensor of \(\sum_i\shift^{d_i}(\angle(1,\dots,1))\) at every
+rank, and hence the complete vertex description of that polytope for every \(r\) and every
+\(\vec d\).
+
+The scope of this deserves emphasis, since the corresponding statement for the Kozlov vector is
+what Remark =obs-pairwise= (Part I) leaves open. Theorem [[thm-pairwise-ones]] does /not/ extend Corollary
+=cor-vdesc= (Part I), which concerns the Kozlov vector: for the Kozlov polytope \(\Koz(n;\vec d)\) the vertex
+description is proved at rank two and remains conditional beyond it. Two remarks on the sharpness
+of the all-ones result are worth recording. The hypothesis of equal
+window lengths cannot be dropped from Lemma [[lem-consec]]: for the three intervals \([1,3]\),
+\([1,4]\), \([2,3]\) with designated points \(2,4,3\) the only length-two cycle joins the first and
+third, which are not consecutive. And the reduction genuinely needs the sorting, since the notion of
+a consecutive pair depends on it.
+
+** The facet description at general rank
+:PROPERTIES:
+:CUSTOM_ID: sec-hrep
+:END:
+
+Everything above describes vertices. The facets have so far been settled only at rank one, in
+Corollary =cor-facets= (Part I). This subsection records what the same classical machinery gives for the
+Minkowski sum at any rank, which is more than one might expect: the candidate facet normals are
+determined by the summands, and the offsets are free.
+
+#+NAME: prop-faceadd
+#+begin_proposition
+Let \(P_1,\dots,P_r\) be polytopes and \(P=P_1+\dots+P_r\). For every linear functional \(\varphi\),
+the face of \(P\) on which \(\varphi\) is maximized satisfies
+\[
+  F(\varphi,P)=F(\varphi,P_1)+\dots+F(\varphi,P_r),
+\]
+the normal fan of \(P\) is the common refinement of the normal fans of the \(P_i\), and consequently
+every facet normal of \(P\) lies on a wall of the normal fan of at least one summand.
+#+end_proposition
+
+#+begin_proof
+The displayed identity follows from additivity of support functions,
+\[
+  h(\varphi,P)=\sum_{i=1}^{r} h(\varphi,P_i),
+\]
+and it holds for any number of summands. Two functionals expose
+the same face of \(P\) precisely when they expose the same face of every summand, which is the
+statement that the normal fan of \(P\) refines each \(N(P_i)\) and is the coarsest fan doing so, that
+is, their common refinement; refinement being associative, the case of general \(r\) follows from the
+case \(r=2\). A maximal cone of the refinement is an intersection \(C_1\cap\dots\cap C_r\) of maximal
+cones, and a wall of such an intersection is a wall of one of the \(C_i\). Since facets correspond to
+walls of the normal fan, the last statement follows. This is Ziegler, /Lectures on Polytopes/, Proposition 7.12, stated there for two summands; the general case follows by associativity of refinement, as above.
+#+end_proof
+
+Proposition [[prop-faceadd]] turns the search for an \(H\)-description of \(R\) into a finite problem,
+but it must be applied with care, and one tempting shortcut is wrong. Facets of a polytope correspond
+to /rays/ of its normal fan, and for /full-dimensional/ summands the rays of a common refinement are
+the union of the summands' rays, so the facet normals of the sum would be the union of the summands'
+facet normals --- the \(n\) inequalities of Corollary =cor-facets= (Part I) per summand, at most \(rn\) in all.
+*That argument fails here.* Our summands are not full-dimensional, and, what matters, they have
+/different/ lineality spaces; intersecting cones with different lineality spaces creates rays that
+belong to no summand's fan. What Proposition [[prop-faceadd]] does still give is the weaker necessary
+condition that a facet normal of \(R\) lies on a wall of some summand's fan, and walls correspond to
+edges rather than facets, so the a priori bound is \(r\binom n2\).
+
+The failure is not academic. Already for \(n=3\) and \(\vec d=(0,1)\), where \(R\) has six facets, only
+four of the six inequalities of Corollary =cor-facets= (Part I) define facets of \(R\); the other two cut faces
+of dimension one. The two missing facets are of a different shape, namely the bounds
+\(x_{d_p+1}\ge a_1\) and a matching upper bound one coordinate past the end of the preceding window.
+So the facet set of \(R\) is not the set of summand facets, and a correct list must be found rather
+than inherited. For each candidate \(u\) the supporting value is For each candidate \(u\) the supporting value is
+\[
+  h(u,R)=\sum_{i=1}^{r} h\bigl(u,\shift^{d_i}(\angle(a))\bigr),
+\]
+a sum of maxima over known vertex sets. What remains is to decide which candidates are redundant.
+
+One warning is needed, because it is a genuine trap rather than a formality. Each summand
+\(\shift^{d_i}(\angle(a))\) has dimension \(n-1\) inside \(\mathbb R^N\), so its normal fan has a
+large lineality space and a "facet normal of a summand" is a coset rather than a direction; a
+particular inequality representation chooses a representative, and that representative need not be
+the one cutting \(R\). The candidates must therefore be taken modulo each summand's affine hull. The
+worked example below shows this happening.
+
+#+NAME: ex-hrep-r3
+#+begin_mexample
+For \(n=3\), so \(a=(3,3,1)\), and \(\vec d=(0,1,2)\) in \(\mathbb R^5\), the polytope \(R\) has
+dimension \(4\), sixteen vertices and exactly nine facets, one for each of the \(rn=9\) candidates:
+none is redundant. The outward normals and their supporting values are
+#+begin_export latex
+\[
+  \begin{array}{lrrrr}
+    u & h(u,R) & h_1 & h_2 & h_3\\[2pt]
+    (0,1,0,0,0)   & 6   & 3 & 3 & 0\\
+    (0,-1,3,0,0)  & 15  & 0 & 6 & 9\\
+    (0,0,0,0,1)   & 1   & 0 & 0 & 1\\
+    (0,0,0,1,0)   & 4   & 0 & 1 & 3\\
+    (0,0,0,0,-1)  & 0   & 0 & 0 & 0\\
+    (0,-1,0,0,0)  & -3  & 0 & -3& 0\\
+    (0,0,-1,3,0)  & 6   & 0 & 0 & 6\\
+    (0,0,-1,0,0)  & -3  & 0 & 0 & -3\\
+    (0,0,0,-1,3)  & 0   & 0 & 0 & 0
+  \end{array}
+\]
+#+end_export
+The row \((0,0,0,0,-1)\) is the third summand's facet \(x_5\ge0\), inherited unchanged. The row
+\((0,1,0,0,0)\), giving \(x_2\le6\), is the first summand's facet \(x_1-x_2\ge0\) read modulo its
+affine hull \(x_1=3\), where it becomes \(x_2\le3\); the second summand lies in \(x_2=3\) and
+contributes another \(3\). The computation was carried out independently in two systems with no
+shared convex-hull library, and they agree on the dimension, both counts, every normal and every
+offset.
+#+end_mexample
+
+#+NAME: conj-kozlov-facets
+#+begin_conjecture
+For \(a\) the Kozlov vector, let \(s=\lvert\lbrace d_1,\dots,d_r\rbrace\rvert\) be the number of
+/distinct/ shifts. Then \(R=R(a;\vec d)\) of Definition =def-angle= (Part I) has exactly \(sn\) facets: no
+candidate normal supplied by Proposition [[prop-faceadd]] is redundant. The same count holds for
+\(\Koz(n;\vec d)\), which differs from \(R\) only by the translation and embedding of Remark
+=rem-coordinates= (Part I).
+#+end_conjecture
+
+The count is \(sn\) and not \(rn\) because tied shifts give /identical/ summands, whose walls
+coincide and therefore supply the same candidates; this is the same collapsing that forces tied
+shifts to carry equal vertex indices. At the extreme \(\vec d=(0,\dots,0)\) the sum is the dilation
+\(r\angle(a)\), with \(n\) facets however large \(r\) is. The evidence is exact facet counts in
+\(47\) configurations, with \(n=3,\dots,6\), ranks up to four, and \(\vec d\) ranging over patterns
+that include ties \((0,1,1)\), \((0,0,1,1)\), \((0,2,2,4)\) and wide gaps \((0,2,4)\); there was no
+exception.
+
+For \(a=(1,\dots,1)\) the analogous statement is false. The counts there fall strictly below \(sn\)
+once \(n\ge4\) --- by \(1\), \(2\) and \(3\) for \(\vec d=(0,1)\), \((0,1,2)\) and \((0,1,2,3)\) at
+\(n=4\), and by more at \(n=5\) --- so genuine pruning occurs, and at rank two the count agrees with
+the \(n+d+2\) of Conjecture =conj-ones-hrep= (Part I). Any proof of the conjecture above must therefore use
+something specific to the Kozlov vector, and not merely the shape of \(\angle(a)\).
+
+This is worth setting beside the vertex side, where the situation is reversed twice over. There the
+all-ones case is the one that is proved and the Kozlov case the one that is open; here the Kozlov
+polytope appears to have the simpler facet structure, and the pruning that must be understood for
+\(a=(1,\dots,1)\) seems not to be needed for it at all.
+
+** The Kozlov vector at higher rank
+:PROPERTIES:
+:CUSTOM_ID: sec-obs-pairwise
+:END:
+
+
+#+NAME: obs-pairwise
+#+begin_remark
+*The Kozlov vector: the same reduction, still open.* Part III of this series settles the
+all-ones case by a route unavailable for a general leg vector. Passing to prefix sums works because
+each coordinate enters every summand with weight one; for arbitrary \(a\) the coordinate
+\(\varphi_m\) enters summand \(p\) with weight \(a_{m-d_p}\), an index relative to the window, and no
+change of coordinates removes all these weights at once. This is precisely the \(a\)-dependence that
+separates Theorem =thm-ones= (Part I) from Theorem =thm-kozlov-matrix= (Part I).
+
+For the Kozlov vector both forms of the reduction nevertheless hold in every case we have examined.
+Over 50 configurations --- \(a\) the Kozlov vector and \(a=(1,\dots,1)\), with \(n=3,4,5\) at rank
+three and \(n=3,4\) at rank four, six shift patterns each, including ties such as
+\(\vec d=(0,1,1)\) and \((0,0,1,1)\) and wide gaps such as \((0,2,4)\) and \((0,2,4,6)\) --- the
+extremal tensor agreed with the conjunction of its consecutive pairwise restrictions, with no
+exception. Rank four is the informative case, since there three of the six pairs are dropped rather
+than one of three. Because the consecutive conditions are a subset of all pairwise conditions, which
+are in turn satisfied by every index tuple in the support of \(M\), agreement of the consecutive
+prediction forces agreement of all three, and the two forms were tested together.
+
+*For the Kozlov vector this remains an observation, not a theorem.* A Minkowski sum of three or more
+summands with pairwise-overlapping supports is not in general determined by its pairwise data, and
+nestedness of the supports does not by itself show that the simultaneous-exposure linear program
+decomposes into its pairwise subprograms. One natural certificate-level formulation can be ruled
+out. By the theorem of Gordan, infeasibility of that program means some nonnegative combination of
+the difference vectors vanishes; one might hope every minimal such combination to be supported on at
+most two summands. It is not: minimal combinations meeting three and four summands occur for both
+leg vectors, and for the Kozlov vector with \(n\ge4\) some of them use two difference vectors drawn
+from a single summand. What did hold without exception, and is the statement equivalent to the
+reduction, is the weaker assertion that whenever such a combination exists, one exists supported on
+at most two adjacent summands. Granting the reduction, Corollary =cor-vdesc= (Part I) and Theorem
+=thm-kozlov-matrix= (Part I) give a complete vertex description of \(\Koz(n;\vec d)\) for every rank.
+#+end_remark
+
+* Open problems for the series
+:PROPERTIES:
+:CUSTOM_ID: sec-open
+:END:
+
+1. Give an \(H\)-representation of \(R\) for \(a=\) the Kozlov vector at rank two, matching Theorem
+   =thm-ones= (Part I). At that rank the vertex description is settled by Corollary =cor-vdesc= (Part I) while the
+   facet description is not, so this asks only for the second half of a case whose first half is
+   done. It is not a question about higher ranks, where even the vertex description of
+   \(\Koz(n;\vec d)\) is still conditional on the corresponding remark in Part III.
+2. Prove Part I's conjectured \(H\)-representation for \(a=(1,\dots,1)\), facet by facet
+   from the vertex coordinates. The facet description of the rank-\(r\) Minkowski sum, together with
+   the rank-\(r\) vertex description for the all-ones simplex, is developed in Part III of this
+   series; the material was drafted here and moved there because the lattice-point question Part III
+   answers needs a precise description of the polytope. This problem is stated here because it
+   completes the rank-two picture of the corresponding section of Part I.
+3. Prove the pairwise reduction of the corresponding remark in Part III for the Kozlov vector, which would upgrade
+   the vertex description of \(\Koz(n;\vec d)\) from rank two to every rank. Part III settles the
+   all-ones case, but by a prefix-sum argument that a general leg vector defeats, so the Kozlov case
+   needs a different idea. The content is that the
+   simultaneous-exposure linear program decomposes into its pairwise subprograms; nestedness of the
+   supports is suggestive but is not that statement. As recorded in the remark, the hope that every
+   minimal Gordan certificate meets at most two summands is false, so the target is the weaker
+   statement that some such certificate always meets at most two adjacent summands.
+4. *A finer grading, and the lex submodules inside it.* A monomial submodule \(M\subseteq F\) makes
+   \(F/M\) graded by \((\mathbb Z^n)^r\), and \(H_{F/M}\) collapses all of that to a single
+   \(\mathbb Z\). The natural intermediate object is the \(\mathbb Z^r\)-graded Hilbert function,
+   which records which generator each dimension came from instead of summing over generators. Since
+   summing over generators is precisely the step that turns the achievable set into a sumset
+   (Proposition =prop-sumset= (Part I)), the multigraded refinement is exactly the invariant Theorem =thm-main= (Part I)
+   throws away.
+
+   At that level the question is settled, and settled cheaply. A submodule of \(F\) is
+   \(\mathbb Z^r\)-homogeneous exactly when it is an ids-module \(M=I_1g_1\oplus\dots\oplus I_rg_r\),
+   so its \(\mathbb Z^r\)-graded Hilbert function is the \(r\)-tuple of the ordinary Hilbert
+   functions of the \(E/I_i\), shifted. The ideals may be chosen independently, so the achievable set
+   is the \(r\)-fold /product/ of the rank-one achievable set, with no interaction constraint at all,
+   and the analogue of \(\Koz(n;\vec d)\) is a product rather than a Minkowski sum. Applying the
+   exterior Kruskal--Katona theorem in each component separately shows that every
+   \(\mathbb Z^r\)-graded Hilbert function is realized by a tuple of lex ideals.
+
+   What is /not/ settled is the shape of a distinguished subset. A tuple of lex ideals is in general
+   not a lex submodule in the sense of Amata and Crupi, whose definition also imposes the nesting
+   condition \((e_1,\dots,e_n)^{\rho_i+d_i-d_{i-1}}\subseteq I_{i-1}\), where \(\rho_i\) is the
+   initial degree of \(I_i\); for \(n=3\) and \(\vec d=(0,0)\) only \(43\) of the \(100\) pairs of
+   lex ideals satisfy it. *Determine the set of \(\mathbb Z^r\)-graded Hilbert functions of
+   Amata--Crupi lex submodules inside that product, and in particular its convex hull.* The question
+   is natural because lex submodules are in bijection with the achievable \(\mathbb Z\)-graded
+   Hilbert functions, so this set is a canonical section of the collapsing map from the product to
+   the sumset --- a choice, for each achievable \(\mathbb Z\)-graded Hilbert function, of one
+   preferred way to split it among the generators. Its convex hull would be the multigraded analogue
+   of the Kozlov polytope itself. The nesting condition is a chain condition on initial degrees, so a
+   staircase or order-polytope answer is the thing to look for. Whether this belongs here or in a
+   later part of the series is undecided.
+5. *Sköldberg's equivalence at the module level.* His sign-twisting equivalence between modules over
+   the exterior face ring and over the artinified Stanley--Reisner ring extends to an isomorphism
+   \(\mathrm{AIM}(\vec\Delta)\cong\IM(\vec\Delta)\) for indicator modules, which should make Betti
+   numbers, not just Hilbert functions, transportable between the two settings.
+6. *Lifting Gröbner bases.* Nilsson and Snellman (2003) lift a Gröbner basis of an ideal
+   \(I\subseteq E\) to one of its preimage in the free associative algebra, via a section map plus a
+   "squeezing" correction. Whether the same construction works for submodules of \(F\) under a
+   position-over-term module order is open, and the obstacle is concrete: squeezing is defined purely
+   by a monomial's index gap, i.e. entirely in terms of term parts, while a position-over-term order
+   never compares term parts across components.
+
+Beyond these, the question this paper deliberately does not treat --- which /lattice points/ of
+\(\Koz(n;d_1,\dots,d_r)\) are achievable --- is the subject of the companion paper, where it is
+answered by a repaired form of Amata and Crupi's generalized Kruskal--Katona theorem. The two
+questions are related by Example =ex-worked= (Part I): the hull is a coarse object, and an achievable Hilbert
+function can sit well inside it.
+
