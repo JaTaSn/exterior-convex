@@ -41,15 +41,13 @@ need not be a shifted sum of $f$-vectors at all. The combinatorial content is st
 in language that uses no algebra, as a result on $r$-vectors of simplicial complexes and their
 $ff$-vectors. Finally we describe the vertex structure of the Minkowski sum -- which sums of
 vertices of the summands survive as vertices -- proving the answer for the all-ones leg vector at
-every rank and for the Kozlov leg vector at rank two. The combinatorial core of the paper is
-formalized in Lean 4 with Mathlib, with no sorry and no extra axioms; the formalization and all
-verification code accompany the paper.
+every rank and for the Kozlov leg vector at rank two.
 ```
 
 (Differences from the manuscript abstract, deliberate: `\Koz`/`\shift` macros and the displayed
-equation removed; the citation `[cite:@Kozlov1997]` inlined as "in 1997"; one sentence added
-naming the Lean formalization, which the manuscript's abstract leaves to §10 — **[Jan]** cut
-that last sentence if it should not be in the abstract.)
+equation removed; the citation `[cite:@Kozlov1997]` inlined as "in 1997". The Lean formalization
+is **not** named here — the abstract stays consistent with the PDF's own abstract, and the
+formalization is advertised in the Comments field instead, per Jan's decision 2026-09-20.)
 
 ## Categories
 
@@ -87,10 +85,14 @@ LiTH-MAT-R-2026/04
 ## Comments field
 
 ```
-53 pages. Also published as report LiTH-MAT-R-2026/04, Linköping University,
-DOI 10.3384/LiTH-MAT-R-2026-04. Lean 4/Mathlib formalization (no sorry, no extra axioms) and
-all verification code included with the source.
+53 pages. Also published as report LiTH-MAT-R-2026/04, Linkoping University,
+DOI 10.3384/LiTH-MAT-R-2026-04. The combinatorial core is formalized in Lean 4 + Mathlib
+(no sorry, no extra axioms); the formalization and all verification code are in the anc
+directory and at https://gitlab.liu.se/jansn19/exterior-convex .
 ```
+
+(This is where the Lean formalization is advertised, keeping it out of the abstract. "Linkoping"
+is ASCII on purpose — the arXiv Comments field is plain text.)
 
 **[Jan]** If the external repo gets a public remote before submission, add its URL here.
 
