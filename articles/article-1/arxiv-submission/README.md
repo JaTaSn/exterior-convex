@@ -35,17 +35,32 @@ Verified by the generator: **53 pages, 0 errors, 0 undefined citations/reference
 | `img/` | yes | the nine figures the `.tex` includes |
 | `anc/REFERENCE-CERTIFICATE.md` | yes (ancillary) | certificate of existence for every citation |
 | `anc/lean/`, `anc/verification-code/` | yes (ancillary) | Lean formalization + verification code, junk-pruned |
+| `make-tarball.sh` | no | builds the upload tarball (see below); excluded from it |
+| `README.md` (this file) | no | repo documentation; excluded from the tarball |
 | `exterior-convex_article1_latest.pdf` | **no** | local preview only; arXiv builds its own PDF |
 
 `anc/` is arXiv's ancillary-files convention: attached to the submission and listed on the
 abstract page, not compiled. The Lean and verification-code trees are included for reproducibility
 (the Lean formalization is named in the abstract). To submit *without* them, delete those two
-directories before uploading, or trim the tarball — the paper compiles identically without them.
+directories before running `make-tarball.sh` — the paper compiles identically without them, and
+the full formalization is public at <https://gitlab.liu.se/jansn19/exterior-convex> either way.
+
+## Making the upload
+
+```sh
+./make-tarball.sh      # writes ../arxiv-submission.tar.gz
+```
+
+Then upload `../arxiv-submission.tar.gz` to arXiv. `make-tarball.sh` needs only `tar` — it runs on
+any machine with a clone (no LaTeX/emacs), and excludes this README, itself, and the local PDF.
+arXiv auto-detects pdfLaTeX from the `.tex`'s magic comment and builds its own PDF.
 
 ## Git note
 
-Only the `.tex`, `img/`, `anc/REFERENCE-CERTIFICATE.md` and this README are tracked. The built
-PDF, the tarball, and the `anc/lean` + `anc/verification-code` trees are **git-ignored**: they are
-regenerated from the working home by the generator above (the lean/code are byte-for-byte the
-repo's own top-level `lean/` and `verification-code/`). This keeps the fragile, stale-prone
-duplicate out of version control — which is the exact trap the first attempt fell into.
+The whole folder is tracked except the built PDF and the tarball (both derived, both
+`.gitignore`d). The `.tex`, `img/` and the `anc/` trees are committed, so a fresh clone on any
+machine has a complete, ready-to-pack submission — which is the point of keeping it a folder rather
+than a one-shot tarball. The generator (`code/make_arxiv_submission.py` in the working home)
+regenerates the derived parts and preserves this README and `make-tarball.sh` across a rebuild; the
+`anc/lean` + `anc/verification-code` trees are copies of the repo's own top-level `lean/` and
+`verification-code/`, so re-run the generator after changing those.

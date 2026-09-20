@@ -129,9 +129,10 @@ recommendation recorded here — this has been Jan's per-submission call.
       and is **pdfLaTeX + inlined bibliography** — no XeLaTeX, no fonts to upload, no biber.
       This replaces the earlier XeLaTeX package, which arXiv rejected on fonts + biblatex
       (2026-09-20). See `arxiv-submission/README.md`.
-- [ ] Upload `arxiv-submission.tar.gz`. **Category/compiler:** arXiv auto-detects pdfLaTeX from
-      the magic comment; no font upload needed. To submit without the Lean/verification-code
-      ancillary trees, delete `anc/lean` and `anc/verification-code` first (the paper is
-      unaffected).
+- [ ] **From any clone (e.g. jts-yoga):** `cd arxiv-submission && ./make-tarball.sh` → uploads as
+      `../arxiv-submission.tar.gz`. Needs only `tar`, no LaTeX. Upload that tarball.
+      **Compiler:** arXiv auto-detects pdfLaTeX from the magic comment; no font upload. To submit
+      without the Lean/verification-code ancillary, delete `anc/lean` and `anc/verification-code`
+      before packing (the paper is unaffected; the full formalization is public in the repo).
 - [ ] Re-verify the arXiv LLM policy against the live page before submitting
       (per `reference_arxiv_llm_policy`; last verified 2026-05 clarification).
