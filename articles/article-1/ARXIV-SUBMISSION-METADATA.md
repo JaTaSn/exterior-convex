@@ -53,9 +53,17 @@ that last sentence if it should not be in the abstract.)
 
 ## Categories
 
-**[Jan]** Suggestion: **math.AC** (primary), cross-list **math.CO**. The MSC choices below
-point the same way; math.CO could equally be primary — the main theorem is stated both
-algebraically and purely combinatorially.
+**Decided (Jan, 2026-09-20):** primary **math.AC**, cross-list **math.CO**.
+
+```
+math.AC (Primary) math.CO (cross-list)
+```
+
+On "convex geometry / polytopes": arXiv has no dedicated convex-geometry class — that material
+lives in **math.MG** (Metric Geometry, which covers convex and discrete geometry, polytopes) or in
+math.CO. So the polytope content is already served by math.CO here; math.MG is available as a
+further cross-list if you want the discrete-geometry audience, but two categories is plenty for
+Part I. (For the series: Part II is math.CO-first; Part III is more math.CO than math.AC.)
 
 ## MSC class (2020)
 
@@ -121,8 +129,10 @@ recommendation recorded here — this has been Jan's per-submission call.
 
 - [ ] `REFERENCE-CERTIFICATE.md` (this directory's sibling under `references/`) is current
       against the submitted version — it is, as of 2026-09-20.
-- [ ] AI-disclosure section present (it is; Jan's rev2 note about amending its wording —
-      "began from a manual human draft" — is still open, his to word).
+- [x] AI-disclosure section present **and amended** — the rev2 request is done: the "What the
+      model was given" paragraph now records that the work began from Jan's own manual draft, the
+      experimental/conjectural extremal-tensor work, and a list of observations/definitions. Only
+      re-read for voice if you want; the substance is there.
 - [ ] Run the generator (working home
       `20-projects/exterior-convex/code/make_arxiv_submission.py`) → `arxiv-submission/` +
       `arxiv-submission.tar.gz`. It self-verifies (pdfLaTeX ×3, asserts 0 errors / 0 undefined)
