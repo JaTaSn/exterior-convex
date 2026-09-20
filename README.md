@@ -18,6 +18,25 @@ it, and Part I gives a self-contained proof including a short proof of Kozlov's 
 Lubell–Yamamoto–Meshalkin inequality and a facet description of $\mathrm{Koz}(n)$ that appears not to
 be recorded in the literature.
 
+## Published version (Part I)
+
+Part I is published, open access, as a technical report in Linköping University's mathematics
+report series:
+
+> Jan Snellman, *Hilbert functions over the exterior algebra and $f$-vectors in higher rank I:
+> Amata–Crupi monomial modules, Kozlov polytopes, and $r$-vectors of simplicial complexes.*
+> LiTH-MAT-R, ISSN 0348-2960, No. 2026:04. Linköping University Electronic Press, 2026.
+> DOI: [10.3384/LiTH-MAT-R-2026-04](https://doi.org/10.3384/LiTH-MAT-R-2026-04)
+
+Full text via the DiVA record:
+[urn:nbn:se:liu:diva-227730](https://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-227730)
+(DiVA id `diva2:2102721`;
+[record page](https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721)). An arXiv
+preprint is in preparation — see [`articles/article-1/arxiv-submission/`](articles/article-1/arxiv-submission/).
+
+**Parts II and III are unpublished drafts** at this stage (`articles/article-2/`,
+`articles/article-3/`); the Lean formalization in `lean/` already covers Part II's counting layer.
+
 ## Layout
 
 | directory | contents |
@@ -75,7 +94,8 @@ lake build
 ```
 
 A clean build ends with `Build completed successfully` and no `error:`. The only warnings are
-`if_pos` deprecations in `ExteriorConvex/Count.lean`.
+`if_pos`/`if_neg` deprecations under `ExteriorConvex/Vertices/` (`Count.lean`, `Simplex.lean`,
+`ExtremalMatrix.lean`).
 
 To confirm there is nothing hidden in it:
 
@@ -83,7 +103,9 @@ To confirm there is nothing hidden in it:
 grep -rn sorry ExteriorConvex/          # expect no matches
 ```
 
-and, for the axiom check, in `lake env lean` or an editor:
+and, for the axiom check, in `lake env lean` or an editor (the declarations live in the
+`ExteriorConvex` namespace; `kozlov` is Kozlov's theorem, `main` the rank-$r$ main theorem, and
+`permissive_fibres` the permissive-convention prize):
 
 ```lean
 import ExteriorConvex
@@ -96,7 +118,40 @@ Each should print exactly `[propext, Classical.choice, Quot.sound]` — Lean's t
 foundational axioms, and nothing else. **In particular `Lean.ofReduceBool` must never appear**: it is
 the axiom `native_decide` introduces, and a single use of that tactic anywhere in the import graph
 would invalidate the axiom claim for the whole development. There is a standing prohibition on it,
-recorded in `ExteriorConvex/Permissive.lean`.
+recorded in `ExteriorConvex/Spine/Permissive.lean`.
+
+## The verification code
+
+`verification-code/` holds every SageMath, Macaulay2 and Python script behind a computational claim
+in the articles, with the recorded output of each run under `verification-code/runs/`. These are the
+*informal* checks — exact polyhedral computation, exhaustive small-case enumeration, brute force —
+that were run alongside (and often ahead of) the Lean formalization and the paper's proofs; the Lean
+development is the machine-checked core, and this is everything around it.
+
+**The map from claim to script is article 1's §10, *Methods*** — read that first: it states, claim by
+claim, what was checked, over what range, and by which script. `verification-code/oneoff/` holds the
+single-purpose scripts (each named for what it checks, e.g.
+`close_gap3_explicit_functional.sage`), and the top level holds the reusable modules
+(`right_angle_simplex.py`, `minkowski_tensor.py`, …).
+
+Each script is standalone and prints its own PASS/FAIL summary; none needs the others. What you need
+to run them:
+
+```sh
+# Python-only checks (no special maths software):
+python3 verification-code/<script>.py
+
+# SageMath checks (exact polytopes, OEIS lookups, face lattices) — needs a Sage install:
+sage verification-code/oneoff/<script>.sage
+
+# Macaulay2 checks (Hilbert functions of exterior monomial modules) — needs M2 + the
+# Amata–Crupi ExteriorIdeals/ExteriorModules packages, which ship with Macaulay2:
+M2 --script verification-code/oneoff/<script>.m2
+```
+
+The recorded outputs in `verification-code/runs/` let you compare against a known-good run without
+re-executing anything; a few of the heavier Sage jobs (face-lattice enumeration) are memory-hungry
+and are best run one at a time.
 
 ## Reference certificate
 
@@ -116,10 +171,6 @@ each build. See `articles/article-1/arxiv-submission/README.md` for the arXiv-sa
 `references/CITATIONS-TO-VERIFY.md` was the worklist the certificate grew from (the works cited
 with no local copy, and what needed checking about each); it is kept as the record of that check,
 marked discharged.
-
-Where a claim is attributed to a source, the intention is that the certificate either quote the
-relevant passage with a page locator or say explicitly that no primary copy could be obtained. That
-pass is **not yet written** for this series; the list of what it must cover is.
 
 ## Provenance
 
