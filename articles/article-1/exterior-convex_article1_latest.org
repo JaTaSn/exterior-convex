@@ -49,21 +49,24 @@
 # block; within it the drawn diagonal is j = t. Proportions are schematic, not to scale for any
 # particular n and d. Verified against the printed n = 5, d = 1 matrices before being drawn.
 #
-# Placement history: first set as \marginpar issued at the HEAD of each statement -- floated up
-# beside the preceding paragraph (the box lands at the line where \marginpar is issued), so Jan's
-# rev3 review moved them in-flow between statement and proof. 2026-09-20, back in the margin at
-# Jan's request, with the fix: each call is now issued at the first line INSIDE the proof (or, for
-# the two section-8 theorems whose proofs live in the appendix, at the first line of the following
-# paragraph), so the box sits level with the start of the proof, not above the statement.
+# Placement history: (1) \marginpar issued at the HEAD of each statement -- floated up beside the
+# preceding paragraph (the box lands at the line where the command is issued), so Jan's rev3
+# review moved them in-flow between statement and proof. (2) 2026-09-20 morning: back in the
+# margin, issued at the first line inside the proof -- level with the proof, but Jan judged the
+# placement still poor. (3) 2026-09-20, current: issued at the first line INSIDE the
+# Theorem/Proposition statement, pushed 3 lines down via marginnote's explicit vertical-offset
+# argument (\marginpar cannot offset; \marginnote{...}[3\baselineskip] can, at the price of not
+# doing collision avoidance -- acceptable, the eight boxes are far apart).
 # scrartcl's \marginparwidth here is 59.75pt; the picture is ~48pt wide, so it fits at natural size.
-#+LATEX_HEADER: \newcommand{\regionbox}[1]{\marginpar{\centering\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
+#+LATEX_HEADER: \usepackage{marginnote}
+#+LATEX_HEADER: \newcommand{\regionbox}[1]{\marginnote{\centering\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
 #+LATEX_HEADER:   \fill[black!5] (0,0) rectangle (1,1);
 #+LATEX_HEADER:   #1
 #+LATEX_HEADER:   \draw[black!35,dashed] (0,0.7)--(1,0.7); \draw[black!35,dashed] (0.7,0)--(0.7,1);
 #+LATEX_HEADER:   \draw (0,0) rectangle (1,1);
 #+LATEX_HEADER:   \node[anchor=east,font=\tiny] at (0,0.85) {$d$};
 #+LATEX_HEADER:   \node[anchor=north,font=\tiny] at (0.35,0) {$m$};
-#+LATEX_HEADER: \end{tikzpicture}\par}}
+#+LATEX_HEADER: \end{tikzpicture}\par}[3\baselineskip]}
 # The shaded region always means "the entries this statement decides"; ones are shaded solid,
 # zeros hatched, so the two kinds of proposition are distinguishable at a glance.
 #+LATEX_HEADER: \newcommand{\regones}[1]{\fill[blue!22] #1;}
@@ -337,7 +340,7 @@ Section [[#sec-vertices]]).
 
 Two further conventions, stated once. **\(\subset\) is not assumed strict**: we write \(\subseteq\)
 when containment is meant and \(\subsetneq\) when properness is, and use \(\subset\) only
-where either would do. And \([n]:=\lbrace1,2,\dots,n\rbrace\) throughout.
+where either would do; and \([n]:=\lbrace1,2,\dots,n\rbrace\) throughout.
 
 #+begin_export latex
 \begingroup\small
@@ -968,7 +971,7 @@ Lemma [[lem-mu-permissive]], so it is a facet.
 Two things are worth stating explicitly, both having been got wrong in drafting. **\(e_0\) is a
 standard basis vector, not the origin**: it is \(\proj(e_0)\) that is the zero vector, which is why the
 projected form \eqref{eq:permissive-hull} reads \(\conv\lbrace0,\tilde F_1,\dots,\tilde F_n\rbrace\).
-And the vertex in question is a vertex of a polytope, not a vertex of a complex; as an \(f\)-vector it
+Second, the vertex in question is a vertex of a polytope, not a vertex of a complex; as an \(f\)-vector it
 is the one of \(\lbrace\emptyset\rbrace\), the order ideal with the empty face and nothing else. So
 properness is not a hypothesis bolted onto Theorem [[thm-kozlov]]: it is one of the \(n+1\) facet
 inequalities of \(\rasimp(\vec b)\), and the Kozlov simplex is the face where it is tight.
@@ -1582,7 +1585,7 @@ characterization of the companion paper has been misstated in the literature.
 
 #+NAME: ex-worked
 #+begin_mexample
-Let \(n=3\), \(r=2\), \(d=(0,1)\). \(\proj(\Koz(3))\) has vertices \((3,0,0)\),
+Let \(n=3\), \(r=2\), \(d=(0,1)\). The simplex \(\proj(\Koz(3))\) has vertices \((3,0,0)\),
 \((3,3,0)\), \((3,3,1)\).
 Take \(\Delta_1\) the full simplex on \([3]\) (so \(I_{\Delta_1}=0\), \(f(\Delta_1)=(1,3,3,1)\)) and
 \(\Delta_2\) the three isolated vertices (so \(I_{\Delta_2}=(e_1e_2,e_1e_3,e_2e_3)\),
@@ -1761,7 +1764,7 @@ The leg vector that matters is the Kozlov vector \(\kozvec(n)\) of Definition [[
 which \(\proj\bigl(\Koz(n;d_1,\dots,d_r)\bigr)\) is \(\RA(\vec a;d_1,\dots,d_r)\) up to the
 translation of \eqref{eq:koz-as-ra}; it is the
 case the rest of the paper is about. We also study the all-ones leg vector \(\onesvec(n)\), which has
-a theorem of its own. And a good deal of what
+a theorem of its own; and a good deal of what
 follows holds for a *general* positive leg vector: of the six propositions of
 Appendix [[#sec-app-cases]] only two ask anything of \(\vec a\) beyond positivity, and what they ask
 is that the ratios \(a_{d+s}/a_s\) decrease.
@@ -1882,11 +1885,18 @@ give identical sections for both.}
 \end{figure}
 #+end_export
 
+# Explicit page flush at the end of section 9.1 (Jan, 2026-09-20): without it, Theorem 51 starts
+# at the bottom of a page, the full-page Schlegel float lands as the NEXT page, and the theorem
+# resumes on the page after -- broken across the figure. \clearpage (not \newpage: only
+# \clearpage flushes pending floats) forces Figure 3 out onto the page directly after 9.1's
+# text, and 9.2 then opens on a fresh page with Theorem 51 unbroken.
+@@latex:\clearpage@@
+
 ** The all-ones case at rank two
 
 #+NAME: thm-ones
 #+begin_theorem
-Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
+@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
 \(1\le d\le n-1\); put \(m=n-d\), and for indices \(1\le i,j\le n\) write \(t=i-d\). Then
 #+begin_export latex
 \begin{equation}\label{eq:ones}
@@ -1899,7 +1909,7 @@ Consequently \(\RA(\vec a;0,d)\) has exactly \(n^2-m(m-1)\) vertices.
 @@latex:\label{thm:ones}@@
 #+end_theorem
 
-@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@In this schematic and the ones like it below, the frame is the whole \(n\times n\) extremal
+In this schematic and the ones like it below, the frame is the whole \(n\times n\) extremal
 matrix, rows downward and columns rightward; the dashed rules cut off the top \(d\) rows and the
 right \(d\) columns, leaving the \(m\times m\) overlap block at the lower left, and the drawn
 diagonal is \(j=t\). **Blue marks entries the statement shows are \(1\), red entries it shows are
@@ -2017,7 +2027,7 @@ We write \(v_i\) for the \(i\)-th vertex of the first (unshifted) summand and
 
 #+NAME: thm-kozlov-matrix
 #+begin_theorem
-Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
+@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
 let \(r=2\) and \(\vec d=(0,d)\) with \(1\le d\le n-1\), and put \(m=n-d\). Then for indices
 \(1\le i,j\le n\), writing \(t=i-d\),
 #+begin_export latex
@@ -2037,7 +2047,7 @@ and \(\extten(\vec a;d)[i][j]=1\) otherwise. Consequently the vertices of
 @@latex:\label{thm:kozlov-matrix}@@
 #+end_theorem
 
-@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@The proof is in Appendix [[#sec-app-kozlov]]. The index pairs are classified by six propositions,
+The proof is in Appendix [[#sec-app-kozlov]]. The index pairs are classified by six propositions,
 stated and proved in Appendix [[#sec-app-cases]]: each covers one region of the matrix, and together
 they leave no pair unaccounted for, and only two of them use anything about \(\vec a\) beyond
 positivity, as noted at the head of this section.
@@ -2080,7 +2090,7 @@ for the Kozlov simplex itself (Corollary [[cor-facets]]) and conjectured for the
 Two features make the statement short. The offsets cost nothing: the support function of a Minkowski
 sum is the sum of the support functions, so the supporting value of \(\RA(\vec a;0,d)\) in a
 direction \(u\) is
-\(h(u,\rasimp(\vec a))+h(u,\shift^d(\rasimp(\vec a)))\), a sum of maxima over \(n\) known vertices. And the
+\(h(u,\rasimp(\vec a))+h(u,\shift^d(\rasimp(\vec a)))\), a sum of maxima over \(n\) known vertices. The
 candidate directions are few: each summand contributes the \(n\) inequalities of Corollary
 [[cor-facets]], to which exactly two more must be added.
 
@@ -2173,8 +2183,8 @@ subsection.
 
 Two remarks on how not to prove it. The two extra inequalities are not inherited from either summand
 and cannot be, since they are exactly where the naive expectation that a Minkowski sum's facets come
-from its summands' facets breaks down --- and it breaks down already at \(n=3\). And a decomposition
-cannot be produced by truncating \(x\) against the second summand's maximum profile, because
+from its summands' facets breaks down --- and it breaks down already at \(n=3\). Nor can a
+decomposition be produced by truncating \(x\) against the second summand's maximum profile, because
 \(\rasimp(\vec a)\) lies in the hyperplane \(\lbrace x_1=n\rbrace\) and a truncation has no reason to
 respect it.
 
@@ -2415,7 +2425,7 @@ of \(S\), so \(\langle\varphi,y\rangle\le\langle\varphi,x\rangle\) with equality
 of \(P\) exposed by \(\varphi\), and an exposed point is a vertex.
 
 (1) \(\Rightarrow\) (2). A vertex of \(\conv(S)\) lies in \(S\): writing it as a convex combination
-of elements of \(S\), extremality forces all the weight onto one of them. And if
+of elements of \(S\), extremality forces all the weight onto one of them; and if
 \(x\in\conv(S\setminus\lbrace x\rbrace)\) then \(x\) is a convex combination of points of \(P\) other
 than \(x\), hence interior to a segment in \(P\), contradicting extremality.
 
@@ -2788,13 +2798,13 @@ room to spare.
 #+ATTR_LATEX: :options []
 #+NAME: prop-row-below
 #+begin_proposition
-(/Rows that stop inside the first private block./) Let \(\vec a\) be any positive leg vector and let
+@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@(/Rows that stop inside the first private block./) Let \(\vec a\) be any positive leg vector and let
 \(1\le i\le d\), so that \(t\le0\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le j\le n\).
 @@latex:\label{prop:row-below}@@
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@Let \(M>0\) and define \(\varphi\) by
+Let \(M>0\) and define \(\varphi\) by
 #+begin_export latex
 \begin{equation}\label{eq:row-below}
   \varphi_k=+1\ (k\le i),\qquad \varphi_k=-1\ (i<k\le d),\qquad \varphi_{d+1}=-M,
@@ -2835,13 +2845,13 @@ pushes all of them below zero, while \(-Ma_1\) appears in every \(\langle\varphi
 #+ATTR_LATEX: :options []
 #+NAME: prop-col-beyond
 #+begin_proposition
-(/Columns that reach the second private block./) Let \(\vec a\) be any positive leg vector and let
+@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@(/Columns that reach the second private block./) Let \(\vec a\) be any positive leg vector and let
 \(m<j\le n\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le i\le n\).
 @@latex:\label{prop:col-beyond}@@
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@Here the second summand has room of its own: \(u_j\) meets \([n+1,N]\) precisely because \(j>m\).
+Here the second summand has room of its own: \(u_j\) meets \([n+1,N]\) precisely because \(j>m\).
 Choose \(\varphi\) on \([1,n]\) by Lemma [[lem-shape]] with \(w_k=a_k\), \(p=i\) and \(\psi_1=+1\),
 which makes \(v_i\) the unique maximizer on the first summand; note this uses only coordinates the
 first summand sees, and fixes \(\varphi\) on the shared block as a side effect. On the remaining
@@ -2864,14 +2874,14 @@ maximizer, and Lemma [[lem-vertexdecomp]](1) applies.
 #+ATTR_LATEX: :options []
 #+NAME: prop-diagonal
 #+begin_proposition
-(/The diagonal./) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
+@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@(/The diagonal./) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
 \(\extten(\vec a;d)[d+t][t]=1\); that is, \(\extten(\vec a;d)[i][j]=1\) for \(i=d+t\) and
 \(j=t\).
 @@latex:\label{prop:diagonal}@@
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@Take the single *threshold functional* with cut at \(p=d+t\),
+Take the single *threshold functional* with cut at \(p=d+t\),
 #+begin_export latex
 \begin{equation}\label{eq:diagonal}
   \varphi_c=+1\ (c\le d+t),\qquad \varphi_c=-1\ (c>d+t)\qquad(1\le c\le N),
@@ -2891,14 +2901,14 @@ exposes \(v_{d+t}\) and \(u_t\) simultaneously. Apply Lemma [[lem-vertexdecomp]]
 #+ATTR_LATEX: :options []
 #+NAME: prop-adjacent
 #+begin_proposition
-(/The two adjacent diagonals./) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
+@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@(/The two adjacent diagonals./) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
 and \(1\le j\le m\) with \(j=t+1\) or \(j=t-1\). Then \(\extten(\vec a;d)[i][j]=0\) for
 \(i=d+t\).
 @@latex:\label{prop:adjacent}@@
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@The point is that *both summands cross the same coordinate*, and need its coefficient to have
+The point is that *both summands cross the same coordinate*, and need its coefficient to have
 opposite signs; no partial sums are involved.
 
 Suppose \(j=t+1\le m\) and the entry were one, witnessed by \(\varphi\). Passing from \(u_t\) to
@@ -2923,7 +2933,7 @@ duly show as a one. Without the hypothesis the two propositions would contradict
 #+ATTR_LATEX: :options []
 #+NAME: prop-below-diagonal
 #+begin_proposition
-(/Below the diagonal./) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
+@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@(/Below the diagonal./) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
 \(\rho_1>\rho_2>\cdots>\rho_t\), which by Lemma [[lem-binomial-ratio]] holds for the Kozlov vector.
 Then \(\extten(\vec a;d)[i][j]=0\) for \(i=d+t\); note \(i>d+j\), so this is the region strictly
 below the diagonal of the overlap block.
@@ -2931,7 +2941,7 @@ below the diagonal of the overlap block.
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@Suppose the entry were one, witnessed by \(\varphi\), and write \(K=t-j\ge1\) and
+Suppose the entry were one, witnessed by \(\varphi\), and write \(K=t-j\ge1\) and
 \(B_s=\sum_{l=j+1}^{j+s}e_lb_l\) for \(1\le s\le K\). Exposing \(u_j\) on the second summand forces
 \(P_{j+s}<P_j\) for every \(s\), that is \(B_s<0\); exposing \(v_i\) on the first forces
 \(Q_t>Q_j\), that is \(\sum_{l=j+1}^{t}e_lc_l>0\). Summation by parts turns the second sum into
@@ -2952,7 +2962,7 @@ the substantive case, and we give it in full.
 #+ATTR_LATEX: :options []
 #+NAME: prop-gapK
 #+begin_proposition
-(/Gap at least two./) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
+@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@(/Gap at least two./) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
 \(\vec a\) be a positive leg vector. Let \(1\le t\le m\) and \(1\le j\le m\) with \(K:=j-t\ge2\),
 and suppose
 #+begin_export latex
@@ -2967,7 +2977,7 @@ which by Lemma [[lem-binomial-ratio]] holds for the Kozlov vector. Then
 #+end_proposition
 
 #+begin_proof
-@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@Exhibit the functional. Any \(\delta\) with \(0<\delta<\rho_{t+1}/\rho_j-1\) will do, and such a
+Exhibit the functional. Any \(\delta\) with \(0<\delta<\rho_{t+1}/\rho_j-1\) will do, and such a
 \(\delta\) exists exactly because \(\rho_{t+1}>\rho_j>0\); we fix the midpoint
 #+begin_export latex
 \begin{equation}\label{eq:gapK-2}

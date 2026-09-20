@@ -7,3 +7,6 @@ build/
 *.run.xml
 *.toc
 *.out
+
+# derived: assembled by articles/article-1/make_arxiv_package.sh
+arxiv-submission.tar.gz

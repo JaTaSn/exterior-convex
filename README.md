@@ -27,7 +27,7 @@ be recorded in the literature.
 | `articles/article-3/` | *III: Lattice points of the Kozlov polytope, and a corrected Kruskal–Katona theorem.* Partial draft. |
 | `lean/` | the Lean 4 + Mathlib formalization — see below |
 | `verification-code/` | every SageMath, Macaulay2 and Python script behind a computational claim, with the recorded output of the runs under `verification-code/runs/` |
-| `references/` | the BibTeX database, and `CITATIONS-TO-VERIFY.md`, the list of cited works with no local copy |
+| `references/` | the BibTeX database; **`REFERENCE-CERTIFICATE.md`**, the certificate of existence for every citation in article 1 (see below); and `CITATIONS-TO-VERIFY.md`, the discharged worklist it grew from |
 
 Article 1's §10, *Methods*, is the index into `verification-code/`: it states, claim by claim, what
 was checked, over what range, and by which script. Read that before reading the scripts.
@@ -100,12 +100,20 @@ recorded in `ExteriorConvex/Permissive.lean`.
 
 ## Reference certificate
 
-`references/CITATIONS-TO-VERIFY.md` lists every work cited by article 1 for which no copy is held
-locally — nine of twenty — with the full BibTeX entry and what specifically needs checking about each.
-The point is not bookkeeping. The manuscripts were written with substantial AI assistance, disclosed in
-their own Acknowledgements, and arXiv's policy treats hallucinated or fabricated references as
-grounds for a submission ban; so being able to show, plainly and checkably, that every reference is a
-real and locatable publication is part of the work rather than an afterthought.
+**`references/REFERENCE-CERTIFICATE.md`** (written 2026-09-20) is the certificate itself: for
+every key article 1 cites, the full bibliographic entry, the claim it supports with a line number
+in the source, and either a verbatim quotation with a locator from a held copy or an explicit
+no-copy statement plus the registry verification done instead. The point is not bookkeeping. The
+manuscripts were written with substantial AI assistance, disclosed in their own Acknowledgements,
+and arXiv's policy treats hallucinated or fabricated references as grounds for a submission ban;
+so being able to show, plainly and checkably, that every reference is a real and locatable
+publication is part of the work rather than an afterthought. **The certificate ships with the
+arXiv submission as an ancillary file** — `articles/article-1/make_arxiv_package.sh` assembles
+the tarball and copies it into `anc/` fresh at pack time.
+
+`references/CITATIONS-TO-VERIFY.md` was the worklist the certificate grew from (the works cited
+with no local copy, and what needed checking about each); it is kept as the record of that check,
+marked discharged.
 
 Where a claim is attributed to a source, the intention is that the certificate either quote the
 relevant passage with a page locator or say explicitly that no primary copy could be obtained. That

@@ -1,0 +1,799 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{AmataCrupi2018ExteriorIdeals}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8f984dea886ce1378c26bc1dbdeab5b5}{%
+           family={Amata},
+           familyi={A\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0bc8e002450e1f79adf9a88f7b91d889}{%
+           family={Crupi},
+           familyi={C\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \strng{bibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorbibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authornamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \field{extraname}{1}
+      \field{labelalpha}{AC18}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Software for Algebra and Geometry}
+      \field{title}{ExteriorIdeals: a package for computing monomial ideals in an exterior algebra}
+      \field{volume}{8}
+      \field{year}{2018}
+    \endentry
+    \entry{AmataCrupi2020KK}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8f984dea886ce1378c26bc1dbdeab5b5}{%
+           family={Amata},
+           familyi={A\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0bc8e002450e1f79adf9a88f7b91d889}{%
+           family={Crupi},
+           familyi={C\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \strng{bibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorbibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authornamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \field{extraname}{2}
+      \field{labelalpha}{AC20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Analele Ştiinţifice ale Universităţii Ovidius Constanţa}
+      \field{number}{2}
+      \field{title}{A generalization of Kruskal--Katona's theorem}
+      \field{volume}{28}
+      \field{year}{2020}
+      \field{pages}{35\bibrangedash 51}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.2478/auom-2020-0018
+      \endverb
+    \endentry
+    \entry{AmataCrupi2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8f984dea886ce1378c26bc1dbdeab5b5}{%
+           family={Amata},
+           familyi={A\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0bc8e002450e1f79adf9a88f7b91d889}{%
+           family={Crupi},
+           familyi={C\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \strng{bibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorbibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authornamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \field{extraname}{3}
+      \field{labelalpha}{AC20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Electronic Journal of Algebra}
+      \field{title}{Hilbert functions of graded modules over an exterior algebra: an algorithmic approach}
+      \field{volume}{27}
+      \field{year}{2020}
+      \field{pages}{271\bibrangedash 287}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.24330/ieja.663116
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.24330/ieja.663116
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.24330/ieja.663116
+      \endverb
+    \endentry
+    \entry{AmataCrupi2021}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8f984dea886ce1378c26bc1dbdeab5b5}{%
+           family={Amata},
+           familyi={A\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0bc8e002450e1f79adf9a88f7b91d889}{%
+           family={Crupi},
+           familyi={C\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{fullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \strng{bibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorbibnamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authornamehash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhash}{fcb513fada6d41644184409cb2c0f167}
+      \strng{authorfullhashraw}{fcb513fada6d41644184409cb2c0f167}
+      \field{extraname}{4}
+      \field{labelalpha}{AC21}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Software for Algebra and Geometry}
+      \field{title}{ExteriorModules: a package for computing monomial modules over an exterior algebra}
+      \field{volume}{11}
+      \field{year}{2021}
+      \field{pages}{71\bibrangedash 81}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.2140/jsag.2021.11.71
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2140/jsag.2021.11.71
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2140/jsag.2021.11.71
+      \endverb
+    \endentry
+    \entry{AramovaHerzog2000}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=1961c944d566284cdf6c284897cf8c87}{%
+           family={Aramova},
+           familyi={A\bibinitperiod},
+           given={Annetta},
+           giveni={A\bibinitperiod}}}%
+        {{hash=118b20d6d06191ddb6203375265e84bc}{%
+           family={Herzog},
+           familyi={H\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Johns Hopkins University Press}%
+      }
+      \strng{namehash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{fullhash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{fullhashraw}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{bibnamehash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{authorbibnamehash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{authornamehash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{authorfullhash}{869d7638aeaca12843ca8df6c80b7efb}
+      \strng{authorfullhashraw}{869d7638aeaca12843ca8df6c80b7efb}
+      \field{labelalpha}{AH00}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Mathematics}
+      \field{number}{4}
+      \field{title}{Almost regular sequences and Betti numbers}
+      \field{volume}{122}
+      \field{year}{2000}
+      \field{pages}{689\bibrangedash 719}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1353/ajm.2000.0025
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1353/ajm.2000.0025
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1353/ajm.2000.0025
+      \endverb
+    \endentry
+    \entry{AramovaHerzogHibi1997}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=1961c944d566284cdf6c284897cf8c87}{%
+           family={Aramova},
+           familyi={A\bibinitperiod},
+           given={Annetta},
+           giveni={A\bibinitperiod}}}%
+        {{hash=118b20d6d06191ddb6203375265e84bc}{%
+           family={Herzog},
+           familyi={H\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=014a8937669f0ba5d129931d8d5338e6}{%
+           family={Hibi},
+           familyi={H\bibinitperiod},
+           given={Takayuki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{cee093f6359429fb47e66c75dd644991}
+      \strng{fullhash}{cee093f6359429fb47e66c75dd644991}
+      \strng{fullhashraw}{cee093f6359429fb47e66c75dd644991}
+      \strng{bibnamehash}{cee093f6359429fb47e66c75dd644991}
+      \strng{authorbibnamehash}{cee093f6359429fb47e66c75dd644991}
+      \strng{authornamehash}{cee093f6359429fb47e66c75dd644991}
+      \strng{authorfullhash}{cee093f6359429fb47e66c75dd644991}
+      \strng{authorfullhashraw}{cee093f6359429fb47e66c75dd644991}
+      \field{labelalpha}{AHH97}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Algebra}
+      \field{number}{1}
+      \field{title}{Gotzmann theorems for exterior algebras and combinatorics}
+      \field{volume}{191}
+      \field{year}{1997}
+      \field{pages}{174\bibrangedash 211}
+      \range{pages}{38}
+      \verb{doi}
+      \verb 10.1006/jabr.1996.6908
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1006/jabr.1996.6908
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1006/jabr.1996.6908
+      \endverb
+    \endentry
+    \entry{ClementsLindstroem1969}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=1477848bcedbedcef33d4007b0a8e937}{%
+           family={Clements},
+           familyi={C\bibinitperiod},
+           given={G.\bibnamedelimi F.},
+           giveni={G\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=d3f1536876c2d93c7271e324feafb157}{%
+           family={Lindström},
+           familyi={L\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{fullhash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{fullhashraw}{d7f87e1f9e813f775d6802e695930839}
+      \strng{bibnamehash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{authorbibnamehash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{authornamehash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{authorfullhash}{d7f87e1f9e813f775d6802e695930839}
+      \strng{authorfullhashraw}{d7f87e1f9e813f775d6802e695930839}
+      \field{labelalpha}{CL69}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Theory}
+      \field{note}{Held locally since 2026-09-14 as literature/Lindström-Clements-GeneraizationMacaulay.pdf; the earlier ``cited but not downloaded'' status is superseded. Bibliographic data checked by Jan against MathSciNet MR0246781(40 \#50) the same day. Provenance of the copy is not recorded -- if it came through the LiU subscription it belongs in literature/subscription/ per the workspace convention. Took over Schutzenberger1959's role in thm-kk: the Clements--Lindström theorem specialises to the squarefree Kruskal--Katona statement at all k_i = 1.}
+      \field{title}{A Generalization of a Combinatorial Theorem of Macaulay}
+      \field{volume}{7}
+      \field{year}{1969}
+      \field{pages}{230\bibrangedash 238}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/S0021-9800(69)80016-5
+      \endverb
+    \endentry
+    \entry{Eisenbud1995}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1249d4c8877c098355d267da038c837b}{%
+           family={Eisenbud},
+           familyi={E\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{1249d4c8877c098355d267da038c837b}
+      \strng{fullhash}{1249d4c8877c098355d267da038c837b}
+      \strng{fullhashraw}{1249d4c8877c098355d267da038c837b}
+      \strng{bibnamehash}{1249d4c8877c098355d267da038c837b}
+      \strng{authorbibnamehash}{1249d4c8877c098355d267da038c837b}
+      \strng{authornamehash}{1249d4c8877c098355d267da038c837b}
+      \strng{authorfullhash}{1249d4c8877c098355d267da038c837b}
+      \strng{authorfullhashraw}{1249d4c8877c098355d267da038c837b}
+      \field{labelalpha}{Eis95}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Commutative Algebra with a View Toward Algebraic Geometry}
+      \field{volume}{150}
+      \field{year}{1995}
+      \verb{doi}
+      \verb 10.1007/978-1-4612-5350-1
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4612-5350-1
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4612-5350-1
+      \endverb
+    \endentry
+    \entry{Macaulay2}{manual}{}{}
+      \name{author}{2}{}{%
+        {{hash=e5b197f9abb9382c464eae92cdcc1b2c}{%
+           family={Grayson},
+           familyi={G\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=96b176ba22039da75b16e4c5096eafdf}{%
+           family={Stillman},
+           familyi={S\bibinitperiod},
+           given={Michael\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{fullhash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{fullhashraw}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{bibnamehash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{authorbibnamehash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{authornamehash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{authorfullhash}{2c7a379a001b99f38860c6197de79a8b}
+      \strng{authorfullhashraw}{2c7a379a001b99f38860c6197de79a8b}
+      \field{labelalpha}{GS26}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Macaulay2, a software system for research in algebraic geometry (Version 1.26.06)}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://macaulay2.com
+      \endverb
+      \verb{url}
+      \verb https://macaulay2.com
+      \endverb
+    \endentry
+    \entry{HerzogHibi2011}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=118b20d6d06191ddb6203375265e84bc}{%
+           family={Herzog},
+           familyi={H\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=014a8937669f0ba5d129931d8d5338e6}{%
+           family={Hibi},
+           familyi={H\bibinitperiod},
+           given={Takayuki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag London, Ltd.}%
+      }
+      \strng{namehash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{fullhash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{fullhashraw}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{bibnamehash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{authorbibnamehash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{authornamehash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{authorfullhash}{b95dd80208fd94a91e7b0274decdc772}
+      \strng{authorfullhashraw}{b95dd80208fd94a91e7b0274decdc772}
+      \field{labelalpha}{HH11}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-85729-105-9}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Monomial Ideals}
+      \field{volume}{260}
+      \field{year}{2011}
+      \field{pages}{xvi+305}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/978-0-85729-106-6
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-0-85729-106-6
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-0-85729-106-6
+      \endverb
+    \endentry
+    \entry{Katona1968}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=b2bc01f2ccdb696806b4c631b99a58a3}{%
+           family={Katona},
+           familyi={K\bibinitperiod},
+           given={Gyula\bibnamedelimb O.\bibnamedelimi H.},
+           giveni={G\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York-London}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{fullhash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{fullhashraw}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{bibnamehash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{authorbibnamehash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{authornamehash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{authorfullhash}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \strng{authorfullhashraw}{b2bc01f2ccdb696806b4c631b99a58a3}
+      \field{labelalpha}{Kat68}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Theory of Graphs (Proc. Colloq., Tihany, 1966)}
+      \field{title}{A theorem of finite sets}
+      \field{year}{1968}
+      \field{pages}{187\bibrangedash 207}
+      \range{pages}{21}
+    \endentry
+    \entry{Kozlov1997}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=1cc4b9f6f3f4bfa70af80524381483b1}{%
+           family={Kozlov},
+           familyi={K\bibinitperiod},
+           given={Dmitry\bibnamedelima N.},
+           giveni={D\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{fullhash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{fullhashraw}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{bibnamehash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{authorbibnamehash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{authornamehash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{authorfullhash}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \strng{authorfullhashraw}{1cc4b9f6f3f4bfa70af80524381483b1}
+      \field{labelalpha}{Koz97}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Discrete \& Computational Geometry}
+      \field{number}{4}
+      \field{title}{Convex Hulls of $f$- and $\beta$-Vectors}
+      \field{volume}{18}
+      \field{year}{1997}
+      \field{pages}{421\bibrangedash 431}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/PL00009326
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/PL00009326
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/PL00009326
+      \endverb
+    \endentry
+    \entry{Kruskal1963}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=569f9ff2dff516524ca08370ba81ba29}{%
+           family={Kruskal},
+           familyi={K\bibinitperiod},
+           given={Joseph\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berkeley-Los Angeles}%
+      }
+      \list{publisher}{1}{%
+        {Univ. of California Press}%
+      }
+      \strng{namehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{fullhash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{fullhashraw}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{bibnamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authorbibnamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authornamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authorfullhash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authorfullhashraw}{569f9ff2dff516524ca08370ba81ba29}
+      \field{labelalpha}{Kru63}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Mathematical Optimization Techniques}
+      \field{title}{The number of simplices in a complex}
+      \field{year}{1963}
+      \field{pages}{251\bibrangedash 278}
+      \range{pages}{28}
+    \endentry
+    \entry{Kupreyeva2019}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=2660265f8b7f10c265c40a141832719b}{%
+           family={Kupreyeva},
+           familyi={K\bibinitperiod},
+           given={Aliaksandra},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Linköpings universitet}%
+      }
+      \strng{namehash}{2660265f8b7f10c265c40a141832719b}
+      \strng{fullhash}{2660265f8b7f10c265c40a141832719b}
+      \strng{fullhashraw}{2660265f8b7f10c265c40a141832719b}
+      \strng{bibnamehash}{2660265f8b7f10c265c40a141832719b}
+      \strng{authorbibnamehash}{2660265f8b7f10c265c40a141832719b}
+      \strng{authornamehash}{2660265f8b7f10c265c40a141832719b}
+      \strng{authorfullhash}{2660265f8b7f10c265c40a141832719b}
+      \strng{authorfullhashraw}{2660265f8b7f10c265c40a141832719b}
+      \field{labelalpha}{Kup19}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Advised by Jan Snellman, examined by Axel Hultman. DiVA: urn:nbn:se:liu:diva-159826. Studies $\mathrm{conv}(F_p^n)$, $n=3,4$ (the Kozlov simplex, $r=1$ case) -- lattice point counts, Ehrhart polynomials/series via Brion's theorem, center of mass, and the limiting fraction of f-vectors among all lattice points ($4/5$ for $n=3$). Figure 3.1 ($T_7^3$) is exactly the "f-vectors vs. other lattice points inside the Kozlov triangle" picture. Read in full 2026-08-07 on branch Kupreyeva-fvectors-Kozlov, motivating the general-$r$ analogue of this same question (this project's own Amata--Crupi Theorem 4.2 thread). See literature/README.org's dedicated section and literature/kupreyeva-fvekt-legacy/ for the original code/notes.}
+      \field{title}{Simplices of f-vectors}
+      \field{type}{Bachelor's thesis, LiTH-MAT-EX--2019/05--SE}
+      \field{year}{2019}
+    \endentry
+    \entry{Linusson1999}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=fc8cf3e6c526506953547d9a8714a4c2}{%
+           family={Linusson},
+           familyi={L\bibinitperiod},
+           given={Svante},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{fullhash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{fullhashraw}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{bibnamehash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{authorbibnamehash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{authornamehash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{authorfullhash}{fc8cf3e6c526506953547d9a8714a4c2}
+      \strng{authorfullhashraw}{fc8cf3e6c526506953547d9a8714a4c2}
+      \field{labelalpha}{Lin99}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Combinatorica}
+      \field{number}{2}
+      \field{title}{The Number of M-Sequences and f-Vectors}
+      \field{volume}{19}
+      \field{year}{1999}
+      \field{pages}{255\bibrangedash 266}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/s004930050055
+      \endverb
+    \endentry
+    \entry{Lubell1966}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=638cb2f6fb677e025e25cf35e7c1c78a}{%
+           family={Lubell},
+           familyi={L\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{fullhash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{fullhashraw}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{bibnamehash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{authorbibnamehash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{authornamehash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{authorfullhash}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \strng{authorfullhashraw}{638cb2f6fb677e025e25cf35e7c1c78a}
+      \field{labelalpha}{Lub66}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Theory}
+      \field{number}{2}
+      \field{title}{A short proof of {S}perner's lemma}
+      \field{volume}{1}
+      \field{year}{1966}
+      \field{pages}{299}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/S0021-9800(66)80035-2
+      \endverb
+    \endentry
+    \entry{Meshalkin1963}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=924f22c54065861359e1bcc3fbaa7202}{%
+           family={Meshalkin},
+           familyi={M\bibinitperiod},
+           given={L.\bibnamedelimi D.},
+           giveni={L\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{fullhash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{fullhashraw}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{bibnamehash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{authorbibnamehash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{authornamehash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{authorfullhash}{924f22c54065861359e1bcc3fbaa7202}
+      \strng{authorfullhashraw}{924f22c54065861359e1bcc3fbaa7202}
+      \field{labelalpha}{Mes63}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theory of Probability and its Applications}
+      \field{number}{2}
+      \field{title}{Generalization of {S}perner's theorem on the number of subsets of a finite set}
+      \field{volume}{8}
+      \field{year}{1963}
+      \field{pages}{203\bibrangedash 204}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1137/1108023
+      \endverb
+    \endentry
+    \entry{SageMath}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=bd9e260a244c281a9de33159cacc1722}{%
+           family={{The Sage Developers}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{fullhash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{fullhashraw}{bd9e260a244c281a9de33159cacc1722}
+      \strng{bibnamehash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{authorbibnamehash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{authornamehash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{authorfullhash}{bd9e260a244c281a9de33159cacc1722}
+      \strng{authorfullhashraw}{bd9e260a244c281a9de33159cacc1722}
+      \field{labelalpha}{Sag26}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{label}{Sag}
+      \field{title}{{S}age{M}ath, the {S}age {M}athematics {S}oftware {S}ystem ({V}ersion 10.9)}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.sagemath.org
+      \endverb
+      \verb{url}
+      \verb https://www.sagemath.org
+      \endverb
+    \endentry
+    \entry{Skoldberg1999}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=102506f09c6a6a83f083f18de440d47e}{%
+           family={Sköldberg},
+           familyi={S\bibinitperiod},
+           given={Emil},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{fullhash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{fullhashraw}{102506f09c6a6a83f083f18de440d47e}
+      \strng{bibnamehash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{authorbibnamehash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{authornamehash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{authorfullhash}{102506f09c6a6a83f083f18de440d47e}
+      \strng{authorfullhashraw}{102506f09c6a6a83f083f18de440d47e}
+      \field{labelalpha}{Skö99}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Algebra}
+      \field{note}{Introduces the "indicator algebra" $E/J_\Delta$ (exterior face ring / exterior Stanley--Reisner ring -- "exterior face ring" is the more common term in the literature and the one to use if this project ever writes it up for arXiv; Jan uses both interchangeably in conversation) of a simplicial complex $\Delta$, and the "Artinification" $R_n=k[\Delta]/(x_1^2,\ldots,x_n^2)$ -- confirms this project's independent reconstruction of both terms, made before the paper was in hand (see artefacts/skoldberg-indicator-module.org). Main result (Theorem 1): $k[\Delta]$ is Golod iff $k\{\Delta\}$ is Golod. **Genuinely open access** (2026-08-07): Jan downloaded it directly from home with no institutional prompts; the earlier scripted-fetch failure (Unpaywall's "bronze" flag, ScienceDirect returning 403) was this project's own bot-blocking, not a real paywall -- corrected from an earlier, wrong "presumed subscription" note. In literature/ proper, not literature/subscription/. Author affiliation at time of writing: Department of Mathematics, University of Stockholm.}
+      \field{number}{1}
+      \field{title}{Monomial {G}olod Quotients of Exterior Algebras}
+      \field{volume}{218}
+      \field{year}{1999}
+      \field{pages}{183\bibrangedash 189}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1006/jabr.1998.7826
+      \endverb
+    \endentry
+    \entry{Yamamoto1954}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=4e1e0efb22d576ce890be9c817344e3f}{%
+           family={Yamamoto},
+           familyi={Y\bibinitperiod},
+           given={Kôichi},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{fullhash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{fullhashraw}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{bibnamehash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{authorbibnamehash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{authornamehash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{authorfullhash}{4e1e0efb22d576ce890be9c817344e3f}
+      \strng{authorfullhashraw}{4e1e0efb22d576ce890be9c817344e3f}
+      \field{labelalpha}{Yam54}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Mathematical Society of Japan}
+      \field{title}{Logarithmic order of free distributive lattice}
+      \field{volume}{6}
+      \field{year}{1954}
+      \field{pages}{343\bibrangedash 353}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.2969/jmsj/00630343
+      \endverb
+    \endentry
+    \entry{Ziegler1995}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f78d48d2643d689692036d03a7958e8c}{%
+           family={Ziegler},
+           familyi={Z\bibinitperiod},
+           given={Günter\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{fullhash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{fullhashraw}{f78d48d2643d689692036d03a7958e8c}
+      \strng{bibnamehash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{authorbibnamehash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{authornamehash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{authorfullhash}{f78d48d2643d689692036d03a7958e8c}
+      \strng{authorfullhashraw}{f78d48d2643d689692036d03a7958e8c}
+      \field{labelalpha}{Zie95}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Lectures on Polytopes}
+      \field{volume}{152}
+      \field{year}{1995}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

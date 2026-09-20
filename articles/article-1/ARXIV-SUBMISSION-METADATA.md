@@ -125,6 +125,9 @@ recommendation recorded here — this has been Jan's per-submission call.
       "began from a manual human draft" — is still open, his to word).
 - [ ] Build the submission `.tex` with `build_article.sh` (showkeys auto-off for `_latest`),
       confirm 0 errors / 0 undefined / 0 overfull / 0 missing chars.
-- [ ] arXiv wants the `.tex` + `.bbl` (biblatex: upload the `.bbl` alongside, arXiv has no biber).
+- [ ] Run `./make_arxiv_package.sh` (this directory) — assembles `arxiv-submission.tar.gz` with
+      the `.tex` (image paths flattened), the `.bbl` (arXiv has no biber), `img/`, and
+      **`anc/REFERENCE-CERTIFICATE.md`**, copied fresh from `references/` at pack time.
+      Verified 2026-09-20: the tarball compiles standalone, 0 errors, 53 pp.
 - [ ] Re-verify the arXiv LLM policy against the live page before submitting
       (per `reference_arxiv_llm_policy`; last verified 2026-05 clarification).
