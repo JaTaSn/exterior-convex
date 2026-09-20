@@ -123,11 +123,15 @@ recommendation recorded here — this has been Jan's per-submission call.
       against the submitted version — it is, as of 2026-09-20.
 - [ ] AI-disclosure section present (it is; Jan's rev2 note about amending its wording —
       "began from a manual human draft" — is still open, his to word).
-- [ ] Build the submission `.tex` with `build_article.sh` (showkeys auto-off for `_latest`),
-      confirm 0 errors / 0 undefined / 0 overfull / 0 missing chars.
-- [ ] Run `./make_arxiv_package.sh` (this directory) — assembles `arxiv-submission.tar.gz` with
-      the `.tex` (image paths flattened), the `.bbl` (arXiv has no biber), `img/`, and
-      **`anc/REFERENCE-CERTIFICATE.md`**, copied fresh from `references/` at pack time.
-      Verified 2026-09-20: the tarball compiles standalone, 0 errors, 53 pp.
+- [ ] Run the generator (working home
+      `20-projects/exterior-convex/code/make_arxiv_submission.py`) → `arxiv-submission/` +
+      `arxiv-submission.tar.gz`. It self-verifies (pdfLaTeX ×3, asserts 0 errors / 0 undefined)
+      and is **pdfLaTeX + inlined bibliography** — no XeLaTeX, no fonts to upload, no biber.
+      This replaces the earlier XeLaTeX package, which arXiv rejected on fonts + biblatex
+      (2026-09-20). See `arxiv-submission/README.md`.
+- [ ] Upload `arxiv-submission.tar.gz`. **Category/compiler:** arXiv auto-detects pdfLaTeX from
+      the magic comment; no font upload needed. To submit without the Lean/verification-code
+      ancillary trees, delete `anc/lean` and `anc/verification-code` first (the paper is
+      unaffected).
 - [ ] Re-verify the arXiv LLM policy against the live page before submitting
       (per `reference_arxiv_llm_policy`; last verified 2026-05 clarification).

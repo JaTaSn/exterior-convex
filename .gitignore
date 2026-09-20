@@ -10,3 +10,12 @@ build/
 
 # derived: assembled by articles/article-1/make_arxiv_package.sh
 arxiv-submission.tar.gz
+
+# arXiv submission: derived output of code/make_arxiv_submission.py. Track only the .tex, img/,
+# anc/REFERENCE-CERTIFICATE.md and the README; the built PDF, the tarball, and the ancillary
+# lean/verification-code duplicates are regenerated on demand (2026-09-20).
+articles/article-1/arxiv-submission.tar
+articles/article-1/arxiv-submission.tar.gz
+articles/article-1/arxiv-submission/*.pdf
+articles/article-1/arxiv-submission/anc/lean/
+articles/article-1/arxiv-submission/anc/verification-code/

@@ -108,8 +108,10 @@ manuscripts were written with substantial AI assistance, disclosed in their own 
 and arXiv's policy treats hallucinated or fabricated references as grounds for a submission ban;
 so being able to show, plainly and checkably, that every reference is a real and locatable
 publication is part of the work rather than an afterthought. **The certificate ships with the
-arXiv submission as an ancillary file** — `articles/article-1/make_arxiv_package.sh` assembles
-the tarball and copies it into `anc/` fresh at pack time.
+arXiv submission as an ancillary file** — the generator (working home
+`code/make_arxiv_submission.py`) copies it into `articles/article-1/arxiv-submission/anc/` fresh
+each build. See `articles/article-1/arxiv-submission/README.md` for the arXiv-safe submission
+(pdfLaTeX, inlined bibliography, no fonts to upload).
 
 `references/CITATIONS-TO-VERIFY.md` was the worklist the certificate grew from (the works cited
 with no local copy, and what needed checking about each); it is kept as the record of that check,
