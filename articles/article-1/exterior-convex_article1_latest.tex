@@ -1,4 +1,4 @@
-% Created 2026-09-20 Sun 09:26
+% Created 2026-09-20 Sun 09:40
 % Intended LaTeX compiler: xelatex
 \documentclass[11pt, a4paper, abstract=yes]{scrartcl}
 \usepackage{hyperref}
@@ -123,10 +123,10 @@ Secondary 05E40, 13D40, 15A75.
 \setcounter{tocdepth}{2}
 \tableofcontents
 \section{Introduction}
-\label{sec:org0260943}
+\label{sec:orgb22c5f8}
 
 \subsection{The rank-one picture}
-\label{sec:org6e79b8c}
+\label{sec:org7cd7938}
 
 The Hilbert function of a graded quotient of the exterior algebra is a \textbf{simpler} combinatorial
 object than its symmetric-algebra counterpart. Let \(k\) be a field, \(V=k^n\), and
@@ -154,7 +154,7 @@ normalization \(f_1(\Delta)=n\), meaning that every vertex is present, which we 
 \emph{properness}; the
 theorem is false without it, not merely less sharp (Section \ref{sec-permissive}).
 \subsection{The rank-\(r\) question}
-\label{sec:org61c0f9b}
+\label{sec:org9ae805c}
 
 Amata and Crupi \autocite{AmataCrupi2020,AmataCrupi2020KK} generalized the Kruskal--Katona theorem from ideals of \(E\) to graded
 submodules of a graded free module \(F=\bigoplus_{i=1}^rEg_i\) with \(\deg g_i=d_i\in\mathbb Z\).
@@ -210,7 +210,7 @@ Crupi's own generalized Kruskal--Katona theorem. Example \ref{ex-worked} below e
 Hilbert function that is a lattice point of the hull but not a vertex of it, which is the shortest
 way to see that the two questions genuinely differ.
 \subsection{What is new here, and what is not}
-\label{sec:orgf944036}
+\label{sec:orgd2de3a8}
 
 To be explicit about provenance, since much of the material below is classical.
 
@@ -1558,7 +1558,7 @@ those lemmas use, none of which is needed to read what follows. What is left her
 definitions, the statements, and the examples and comparisons that can be read without the case
 analysis.
 \subsection{The three regimes}
-\label{sec:org4baa628}
+\label{sec:orgdca530a}
 
 Fix \(r=2\) and \(\vec d=(0,d)\), so that \(\RA(\vec a;0,d)\subseteq\mathbb R^N\) with
 \(N=n+d\), and let \(m=n-d\) be the number of coordinates the two summands share, so that
@@ -1663,7 +1663,7 @@ give identical sections for both.}
 \label{fig:schlegel}
 \end{figure}
 \subsection{The all-ones case at rank two}
-\label{sec:org30d8d23}
+\label{sec:org2ae164c}
 
 \begin{theorem}
 Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
@@ -1768,7 +1768,7 @@ exactly what makes one of the two windows' chain inequalities redundant here.
 \label{ex-ones-facets}
 \end{mexample}
 \subsection{The Kozlov-vector case at rank two}
-\label{sec:org127953a}
+\label{sec:org879fe1f}
 
 \textbf{Standing hypotheses and notation for this subsection.} Recall that the leg vector is
 \(\vec a=(a_1,\dots,a_n)\), of length \(n\). Throughout, \(n\ge2\), \(r=2\),
@@ -2210,7 +2210,8 @@ over a hull being attained only at convex combinations of maximizers.
 Neither part uses support functions, and neither imports the fact that a vertex of a polytope is
 exposed --- Lemma \ref{lem-exposed-vertex} supplies what is needed of it for hulls of finite sets, and
 is proved here rather than cited. Both are usually how this lemma is proved --- the face of \(\sum P_p\) exposed by
-\(\varphi\) is \(\sum_pF(\varphi,P_p)\), which is \textcite[Proposition 7.12]{Ziegler1995} --- and both
+\(\varphi\) is \(\sum_pF(\varphi,P_p)\), which follows from \textcite[Proposition 7.12]{Ziegler1995},
+the common-refinement description of the normal fan of a Minkowski sum --- and both
 are avoidable here because every polytope in this paper comes to us as the convex hull of an
 explicit finite set, which is exactly the hypothesis Lemma \ref{lem-exposed-vertex} wants. The
 exchange argument in (1) and the midpoint argument in (2) are then elementary. We spell this out
@@ -2791,7 +2792,7 @@ zeros is
 \end{equation}
 \end{proof}
 \section*{Acknowledgements}
-\label{sec:org4feabd6}
+\label{sec:org4e4b6ee}
 Aliaksandra Kupreyeva's Bachelor's thesis \emph{Simplices of \(f\)-vectors} (Linköping University, 2019;
 report LiTH-MAT-EX--2019/05--SE), written under my supervision, is where the lattice-point question
 inside the Kozlov simplex was first raised in the form used in the companion paper. The name given in
@@ -2805,7 +2806,7 @@ Computations were carried out in SageMath and in Macaulay2, the latter using
 Amata and Crupi's own \texttt{ExteriorIdeals} and \texttt{ExteriorModules} packages
 \autocite{SageMath,Macaulay2,AmataCrupi2018ExteriorIdeals,AmataCrupi2021}.
 \section*{Disclosure of AI assistance}
-\label{sec:org24d423a}
+\label{sec:org51d049b}
 This manuscript was produced with substantial assistance from a large language model, Claude
 (Anthropic), and the extent of it is set out here rather than left to be inferred.
 
@@ -2837,15 +2838,15 @@ of the achievable set, and the algebraic statements against Macaulay2 --- and th
 been checked against primary sources. The author has verified the results to the best of his ability,
 made the final edits, and assumes full responsibility for any errors, mistakes or gaps that remain.
 \section*{Funding}
-\label{sec:orgdc7d5de}
+\label{sec:org6e1e254}
 This research received no external funding. It was carried out as part of the author's regular duties
 at Linköping University, within the fraction of that employment allocated to research.
 \section*{Conflicts of interest}
-\label{sec:orgffc3738}
+\label{sec:org42fd62a}
 The author declares no financial or non-financial conflicts of interest. The nature and extent of
 large-language-model assistance in producing this manuscript is disclosed in full in the section
 above.
 \section*{References}
-\label{sec:org1ff9289}
+\label{sec:orge631014}
 \printbibliography[heading=none]
 \end{document}

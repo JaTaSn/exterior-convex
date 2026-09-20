@@ -2480,7 +2480,8 @@ over a hull being attained only at convex combinations of maximizers.
 Neither part uses support functions, and neither imports the fact that a vertex of a polytope is
 exposed --- Lemma [[lem-exposed-vertex]] supplies what is needed of it for hulls of finite sets, and
 is proved here rather than cited. Both are usually how this lemma is proved --- the face of \(\sum P_p\) exposed by
-\(\varphi\) is \(\sum_pF(\varphi,P_p)\), which is [cite/t:@Ziegler1995 Proposition 7.12] --- and both
+\(\varphi\) is \(\sum_pF(\varphi,P_p)\), which follows from [cite/t:@Ziegler1995 Proposition 7.12],
+the common-refinement description of the normal fan of a Minkowski sum --- and both
 are avoidable here because every polytope in this paper comes to us as the convex hull of an
 explicit finite set, which is exactly the hypothesis Lemma [[lem-exposed-vertex]] wants. The
 exchange argument in (1) and the midpoint argument in (2) are then elementary. We spell this out

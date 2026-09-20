@@ -1,5 +1,12 @@
 # Cited works with no local copy — to be checked against MathSciNet
 
+> **Discharged 2026-09-20.** Jan's MathSciNet lookups (2026-09-14/16) and two registry checks
+> (Crossref, 2026-09-20) settled every item below; the results — including the Katona pagination
+> correction, the Schützenberger removal, the Meshalkin verification and the `AmataCrupi2021`
+> dating — are recorded in **`REFERENCE-CERTIFICATE.md`** (the deliverable this file was the
+> worklist for) and in the `.bib`'s per-entry annotations. Kept as the record of what needed
+> checking and why; no longer a to-do list.
+
 Generated 2026-09-14 from `articles/article-1/exterior-convex_article1_latest.org` and
 `references/exterior-convex-references.bib`, by extracting every key inside a `[cite…:@…]` form and
 matching it against the PDFs held in the working repository's `literature/` directory.
