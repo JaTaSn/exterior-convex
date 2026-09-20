@@ -25,8 +25,8 @@ layer, in the dropped space) is taken.
   itself.
 -/
 import Mathlib
-import ExteriorConvex.Complexes
-import ExteriorConvex.LYM
+import ExteriorConvex.Spine.Complexes
+import ExteriorConvex.Spine.LYM
 
 open Finset
 

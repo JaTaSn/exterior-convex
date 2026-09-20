@@ -22,8 +22,8 @@ sums -- there it is phrased as a bijection `φ ↦ Φ` onto real sequences, here
 coordinate `c.val + 1`.  Vertex indices `i`, `j`, `k` are the manuscript's own, running `1,…,n`.
 -/
 import Mathlib
-import ExteriorConvex.Bridge
-import ExteriorConvex.Windows
+import ExteriorConvex.Vertices.Bridge
+import ExteriorConvex.Vertices.Windows
 
 namespace ExteriorConvex
 

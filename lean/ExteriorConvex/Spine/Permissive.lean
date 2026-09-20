@@ -57,9 +57,9 @@ survive `2^16` families and `native_decide` would add the axiom
 development asserts in print.  **Do not add `native_decide` here.**
 -/
 import Mathlib
-import ExteriorConvex.Complexes
-import ExteriorConvex.LYM
-import ExteriorConvex.Kozlov1
+import ExteriorConvex.Spine.Complexes
+import ExteriorConvex.Spine.LYM
+import ExteriorConvex.Spine.KozlovThm
 
 open Finset
 

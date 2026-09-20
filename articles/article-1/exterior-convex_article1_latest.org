@@ -48,14 +48,22 @@
 # cut off the top d rows and the right d columns, so the lower-left square is the m x m overlap
 # block; within it the drawn diagonal is j = t. Proportions are schematic, not to scale for any
 # particular n and d. Verified against the printed n = 5, d = 1 matrices before being drawn.
-#+LATEX_HEADER: \newcommand{\regionbox}[1]{\begin{center}\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
+#
+# Placement history: first set as \marginpar issued at the HEAD of each statement -- floated up
+# beside the preceding paragraph (the box lands at the line where \marginpar is issued), so Jan's
+# rev3 review moved them in-flow between statement and proof. 2026-09-20, back in the margin at
+# Jan's request, with the fix: each call is now issued at the first line INSIDE the proof (or, for
+# the two section-8 theorems whose proofs live in the appendix, at the first line of the following
+# paragraph), so the box sits level with the start of the proof, not above the statement.
+# scrartcl's \marginparwidth here is 59.75pt; the picture is ~48pt wide, so it fits at natural size.
+#+LATEX_HEADER: \newcommand{\regionbox}[1]{\marginpar{\centering\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
 #+LATEX_HEADER:   \fill[black!5] (0,0) rectangle (1,1);
 #+LATEX_HEADER:   #1
 #+LATEX_HEADER:   \draw[black!35,dashed] (0,0.7)--(1,0.7); \draw[black!35,dashed] (0.7,0)--(0.7,1);
 #+LATEX_HEADER:   \draw (0,0) rectangle (1,1);
 #+LATEX_HEADER:   \node[anchor=east,font=\tiny] at (0,0.85) {$d$};
 #+LATEX_HEADER:   \node[anchor=north,font=\tiny] at (0.35,0) {$m$};
-#+LATEX_HEADER: \end{tikzpicture}\end{center}}
+#+LATEX_HEADER: \end{tikzpicture}\par}}
 # The shaded region always means "the entries this statement decides"; ones are shaded solid,
 # zeros hatched, so the two kinds of proposition are distinguishable at a glance.
 #+LATEX_HEADER: \newcommand{\regones}[1]{\fill[blue!22] #1;}
@@ -64,10 +72,29 @@
 
 # 2026-09-08: citations go through org-cite against the project bibliography rather than
 # a hand-maintained numbered list, which had drifted (five sources cited in the text were
-# missing from it). authoryear because the prose is written that way -- "Kozlov proved
-# (1997)", "Amata and Crupi (2020, 2021)" -- and a numeric style would make that unreadable.
+# missing from it).
+#
+# 2026-09-08 to 2026-09-14 this was `authoryear', on the reasoning that the prose is written
+# that way -- "Kozlov proved (1997)", "Amata and Crupi (2020, 2021)" -- and that a numeric
+# style would make that unreadable.
+#
+# 2026-09-14, Jan's instruction: `alpha'. The earlier reasoning was aimed at *numeric* styles
+# ([14], [7]), and alpha is not one: an alpha label still carries the author initials and the
+# year, so \textcite renders "Kozlov [Koz97]" and "Amata and Crupi [AC20; AC21]" -- the prose
+# above still reads correctly, because the name is still printed and the year is still legible
+# inside the label. What changes is that a bare \autocite becomes a mnemonic bracket rather
+# than a parenthetical, which is the convention the rest of this series is moving to (cf. the
+# "Pre-submission pass: alpha citations" pass in arithmetical-functions-truncations).
+#
+# NB the style name is `alphabetic', not `alpha'. "alpha" is the classic *BibTeX* .bst name;
+# biblatex calls the same thing `alphabetic', and `biblatex alpha' fails hard with
+# "Style 'alpha' not found" -- which then cascades into spurious "keyval Error: doi undefined"
+# messages, because biblatex never loads and its field options stay undefined. Tried 2026-09-14.
+#
+# Restored 2026-09-16: this change was made on 2026-09-14, stranded in an autostash on
+# jtsworklap, and swept away by the merges of 2026-09-16 before being recovered.
 #+bibliography: ../literature/exterior-convex-references.bib
-#+cite_export: biblatex authoryear
+#+cite_export: biblatex alphabetic
 
 # The note fields in this .bib hold project-internal provenance -- paywall status, which
 # directory a PDF sits in, corrections to earlier readings. biblatex prints `note' by default
@@ -588,7 +615,7 @@ with the convention \(0^{(j)}=0\).
 
 #+NAME: thm-kk
 #+begin_theorem
-[cite:@Schutzenberger1959;@Kruskal1963;@Katona1968], in this form
+[cite:@Kruskal1963;@Katona1968;@ClementsLindstroem1969], in this form
 [cite/t:@AramovaHerzogHibi1997 Theorem 4.1]. A sequence \((1,h_1,\dots,h_n)\) of non-negative integers is the Hilbert function of
 \(E/I\) for some graded ideal \(I\subseteq E\) if and only if@@latex:\footnote{The lower bound is \(0\le h_{j+1}\), not \(0<h_{j+1}\). This matters: the printed statement of Amata--Crupi's Theorem 3.1, which quotes Aramova--Herzog--Hibi, has \(<\) where the source has \(\le\), and as a result formally denies that \((1,3,3,0)\), the Hilbert function of \(E_3/(e_1e_2e_3)\), is a Hilbert function at all.}@@
 #+begin_export latex
@@ -986,6 +1013,36 @@ For \(k=0\) the argument degenerates correctly: \(V=\emptyset\) forces \(\Delta=
 \(\mathcal S_0=\lbrace\lbrace\emptyset\rbrace\rbrace\) gives \(S_0=\lbrace(1)\rbrace\), and
 \(\iota_0(1)=e_0\).
 #+end_proof
+
+Figure \ref{fig:permissive-fibres} draws the whole of \(S_4^{+}\). The layer axis is \(f_1\)
+itself, so the fibres of Proposition [[prop-permissive-fibres]] are separated exactly rather than by
+the accident of a projection, and the cone structure of Proposition [[prop-properness-facet]] is
+visible in the same picture: \(e_0\) alone at the bottom, the four vertices of \(\Koz(4)\) in the top
+face, and the edges between. Only the top slice needs projecting at all --- the slice \(f_1=k\) has
+affine dimension \(k-1\), because \(f_j\) vanishes on it for \(j>k\), so the slices with \(k\le3\)
+are already planar and are drawn without distortion.
+
+#+begin_export latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{../img/prop21-fibres-n4.pdf}
+\caption{The \(25\) points of \(S_4^{+}\), fibred by \(f_1\) as in
+Proposition~\ref{prop:permissive-fibres}, inside \(\rasimp(\vec b)\) as in
+Proposition~\ref{prop:properness-facet}. Slices \(f_1\le3\) are exact; the top slice, \(S_4\)
+itself, is drawn in the projection \((f_2,\,f_3+f_4)\), whose second coordinate counts the faces of
+cardinality at least three and which is injective on every slice at once.}
+\label{fig:permissive-fibres}
+\end{figure}
+#+end_export
+
+A picture of the same kind for seven vertices is in Kupreyeva's thesis
+[cite/t:@Kupreyeva2019 Figure 3.1]: it draws \(\conv(F_7^3)\), the hull truncated at cardinality
+three, in the two coordinates that are our \((f_2,f_3)\), and marks the achievable \(f\)-vectors
+apart from the other lattice points of the hull. That distinction is the finer question this paper
+does not treat --- which lattice points of the hull are achievable, as against what the hull is ---
+and it is the subject of the companion paper. Two conventions differ there and are worth noting
+against Section [[#sec-rank1]]'s list: that thesis admits the empty complex, convention~(i), and it
+indexes \(f\)-vectors by dimension rather than by cardinality.
 
 All of this was verified exactly at \(n=4\). Of the \(\lvert\mathcal D_4\rvert=168\) order ideals of
 \(\mathcal P([4])\), the \(167\) non-empty ones realize \(25\) distinct \(f\)-vectors, whose convex hull
@@ -1842,9 +1899,7 @@ Consequently \(\RA(\vec a;0,d)\) has exactly \(n^2-m(m-1)\) vertices.
 @@latex:\label{thm:ones}@@
 #+end_theorem
 
-@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@
-
-In this schematic and the ones like it below, the frame is the whole \(n\times n\) extremal
+@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@In this schematic and the ones like it below, the frame is the whole \(n\times n\) extremal
 matrix, rows downward and columns rightward; the dashed rules cut off the top \(d\) rows and the
 right \(d\) columns, leaving the \(m\times m\) overlap block at the lower left, and the drawn
 diagonal is \(j=t\). **Blue marks entries the statement shows are \(1\), red entries it shows are
@@ -1982,9 +2037,7 @@ and \(\extten(\vec a;d)[i][j]=1\) otherwise. Consequently the vertices of
 @@latex:\label{thm:kozlov-matrix}@@
 #+end_theorem
 
-@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@
-
-The proof is in Appendix [[#sec-app-kozlov]]. The index pairs are classified by six propositions,
+@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@The proof is in Appendix [[#sec-app-kozlov]]. The index pairs are classified by six propositions,
 stated and proved in Appendix [[#sec-app-cases]]: each covers one region of the matrix, and together
 they leave no pair unaccounted for, and only two of them use anything about \(\vec a\) beyond
 positivity, as noted at the head of this section.
@@ -2739,10 +2792,8 @@ room to spare.
 @@latex:\label{prop:row-below}@@
 #+end_proposition
 
-@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@
-
 #+begin_proof
-Let \(M>0\) and define \(\varphi\) by
+@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@Let \(M>0\) and define \(\varphi\) by
 #+begin_export latex
 \begin{equation}\label{eq:row-below}
   \varphi_k=+1\ (k\le i),\qquad \varphi_k=-1\ (i<k\le d),\qquad \varphi_{d+1}=-M,
@@ -2788,10 +2839,8 @@ pushes all of them below zero, while \(-Ma_1\) appears in every \(\langle\varphi
 @@latex:\label{prop:col-beyond}@@
 #+end_proposition
 
-@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@
-
 #+begin_proof
-Here the second summand has room of its own: \(u_j\) meets \([n+1,N]\) precisely because \(j>m\).
+@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@Here the second summand has room of its own: \(u_j\) meets \([n+1,N]\) precisely because \(j>m\).
 Choose \(\varphi\) on \([1,n]\) by Lemma [[lem-shape]] with \(w_k=a_k\), \(p=i\) and \(\psi_1=+1\),
 which makes \(v_i\) the unique maximizer on the first summand; note this uses only coordinates the
 first summand sees, and fixes \(\varphi\) on the shared block as a side effect. On the remaining
@@ -2820,10 +2869,8 @@ maximizer, and Lemma [[lem-vertexdecomp]](1) applies.
 @@latex:\label{prop:diagonal}@@
 #+end_proposition
 
-@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@
-
 #+begin_proof
-Take the single *threshold functional* with cut at \(p=d+t\),
+@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@Take the single *threshold functional* with cut at \(p=d+t\),
 #+begin_export latex
 \begin{equation}\label{eq:diagonal}
   \varphi_c=+1\ (c\le d+t),\qquad \varphi_c=-1\ (c>d+t)\qquad(1\le c\le N),
@@ -2849,10 +2896,8 @@ and \(1\le j\le m\) with \(j=t+1\) or \(j=t-1\). Then \(\extten(\vec a;d)[i][j]=
 @@latex:\label{prop:adjacent}@@
 #+end_proposition
 
-@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@
-
 #+begin_proof
-The point is that *both summands cross the same coordinate*, and need its coefficient to have
+@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@The point is that *both summands cross the same coordinate*, and need its coefficient to have
 opposite signs; no partial sums are involved.
 
 Suppose \(j=t+1\le m\) and the entry were one, witnessed by \(\varphi\). Passing from \(u_t\) to
@@ -2884,10 +2929,8 @@ below the diagonal of the overlap block.
 @@latex:\label{prop:below-diagonal}@@
 #+end_proposition
 
-@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@
-
 #+begin_proof
-Suppose the entry were one, witnessed by \(\varphi\), and write \(K=t-j\ge1\) and
+@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@Suppose the entry were one, witnessed by \(\varphi\), and write \(K=t-j\ge1\) and
 \(B_s=\sum_{l=j+1}^{j+s}e_lb_l\) for \(1\le s\le K\). Exposing \(u_j\) on the second summand forces
 \(P_{j+s}<P_j\) for every \(s\), that is \(B_s<0\); exposing \(v_i\) on the first forces
 \(Q_t>Q_j\), that is \(\sum_{l=j+1}^{t}e_lc_l>0\). Summation by parts turns the second sum into
@@ -2922,10 +2965,8 @@ which by Lemma [[lem-binomial-ratio]] holds for the Kozlov vector. Then
 @@latex:\label{prop:gapK}@@
 #+end_proposition
 
-@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@
-
 #+begin_proof
-Exhibit the functional. Any \(\delta\) with \(0<\delta<\rho_{t+1}/\rho_j-1\) will do, and such a
+@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@Exhibit the functional. Any \(\delta\) with \(0<\delta<\rho_{t+1}/\rho_j-1\) will do, and such a
 \(\delta\) exists exactly because \(\rho_{t+1}>\rho_j>0\); we fix the midpoint
 #+begin_export latex
 \begin{equation}\label{eq:gapK-2}

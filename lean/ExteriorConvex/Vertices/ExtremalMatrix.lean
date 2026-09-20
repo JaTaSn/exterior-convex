@@ -23,9 +23,9 @@ across the same coordinate `⟨d+t⟩`, with opposite requirements on its coeffi
 manuscript's coordinate `c.val + 1`.  Vertex indices run `1,…,n`.
 -/
 import Mathlib
-import ExteriorConvex.Bridge
-import ExteriorConvex.Simplex
-import ExteriorConvex.Binomial
+import ExteriorConvex.Vertices.Bridge
+import ExteriorConvex.Vertices.Simplex
+import ExteriorConvex.Vertices.Binomial
 
 namespace ExteriorConvex
 

@@ -32,8 +32,8 @@ matter elsewhere (`thm-kozlov` needs `n ≥ 1`, §8 needs the ordering), just
 not for these two statements.
 -/
 import Mathlib
-import ExteriorConvex.Complexes
-import ExteriorConvex.Kozlov1
+import ExteriorConvex.Spine.Complexes
+import ExteriorConvex.Spine.KozlovThm
 
 open Finset
 open scoped Pointwise

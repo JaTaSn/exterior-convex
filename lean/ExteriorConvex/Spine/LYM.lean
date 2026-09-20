@@ -22,7 +22,7 @@ Formalisation of `lem-lym` and `lem-mu` from
   (plan, Rung 2: not needed for rungs 3–4).
 -/
 import Mathlib
-import ExteriorConvex.Complexes
+import ExteriorConvex.Spine.Complexes
 
 open Finset
 open scoped FinsetFamily

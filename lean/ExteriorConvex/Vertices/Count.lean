@@ -20,8 +20,8 @@ The count is then arithmetic: the zero set has `t − 1` entries below the diago
 `2 * card = (m−1)*(m+2)` as well, since that is what the proof actually establishes.
 -/
 import Mathlib
-import ExteriorConvex.Bridge
-import ExteriorConvex.Kozlov
+import ExteriorConvex.Vertices.Bridge
+import ExteriorConvex.Vertices.ExtremalMatrix
 
 namespace ExteriorConvex
 

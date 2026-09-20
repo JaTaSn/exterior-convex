@@ -34,16 +34,20 @@ was checked, over what range, and by which script. Read that before reading the 
 
 ## The Lean formalization
 
-`lean/` is a standalone Lake project: **twelve files, about 3,300 lines, no `sorry`, no custom
-axioms.** It formalizes two layers of the paper, and `lean/README.md` carries the
-declaration-by-declaration correspondence to the manuscript's numbered statements. That file, not this
-one, is the authoritative record of what is and is not proved.
+`lean/` is a standalone Lake project: **twenty-five files, about 9,200 lines, no `sorry`, no custom
+axioms.** It is organized thematically — `Spine/`, `Vertices/`, `Counting/` — rather than per
+article, since the spine serves Parts I and II alike; it formalizes three layers of the series, and
+`lean/README.md` carries the declaration-by-declaration correspondence to the manuscripts' numbered
+statements. That file, not this one, is the authoritative record of what is and is not proved.
 
 - **The combinatorial spine** (article 1, §§4–6 and §5.1): local LYM; the chain description of the
   Kozlov simplex; **Kozlov's theorem** itself; the sumset identity in its combinatorial form; the
   **main theorem** at every rank; and the permissive-convention variant in full.
 - **The rank-two vertex structure** (§9 and Appendix A): the vertex criterion, the extremal matrix for
   both the all-ones and the Kozlov leg vector, and the vertex count.
+- **The counting layer** (article 2, §§4–9): the two statistics and their joint-distribution matrix,
+  Alexander duality and persymmetry, the chaining/transfer layer, the exact `δ = 0` degrees, the
+  proper variant, and the constant-gap recurrence.
 
 Two things are worth knowing before reading it.
 

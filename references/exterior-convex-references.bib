@@ -44,9 +44,13 @@
   series    = {Graduate Texts in Mathematics},
   volume    = {260},
   year      = {2011},
-  publisher = {Springer},
+  publisher = {Springer-Verlag London, Ltd.},
+  address   = {London},
+  pages     = {xvi+305},
+  isbn      = {978-0-85729-105-9},
   doi       = {10.1007/978-0-85729-106-6},
-  url       = {https://doi.org/10.1007/978-0-85729-106-6}
+  url       = {https://doi.org/10.1007/978-0-85729-106-6},
+  mrnumber  = {2724673}
 }
 
 @article{AmataCrupi2021,
@@ -108,22 +112,36 @@
   url       = {https://doi.org/10.1007/978-1-4612-0759-7}
 }
 
+% Checked against MathSciNet MR0154827(27 #4771) on 2026-09-14: title, pages 251--278, publisher
+% and year all match as recorded -- no correction needed. MathSciNet names no editor either, so
+% TODO.md's "usually given with editor R. Bellman" remains unconfirmed and is NOT asserted here.
 @inproceedings{Kruskal1963,
   author    = {Kruskal, Joseph B.},
   title     = {The number of simplices in a complex},
   booktitle = {Mathematical Optimization Techniques},
   pages     = {251--278},
   year      = {1963},
-  publisher = {Univ. of California Press}
+  publisher = {Univ. of California Press},
+  address   = {Berkeley-Los Angeles},
+  mrnumber  = {0154827}
 }
 
-@article{Katona1968,
+% Pagination CORRECTED 2026-09-14 from 209--214 to 187--207, and the type from @article to
+% @inproceedings ("Theory of Graphs" is a proceedings volume, not a journal). Source: Jan's own
+% MathSciNet lookup, MR0290982(45 #76), which gives "Theory of Graphs (Proc. Colloq., Tihany,
+% 1966), pp. 187--207, Academic Press, New York-London, 1968".
+% This also settles the long-standing TODO.md question: the 209--214 / 187--207 split was NOT an
+% Academic Press vs Akademiai Kiado co-publication difference, since MathSciNet pairs 187--207
+% with Academic Press. 209--214 appears to have been simply wrong.
+@inproceedings{Katona1968,
   author    = {Katona, Gyula O. H.},
   title     = {A theorem of finite sets},
-  journal   = {Theory of Graphs},
-  pages     = {209--214},
+  booktitle = {Theory of Graphs (Proc. Colloq., Tihany, 1966)},
+  pages     = {187--207},
   year      = {1968},
-  publisher = {Academic Press}
+  publisher = {Academic Press},
+  address   = {New York-London},
+  mrnumber  = {0290982}
 }
 
 
@@ -253,10 +271,17 @@
   journal = {Journal of Combinatorial Theory},
   volume  = {7},
   pages   = {230--238},
-  year    = {1969},
-  doi     = {10.1016/S0021-9800(69)80016-5},
-  note    = {Paywalled (Elsevier) -- cited but not downloaded, per the open-access-only
-             literature/ convention}
+  year     = {1969},
+  doi      = {10.1016/S0021-9800(69)80016-5},
+  mrnumber = {0246781},
+  note     = {Held locally since 2026-09-14 as
+              literature/Lindstr{\"o}m-Clements-GeneraizationMacaulay.pdf; the earlier
+              ``cited but not downloaded'' status is superseded. Bibliographic data checked
+              by Jan against MathSciNet MR0246781(40 \#50) the same day. Provenance of the
+              copy is not recorded -- if it came through the LiU subscription it belongs in
+              literature/subscription/ per the workspace convention. Took over
+              Schutzenberger1959's role in thm-kk: the Clements--Lindstr{\"o}m theorem
+              specialises to the squarefree Kruskal--Katona statement at all k_i = 1.}
 }
 
 @article{Froberg1985,
@@ -715,6 +740,24 @@
 
 % NOT VERIFIED. OpenAlex has no record (1963, Russian journal). Standard form,
 % from memory; check against a real source before submitting.
+% Meshalkin appears in two printings with different pagination.  Jan's decision of 2026-09-16:
+% the ARTICLES CITE THE ENGLISH TRANSLATION, Meshalkin1963 below.  The Russian original is kept
+% here as Meshalkin1963ru so the MathSciNet data is not lost; it is deliberately uncited, and
+% biblatex prints only cited entries, so it appears in no bibliography.
+@article{Meshalkin1963ru,
+  author  = {Meshalkin, L. D.},
+  title   = {Generalization of {S}perner's theorem on the number of subsets of a finite set},
+  journal = {Teor. Verojatnost. i Primenen.},
+  volume  = {8},
+  pages   = {219--220},
+  year    = {1963},
+  language = {Russian},
+  note    = {The Russian original; the English translation is \texttt{Meshalkin1963}, which is what
+             this project cites. Pagination from MathSciNet, Jan's lookup of 2026-09-14. NO MR
+             NUMBER IS RECORDED HERE ON PURPOSE: Jan's note gives the pagination but not the MR
+             number, and this entry must not carry one that was not looked up.}
+}
+
 @article{Meshalkin1963,
   author  = {Meshalkin, L. D.},
   title   = {Generalization of {S}perner's theorem on the number of subsets of a finite set},
@@ -724,26 +767,95 @@
   year    = {1963}
 }
 
-% NOT VERIFIED. OpenAlex has no record (MIT RLE progress report, not indexed).
-% Standard form, from memory; check before submitting.
-@techreport{Schutzenberger1959,
-  author      = {Sch\"{u}tzenberger, M. P.},
-  title       = {A characteristic property of certain polynomials of {E. F. M}oore and {C. E. S}hannon},
-  institution = {Research Laboratory of Electronics, MIT},
-  type        = {RLE Quarterly Progress Report},
-  number      = {55},
-  pages       = {117--118},
-  year        = {1959}
-}
+% Schutzenberger1959 (MIT RLE Quarterly Progress Report 55, 117--118) was REMOVED 2026-09-14.
+% Jan checked MathSciNet directly: the report is not indexed there, so the entry could not be
+% verified against a catalogue, and its fields had only ever been recorded "from memory".
+% Its role in thm-kk -- the third name beside Kruskal and Katona -- is taken by
+% ClementsLindstroem1969, whose theorem specialises to the squarefree Kruskal--Katona statement
+% at k_i = 1 and which MathSciNet does index (MR0246781).
 
+% Form follows the project's own recommendation at
+% https://wiki.sagemath.org/Publications_using_SageMath, which asks that the version actually
+% used be named in the title and the matching year given. Version 10.9 is what runs/ records and
+% what is installed here; its release date is 2026-05-04, from version() -- hence year 2026.
+%
+% `label' is set explicitly because the alphabetic style derives its label from the author, and a
+% corporate author braced as {{The Sage Developers}} yields the useless "[The]" -- the article's
+% one software citation labelled by the English definite article. Added 2026-09-14.
+%
+% NB `label' supplies only the NAME part of an alphabetic label; biblatex still appends the year
+% itself. So it must be {Sag}, not {Sag26} -- setting {Sag26} renders "[Sag2626]". Tried both.
 @manual{SageMath,
   author = {{The Sage Developers}},
-  title  = {{S}age{M}ath, the {S}age {M}athematics {S}oftware {S}ystem},
-  url    = {https://www.sagemath.org}
+  title  = {{S}age{M}ath, the {S}age {M}athematics {S}oftware {S}ystem ({V}ersion 10.9)},
+  year   = {2026},
+  url    = {https://www.sagemath.org},
+  label  = {Sag}
 }
 
+% Version and year added 2026-09-14, for the same reason as SageMath above: without a year the
+% alphabetic label was a bare "[GS]", inconsistent with every other entry. No `label' override is
+% needed here -- the authors are ordinary personal names, so [GS26] is generated correctly once
+% the year is present. Version 1.26.06 is what is installed and used; Macaulay2 numbers releases
+% 1.YY.MM, and the build reports "Jun 20 2026", so both readings agree on 2026.
 @manual{Macaulay2,
   author = {Grayson, Daniel R. and Stillman, Michael E.},
-  title  = {Macaulay2, a software system for research in algebraic geometry},
+  title  = {Macaulay2, a software system for research in algebraic geometry (Version 1.26.06)},
+  year   = {2026},
   url    = {https://macaulay2.com}
+}
+
+%% ---------------------------------------------------------------------------
+%% Merged 2026-09-16.  Base: Jan's MathSciNet pass of 2026-09-14, which had been
+%% stranded in an autostash on jtsworklap and never reached the repository -- it
+%% carries the mrnumbers, the addresses, the Katona correction to 187--207, and the
+%% deliberate removal of Schutzenberger1959.  Appended below: the three entries
+%% created 2026-09-16, newer than that pass.  All three articles of the series cite
+%% this one file.
+%% ---------------------------------------------------------------------------
+
+@techreport{SnellmanArticle1,
+  author      = {Snellman, Jan},
+  title       = {Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank,
+                 {I}: {A}mata--{C}rupi monomial modules, {K}ozlov polytopes, and \(r\)-vectors of
+                 simplicial complexes},
+  institution = {Link{\"o}ping University Electronic Press},
+  type        = {LiTH-MAT-R},
+  number      = {2026/04},
+  year        = {2026},
+  issn        = {0348-2960},
+  doi         = {10.3384/LiTH-MAT-R-2026-04},
+  url         = {https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721},
+  urn         = {urn:nbn:se:liu:diva-227730},
+  note        = {Part I of this series; the companion paper. Published 2026-09-18. Identifiers, all
+                 supplied by Jan: URN urn:nbn:se:liu:diva-227730, DOI
+                 10.3384/LiTH-MAT-R-2026-04, OAI oai:DiVA.org:liu-227730, DiVA id diva2:2102721.
+                 Note that the URN/OAI number (227730) and the DiVA id (2102721) are different
+                 identifiers and neither is derivable from the other.}
+}
+
+@misc{OEIS,
+  author       = {{OEIS Foundation Inc.}},
+  title        = {The {On-Line} {E}ncyclopedia of {I}nteger {S}equences},
+  year         = {2026},
+  howpublished = {Published electronically at \url{https://oeis.org}},
+  note         = {Sequence A007695 is the one cited in article 2; A001142 in the leading-coefficient
+                 remark. Six sequences arising in this project appear to be absent -- see TODO.md;
+                 nothing has been submitted.}
+}
+
+@article{AbregoFernandezLlano2011,
+  author       = {\'Abrego, Bernardo M. and Fern\'andez-Merchant, Silvia and Llano, Bernardo},
+  title        = {An inequality for {M}acaulay functions},
+  journal      = {Journal of Integer Sequences},
+  volume       = {14},
+  year         = {2011},
+  note         = {Article 11.7.4.  Found 2026-09-16 while attacking open problem 4 of article 2
+                 (bijective proof of thm-chaining): mixed-level superadditivity of the Macaulay
+                 (multiset) shadow function, with the Eckhoff--Wegner/Daykin set-function analogue
+                 and pointers to Bj{\"o}rner--Vre\'cica's many-term generalization.  The natural
+                 literature home for the (W-mid) inequality of
+                 working-notes/bijective-chaining-greedy-windows.org; does NOT directly contain the
+                 level-monotonicity (M) needed there.  PDF in literature/.},
+  url          = {https://cs.uwaterloo.ca/journals/JIS/VOL14/Abrego/abrego2.pdf}
 }

@@ -29,10 +29,10 @@ that count is itself the finding of the companion assessment
   scope.
 -/
 import Mathlib
-import ExteriorConvex.Complexes
-import ExteriorConvex.LYM
-import ExteriorConvex.Kozlov1
-import ExteriorConvex.Sumset
+import ExteriorConvex.Spine.Complexes
+import ExteriorConvex.Spine.LYM
+import ExteriorConvex.Spine.KozlovThm
+import ExteriorConvex.Spine.Sumset
 
 open Finset
 open scoped Pointwise
