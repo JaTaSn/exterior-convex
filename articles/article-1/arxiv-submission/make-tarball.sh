@@ -5,16 +5,17 @@
 # only has a clone of the repository (e.g. jts-yoga), where the full generator
 # (code/make_arxiv_submission.py in the working home) cannot run.
 #
-# Excludes what must not go to arXiv: this script, the folder README (repo documentation), and any
-# local PDF (arXiv builds its own from the .tex). Everything else -- the .tex, img/, and the whole
-# anc/ tree -- is included.
+# Excludes what must not go to arXiv: this script, the folder README (repo documentation), and the
+# compiled article PDF at the root (arXiv builds its own from the .tex). Figure PDFs under img/ are
+# KEPT -- the exclude names the root article PDF exactly rather than a `*.pdf` glob, which would
+# also drop img/prop21-fibres-n4.pdf and make arXiv report it "missing from the source".
 set -eu
 cd "$(dirname "$0")"
 out=../arxiv-submission.tar.gz
 tar czf "$out" \
-    --exclude=make-tarball.sh \
-    --exclude=README.md \
-    --exclude='*.pdf' \
+    --exclude=./make-tarball.sh \
+    --exclude=./README.md \
+    --exclude=./exterior-convex_article1_latest.pdf \
     .
 echo "wrote $out"
 echo "top of archive:"
