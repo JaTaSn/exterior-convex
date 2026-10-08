@@ -1,0 +1,17 @@
+# Self-validation run of code/linusson_ff_counting.py
+# date:    2026-10-08 14:12:08 CEST
+# host:    jts-office
+# python:  Python 3.14.7
+# command: nice python3 code/linusson_ff_counting.py   (cwd = 20-projects/exterior-convex)
+# script sha256: e2aeeeca00747754aaa4194509a919936f6ef5c6e64c272739410880d193d81d
+
+Tables validated: 100 entries (Table 5) + 99 entries (Table 6), 0 mismatches
+Brute-force check p <= 5: 0 mismatches
+Joint-distribution identity checked for n <= 6: 0 mismatches
+Transfer-matrix |FF(d)| validation: 0 mismatches
+|S_n|, n = 1..10: [1, 2, 5, 16, 70, 457, 4908, 95248, 3617645, 286007155]
+known brute-forced |S_n| 1,2,5,16,70 match: True
+TOTAL mismatches: 0
+
+# exit status: 0
+# wall-clock runtime: 65.5 s

@@ -1,6 +1,6 @@
 # arXiv submission metadata — article 2
 
-Prepared 2026-10-08 against `exterior-convex_article2_latest.org` (47 pp. pdfLaTeX build). Like
+Prepared 2026-10-08 against `exterior-convex_article2_latest.org` (49 pp. pdfLaTeX build). Like
 article 1, article 2 now has a standing `_latest` name instead of a draft number.
 Copy-paste source for the arXiv form. The abstract follows arXiv's conventions: `$…$` delimiters
 for inline mathematics (arXiv renders those on the HTML abstract page), no project macros, less
@@ -72,7 +72,7 @@ exterior algebra; Hilbert function; f-vector; simplicial complex; enumeration; t
 ## Comments field
 
 ```
-47 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
+49 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
 ```
 
 Plain ASCII on purpose ("Linkoping"). Update the page count if the review changes it.
@@ -98,7 +98,7 @@ Per-submission choice, as for Part I.
       home. It re-derives the arXiv `.org` from the current draft (drops the showkeys margin
       labels, inserts §10.2 *Code, formalisation and tables*), inlines the bibliography,
       rebuilds `anc/`, compiles three times with pdfLaTeX and refuses to finish on any error,
-      undefined reference or missing character. Last run: 47 pp., 0 errors, 0 undefined, 0 missing
+      undefined reference or missing character. Last run: 49 pp., 0 errors, 0 undefined, 0 missing
       characters, 0 overfull boxes.
 - [ ] **Reference certificate** (`93-CONVENTIONS/manuscript-style.md`, "The reference
       certificate"): Part I has `references/REFERENCE-CERTIFICATE.md`; **Part II has none**, and

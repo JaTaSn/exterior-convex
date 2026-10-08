@@ -2,6 +2,13 @@
 """linusson_ff_counting.py
 
 Changelog (reverse chronological):
+  2026-10-08  Claude: the self-validation entry point now runs validate_A(6)
+              (was validate_A(5)), so the paper's "A_n verified entrywise
+              against brute force for n <= 6" is backed by this script; the
+              n = 6 brute force (~7.8e6 monotone families) is cached and
+              shared with validate_ff_counts.  Output recorded in
+              runs/2026-10-08_linusson_ff_counting_selfvalidation.txt
+              (review-article2-draft7 items 64, 65).
   2026-09-05  WP4+WP5: the assembled transfer-matrix count.  ff_count(n, ds)
               computes |FF(d)| (proper=False: components range over F_n;
               proper=True: over S_n, i.e. indeg >= 2 columns only) as
@@ -470,7 +477,7 @@ if __name__ == "__main__":
     else:
         bad = validate_tables()
         bad += validate_bruteforce(5)
-        bad += validate_A(5)
+        bad += validate_A(6)
         bad += validate_ff_counts()
         # |S_n| = F^n(n) - F^{n-1}(n-1): proper f-vectors (f_1 = n exactly).
         S = [F(n, n) - F(n - 1, n - 1) for n in range(1, 11)]
