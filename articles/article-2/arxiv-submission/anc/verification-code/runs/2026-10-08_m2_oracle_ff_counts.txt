@@ -1,0 +1,10 @@
+# m2_oracle_ff_counts.m2 -- run 2026-10-08 on jts-office, Macaulay2 1.26.06, 6 min 15 s
+
+1.26.06
+
+n=3 d={0, 0}: 400 monomial submodules, 43 Hilbert functions, 43 lex submodules (43 distinct), expected 43  PASS
+n=3 d={0, 1}: 400 monomial submodules, 69 Hilbert functions, 69 lex submodules (69 distinct), expected 69  PASS
+n=3 d={-1, 2}: 400 monomial submodules, 99 Hilbert functions, 99 lex submodules (99 distinct), expected 99  PASS
+n=3 d={0, 0, 1}: 8000 monomial submodules, 236 Hilbert functions, 236 lex submodules (236 distinct), expected 236  PASS
+n=4 d={0, 1}: 28224 monomial submodules, 368 Hilbert functions, 368 lex submodules (368 distinct), expected 368  PASS
+ALL PASS

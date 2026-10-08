@@ -42,7 +42,7 @@ preprint is in preparation — see [`articles/article-1/arxiv-submission/`](arti
 | directory | contents |
 |---|---|
 | `articles/article-1/` | *I: Amata–Crupi monomial modules, Kozlov polytopes, and $r$-vectors of simplicial complexes.* The Org source, the exported LaTeX, and the built PDF. The `.org` is the source of truth; the `.tex` is generated from it. |
-| `articles/article-2/` | *II: Generalizing Linusson's count to sumsets of $f$-vectors.* Draft 7, the version prepared for arXiv: Org source, LaTeX and PDF; `arxiv-submission/`, the arXiv package (pdfLaTeX, with `anc/` holding the Lean development, the verification code and CSV tables of the counts); and `ARXIV-SUBMISSION-METADATA.md`, the form fields. |
+| `articles/article-2/` | *II: Generalizing Linusson's count to sumsets of $f$-vectors.* `_latest`, the version prepared for arXiv: Org source, LaTeX and PDF; `arxiv-submission/`, the arXiv package (pdfLaTeX, with `anc/` holding the Lean development, the verification code and CSV tables of the counts); and `ARXIV-SUBMISSION-METADATA.md`, the form fields. |
 | `articles/article-3/` | *III: Lattice points of the Kozlov polytope, and a corrected Kruskal–Katona theorem.* Partial draft. |
 | `lean/` | the Lean 4 + Mathlib formalization — see below |
 | `verification-code/` | every SageMath, Macaulay2 and Python script behind a computational claim, with the recorded output of the runs under `verification-code/runs/` |

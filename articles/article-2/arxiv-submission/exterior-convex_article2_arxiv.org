@@ -5,8 +5,9 @@
 
 #+SETUPFILE: ../../../50-writing/article-templates/latex-common.setup
 #+SETUPFILE: ../../../50-writing/article-templates/latex-variant-koma.setup
-# Drafts only: margin labels via showkeys. Remove this line for a submission version.
-# Pairs with `org-latex-prefer-user-labels' in the Local Variables block at the end.
+# 2026-10-08 (Jan): showkeys margin labels dropped -- this is the submission version.  To get
+# them back for proof-reading, restore
+#   #+SETUPFILE: ../../../50-writing/article-templates/latex-draft-showkeys.setup
 #+OPTIONS: toc:nil H:3 num:t tags:nil email:nil
 #+STARTUP: showall inlineimages num hidedrawers
 
@@ -1070,7 +1071,7 @@ and collecting them into \eqref{eq:def-A} (rows \(\tau=-1,\dots,3\) downward, co
 \(\rho=0,\dots,4\) rightward)
 #+begin_export latex
 \[
-  A=\begin{pmatrix}
+  A_3=\begin{pmatrix}
     1&0&0&0&0\\ 0&1&0&0&0\\ 0&2&1&0&0\\ 0&1&2&1&0\\ 0&0&0&0&1
   \end{pmatrix},
   \qquad \text{row sums } (1,1,3,4,1),\ \text{total }10=\lvert\mathcal F_3\rvert .
@@ -1304,7 +1305,7 @@ so
 As \(D_n\) is an involution of \(\mathcal F_n\) by Lemma [[lem-alexander]], it restricts to a bijection
 #+begin_export latex
 \begin{equation}\label{eq:Sn-bijection}
-  D\colon S_n\;\xrightarrow{\ \sim\ }\;\bigl\lbrace\vec g\in\mathcal F_n\;:\;\tp(\vec g\,)\le n-2\bigr\rbrace ,
+  D_n\colon S_n\;\xrightarrow{\ \sim\ }\;\bigl\lbrace\vec g\in\mathcal F_n\;:\;\tp(\vec g\,)\le n-2\bigr\rbrace ,
 \end{equation}
 #+end_export
 a set of cardinality \(F^n(n-2)\).
@@ -1956,8 +1957,8 @@ and \(u_n[-1]=1\) because the void family is the unique
 \(\vec s\) with \(\tp=-1\). This is non-zero, which gives the improper claim.
 
 For the proper variant one adjustment is needed: the proper matrix is *not* unipotent on the full
-index set, its columns \(\tau'=-1\) and \(\tau'=0\) vanishing identically. But \(\vec u_n\) vanishes on
-those two coordinates as well, so every product \(\vec u_n\,T'_n(0)^k\) agrees with the corresponding
+index set, its columns \(\tau'=-1\) and \(\tau'=0\) vanishing identically. But \(\vec u'_n\) vanishes on
+those two coordinates as well, so every product \(\vec u'_n\,T'_n(0)^k\) agrees with the corresponding
 product over the principal block on \(\tau\in\lbrace1,\dots,n\rbrace\), and *that* block is
 unipotent. On it the superdiagonal is again \eqref{eq:delta0-superdiag}, with column indices
 \(\ge2\) so that the two zeroed columns are invisible, and \(u'_n[1]=A_n[1][2]=1\), the unique proper
@@ -2656,7 +2657,7 @@ moreover every gap satisfies \(\delta_i\ge1\), then the summands decouple to lea
 By Lemma [[lem-joint]] the entries of \(A^{(p)}_n\) are differences \(E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1)\),
 and Linusson's Theorem 5.3 gives \(\deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2}\), so the subtrahend has degree
 strictly smaller (by exactly \(\tau\)) and cannot cancel the leading term. Hence
-\(\deg_pA^{(p)}[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2}\), with leading coefficient the positive quantity
+\(\deg_pA^{(p)}_n[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2}\), with leading coefficient the positive quantity
 of his Proposition 5.4.
 
 Expanding the matrix product of Theorem [[thm-poly-p]] as a sum over paths
@@ -2755,7 +2756,7 @@ rather than \(\max(1,\tau-\delta+1)\), so nothing cancels, and the path degree s
   h'_\delta(t)=\binom{t+1}{2}-\binom{\max(2,\,t-\delta+1)}{2} ,
 \end{equation}
 #+end_export
-and a path-independent constant \(-\binom22=-1\) contributed by the first factor. On \(\lbrace1,\dots,n\rbrace\), \(h'_0\equiv0\) and \(h'_\delta\)
+and a constant \(-\binom22=-1\), the same for every path, contributed by the first factor. On \(\lbrace1,\dots,n\rbrace\), \(h'_0\equiv0\) and \(h'_\delta\)
 is strictly increasing for \(\delta\ge1\), so the unique maximiser is again the all-\(n\) path;
 its factors have degrees \(\binom{n+1}{2}-1\) and \(\binom{n+1}{2}-\binom{\kappa_i'+1}{2}\), with leading
 coefficients those of \(E^p(n,1)\) and \(E^p(n,\kappa_i')\) by Linusson's Proposition 5.4, which
@@ -2816,16 +2817,18 @@ the interpolated polynomials:
 \endgroup
 #+end_export
 Every entry agrees. Three things in the table are the theorems rather than the data. The degree is
-one lower in the proper column throughout, which is the \(-1\) of \eqref{eq:proper-degree-in-p},
-contributed by the first factor alone and so independent of the gaps. The seventh row has
+one lower in the proper column in every row whose gaps are all below \(n\), which is the \(-1\) of
+\eqref{eq:proper-degree-in-p}, contributed by the first factor alone and so independent of the
+gaps. A gap \(\delta_i\ge n\) costs one more, since there \(\kappa_i=0\) but \(\kappa_i'=1\), which is
+why the seventh row is two lower. That row has
 \(\delta=4>n=3\), where \(\kappa_i=0\) and the degree has saturated: raising the gap further changes
 nothing, which is the "constant thereafter" clause of Theorem [[thm-asymptotics-p]]. And the last two
 rows agree in both columns although the underlying polynomials differ, the degree depending on the
 gaps only through the multiset \(\lbrace\kappa_i\rbrace\) while the polynomial depends on their order.
 
 The leading coefficients behave as the two theorems and Remark [[rem-asymptotics-zero-gaps]] predict:
-the product forms \eqref{eq:lc-in-p} and \eqref{eq:proper-lc-in-p} hold in the seven rows whose gaps
-are all at least \(1\), and fail in the two rows with a zero gap, where the leading coefficient
+the product forms \eqref{eq:lc-in-p} and \eqref{eq:proper-lc-in-p} hold in the six rows whose gaps
+are all at least \(1\), and fail in the three rows with a zero gap, where the leading coefficient
 becomes a sum over several degree-maximising paths. At \(n=2\) with \(\vec d=(0,0)\) the true improper
 leading coefficient is \(1\), against \(1/6\) for the product.
 #+end_mexample
@@ -2926,8 +2929,10 @@ page. It holds three things, each described in ~anc/README.md~.
   correspondence between its declarations and the numbered statements here and in the companion
   paper.
 - ~anc/verification-code/~: the scripts behind every computational check listed above, with the
-  recorded output of their runs in ~runs/~. The transfer-matrix count, the brute-force enumeration
-  of the sumset and the comparison with Linusson's tables are in ~linusson_ff_counting.py~.
+  recorded output of their runs in ~runs/~. Two of them do most of the work:
+  ~linusson_ff_counting.py~, which holds the transfer-matrix count, the brute-force enumeration
+  of the sumset and the comparison with Linusson's tables; and
+  ~oneoff/m2_oracle_ff_counts.m2~, the Macaulay2 oracle.
 - ~anc/tables/~: the counts \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) and
   \(\lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert\) for \(1\le n\le 8\), \(1\le r\le 4\) and every
   gap vector with gaps at most \(n+1\), which is all of them in that range; the constant-gap
@@ -3140,8 +3145,9 @@ count reaches \(\lvert\mathcal F_n\rvert^{\,r}\) at \(\delta=n+1\) and the prope
 that fails at \(\delta_i=n\), the full simplex against the void family, the void family not being
 proper. The \(n=2\), \(\delta=0\) row is the one worked through in
 Remark [[rem-delta0-degrees]], its improper half \(14,30,55,91\) being the cubic with third
-difference \(2\) and its proper half \(r+1\). And every row with \(\delta\ge n+1\) repeats the one
-above it, there being nothing left for a wider gap to decouple.
+difference \(2\) and its proper half \(r+1\). In the proper table every row with \(\delta\ge n\)
+repeats the one above it, there being nothing left for a wider gap to decouple; the improper table
+stops at \(\delta=n+1\), its first saturated row.
 
 #+begin_export latex
 \begingroup\footnotesize
@@ -3321,9 +3327,9 @@ above.
 # org-fragtog-mode: t
 # org-latex-prefer-user-labels: t
 # End:
-* exterior-convex_article2_draft_7                                  :noexport:
+* exterior-convex_article2_latest                                   :noexport:
 :PROPERTIES:
-:NOTER_DOCUMENT: exterior-convex_article2_draft_7.pdf
+:NOTER_DOCUMENT: exterior-convex_article2_latest.pdf
 :END:
 
 # Jan's org-noter comments. TAGGED :noexport: so this heading and everything under it

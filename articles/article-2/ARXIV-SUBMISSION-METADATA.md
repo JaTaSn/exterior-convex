@@ -1,13 +1,17 @@
 # arXiv submission metadata — article 2
 
-Prepared 2026-10-08 against `exterior-convex_article2_draft_7.org` (47 pp. pdfLaTeX build).
+Prepared 2026-10-08 against `exterior-convex_article2_latest.org` (47 pp. pdfLaTeX build). Like
+article 1, article 2 now has a standing `_latest` name instead of a draft number.
 Copy-paste source for the arXiv form. The abstract follows arXiv's conventions: `$…$` delimiters
 for inline mathematics (arXiv renders those on the HTML abstract page), no project macros, less
 notation than the manuscript's own abstract. Decisions still open for Jan are marked **[Jan]**.
 
-**Not final until the 2026-10-08 review has been acted on**
+**Partly reviewed.** The 2026-10-08 review
 (`20-projects/exterior-convex/working-notes/review-article2-draft7-2026-10-08.org` in the working
-home). If the review changes what the paper claims, the abstract below must change with it.
+home) had 12 must-fix items. Done the same day: 1–7 (notation leftovers, three false statements
+about tables) and 12 (margin labels). **Still open: 8–11**, the verification account, the code
+identifier (commit, toolchain, or a Zenodo DOI), and the responsibility paragraph. If those change
+what the paper claims, the abstract and Comments below must change with them.
 
 ## Title
 
@@ -94,10 +98,8 @@ Per-submission choice, as for Part I.
       home. It re-derives the arXiv `.org` from the current draft (drops the showkeys margin
       labels, inserts §10.2 *Code, formalisation and tables*), inlines the bibliography,
       rebuilds `anc/`, compiles three times with pdfLaTeX and refuses to finish on any error,
-      undefined reference or missing character. Last run: 47 pp., 0/0/0, **1 overfull box (5 pt,
-      body text near "a path-independent constant"; pdfLaTeX hyphenation only, the XeLaTeX draft
-      has none)**.
-- [ ] Bump `SRC_ORG` in that script if the draft number moves past 7.
+      undefined reference or missing character. Last run: 47 pp., 0 errors, 0 undefined, 0 missing
+      characters, 0 overfull boxes.
 - [ ] **Reference certificate** (`93-CONVENTIONS/manuscript-style.md`, "The reference
       certificate"): Part I has `references/REFERENCE-CERTIFICATE.md`; **Part II has none**, and
       its references were located with a language model's help. Open item in the project TODO.
