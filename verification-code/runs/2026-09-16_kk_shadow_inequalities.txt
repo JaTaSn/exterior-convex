@@ -1,0 +1,23 @@
+predicted sizes: pure integer arithmetic; largest loop 10 levels x 200001 values for (M).  No enumeration.
+(S) subadditivity, sampled 300000, l<=10, p,q<=1e8: 0 failures
+(M) level monotonicity, exhaustive c<=200000, l<=9: 0 failures
+(M) level monotonicity, sampled 200000, c<=1e9, l<=11: 0 failures
+(N) partial_l(C(x,l+1)) <= C(x,l), l=2..30, x<=2000: 57536 checks, 0 failures
+(K_s) partial_l(C(x,l+s)) <= C(x,l+s-1), s<=8, l<=12, x<=300: 25476 checks, 0 failures
+  (APP) n=2 done
+  (APP) n=3 done
+  (APP) n=4 done
+  (APP) n=5 done
+  (APP) n=6 done
+  (APP) n=7 done
+  (APP) n=8 done
+  (APP) n=9 done
+  (APP) n=10 done
+  (APP) n=11 done
+  (APP) n=12 done
+  (APP) n=13 done
+  (APP) n=14 done
+  (APP) n=15 done
+  (APP) n=16 done
+(APP) all (M)-instances needed by Lemma W r=2, n<=16: 852427 checks, 0 failures
+DONE.

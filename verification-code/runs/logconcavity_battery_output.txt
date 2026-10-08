@@ -1,0 +1,404 @@
+
+--- n=3  d=[0, 1] ---
+kozlov         n=3 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+ones           n=3 d=[0, 1]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+tent           n=3 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+pow2conc       n=3 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+rand-lc-1      n=3 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+rand-lc-2      n=3 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+kozrecip       n=3 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+fact           n=3 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+pow2conv       n=3 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+rand-lx-1      n=3 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+geom2          n=3 d=[0, 1]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+tie            n=3 d=[0, 1]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=7
+
+--- n=3  d=[0, 2] ---
+kozlov         n=3 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+ones           n=3 d=[0, 2]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+tent           n=3 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+pow2conc       n=3 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+rand-lc-1      n=3 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+rand-lc-2      n=3 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+kozrecip       n=3 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+fact           n=3 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+pow2conv       n=3 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+rand-lx-1      n=3 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+geom2          n=3 d=[0, 2]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+tie            n=3 d=[0, 2]     geometric          inj=0 | T1 OK(f=6/6) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 9/9 |T|=9
+
+--- n=3  d=[0, 1, 2] ---
+kozlov         n=3 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+ones           n=3 d=[0, 1, 2]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+tent           n=3 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+pow2conc       n=3 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+rand-lc-1      n=3 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+rand-lc-2      n=3 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+kozrecip       n=3 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+fact           n=3 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+pow2conv       n=3 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+rand-lx-1      n=3 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+geom2          n=3 d=[0, 1, 2]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+tie            n=3 d=[0, 1, 2]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=16
+
+--- n=3  d=[0, 1, 3] ---
+kozlov         n=3 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+ones           n=3 d=[0, 1, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+tent           n=3 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+pow2conc       n=3 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lc-1      n=3 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lc-2      n=3 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+kozrecip       n=3 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+fact           n=3 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+pow2conv       n=3 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lx-1      n=3 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+geom2          n=3 d=[0, 1, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+tie            n=3 d=[0, 1, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+
+--- n=3  d=[0, 2, 3] ---
+kozlov         n=3 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+ones           n=3 d=[0, 2, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+tent           n=3 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+pow2conc       n=3 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lc-1      n=3 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lc-2      n=3 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+kozrecip       n=3 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+fact           n=3 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+pow2conv       n=3 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+rand-lx-1      n=3 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+geom2          n=3 d=[0, 2, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+tie            n=3 d=[0, 2, 3]  geometric          inj=0 | T1 OK(f=9/9) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 27/27 |T|=21
+
+--- n=3  d=[0, 1, 2, 3] ---
+kozlov         n=3 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+ones           n=3 d=[0, 1, 2, 3] geometric          inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+tent           n=3 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+pow2conc       n=3 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+rand-lc-1      n=3 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+rand-lc-2      n=3 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+kozrecip       n=3 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+fact           n=3 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+pow2conv       n=3 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+rand-lx-1      n=3 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+geom2          n=3 d=[0, 1, 2, 3] geometric          inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+tie            n=3 d=[0, 1, 2, 3] geometric          inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=0 pred=OK T5 81/81 |T|=36
+
+--- n=4  d=[0, 1] ---
+kozlov         n=4 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+ones           n=4 d=[0, 1]     geometric          inj=0 | T1 FAIL(f=7/8) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 16/16 |T|=10
+tent           n=4 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+pow2conc       n=4 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+rand-lc-1      n=4 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+rand-lc-2      n=4 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+kozrecip       n=4 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 14/16 |T|=11
+fact           n=4 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 13/16 |T|=11
+pow2conv       n=4 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 14/16 |T|=11
+rand-lx-1      n=4 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 14/16 |T|=11
+geom2          n=4 d=[0, 1]     geometric          inj=0 | T1 FAIL(f=7/8) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 16/16 |T|=10
+tie            n=4 d=[0, 1]     weak-logconcave    inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 16/16 |T|=11
+nm-inj         n=4 d=[0, 1]     nonmonotone        inj=1 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 14/16 |T|=11
+nm-noninj      n=4 d=[0, 1]     nonmonotone        inj=0 | T1 OK(f=8/8) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 14/16 |T|=11
+tie-mid        n=4 d=[0, 1]     weak-logconcave    inj=0 | T1 FAIL(f=7/8) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 16/16 |T|=10
+plateau        n=4 d=[0, 1]     geometric          inj=0 | T1 FAIL(f=7/8) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 16/16 |T|=10
+
+--- n=4  d=[0, 2] ---
+kozlov         n=4 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+ones           n=4 d=[0, 2]     geometric          inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+tent           n=4 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+pow2conc       n=4 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+rand-lc-1      n=4 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+rand-lc-2      n=4 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+kozrecip       n=4 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+fact           n=4 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+pow2conv       n=4 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+rand-lx-1      n=4 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+geom2          n=4 d=[0, 2]     geometric          inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+tie            n=4 d=[0, 2]     weak-logconcave    inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+nm-inj         n=4 d=[0, 2]     nonmonotone        inj=1 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+nm-noninj      n=4 d=[0, 2]     nonmonotone        inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+tie-mid        n=4 d=[0, 2]     weak-logconcave    inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+plateau        n=4 d=[0, 2]     geometric          inj=0 | T1 OK(f=8/8) T2 OK T3 --/all -- T4 dep=0 ind=0 pred=OK T5 16/16 |T|=14
+
+--- n=4  d=[0, 1, 2] ---
+kozlov         n=4 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+ones           n=4 d=[0, 1, 2]  geometric          inj=0 | T1 FAIL(f=10/12) T2 OK T3 OK/all OK T4 dep=2 ind=0 pred=OK T5 64/64 |T|=24
+tent           n=4 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+pow2conc       n=4 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+rand-lc-1      n=4 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+rand-lc-2      n=4 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+kozrecip       n=4 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 54/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+fact           n=4 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 50/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+pow2conv       n=4 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 54/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+rand-lx-1      n=4 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 54/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+geom2          n=4 d=[0, 1, 2]  geometric          inj=0 | T1 FAIL(f=10/12) T2 OK T3 OK/all OK T4 dep=2 ind=0 pred=OK T5 64/64 |T|=24
+tie            n=4 d=[0, 1, 2]  weak-logconcave    inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=2 pred=OK T5 64/64 |T|=28
+nm-inj         n=4 d=[0, 1, 2]  nonmonotone        inj=1 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 54/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+nm-noninj      n=4 d=[0, 1, 2]  nonmonotone        inj=0 | T1 FAIL(f=14/12) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=2 pred=OK T5 52/64 |T|=30  T3-witness(0-based)=(3, 0, 0) inA=False
+tie-mid        n=4 d=[0, 1, 2]  weak-logconcave    inj=0 | T1 FAIL(f=10/12) T2 OK T3 OK/all OK T4 dep=2 ind=0 pred=OK T5 64/64 |T|=24
+plateau        n=4 d=[0, 1, 2]  geometric          inj=0 | T1 FAIL(f=10/12) T2 OK T3 OK/all OK T4 dep=2 ind=0 pred=OK T5 64/64 |T|=24
+
+--- n=4  d=[0, 1, 3] ---
+kozlov         n=4 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+ones           n=4 d=[0, 1, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+tent           n=4 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+pow2conc       n=4 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+rand-lc-1      n=4 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+rand-lc-2      n=4 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+kozrecip       n=4 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+fact           n=4 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 54/64 |T|=38
+pow2conv       n=4 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+rand-lx-1      n=4 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+geom2          n=4 d=[0, 1, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+tie            n=4 d=[0, 1, 3]  weak-logconcave    inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+nm-inj         n=4 d=[0, 1, 3]  nonmonotone        inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+nm-noninj      n=4 d=[0, 1, 3]  nonmonotone        inj=0 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+tie-mid        n=4 d=[0, 1, 3]  weak-logconcave    inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+plateau        n=4 d=[0, 1, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+
+--- n=4  d=[0, 2, 3] ---
+kozlov         n=4 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+ones           n=4 d=[0, 2, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+tent           n=4 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+pow2conc       n=4 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+rand-lc-1      n=4 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+rand-lc-2      n=4 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+kozrecip       n=4 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+fact           n=4 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 53/64 |T|=38
+pow2conv       n=4 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+rand-lx-1      n=4 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+geom2          n=4 d=[0, 2, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+tie            n=4 d=[0, 2, 3]  weak-logconcave    inj=0 | T1 OK(f=12/12) T2 OK T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 64/64 |T|=37
+nm-inj         n=4 d=[0, 2, 3]  nonmonotone        inj=1 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+nm-noninj      n=4 d=[0, 2, 3]  nonmonotone        inj=0 | T1 FAIL(f=13/12) T2 FAIL[R⊄Q] T3 OK/all OK T4 dep=0 ind=1 pred=OK T5 57/64 |T|=38
+tie-mid        n=4 d=[0, 2, 3]  weak-logconcave    inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+plateau        n=4 d=[0, 2, 3]  geometric          inj=0 | T1 FAIL(f=11/12) T2 OK T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 64/64 |T|=34
+
+--- n=4  d=[0, 1, 2, 3] ---
+kozlov         n=4 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+ones           n=4 d=[0, 1, 2, 3] geometric          inj=0 | T1 FAIL(f=13/16) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 256/256 |T|=56
+tent           n=4 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+pow2conc       n=4 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+rand-lc-1      n=4 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+rand-lc-2      n=4 d=[0, 1, 2, 3] strict-logconcave  inj=1 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+kozrecip       n=4 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 221/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+fact           n=4 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 208/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+pow2conv       n=4 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 221/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+rand-lx-1      n=4 d=[0, 1, 2, 3] strict-logconvex   inj=1 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 221/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+geom2          n=4 d=[0, 1, 2, 3] geometric          inj=0 | T1 FAIL(f=13/16) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 256/256 |T|=56
+tie            n=4 d=[0, 1, 2, 3] weak-logconcave    inj=0 | T1 OK(f=16/16) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 256/256 |T|=69
+nm-inj         n=4 d=[0, 1, 2, 3] nonmonotone        inj=1 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 221/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+nm-noninj      n=4 d=[0, 1, 2, 3] nonmonotone        inj=0 | T1 FAIL(f=20/16) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 209/256 |T|=78  T3-witness(0-based)=(0, 3, 0, 0) inA=False
+tie-mid        n=4 d=[0, 1, 2, 3] weak-logconcave    inj=0 | T1 FAIL(f=13/16) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 256/256 |T|=56
+plateau        n=4 d=[0, 1, 2, 3] geometric          inj=0 | T1 FAIL(f=13/16) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 256/256 |T|=56
+
+--- n=5  d=[0, 1] ---
+kozlov         n=5 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+ones           n=5 d=[0, 1]     geometric          inj=0 | T1 FAIL(f=8/10) T2 OK T3 --/all -- T4 dep=2 ind=0 pred=OK T5 25/25 |T|=13
+tent           n=5 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+pow2conc       n=5 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+rand-lc-1      n=5 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+rand-lc-2      n=5 d=[0, 1]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+kozrecip       n=5 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 18/25 |T|=16
+fact           n=5 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 17/25 |T|=16
+pow2conv       n=5 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 19/25 |T|=16
+rand-lx-1      n=5 d=[0, 1]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 19/25 |T|=16
+geom2          n=5 d=[0, 1]     geometric          inj=0 | T1 FAIL(f=8/10) T2 OK T3 --/all -- T4 dep=2 ind=0 pred=OK T5 25/25 |T|=13
+tie            n=5 d=[0, 1]     weak-logconcave    inj=0 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=2 pred=OK T5 25/25 |T|=16
+nm-inj         n=5 d=[0, 1]     nonmonotone        inj=1 | T1 FAIL(f=11/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 22/25 |T|=17
+nm-noninj      n=5 d=[0, 1]     nonmonotone        inj=0 | T1 FAIL(f=11/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=2 pred=OK T5 22/25 |T|=17
+tie-mid        n=5 d=[0, 1]     weak-logconcave    inj=0 | T1 FAIL(f=9/10) T2 OK T3 --/all -- T4 dep=1 ind=1 pred=OK T5 25/25 |T|=15
+plateau        n=5 d=[0, 1]     weak-logconcave    inj=0 | T1 FAIL(f=8/10) T2 OK T3 --/all -- T4 dep=2 ind=0 pred=OK T5 25/25 |T|=13
+
+--- n=5  d=[0, 2] ---
+kozlov         n=5 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+ones           n=5 d=[0, 2]     geometric          inj=0 | T1 FAIL(f=9/10) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 25/25 |T|=19
+tent           n=5 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+pow2conc       n=5 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+rand-lc-1      n=5 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+rand-lc-2      n=5 d=[0, 2]     strict-logconcave  inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+kozrecip       n=5 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 23/25 |T|=20
+fact           n=5 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 23/25 |T|=20
+pow2conv       n=5 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 23/25 |T|=20
+rand-lx-1      n=5 d=[0, 2]     strict-logconvex   inj=1 | T1 OK(f=10/10) T2 FAIL[R⊄Q] T3 --/all -- T4 dep=0 ind=1 pred=OK T5 23/25 |T|=20
+geom2          n=5 d=[0, 2]     geometric          inj=0 | T1 FAIL(f=9/10) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 25/25 |T|=19
+tie            n=5 d=[0, 2]     weak-logconcave    inj=0 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+nm-inj         n=5 d=[0, 2]     nonmonotone        inj=1 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+nm-noninj      n=5 d=[0, 2]     nonmonotone        inj=0 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+tie-mid        n=5 d=[0, 2]     weak-logconcave    inj=0 | T1 OK(f=10/10) T2 OK T3 --/all -- T4 dep=0 ind=1 pred=OK T5 25/25 |T|=20
+plateau        n=5 d=[0, 2]     weak-logconcave    inj=0 | T1 FAIL(f=9/10) T2 OK T3 --/all -- T4 dep=1 ind=0 pred=OK T5 25/25 |T|=19
+
+--- n=5  d=[0, 1, 2] ---
+kozlov         n=5 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+ones           n=5 d=[0, 1, 2]  geometric          inj=0 | T1 FAIL(f=11/15) T2 OK T3 OK/all OK T4 dep=5 ind=0 pred=OK T5 125/125 |T|=32
+tent           n=5 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+pow2conc       n=5 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+rand-lc-1      n=5 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+rand-lc-2      n=5 d=[0, 1, 2]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+kozrecip       n=5 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=21/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 87/125 |T|=50  T3-witness(0-based)=(2, 4, 1) inA=False
+fact           n=5 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=21/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 81/125 |T|=50  T3-witness(0-based)=(2, 4, 1) inA=False
+pow2conv       n=5 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=21/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 94/125 |T|=50  T3-witness(0-based)=(2, 4, 1) inA=False
+rand-lx-1      n=5 d=[0, 1, 2]  strict-logconvex   inj=1 | T1 FAIL(f=21/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 94/125 |T|=50  T3-witness(0-based)=(2, 4, 1) inA=False
+geom2          n=5 d=[0, 1, 2]  geometric          inj=0 | T1 FAIL(f=11/15) T2 OK T3 OK/all OK T4 dep=5 ind=0 pred=OK T5 125/125 |T|=32
+tie            n=5 d=[0, 1, 2]  weak-logconcave    inj=0 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=5 pred=OK T5 125/125 |T|=45
+nm-inj         n=5 d=[0, 1, 2]  nonmonotone        inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 108/125 |T|=52  T3-witness(0-based)=(3, 0, 0) inA=False
+nm-noninj      n=5 d=[0, 1, 2]  nonmonotone        inj=0 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=5 pred=OK T5 106/125 |T|=52  T3-witness(0-based)=(3, 0, 0) inA=False
+tie-mid        n=5 d=[0, 1, 2]  weak-logconcave    inj=0 | T1 FAIL(f=13/15) T2 OK T3 OK/all OK T4 dep=2 ind=3 pred=OK T5 125/125 |T|=40
+plateau        n=5 d=[0, 1, 2]  weak-logconcave    inj=0 | T1 FAIL(f=11/15) T2 OK T3 OK/all OK T4 dep=5 ind=0 pred=OK T5 125/125 |T|=32
+
+--- n=5  d=[0, 1, 3] ---
+kozlov         n=5 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+ones           n=5 d=[0, 1, 3]  geometric          inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+tent           n=5 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+pow2conc       n=5 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+rand-lc-1      n=5 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+rand-lc-2      n=5 d=[0, 1, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+kozrecip       n=5 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 93/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+fact           n=5 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 90/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+pow2conv       n=5 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 97/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+rand-lx-1      n=5 d=[0, 1, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 97/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+geom2          n=5 d=[0, 1, 3]  geometric          inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+tie            n=5 d=[0, 1, 3]  weak-logconcave    inj=0 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+nm-inj         n=5 d=[0, 1, 3]  nonmonotone        inj=1 | T1 FAIL(f=17/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 113/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+nm-noninj      n=5 d=[0, 1, 3]  nonmonotone        inj=0 | T1 FAIL(f=17/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 113/125 |T|=63  T3-witness(0-based)=(3, 0, 1) inA=False
+tie-mid        n=5 d=[0, 1, 3]  weak-logconcave    inj=0 | T1 FAIL(f=14/15) T2 OK T3 OK/all OK T4 dep=1 ind=2 pred=OK T5 125/125 |T|=56
+plateau        n=5 d=[0, 1, 3]  weak-logconcave    inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+
+--- n=5  d=[0, 2, 3] ---
+kozlov         n=5 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+ones           n=5 d=[0, 2, 3]  geometric          inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+tent           n=5 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+pow2conc       n=5 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+rand-lc-1      n=5 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+rand-lc-2      n=5 d=[0, 2, 3]  strict-logconcave  inj=1 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+kozrecip       n=5 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 94/125 |T|=63  T3-witness(0-based)=(3, 4, 1) inA=False
+fact           n=5 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 89/125 |T|=63  T3-witness(0-based)=(3, 4, 1) inA=False
+pow2conv       n=5 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 97/125 |T|=63  T3-witness(0-based)=(3, 4, 1) inA=False
+rand-lx-1      n=5 d=[0, 2, 3]  strict-logconvex   inj=1 | T1 FAIL(f=19/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 97/125 |T|=63  T3-witness(0-based)=(3, 4, 1) inA=False
+geom2          n=5 d=[0, 2, 3]  geometric          inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+tie            n=5 d=[0, 2, 3]  weak-logconcave    inj=0 | T1 OK(f=15/15) T2 OK T3 OK/all OK T4 dep=0 ind=3 pred=OK T5 125/125 |T|=59
+nm-inj         n=5 d=[0, 2, 3]  nonmonotone        inj=1 | T1 FAIL(f=17/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 114/125 |T|=64  T3-witness(0-based)=(4, 3, 0) inA=False
+nm-noninj      n=5 d=[0, 2, 3]  nonmonotone        inj=0 | T1 FAIL(f=17/15) T2 FAIL[R⊄Q] T3 FAIL/all OK T4 dep=0 ind=3 pred=OK T5 114/125 |T|=64  T3-witness(0-based)=(4, 3, 0) inA=False
+tie-mid        n=5 d=[0, 2, 3]  weak-logconcave    inj=0 | T1 FAIL(f=14/15) T2 OK T3 OK/all OK T4 dep=1 ind=2 pred=OK T5 125/125 |T|=55
+plateau        n=5 d=[0, 2, 3]  weak-logconcave    inj=0 | T1 FAIL(f=12/15) T2 OK T3 OK/all OK T4 dep=3 ind=0 pred=OK T5 125/125 |T|=47
+
+=== tied-shift scope check, d=[0,1,1] ===
+kozlov         n=3 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+ones           n=3 d=[0, 1, 1]  geometric          inj=0 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+tent           n=3 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+pow2conc       n=3 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+rand-lc-1      n=3 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+rand-lc-2      n=3 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=6/6) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=1 ind=0 pred=OK T5 25/27 |T|=7
+kozlov         n=4 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=8/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=2 ind=2 pred=OK T5 62/64 |T|=11
+ones           n=4 d=[0, 1, 1]  geometric          inj=0 | T1 FAIL(f=7/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=4 ind=0 pred=OK T5 61/64 |T|=10
+tent           n=4 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=8/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=2 ind=2 pred=OK T5 62/64 |T|=11
+pow2conc       n=4 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=8/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=2 ind=2 pred=OK T5 62/64 |T|=11
+rand-lc-1      n=4 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=8/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=2 ind=2 pred=OK T5 62/64 |T|=11
+rand-lc-2      n=4 d=[0, 1, 1]  strict-logconcave  inj=1 | T1 OK(f=8/8) T2 FAIL[Q⊄R] T3 OK/all OK T4 dep=2 ind=2 pred=OK T5 62/64 |T|=11
+
+================ SUMMARY (main battery, no tied shifts) ================
+sigma-class             inj |     T1 ok     T2 ok  T3 ok(consec)   T3 ok(allpr)   T4 pred     T5 ok | links dep/ind
+geometric                no |     21/46      46/46        30/30          30/30        46/46      46/46  | 52/0
+nonmonotone              no |      3/11       2/11         2/7            7/7         11/11       2/11  | 0/22
+nonmonotone             yes |      3/11       2/11         2/7            7/7         11/11       2/11  | 0/22
+strict-logconcave       yes |     85/85      85/85        55/55          55/55        85/85      85/85  | 0/110
+strict-logconvex        yes |     40/68      28/68        24/44          44/44        68/68      28/68  | 0/88
+weak-logconcave          no |     13/27      27/27        17/17          17/17        27/27      27/27  | 27/31
+
+Failures in detail (main battery):
+  ones           n=4 d=[0, 1]     geometric          a=[1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=4 d=[0, 1]     strict-logconvex   a=[3, 2, 3, 12]  fails: ['T2', 'T5'] R⊄Q
+  fact           n=4 d=[0, 1]     strict-logconvex   a=[1, 2, 6, 24]  fails: ['T2', 'T5'] R⊄Q
+  pow2conv       n=4 d=[0, 1]     strict-logconvex   a=[1, 2, 8, 64]  fails: ['T2', 'T5'] R⊄Q
+  rand-lx-1      n=4 d=[0, 1]     strict-logconvex   a=[1197, 126, 14, 2]  fails: ['T2', 'T5'] R⊄Q
+  geom2          n=4 d=[0, 1]     geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  nm-inj         n=4 d=[0, 1]     nonmonotone        a=[2, 6, 3, 12]  fails: ['T2', 'T5'] R⊄Q
+  nm-noninj      n=4 d=[0, 1]     nonmonotone        a=[2, 6, 3, 9]  fails: ['T2', 'T5'] R⊄Q
+  tie-mid        n=4 d=[0, 1]     weak-logconcave    a=[1, 3, 6, 12]  fails: ['T1'] 
+  plateau        n=4 d=[0, 1]     geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  ones           n=4 d=[0, 1, 2]  geometric          a=[1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=4 d=[0, 1, 2]  strict-logconvex   a=[3, 2, 3, 12]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  fact           n=4 d=[0, 1, 2]  strict-logconvex   a=[1, 2, 6, 24]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  pow2conv       n=4 d=[0, 1, 2]  strict-logconvex   a=[1, 2, 8, 64]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  rand-lx-1      n=4 d=[0, 1, 2]  strict-logconvex   a=[1197, 126, 14, 2]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  geom2          n=4 d=[0, 1, 2]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  nm-inj         n=4 d=[0, 1, 2]  nonmonotone        a=[2, 6, 3, 12]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  nm-noninj      n=4 d=[0, 1, 2]  nonmonotone        a=[2, 6, 3, 9]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  tie-mid        n=4 d=[0, 1, 2]  weak-logconcave    a=[1, 3, 6, 12]  fails: ['T1'] 
+  plateau        n=4 d=[0, 1, 2]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  ones           n=4 d=[0, 1, 3]  geometric          a=[1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=4 d=[0, 1, 3]  strict-logconvex   a=[3, 2, 3, 12]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  fact           n=4 d=[0, 1, 3]  strict-logconvex   a=[1, 2, 6, 24]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  pow2conv       n=4 d=[0, 1, 3]  strict-logconvex   a=[1, 2, 8, 64]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  rand-lx-1      n=4 d=[0, 1, 3]  strict-logconvex   a=[1197, 126, 14, 2]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  geom2          n=4 d=[0, 1, 3]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  nm-inj         n=4 d=[0, 1, 3]  nonmonotone        a=[2, 6, 3, 12]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  nm-noninj      n=4 d=[0, 1, 3]  nonmonotone        a=[2, 6, 3, 9]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  tie-mid        n=4 d=[0, 1, 3]  weak-logconcave    a=[1, 3, 6, 12]  fails: ['T1'] 
+  plateau        n=4 d=[0, 1, 3]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  ones           n=4 d=[0, 2, 3]  geometric          a=[1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=4 d=[0, 2, 3]  strict-logconvex   a=[3, 2, 3, 12]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  fact           n=4 d=[0, 2, 3]  strict-logconvex   a=[1, 2, 6, 24]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  pow2conv       n=4 d=[0, 2, 3]  strict-logconvex   a=[1, 2, 8, 64]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  rand-lx-1      n=4 d=[0, 2, 3]  strict-logconvex   a=[1197, 126, 14, 2]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  geom2          n=4 d=[0, 2, 3]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  nm-inj         n=4 d=[0, 2, 3]  nonmonotone        a=[2, 6, 3, 12]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  nm-noninj      n=4 d=[0, 2, 3]  nonmonotone        a=[2, 6, 3, 9]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  tie-mid        n=4 d=[0, 2, 3]  weak-logconcave    a=[1, 3, 6, 12]  fails: ['T1'] 
+  plateau        n=4 d=[0, 2, 3]  geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  ones           n=4 d=[0, 1, 2, 3] geometric          a=[1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=4 d=[0, 1, 2, 3] strict-logconvex   a=[3, 2, 3, 12]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  fact           n=4 d=[0, 1, 2, 3] strict-logconvex   a=[1, 2, 6, 24]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  pow2conv       n=4 d=[0, 1, 2, 3] strict-logconvex   a=[1, 2, 8, 64]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  rand-lx-1      n=4 d=[0, 1, 2, 3] strict-logconvex   a=[1197, 126, 14, 2]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  geom2          n=4 d=[0, 1, 2, 3] geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  nm-inj         n=4 d=[0, 1, 2, 3] nonmonotone        a=[2, 6, 3, 12]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  nm-noninj      n=4 d=[0, 1, 2, 3] nonmonotone        a=[2, 6, 3, 9]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  tie-mid        n=4 d=[0, 1, 2, 3] weak-logconcave    a=[1, 3, 6, 12]  fails: ['T1'] 
+  plateau        n=4 d=[0, 1, 2, 3] geometric          a=[1, 2, 4, 8]  fails: ['T1'] 
+  ones           n=5 d=[0, 1]     geometric          a=[1, 1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=5 d=[0, 1]     strict-logconvex   a=[2, 1, 1, 2, 10]  fails: ['T2', 'T5'] R⊄Q
+  fact           n=5 d=[0, 1]     strict-logconvex   a=[1, 2, 6, 24, 120]  fails: ['T2', 'T5'] R⊄Q
+  pow2conv       n=5 d=[0, 1]     strict-logconvex   a=[1, 2, 8, 64, 1024]  fails: ['T2', 'T5'] R⊄Q
+  rand-lx-1      n=5 d=[0, 1]     strict-logconvex   a=[22743, 1197, 126, 14, 2]  fails: ['T2', 'T5'] R⊄Q
+  geom2          n=5 d=[0, 1]     geometric          a=[1, 2, 4, 8, 16]  fails: ['T1'] 
+  nm-inj         n=5 d=[0, 1]     nonmonotone        a=[2, 6, 3, 12, 4]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  nm-noninj      n=5 d=[0, 1]     nonmonotone        a=[2, 6, 3, 9, 3]  fails: ['T1', 'T2', 'T5'] R⊄Q
+  tie-mid        n=5 d=[0, 1]     weak-logconcave    a=[1, 4, 12, 24, 48]  fails: ['T1'] 
+  plateau        n=5 d=[0, 1]     weak-logconcave    a=[1, 3, 6, 12, 24]  fails: ['T1'] 
+  ones           n=5 d=[0, 2]     geometric          a=[1, 1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=5 d=[0, 2]     strict-logconvex   a=[2, 1, 1, 2, 10]  fails: ['T2', 'T5'] R⊄Q
+  fact           n=5 d=[0, 2]     strict-logconvex   a=[1, 2, 6, 24, 120]  fails: ['T2', 'T5'] R⊄Q
+  pow2conv       n=5 d=[0, 2]     strict-logconvex   a=[1, 2, 8, 64, 1024]  fails: ['T2', 'T5'] R⊄Q
+  rand-lx-1      n=5 d=[0, 2]     strict-logconvex   a=[22743, 1197, 126, 14, 2]  fails: ['T2', 'T5'] R⊄Q
+  geom2          n=5 d=[0, 2]     geometric          a=[1, 2, 4, 8, 16]  fails: ['T1'] 
+  plateau        n=5 d=[0, 2]     weak-logconcave    a=[1, 3, 6, 12, 24]  fails: ['T1'] 
+  ones           n=5 d=[0, 1, 2]  geometric          a=[1, 1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=5 d=[0, 1, 2]  strict-logconvex   a=[2, 1, 1, 2, 10]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  fact           n=5 d=[0, 1, 2]  strict-logconvex   a=[1, 2, 6, 24, 120]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  pow2conv       n=5 d=[0, 1, 2]  strict-logconvex   a=[1, 2, 8, 64, 1024]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  rand-lx-1      n=5 d=[0, 1, 2]  strict-logconvex   a=[22743, 1197, 126, 14, 2]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  geom2          n=5 d=[0, 1, 2]  geometric          a=[1, 2, 4, 8, 16]  fails: ['T1'] 
+  nm-inj         n=5 d=[0, 1, 2]  nonmonotone        a=[2, 6, 3, 12, 4]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  nm-noninj      n=5 d=[0, 1, 2]  nonmonotone        a=[2, 6, 3, 9, 3]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  tie-mid        n=5 d=[0, 1, 2]  weak-logconcave    a=[1, 4, 12, 24, 48]  fails: ['T1'] 
+  plateau        n=5 d=[0, 1, 2]  weak-logconcave    a=[1, 3, 6, 12, 24]  fails: ['T1'] 
+  ones           n=5 d=[0, 1, 3]  geometric          a=[1, 1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=5 d=[0, 1, 3]  strict-logconvex   a=[2, 1, 1, 2, 10]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  fact           n=5 d=[0, 1, 3]  strict-logconvex   a=[1, 2, 6, 24, 120]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  pow2conv       n=5 d=[0, 1, 3]  strict-logconvex   a=[1, 2, 8, 64, 1024]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  rand-lx-1      n=5 d=[0, 1, 3]  strict-logconvex   a=[22743, 1197, 126, 14, 2]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  geom2          n=5 d=[0, 1, 3]  geometric          a=[1, 2, 4, 8, 16]  fails: ['T1'] 
+  nm-inj         n=5 d=[0, 1, 3]  nonmonotone        a=[2, 6, 3, 12, 4]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  nm-noninj      n=5 d=[0, 1, 3]  nonmonotone        a=[2, 6, 3, 9, 3]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  tie-mid        n=5 d=[0, 1, 3]  weak-logconcave    a=[1, 4, 12, 24, 48]  fails: ['T1'] 
+  plateau        n=5 d=[0, 1, 3]  weak-logconcave    a=[1, 3, 6, 12, 24]  fails: ['T1'] 
+  ones           n=5 d=[0, 2, 3]  geometric          a=[1, 1, 1, 1, 1]  fails: ['T1'] 
+  kozrecip       n=5 d=[0, 2, 3]  strict-logconvex   a=[2, 1, 1, 2, 10]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  fact           n=5 d=[0, 2, 3]  strict-logconvex   a=[1, 2, 6, 24, 120]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  pow2conv       n=5 d=[0, 2, 3]  strict-logconvex   a=[1, 2, 8, 64, 1024]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  rand-lx-1      n=5 d=[0, 2, 3]  strict-logconvex   a=[22743, 1197, 126, 14, 2]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  geom2          n=5 d=[0, 2, 3]  geometric          a=[1, 2, 4, 8, 16]  fails: ['T1'] 
+  nm-inj         n=5 d=[0, 2, 3]  nonmonotone        a=[2, 6, 3, 12, 4]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  nm-noninj      n=5 d=[0, 2, 3]  nonmonotone        a=[2, 6, 3, 9, 3]  fails: ['T1', 'T2', 'T3', 'T5'] R⊄Q
+  tie-mid        n=5 d=[0, 2, 3]  weak-logconcave    a=[1, 4, 12, 24, 48]  fails: ['T1'] 
+  plateau        n=5 d=[0, 2, 3]  weak-logconcave    a=[1, 3, 6, 12, 24]  fails: ['T1'] 

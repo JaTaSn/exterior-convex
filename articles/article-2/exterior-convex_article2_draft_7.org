@@ -1,0 +1,3374 @@
+:PROPERTIES:
+:ID:       b81e6a24-0f95-4c73-9a1e-3d5b7c206ea8
+:CREATED:  [2026-09-05 Sat]
+:END:
+
+#+SETUPFILE: ../../../50-writing/article-templates/latex-common.setup
+#+SETUPFILE: ../../../50-writing/article-templates/latex-variant-koma.setup
+# Drafts only: margin labels via showkeys. Remove this line for a submission version.
+# Pairs with `org-latex-prefer-user-labels' in the Local Variables block at the end.
+#+SETUPFILE: ../../../50-writing/article-templates/latex-draft-showkeys.setup
+#+OPTIONS: toc:nil H:3 num:t tags:nil email:nil
+#+STARTUP: showall inlineimages num hidedrawers
+
+# fontspec under xelatex/lualatex: Latin Modern's legacy T1 encoding has no S-cedilla or
+# t-cedilla, which the "An. St. Univ. Ovidius Constanta" reference needs, and a missing
+# character is silently dropped rather than raised as an error.
+#+LATEX_HEADER: \usepackage{iftex}
+#+LATEX_HEADER: \ifPDFTeX\usepackage[T1]{fontenc}\else\usepackage{fontspec}\fi
+#+LATEX_HEADER: \usepackage{orcidlink}
+# booktabs: the notation table of the new Section 2 uses \toprule/\midrule/\bottomrule,
+# as the companion article's own notation table does.  Article 2 had no table before.
+#+LATEX_HEADER: \usepackage{booktabs}
+# tikz: the digraph of Remark `rem-delta0-digraph', drawn in the same style as the digraph
+# figure of the companion article (2026-09-30, Jan's draft-3 review: "give an example, with
+# some nice digraph").
+#+LATEX_HEADER: \usepackage{tikz}
+
+# 2026-09-16 (Jan): article 2 now cites through org-cite against the project bibliography, as
+# article 1 has since 2026-09-08.  The hand-maintained numbered list this replaces is exactly the
+# thing that drifted in article 1 -- five sources cited in its text had gone missing from its list.
+#+bibliography: ../literature/exterior-convex-references.bib
+# 2026-09-16, Jan's instruction: `alphabetic' throughout the series, matching article 1 in its
+# report form -- an alpha label keeps the author initials and the year, so the prose still reads
+# ("Kozlov [Koz97]"), while a bare citation becomes a mnemonic bracket rather than a parenthetical.
+# NB the biblatex style is `alphabetic'; `alpha' is the classic BibTeX .bst name and fails with
+# "Style 'alpha' not found", cascading into spurious "keyval Error: doi undefined" messages.
+#+cite_export: biblatex alphabetic
+
+# The note fields in this .bib hold project-internal provenance (paywall status, local paths,
+# corrections to earlier readings) and biblatex prints `note' by default.  \AtEveryBibitem is
+# preamble-only and org emits LATEX_HEADER lines before org-cite loads biblatex, so it is deferred
+# with etoolbox's \AtEndPreamble.  Copied from article 1, where the same trick keeps an artefacts/
+# path out of a bibliography headed for arXiv.
+#+LATEX_HEADER: \usepackage{etoolbox}
+# End-of-environment markers (2026-10-02, Jan), the same device article 1 has carried since
+# 2026-09-13: examples and remarks run long here and it was not clear where they stopped, so each
+# ends in an unobtrusive symbol playing the part of a q.e.d. box.  A lozenge closes an Example, as
+# in article 1; a club closes a Remark.  \clubsuit is the cloverleaf Jan asked for -- there is a
+# true cloverleaf at U+2318, but reaching it needs a named font that has the glyph, which is more
+# fragility than a proof-reading mark is worth.  Both symbols come from amssymb/base, already
+# loaded by latex-common.setup, and etoolbox is already here for the biblatex fix below.
+#+LATEX_HEADER: \AtEndEnvironment{mexample}{\hfill$\Diamond$}
+#+LATEX_HEADER: \AtEndEnvironment{remark}{\hfill$\clubsuit$}
+#+LATEX_HEADER: \AtEndPreamble{\AtEveryBibitem{\clearfield{note}\clearfield{annotation}\clearfield{addendum}}}
+# hyperref is loaded by latex-common.setup; without this every cross-reference and every
+# table-of-contents entry is drawn inside a coloured box.
+#+LATEX_HEADER: \hypersetup{hidelinks}
+#+LATEX_HEADER: \newcommand{\Koz}{\operatorname{Koz}}
+#+LATEX_HEADER: \newcommand{\shift}{\operatorname{shift}}
+#+LATEX_HEADER: \newcommand{\ff}{\operatorname{ff}}
+#+LATEX_HEADER: \newcommand{\inn}{\operatorname{in}}
+#+LATEX_HEADER: \newcommand{\conv}{\operatorname{conv}}
+#+LATEX_HEADER: \newcommand{\indeg}{\operatorname{indeg}}
+# NB: \top is a LaTeX primitive (the symbol) -- the statistic needs its own name.
+#+LATEX_HEADER: \newcommand{\tp}{\operatorname{top}}
+#+LATEX_HEADER: \newcommand{\HF}{\operatorname{HF}}
+# \Ext (2026-10-01, Jan): this paper writes the exterior algebra as \wedge V and suppresses
+# n = \dim V, rather than as E.  The reason is Linusson: his refined count E^p(n,k) occurs 37 times
+# here against the algebra's 29, so the letter E is more his than ours in THIS paper, and E_n for
+# the algebra collided outright with E_j for a graded component at j = n.  ARTICLE 1 KEEPS E --
+# E = \wedge V are synonyms and the two papers may differ, which is Jan's call; article 1 has no
+# Linusson count in it and so no clash to resolve.  The degree-j component is the exterior power
+# \wedge^jV, which needs no parentheses.
+#
+# GLYPH: \wedge, not \bigwedge, settled by Jan 2026-10-01 after trying both.  \bigwedge is a big
+# operator -- text size inline, the LARGE variant in displays -- and read as too heavy at this
+# density; \wedge is the ordinary-size symbol and is what is now in the PDF.  All five \wedge^jV
+# sites were brought into line with it, as was the one \wedge(V/I) in the solidus remark.
+#
+# ONE FRAGILITY, recorded rather than fixed because the glyph is Jan's choice and the fix is
+# invisible: \wedge is a \mathbin.  Every occurrence in the manuscript today sits in a LEADING
+# position -- after =, (, \subseteq, or at the start of a cell -- where TeX treats a binary
+# operator as ordinary, so the spacing is correct throughout and was checked site by site.  But
+# write \Ext after an operand and TeX will silently insert binary-operator spacing around the
+# wedge.  If that ever happens, the one-token fix is \mathord{\wedge}V, which renders identically
+# in every position the paper uses today.
+#+LATEX_HEADER: \newcommand{\Ext}{\mathord{\wedge }V}
+#
+# The alternatives weighed, kept because the next person will ask (all inert org comments):
+#   \bigwedge V                              the original; too heavy
+#   \mathop{\textstyle\bigwedge}\nolimits V  same glyph, text size even in displays
+#   \mathord{\wedge}V                        today's glyph, immune to the \mathbin fragility
+#   \Lambda V                                the usual light-weight choice -- REJECTED: \lambda is
+#                                            used 18 times here for the Perron roots of section 9
+#   \scalebox{0.82}{$\bigwedge$}V            exact control; needs graphicx
+
+# latex-common.setup defines \vec as \boldsymbol.  Jan first settled on overline here, matching
+# commutator-varieties, then on 2026-09-06 switched to \vec across the series: less clean
+# typographically, but unambiguous, and an overline is easy to lose beside a fraction bar or a
+# closure/complement bar.  Article 1 uses \vec too, so the two now agree.
+
+#+title: Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank
+#+subtitle: II: Generalizing Linusson's count to sumsets of \(f\)-vectors
+#+author: Jan Snellman \orcidlink{0009-0002-6676-5068}
+#+date: \today
+
+# ---------------------------------------------------------------------------
+# EDITORIAL NOTES (Org comments -- not exported). Article 2, draft 7, 2026-10-04.
+#
+# DRAFT 7 IS DRAFT 6 WITH n MADE EXPLICIT ON THE TRANSFER-MATRIX MACHINERY, by subscript:
+# A_n, T_n(delta), u_n, 1_n, and the primed/truncated variants A'_n, A_n^{(p)}, and so on.
+# 249 substitutions.  DRAFT 6 IS KEPT UNCHANGED -- Jan's estimate is that reverting is a
+# real possibility, so compare the two before committing to this.
+#
+# WHY SUBSCRIPTS AND NOT A(n) OR A[n; tau, rho].  Three candidate notations were weighed
+# (2026-10-04).  A(n) collides with the rule that a parenthesised argument is a coordinate,
+# and gives A^{(p)}(n) for the truncated matrix, which carries two parameters in two
+# notations.  A[n; tau, rho] is more principled -- it would reserve parentheses for
+# coordinates entirely -- but it forces T[n; delta; tau, tau'], two semicolons at different
+# levels with one glyph, and it abandons the arrow convention's clean split between the
+# whole object (u-arrow) and an entry (u[tau]).  SUBSCRIPTS ARE THE PAPER'S OWN IDIOM for an
+# n-indexed family already: F_n, S_n, B_n, 122 occurrences.  They also give A_n^{(p)}, which
+# is the ordinary two-parameter layout and reads.
+#
+# WHAT THIS BROKE, and what was done about it.  Two stated conventions in section 3.1 were
+# false as printed, independently of this change, and both are now amended:
+#   - "A plain subscript on an arrowed letter selects a member of the r-tuple" would make
+#     u_n the n-th member of a tuple.  Amended: a subscript n always names an n-indexed
+#     family member, as it already does in F_n and S_n.
+#   - "A parenthesised argument selects a coordinate, and is always a scalar" was ALREADY
+#     falsified by T(delta) 96 times -- named as an example in the very next bullet -- and
+#     by FF(n;d), Koz(n), F^p(n), E^p(n,k), lambda(delta).  Amended to distinguish a
+#     coordinate on a lowercase vector-valued letter from a parameter on a capital or an
+#     operator name.
+#
+# TAKEN TO ITS CONCLUSION, second pass the same day, at Jan's instruction.  He read the
+# first pass and preferred it -- "less elegant, easier to understand for someone that jumps
+# into the middle and reads a theorem" -- so the remaining holdouts were done too:
+#   - B -> B_n and P -> P_n, the base matrix and the saturating shift.
+#   - THE BINOMIAL BOX, which held the name B_n, is renamed \mathcal B_n.  Jan offered
+#     \mathcal{BB}_n or \mathcal{B}_n; the single letter was taken, matching \mathcal F_n,
+#     and written without braces for the same reason.  Italic B_n and calligraphic
+#     \mathcal B_n share a page only in the notation table, which is where telling them
+#     apart is the point.
+#   - D -> D_n, and the Alexander material is restructured: def-alexander now holds the dual
+#     \Delta^\vee (eq:def-alexander-dual), the box (eq:binomial-box) and the map D_n
+#     (eq:def-D), three numbered equations; lem-alexander keeps only what is TRUE of them.
+#     \Delta^\vee takes no subscript on purpose -- the complement is inside the [n] that
+#     \Delta already names, and the definition says so.
+#
+# STILL NOT SUBSCRIPTED: lambda(delta), N and G.  Same argument as for the appendix tables:
+# where n varies it is carried by a column or a block label, which is what a table is for.
+#
+# THE D COLLISION IS CLOSED.  The deficiency dim F_j - x(j) of lem-lexproper's proof was
+# called D_j, which collided with the involution D_n.  It is now C_j -- "capacity", which is
+# what that proof already calls the argument.  Jan's call, after weighing and rejecting a
+# rename of D_n instead (see below).  The one bare C in the paper, a generic constant in the
+# remark after prop-recurrence, became K so that C_j has the letter to itself.
+#
+# The second site is in thm-poly-p's PROOF, not thm-asymptotics-p-proper as an earlier note
+# here said -- Jan caught the misattribution.  That site reaches back fifteen printed pages
+# and two sections for C_j without restating it, so it now says "with C_j as in that lemma's
+# proof".
+#
+# REJECTED, with the evidence, so it is not reproposed: renaming the INVOLUTION instead.  An
+# omicron-sigma ligature was tried both ways the TeX SE answers give it.  The font route
+# (rgreekl21.ttf) is not in TeX Live and would add a font dependency for one glyph.  The tikz
+# route works -- svg.path is present, tikz is already loaded, 0 errors, and D_n never sits in
+# a script position so the macro's fixed 1.25ex height never bites -- BUT at 10.95pt the
+# glyph is a dense black curl against light Computer Modern and reads as a dingbat, 34 times
+# over; it is also absent from the PDF text layer, so unsearchable and inaccessible.  The
+# detail that motivates the symbol is invisible at body size.  Renaming the 5-occurrence
+# auxiliary was the cheaper fix by a wide margin.
+#
+# DRAFT 6 IS DRAFT 5 WITH JAN'S org-noter COMMENTS CARRIED OUT, plus a pass
+# turning long inline mathematics into displays.  His comments are preserved
+# verbatim as the last heading of this file, now tagged :noexport: so they do
+# not reach the PDF and can keep being added to.  Draft 5 is untouched.
+#
+# His comments, in his order, and what was done:
+#   s1 "not exactly the Stanley-Reisner ideal, it lives in the exterior
+#      algebra; what does the previous article use?"  -- correct.  The
+#      introduction now says exterior face ideal, defines it, and cites
+#      Skoldberg alongside Stanley; the companion article's own wording
+#      (Stanley--Reisner ideal taken inside E, quotient = exterior face ring =
+#      indicator algebra) is quoted so the two papers visibly agree.
+#   s1 "excessive things like Kozlov Kozlov [Koz97]" -- two `cite/t' calls had
+#      the author's name in the prose as well.  Both are now bare `cite'.  A
+#      third fix went the other way: "Linusson (1999) counts it" carried a bare
+#      year and no citation at all.
+#   s1 "define T and u before eq:auto-3" -- done; the equation now comes last.
+#   s1 "explain that verified means verified in LEAN" -- CAREFUL, IT DOES NOT,
+#      and the manuscript now says what it does mean.  Every "verified" in that
+#      table is a COMPUTATIONAL check (brute force, Linusson's printed tables,
+#      or Macaulay2); the ranges "n <= 6", "41 configurations" are what is
+#      computed over.  Lean is a separate and stronger assurance covering a
+#      different (overlapping) set of statements, and section 10.1 already says
+#      precisely which.  A new paragraph after the table states both, and the
+#      table gained no Lean column because the honest Lean status does not fit
+#      in a cell -- it is conditional on the algebra/combinatorics bridge.
+#   s2 "Remove 'Nothing in this section has to be read...'" -- removed.
+#   s3 "say that k is a field; k in the notation table" -- both done.
+#   s3 "def-fn: F_n and S_n as two rows of an eqnalign, both numbered" -- done,
+#      eq:def-Fn and eq:def-Sn.
+#   s4 "example 11: F^n(n) includes two degenerate f-vectors, indicate which.
+#      I guess (0,0,0,0) and (1,3,3,1)?  But perhaps (1,0,0,0)?" -- the second
+#      guess is the right one.  THE TWO DEGENERATE f-VECTORS ARE (0,0,0,0) AND
+#      (1,0,0,0), the void complex and {emptyset}; the full simplex (1,3,3,1)
+#      is not degenerate.  ex-A now marks them in the listing and says why.
+#   s5 "lem-alexander: continue the example by showing the involution on F_3"
+#      -- new Example ex-alexander-f3: all ten elements, their images, the four
+#      2-cycles and two fixed points, and D(S_3) coming out as the top<=n-2 set
+#      of prop-fnn2.
+#   s5 "prop-fnn2: move 'The hypothesis is sharp' to a remark" -- now
+#      rem-fnn2-sharp.
+#   s6 "eq:water-f, be elaborate.  You are looking at a map B : inside(RHS(
+#      eq:auto-14)) -> FF(d), B((s1,...,sr)) = x; is that correct?  Also
+#      explain clamp." -- YES, that map is exactly right, and it is the
+#      SUMMATION map, now named Sigma_d; eq:water-filling is its INVERSE,
+#      now named Phi_d, which is the direction the remark is about.  Both are
+#      displayed with domain and codomain, the sentence answering the question
+#      is explicit, and "clamp" is defined (max(0,.) applied degreewise).
+#      His letter B was deliberately not used: B is already T(0) in
+#      prop-normalform and B_n is the binomial box in lem-alexander.
+#   s7 "prop-delta0/thm-delta0-degrees: the convex hull is a dilation of a
+#      simplex.  Do the f-vectors have a particular simple structure?  I'm
+#      surprised this case needs so much care." -- GOOD QUESTION, and the
+#      answer is yes: new rem-delta0-structure.  Writing x(j) = q_j*binom(n,j)
+#      + f_j by division with remainder, x is in FF(n;0^r) iff q is
+#      NON-INCREASING and the digits assemble into f-vectors, and the second
+#      condition is one Kruskal--Katona condition per constant block of q.
+#      Verified exhaustively for n <= 4, r <= 3 (12 cases, exact agreement),
+#      and monotonicity alone is shown insufficient with the smallest
+#      counterexample (0,1,0) at n=2.  That also answers the surprise: the SET
+#      is simple, the COUNT is not, and the care in the proof is spent on the
+#      uniqueness of the longest path, not on the structure.
+#   s7 "ex-delta0-polys: extend the tables to n=6,7" -- done, and this TURNED
+#      UP AN ERROR IN DRAFT 5.  Draft 5 said "the first negative coefficient
+#      appears at n=6 in the proper polynomial and at n=7 in the improper
+#      one".  FALSE: n=6 proper has all coefficients positive (its r^3
+#      coefficient is 1/6, small but positive, which is probably what was
+#      misread), and at n=7 BOTH variants have negative coefficients --
+#      improper at r^2, proper at r^2, r^4 and r^5.  Recomputed by exact
+#      rational interpolation and cross-checked by extrapolating each fitted
+#      polynomial to four further values of r.  The table is now a coefficient
+#      table rather than inline polynomials, which is what makes n=7 fit.
+#   s9 "prop-normalform: what is B?" -- it was defined mid-sentence as
+#      "write B = T(0)".  Now displayed with P in eq:def-P, called the
+#      BASE MATRIX, and both B and P are in the notation table.
+#   s9 "thm-poly-p: follow with some tables with these polynomials, and with a
+#      very sparse gap-vector, one with constant gap, some others" -- new
+#      Example ex-poly-p-tables: nine (n, d) configurations, both variants,
+#      exact polynomials in p.  "Sparse" is read both ways on purpose: the
+#      table has all-zero gaps, constant gap 1, a saturating gap 4 > n, and
+#      two non-constant ones.
+#   s9 "asymptotics-p: tabulate some of these polynomials to illustrate the
+#      theorem" -- the same example's second table gives degree against the
+#      prediction of eq:degree-in-p and the leading coefficient against
+#      eq:lc-in-p, for every configuration.  It also records a new verified
+#      observation: GAP REVERSAL IS A p = n PHENOMENON.  The improper count is
+#      reversal-invariant at p = n (607 = 607) and NOT for p > n (6696 vs
+#      6592), which is as it should be, since the duality behind
+#      rem-gap-reversal complements inside [n].
+#
+# Long inline mathematics turned into displays, at Jan's general instruction
+# ("if an inline equation has to continue over a line break it is a
+# candidate"; also the longest formula in a long dense proof).  Twelve places,
+# chosen by finding every inline \(...\) that breaks across a source line plus
+# every one over about 55 characters, then keeping the ones where the display
+# helps: the algebra/combinatorics dictionary of section 3, the complement
+# chain in lem-alexander's proof, Q_i in rem-explicit-inverse, the capacity
+# bound in lem-lexproper's proof, a_r in prop-recurrence's statement,
+# T(delta)'s entries in prop-perron-threshold's proof, S_n^{(p)}, and the
+# sumset map in the introduction.  Not done everywhere it could be.
+#
+# DRAFT 5 NOTES FOLLOW, unchanged.
+#
+# DRAFT 5 IS DRAFT 4 WITH THE PROSE RUN THROUGH `humanizer'
+# (https://github.com/blader/humanizer, MIT, commit 225a6f3, installed at
+# ~/.claude/skills/humanizer/), a skill built on Wikipedia's "Signs of AI writing"
+# that rewrites AI tells out of prose without changing what it says.  The mathematics
+# is untouched: a token-level comparison of every number and every LaTeX control
+# sequence in the two bodies shows zero differences.
+#
+# ACCEPTED BY JAN 2026-09-30, the same day, after comparing the two: draft 5 reads
+# slightly better, and the over-zealous em-dash pruning is accepted as the price of
+# doing business for now.  THIS IS THE CURRENT ARTICLE 2 -- edit this file, not draft
+# 4, which is kept only as the record of what the review edits alone produced.
+#
+# What the pass changed, by the skill's own pattern numbers:
+#   S8 (dashes as the universal connector) -- all 46 prose em-dash pairs replaced by
+#      commas, colons, parentheses or sentence breaks, plus four literal Unicode
+#      em/en dashes in the Lean paragraph of section 10.1.  This is by far the largest
+#      single change and the most visible; it is also the one to look at hardest,
+#      since a mathematician's parenthetical dash is a legitimate device and the
+#      skill's rule is absolute unless a writing sample says otherwise.  No sample was
+#      supplied.
+#   S1 (not X but Y) -- about eight, e.g. "A is not a new object: Lemma ... identifies
+#      it" -> "Lemma ... identifies A".  Three were KEPT because both halves carry
+#      real information: "false, not merely unproved", "attained, not merely
+#      approached", and the acknowledgement of Linusson.
+#   S2 (one-line closers) -- "We do not use it.", "That is not an accident", and the
+#      third occurrence of "The rank enters only as the length of the product" (it
+#      already stands in the abstract and the introduction).
+#   S3 (sayings that sound deep) -- "the spectral shadow of", "the same fact twice",
+#      "The name is meant literally".
+#   Sentence-initial conjunctions -- three beyond the one Jan flagged himself in
+#      `rem-proper-p': in `rem-explicit-inverse', `ex-uT' and
+#      `rem-asymptotics-zero-gaps'.  Not one of the 26 numbered patterns, but the
+#      skill's step 4 ("state each point naturally instead of patching flagged
+#      phrases one at a time") is what turned them up.
+#   S4 (staged run-ups) and S6 (forced triads) -- "Three things are visible.",
+#      "Two consequences are worth naming.", "Two smaller observations.", "First, by
+#      hand.", "Two features of that half are worth recording", and similar.
+#   S25 (writing about the document) -- "For the record,", "the reader is asked to
+#      take the labels seriously", and the "what is not certified rather than a list
+#      of what is" triad in section 10.1.
+#
+# What the pass deliberately did NOT change: the bold run-in heads of section 10.1
+# ("*Against brute force.*" and the rest) and of Remark `rem-sorted', which S19 would
+# flag as decorative labels but which carry real information here and are ordinary
+# mathematical typography; Jan's Goethe/Riemer and Grothendieck/Dieudonne joke in the
+# Acknowledgements, which is his voice; and the italic emphasis on technical terms at
+# first use.
+#
+# THE SERIES, settled by Jan 2026-09-05:
+#   article 1  article/exterior-convex_article1_latest.org        the convex hull
+#   article 2  THIS FILE                                         counting ff-vectors
+#   article 3  article/exterior-convex_article3_draft_3.org      lattice points, open problems
+#
+# DRAFT 4 (2026-09-30, jts-yoga) answers Jan's review of draft 3, recorded in
+# article/exterior-convex_article2_draft3_comments.txt.  Every comment in that file is
+# acted on; the changes, in his order:
+#   * eq:auto-3 -- a paragraph explaining \vec u, \vec 1 and the gaps, and saying
+#     explicitly that there are r-1 of them and no \delta_1.
+#   * Section 2 -- lead-in rewritten as prose, and the notation table's glosses turned
+#     into sentences read across the two columns rather than stenographic fragments.
+#   * The shift map now has a domain and a codomain, eq:def-shift, as a group
+#     automorphism of the finitely supported functions Z -> Z; that is also what makes
+#     the negative generator degrees of rem-shift-only-gaps meaningful, which
+#     "prepends d zeros" did not.
+#   * "load-bearing" is gone (one occurrence, in Section 2).
+#   * "The matrix just printed" -> \eqref{eq:auto-13}.
+#   * D\vec s -> D(\vec s\,) everywhere (eight occurrences), and lem-alexander now
+#     recalls that the parenthesised argument is a coordinate, hence a scalar.
+#   * cor-persymmetry spells out what persymmetric means.
+#   * rem-gap-reversal now DEFINES "chained" and "proper-chained" at first use, so
+#     rem-proper-not-reversible has a term to lean on.
+#   * NEW Example ex-water-filling: the clamp eq:water-filling done by hand at
+#     n=3, r=2, d=(0,0), x=(2,5,4,1), against the two decompositions found by hand.
+#   * def-uT: the "Format, ..." sentence rephrased.
+#   * \vec 1 defined more explicitly in def-uT and recalled at eq:delta0-expansion.
+#   * tab-delta0-polys: full sentences.
+#   * NEW Figure fig:delta0-digraph: rem-delta0-digraph's DAG drawn at n=3, with the
+#     staircase heavy, cross-checked against ex-uT and tab-delta0-polys.  This is the
+#     one edit that adds a package (tikz), in the style of article 1's own digraph.
+#   * prop-recurrence: the shift vector written out as (0,delta,...,(r-1)delta); the
+#     proof in complete sentences; its second paragraph moved out to the new
+#     rem-recurrence-not-asymptotic, which names Table \ref{tab:perron-roots} instead
+#     of saying "the table below".
+#   * mex-recurrences' Perron table now has a caption and the label tab:perron-roots.
+#   * prop-normalform: P displayed and labelled (eq:def-P), e_{-1} defined, the
+#     statement split into eq:normalform / eq:normalform-u / eq:normalform-product,
+#     and the proof's two sums displayed.
+#   * C_2(x) is gone; \binom{x}{2} throughout (nine occurrences).
+#   * thm-asymptotics-p-proper and rem-proper-p: complete sentences, and no sentence
+#     begins with a conjunction.
+#   * Section 10.2: the three problems closed since draft 1 are removed, replaced by
+#     one sentence saying where they were settled -- Jan's instruction was to remove
+#     them, and draft 3's own argument for keeping item 2 ("the first draft
+#     circulated") is answered by that sentence rather than by three dead items.
+#     rem-explicit-inverse referred to "open problem 4"; it now names the problem.
+#
+# Two things in the comment file are questions rather than edits, and are answered in
+# the session's LOGBOOK entry rather than in the manuscript: what a "scalar s" is (the
+# convention of Section 2 -- s(m) with a parenthesised argument), and what was
+# concluded about Z^r-graded Hilbert series (working-notes/r-graded-hilbert-functions.org:
+# the achievable set is the r-fold PRODUCT of the rank-one set, with no interaction
+# constraint, so the multigraded question is the rank-one theorem applied r times; the
+# live question there is which points of the product come from Amata-Crupi LEX
+# submodules, which is Part I's open problem, not this paper's).
+#
+# SOURCE.  All the mathematics comes from working-notes/counting-ff-vectors.org,
+# which executed PLAN-linusson-ff-vector-counting.md.  Nothing here is new
+# relative to that note; this is the note turned into a paper.  Where the note
+# and this draft differ in emphasis, the note is the fuller record -- in
+# particular for the validation detail, which is compressed here into section 8.
+#
+# STANDARD.  Matches article 1 (draft 4) exactly: amsthm ENVIRONMENTS rather than
+# subsection headings, one continuous counter shared by all environment types
+# (latex-common.setup already declares them that way), cross-references via
+# #+NAME: on the block plus [[name]] in the text so \label lands inside the
+# environment and resolves to the theorem number, TOC after the abstract via
+# toc:nil plus an explicit #+TOC:, and \hypersetup{hidelinks}.
+#
+# STATUS LABELS -- do not let these drift upward in later drafts:
+#   * Theorem 5.2 of Linusson         cited; transcription verified against his
+#                                     Tables 5 and 6, all 199 printed entries
+#   * Lemma (joint distribution)      PROVED, verified entrywise n <= 6
+#   * Theorem (chaining)              PROVED, previously verified n = 2..5
+#   * Theorem (counting)              PROVED, verified over 41 configurations
+#   * Lemma (lexification/properness) PROVED
+#   * Theorem (proper counting)       PROVED, verified incl. recorded sequences
+#   * Recurrence/Perron in r          PROVED (Cayley-Hamilton); spectra computed
+#   * delta = 0 polynomiality         degree bound PROVED; the EXACT degrees
+#                                     (n+1 improper, n-1 proper) are OBSERVED
+#                                     for n = 2..7, not proved
+#   * Polynomiality in p              PROVED MODULO Linusson's Theorem 5.3;
+#                                     verified n <= 3, p <= 5, r <= 3
+#   * |S_n| = F^n(n-2)                OBSERVED for n <= 10, NOT PROVED
+#   * n-asymptotics                   NOT ATTEMPTED (time-boxed)
+#
+# TO SETTLE BEFORE SUBMISSION:
+#      [SETTLED 2026-09-14 -- Katona's page range.  Was: references.bib says 209--214
+#      (Academic Press), commonly quoted 187--207 (Akademiai Kiado), Tihany proceedings
+#      co-published.  MathSciNet MR0290982(45 #76) gives 187--207 AND pairs it with
+#      Academic Press, so there was no two-imprint split at all; 209--214 was simply
+#      wrong.  Corrected here and in references.bib.  No longer a pre-submission item.]
+#   1. The reference certificate (93-CONVENTIONS/manuscript-style.md section 5).
+#   2. OEIS.  Six absent sequences are flagged in TODO.md; |S_n| is the most
+#      submittable.  NOTHING has been submitted and nothing should be without
+#      Jan's decision -- see the repo's OEIS policy.
+#   3. Whether to cite article 1 as "submitted"/"in preparation" -- depends on
+#      what happens to it first.  Jan decided 2026-09-14 that article 1 goes to
+#      the LiU report series FIRST and to arXiv afterwards, so once that is done
+#      this becomes a concrete citation to a report-series number rather than a
+#      choice between two vague labels.  DONE AND CLOSED: the report appeared
+#      2026-09-18 as LiTH-MAT-R 2026/04, DOI 10.3384/LiTH-MAT-R-2026-04, URN
+#      urn:nbn:se:liu:diva-227730, and on arXiv as 2609.23605 two days later.  All
+#      of that is in the SnellmanArticle1 entry, and [Sne26] now prints a complete
+#      report citation.  NOTE that build_article.sh passes doi=false,url=false to
+#      biblatex, so the DOI is carried but NOT PRINTED -- a deliberate house choice
+#      worth revisiting for an arXiv version, where a cited report is easiest to
+#      find by its DOI.
+#   4. capt-of, as in article 1: a vanilla Org export injects it and it clashes
+#      with KOMA's \captionof.  Documented in latex-variant-koma.setup.
+#
+# The above list was ported from Jan's own edit of draft 1 of 2026-09-14, which had
+# been stranded in an autostash on jtsworklap and reached the repository only on
+# 2026-09-16.  His second hunk there rewrote reference 6 of the hand-written list to
+# the corrected Katona form; that hunk needs no porting, since draft 2 has no hand
+# list -- it cites through the shared .bib, whose Katona entry is now his.
+#
+# 2026-09-06.  Vector notation marked explicitly, at Jan's request, and section 2
+# gained a Notation subsection stating the rule.  The substantive gain is not
+# decoration: Definition 2 wrote s_1 for a COORDINATE of an f-vector while
+# Theorem 12 wrote s_1 for the FIRST MEMBER of an r-tuple.  Those are now s(1)
+# and \vec s_1.  Rendered first as \overline{} to match commutator-varieties,
+# then switched the same day to \vec across the whole series -- unambiguous,
+# which beats clean here.
+# The rule: arrow = the whole tuple; plain subscript = which member of the r-tuple;
+# parenthesis = which coordinate; module subscripts (E_j, F_j, I_j) unchanged.
+# ---------------------------------------------------------------------------
+
+#+begin_abstract
+Let \(V\) be an \(n\)-dimensional vector space over a field \(k\) and \(\Ext\) its exterior algebra,
+let \(F=\bigoplus_{i=1}^{r}(\Ext)g_i\) be a graded free \(\Ext\)-module with \(\deg g_i=d_i\), and let \(M\)
+range over the monomial submodules of Amata and Crupi. The Hilbert function of \(F/M\) is a shifted
+sum of \(f\)-vectors of simplicial complexes, and the companion paper [cite:@SnellmanArticle1] determines the convex hull of the
+set of such sums. Here we count them. For \(r=1\) the count is Linusson's (1999), obtained from a
+recursion through compressed complexes; we show that *no new recursion is needed for general
+\(r\)*. We introduce two statistics of an \(f\)-vector, its top nonvanishing degree and the initial
+degree of the corresponding ideal, and prove that the number of achievable Hilbert functions is a
+product of \(r-1\) transfer matrices, one per consecutive generator-degree gap, whose entries are
+differences of Linusson's own refined counts \(E^p(n,k)\). The rank therefore enters only as the
+length of a matrix product. The bridge is a reformulation of the counting problem, proved from
+Amata and Crupi's lex submodules, that replaces a sumset cardinality by a count of tuples subject to
+a nearest-neighbour constraint. We give the same theorem for the /proper/ variant that the companion
+paper's polytope is built from, prove the lemma that makes the restriction legitimate (lexification
+preserves properness), and derive consequences: a linear recurrence in \(r\) for
+constant gaps, polynomiality in \(r\) when all gaps vanish, an exact threshold beyond which the count
+degenerates to a plain power, and polynomiality in the number of vertices.
+#+end_abstract
+
+#+begin_export latex
+\medskip\noindent\textbf{Keywords.} exterior algebra; Hilbert function; \(f\)-vector; simplicial
+complex; enumeration; transfer matrix; lex submodule; Kruskal--Katona theorem.
+
+\smallskip\noindent\textbf{2020 Mathematics Subject Classification.} Primary 05A15, 13F55;
+Secondary 05E40, 13D40, 06A07.
+\medskip
+#+end_export
+
+#+TOC: headlines 2
+
+* Introduction
+:PROPERTIES:
+:CUSTOM_ID: sec-intro
+:END:
+
+** The rank-one count
+
+Let \(k\) be a field, let \(V=k^n\), and let \(\Ext\) be the exterior algebra on \(V\), graded with
+degree-\(j\) component the exterior power \(\wedge^jV\) of dimension \(\binom nj\). The dimension
+\(n=\dim V\) is fixed throughout and suppressed from the notation. (We write \(\Ext\) rather than
+\(E\) because the letter \(E\) is spent below on Linusson's counting function \(E^p(n,k)\);
+Section [[#sec-notation]] says more, and the companion article keeps \(E\).) Every monomial of \(\Ext\) is
+squarefree, so every monomial ideal of \(\Ext\) is generated by the non-faces of an order family
+\(\Delta\subseteq2^{[n]}\),
+#+begin_export latex
+\begin{equation}\label{eq:exterior-face-ideal}
+  I_\Delta\;=\;\bigl(e_\sigma\;:\;\sigma\notin\Delta\bigr)\;\subseteq\;\Ext ,
+\end{equation}
+#+end_export
+and \(\dim_k\bigl((\Ext)/I_\Delta\bigr)_j=f_j(\Delta)\) exactly, with no correction term. The construction is the
+one Stanley [cite:@Stanley1996] carries out in a polynomial ring, but \(I_\Delta\) here is *not* the
+Stanley--Reisner ideal, because it lives in \(\Ext\) and not in \(k[x_1,\dots,x_n]\); it is the
+*exterior face ideal*, and \((\Ext)/I_\Delta\) is the *exterior face ring*, also called Sköldberg's
+*indicator algebra* [cite:@Skoldberg1999]. Unlike the ordinary Stanley--Reisner ring it is
+finite-dimensional automatically, since \(\Ext\) is. The companion paper keeps the name
+Stanley--Reisner ideal for \eqref{eq:exterior-face-ideal} while defining it inside \(\Ext\); the object
+is the same one, and the two papers agree on the symbol \(I_\Delta\). Since passing to
+an initial ideal preserves Hilbert functions, the set of Hilbert functions of graded quotients of
+\(\Ext\) /is/ the set of \(f\)-vectors of simplicial complexes on at most \(n\) vertices.
+
+Three classical results describe that set. Kruskal--Katona [cite:@Kruskal1963;@Katona1968] determines it exactly; Kozlov [cite:@Kozlov1997]
+computes its convex hull; and Linusson [cite:@Linusson1999] *counts* it. Linusson's method is a recursion on
+compressed complexes: peel off the last vertex, split the complex into the part avoiding it and the
+link of it, and record how far the first part is filled. The bookkeeping variable of that recursion
+is his \(E^p(n,k)\), the number of \(f\)-vectors that are maximal up to level \(k\) and no
+further, and that is the object this paper turns out to need.
+
+** The rank-\(r\) question
+
+Let \(F=\bigoplus_{i=1}^r(\Ext)g_i\) with \(\deg g_i=d_i\in\mathbb Z\), \(d_1\le\cdots\le d_r\). Amata and
+Crupi's monomial submodules are those generated by monomials of \(F\); such an \(M\) is automatically
+a direct sum \(I_1g_1\oplus\cdots\oplus I_rg_r\) of monomial ideals of \(\Ext\), and the Hilbert function
+of the quotient splits,
+#+begin_export latex
+\begin{equation}\label{eq:auto-1}
+  \HF\Bigl(\frac FM\Bigr)(j)\;=\;\sum_{i=1}^{r}f_{j-d_i}(\Delta_i),
+\end{equation}
+#+end_export
+a sum of \(r\) independently chosen \(f\)-vectors, each shifted by its own generator degree. Writing
+\(\mathcal F_n\) for the set of \(f\)-vectors of order ideals of \(\mathcal P([n])\) and
+\(\shift^d\) for the degree-shift, the achievable set is the sumset
+#+begin_export latex
+\begin{equation}\label{eq:auto-2}
+  \mathrm{FF}(n;\vec d\,)\;=\;\Bigl\lbrace\sum_{i=1}^{r}\shift^{d_i}(\vec s_i)\;:\;\vec s_i\in\mathcal F_n\Bigr\rbrace .
+\end{equation}
+#+end_export
+The companion paper [cite:@SnellmanArticle1] determines \(\conv(\mathrm{FF}(n;\vec d\,))\): it is a Minkowski sum of \(r\) shifted copies
+of the Kozlov simplex. *This paper computes \(|\mathrm{FF}(n;\vec d\,)|\).*
+
+The problem is a sumset cardinality, and those are usually hard. Two facts show where the difficulty
+sits. Write
+#+begin_export latex
+\begin{equation}\label{eq:sumset-map}
+\begin{split}
+  \Sigma_{\vec d}\colon\mathcal F_n^{\,r} &\longrightarrow \mathrm{FF}(n;\vec d\,),\\
+  \Sigma_{\vec d}(\vec s_1,\dots,\vec s_r) &= \sum_{i=1}^{r}\shift^{d_i}(\vec s_i)
+\end{split}
+\end{equation}
+#+end_export
+for the summation map, which is surjective by the definition \eqref{eq:auto-2} of the sumset. It is
+*injective* exactly when the generator degrees are far enough apart: precisely, when every gap
+\(d_{i+1}-d_i\) is at least \(n+1\). In that regime \(|\mathrm{FF}(n;\vec d\,)|=|\mathcal F_n|^r\) and
+there is nothing to do. Everything of interest happens when the shifts overlap and distinct tuples
+collide, and the whole of this paper is the search for a set of representatives that
+\(\Sigma_{\vec d}\) maps bijectively.
+
+** The result
+
+The answer is a transfer-matrix product, and it is built from Linusson's own refinement rather than
+from a new recursion. Attach to \(\vec s\in\mathcal F_n\) two statistics: \(\tp(\vec s\,)\), the greatest \(j\)
+with \(s(j)>0\); and \(\indeg(\vec s\,)\), the least \(j\) with \(s(j)<\binom nj\), the initial degree
+of the corresponding monomial ideal. Let \(A_n[\tau][\rho]\) count the \(\vec s\in\mathcal F_n\) with
+\(\tp(\vec s\,)=\tau\) and \(\indeg(\vec s\,)=\rho\).
+
+Three objects are built from \(A_n\), and all three are defined again, with their index ranges spelled
+out, in Definition [[def-uT]]. The *transfer matrix* \(T_n(\delta)\), one for each integer
+\(\delta\ge0\), has entries
+#+begin_export latex
+\begin{equation}\label{eq:intro-T}
+  T_n(\delta)[\tau][\tau']=\sum_{\rho>\tau-\delta}A_n[\tau'][\rho] ,
+\end{equation}
+#+end_export
+so its rows and its columns are both indexed by values of \(\tp\): the row index is the \(\tp\) of
+the previous summand and the column index the \(\tp\) of the current one. The *row vector*
+\(\vec u_n\) is the \(\tp\) marginal of \(A_n\),
+#+begin_export latex
+\begin{equation}\label{eq:intro-u}
+  u_n[\tau]=\sum_{\rho}A_n[\tau][\rho] ,
+\end{equation}
+#+end_export
+counting the \(f\)-vectors with \(\tp=\tau\) and no condition at all on \(\indeg\); it enters because
+the first summand of a tuple is the one nothing constrains. And \(\vec 1_n\) is the all-ones column
+vector, whose only role is to sum the entries of what stands to its left. Finally the *gaps*: there
+are \(r-1\) of them, one for each consecutive pair of generator degrees, so the index \(i\) runs from
+\(2\) to \(r\) and there is no \(\delta_1\).
+
+With those in hand, the answer (Theorem [[thm-main]]) is
+#+begin_export latex
+\begin{equation}\label{eq:auto-3}
+  \lvert\mathrm{FF}(n;\vec d\,)\rvert\;=\;\vec u_n\cdot T_n(\delta_2)\,T_n(\delta_3)\cdots T_n(\delta_r)\cdot\vec 1_n,
+  \qquad \delta_i=d_i-d_{i-1} .
+\end{equation}
+#+end_export
+The product has \(r-1\) factors, and is empty when \(r=1\).
+
+Lemma [[lem-joint]] identifies \(A_n\) as a difference of Linusson's numbers,
+#+begin_export latex
+\begin{equation}\label{eq:auto-4}
+  A_n[\tau][\rho]\;=\;E^n(\tau,\rho-1)-E^n(\tau-1,\rho-1),
+\end{equation}
+#+end_export
+so one run of his recursion at \(p=n\) supplies everything. The rank \(r\) enters only as the length
+of a matrix product.
+
+The bridge is Theorem [[thm-chaining]], which replaces the sumset by a count of tuples subject to a
+constraint relating consecutive entries only:
+#+begin_export latex
+\begin{equation}\label{eq:auto-5}
+  \lvert\mathrm{FF}(n;\vec d\,)\rvert=\#\bigl\lbrace(\vec s_1,\dots,\vec s_r)\in\mathcal F_n^{\,r}:
+   \tp(\vec s_{i-1})<\indeg(\vec s_i)+\delta_i\ \text{ for } i=2,\dots,r\bigr\rbrace .
+\end{equation}
+#+end_export
+That is proved from Amata and Crupi's theory of lex submodules [cite:@AmataCrupi2020;@AmataCrupi2020KK], which supplies a canonical
+representative for each achievable Hilbert function; the constraint is their Definition 2.7 chaining
+condition read off the \(f\)-vectors. Once the constraint is nearest-neighbour, the transfer-matrix
+form is a rearrangement.
+
+** What is proved, and what is only observed
+
+The distinction is kept explicit throughout.
+
+#+ATTR_LATEX: :font \small :align ll
+| result | status |
+|---+---|
+| Thm. [[thm-linusson]], Linusson's recursion | cited; transcription verified against his tables |
+| Lem. [[lem-joint]], the joint distribution | proved; verified entrywise for \(n\le6\) |
+| Thm. [[thm-chaining]], the chaining reformulation | proved |
+| Thm. [[thm-main]], the counting theorem | proved; verified, 41 configurations |
+| Lem. [[lem-lexproper]], lexification preserves properness | proved |
+| Thm. [[thm-proper]], the proper count | proved; reproduces recorded sequences |
+| Prop. [[prop-recurrence]], recurrence in \(r\) | proved |
+| Prop. [[prop-delta0]], degree bound at \(\delta=0\) | proved |
+| Thm. [[thm-delta0-degrees]], the *exact* degrees at \(\delta=0\) | proved; verified, \(n\le8\) |
+| Prop. [[prop-perron-threshold]], the Perron root above threshold | proved; verified, \(n\le6\) |
+| Prop. [[prop-normalform]], the normal form \(T_n(\delta)=P_n^{\delta}B_n\) | proved; verified, \(n\le8\) |
+| Thm. [[thm-poly-p]], polynomiality in \(p\) | proved modulo Linusson's Thm. 5.3 |
+| Thm. [[thm-asymptotics-p]], degree and leading coefficient in \(p\) | proved modulo the same; verified |
+| Thm. [[thm-asymptotics-p-proper]], the proper analogue in \(p\) | proved modulo the same; verified |
+| Prop. [[prop-fnn2]], \(\lvert S_n\rvert=F^n(n-2)\) | proved, by Alexander duality |
+| Cor. [[cor-persymmetry]], \(A_n\) is persymmetric | proved |
+
+Two words in that table carry a fixed meaning, and it is worth fixing it here rather than leaving it
+to be inferred. *Proved* means proved in this paper, or in the one case marked so, proved modulo a
+citation. *Verified* means something weaker and quite specific: the statement was checked by
+computation against a route independent of the formula being tested, over the range given in the
+cell. The three independent routes are brute-force enumeration of the order ideals themselves,
+Linusson's own printed tables, and Amata and Crupi's ~ExteriorModules~ package for Macaulay2; Section
+[[#sec-verification]] says which was used where. So "verified, \(n\le8\)" is a finite check and not
+an argument, and a result labelled only "verified" is not claimed to be proved.
+
+A fourth route is of a different kind and is deliberately not folded into the table. The
+combinatorial content of the paper has been *formalised in Lean 4* with Mathlib, which is a stronger
+assurance than any of the three above and covers a different, overlapping set of statements. It is
+not a column here because the honest status does not fit in a cell: the formalisation is purely
+combinatorial, so the counting theorems are certified unconditionally as statements about chained
+tuples and only conditionally as statements about \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\), the bridge to
+the algebra being a hypothesis rather than a proof. Section [[#sec-verification]] sets out exactly
+what lies inside and what lies outside.
+
+The asymptotics in \(n\), the analogue of Linusson's own \S2.2, are not attempted.
+
+* Notation
+:PROPERTIES:
+:CUSTOM_ID: sec-notation
+:END:
+
+The notation is collected here, before anything below makes use of it. Each line of the table reads
+across its two columns as a sentence, and points to the statement in which the symbol is actually
+defined. The companion article carries a table in the same spirit, and where the two papers share a
+symbol they also share its meaning.
+
+#+begin_export latex
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  \multicolumn{2}{@{}l}{\emph{The ambient objects}}\\
+  \(k\)                    & is a field, arbitrary and fixed throughout; nothing depends on it.\\
+  \(V\)                    & is an \(n\)-dimensional \(k\)-vector space, with \(n\) fixed throughout.\\
+  \(\Ext\)                 & is the exterior algebra on \(V\) (Definition~\ref{def-setup}); the letter \(E\) is not used for it.\\
+  \(\wedge^jV\)         & is its degree-\(j\) component, of dimension \(\binom nj\).\\
+  \(I_\Delta\)             & is the exterior face ideal of \(\Delta\), inside \(\Ext\) \eqref{eq:exterior-face-ideal}.\\
+  \addlinespace
+  \multicolumn{2}{@{}l}{\emph{Complexes and their \(f\)-vectors}}\\
+  \(\mathcal P([n])\)      & is the lattice of all subsets of \([n]\).\\
+  \(\Delta\)               & is an order ideal of \(\mathcal P([n])\), and the void one is allowed.\\
+  \(f_j(\Delta)\)          & is the number of members of \(\Delta\) having exactly \(j\) elements.\\
+  \(\mathcal F_n\)         & is the set of \(f\)-vectors of all order ideals (Definition~\ref{def-fn}).\\
+  \(S_n\)                  & is the set of \emph{proper} ones, those with \(f_0=1\) and \(f_1=n\).\\
+  \(\shift^d\)             & re-indexes a vector by \(d\), prepending \(d\) zeros when \(d\ge0\).\\
+  \addlinespace
+  \multicolumn{2}{@{}l}{\emph{The two statistics}}\\
+  \(\tp(\vec s\,)\)          & is the largest \(j\) with \(s(j)\neq0\) (Definition~\ref{def-stats}).\\
+  \(\indeg(\vec s\,)\)       & is the least \(j\) at which \(s(j)\) falls below \(\binom nj\).\\
+  \(\indeg(I)\)            & is the initial degree of a monomial ideal (Definition~\ref{def-setup}).\\
+  \(A_n[\tau][\rho]\)        & is the joint distribution of \((\tp,\indeg)\) (Lemma~\ref{lem-joint}).\\
+  \addlinespace
+  \multicolumn{2}{@{}l}{\emph{Sumsets and the count}}\\
+  \(\vec d=(d_1,\dots,d_r)\) & is the shift vector, always sorted, with gaps \(\delta_i=d_i-d_{i-1}\).\\
+  \(\mathrm{FF}(n;\vec d\,)\) & is the sumset of the shifted copies of \(\mathcal F_n\) (Definition~\ref{def-fn}).\\
+  \(\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\) & is the proper one, built from \(S_n\) in its place.\\
+  \(\mathrm{CT}(n;\vec d\,)\)   & is the set of chained tuples \eqref{eq:chained-set}, which \(\Sigma_{\vec d}\) sends onto \(\mathrm{FF}(n;\vec d\,)\).\\
+  \(F^p(n)\), \(E^p(n,k)\)  & are Linusson's two counts (Definition~\ref{def-linusson}).\\
+  \(\vec u_n\), \(T_n(\delta)\), \(\vec 1_n\) & are a row vector, a transfer matrix and a column of ones (Definition~\ref{def-uT}).\\
+  \(B_n\), \(P_n\)          & are the base matrix \(T_n(0)\) and the saturating shift (Proposition~\ref{prop-normalform}).\\
+  \addlinespace
+  \multicolumn{2}{@{}l}{\emph{Alexander duality}}\\
+  \(\Delta^{\vee}\)        & is the Alexander dual of \(\Delta\) (Definition~\ref{def-alexander}).\\
+  \(\mathcal B_n\)         & is the binomial box \eqref{eq:binomial-box}, which contains \(\mathcal F_n\).\\
+  \(D_n\)                  & is the duality map \eqref{eq:def-D} on \(\mathcal B_n\).\\
+  \(\Sigma_{\vec d}\), \(\Phi_{\vec d}\) & are the summation map \eqref{eq:sumset-map} and its inverse on chained tuples \eqref{eq:water-filling}.\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+#+end_export
+
+The companion article handles some of these objects under a different convention, so three points of
+contact need stating.
+
+First, *it writes \(E\) where this paper writes \(\Ext\)*. The two are synonyms, and the divergence
+is deliberate: the letter \(E\) is spent here on Linusson's \(E^p(n,k)\), which occurs more often in
+this paper than the algebra does, while the companion article does not use that function at all.
+
+Second, *that article distinguishes three conventions* for "simplicial complex on the ground set
+\([n]\)": (i) all order ideals of \(\mathcal P([n])\), (ii) the non-empty ones, (iii) those containing
+\(\emptyset\) and every singleton. *This paper works throughout in convention (i)*: the void family
+is a member of \(\mathcal F_n\), and it has to be, since \(\indeg\) attains its minimum \(0\) there and
+that is what fixes the threshold of Proposition [[prop-threshold]]. Convention (iii) is what \(S_n\)
+picks out, and the two papers agree on the symbol \(S_n\).
+
+Third, the companion article writes \(S_n^{+}\) for the \(f\)-vectors of the *non-empty* order
+ideals, convention (ii). In the notation here that is
+#+begin_export latex
+\begin{align}
+  \mathcal F_n &\;=\; S_n^{+}\cup\lbrace\vec 0\rbrace,\label{eq:Fn-vs-Splus}\\
+  \lvert\mathcal F_n\rvert &\;=\; \lvert S_n^{+}\rvert+1 .\label{eq:Fn-vs-Splus-card}
+\end{align}
+#+end_export
+We keep \(\mathcal F_n\) rather than \(S_n^{+}\cup\lbrace\vec0\rbrace\) because every matrix below is
+indexed by it.
+
+* Setup
+:PROPERTIES:
+:CUSTOM_ID: sec-setup
+:END:
+
+We recall only what is needed; the companion paper has the full development.
+
+#+NAME: def-setup
+#+begin_definition
+Throughout, \(k\) is a field. It is arbitrary and fixed, and nothing below depends on it: every
+object counted here is a Hilbert function, so only dimensions over \(k\) ever appear, and no
+characteristic assumption is used anywhere. Let \(V\) have basis \(e_1,\dots,e_n\) and put
+#+begin_export latex
+\begin{equation}\label{eq:def-ext}
+  \Ext\;=\;\frac{k\langle e_1,\dots,e_n\rangle}{\bigl(e_ie_j+e_je_i,\ e_i^2\bigr)},
+\end{equation}
+#+end_export
+graded with degree-\(j\) component \(\wedge^jV\) of dimension \(\binom nj\). Write
+\(\mathfrak m=(e_1,\dots,e_n)\), and for \(\sigma\subseteq[n]\) let \(e_\sigma\) be the corresponding
+monomial. For \(r\ge1\) and \(d_1\le\cdots\le d_r\) in \(\mathbb Z\), let
+\(F=\bigoplus_{i=1}^r(\Ext)g_i\) with \(\deg g_i=d_i\). A *monomial submodule* is one generated by
+monomials \(e_\sigma g_i\); such an \(M\) decomposes uniquely as \(M=\bigoplus_iI_ig_i\) with each
+\(I_i\subseteq \Ext\) a monomial ideal [cite:@AmataCrupi2020 Definition 2.1]. It is *proper* if no \(I_i\) has
+a minimal generator of degree \(\le1\).
+
+For a monomial ideal \(I\subseteq \Ext\) write
+#+begin_export latex
+\begin{equation}\label{eq:indeg-ideal}
+  \indeg(I)=\min\lbrace j:I_j\ne0\rbrace ,
+\end{equation}
+#+end_export
+its *initial degree*, with \(\indeg(0)=n+1\) since the minimum is then over an empty set.
+Equivalently it is the least degree of a minimal generator of \(I\): if \(j_0\) is least with
+\(I_{j_0}\ne0\) then \((\mathfrak mI)_{j_0}\) is built from \(I_{j_0-1}=0\), so every non-zero
+element of \(I_{j_0}\) is a minimal generator, and no minimal generator has smaller degree.
+#+end_definition
+
+#+NAME: def-fn
+#+begin_definition
+An *order ideal* of \(\mathcal P([n])\), the lattice of subsets of \([n]\), is a family
+\(\Delta\subseteq\mathcal P([n])\) closed under taking subsets, with
+\(f_j(\Delta)=|\lbrace\sigma\in\Delta:|\sigma|=j\rbrace|\). Put
+#+begin_export latex
+\begin{align}
+  \mathcal F_n &=\lbrace(f_0(\Delta),\dots,f_n(\Delta)):\Delta\ \text{an order ideal of }\mathcal P([n])\rbrace,
+    \label{eq:def-Fn}\\
+  S_n &=\lbrace \vec s\in\mathcal F_n\;:\;s(0)=1,\ s(1)=n\rbrace .
+    \label{eq:def-Sn}
+\end{align}
+#+end_export
+In \eqref{eq:def-Fn} the void family is included and singletons are not required. The elements of
+\eqref{eq:def-Sn} are the *proper* ones, the \(f\)-vectors of simplicial complexes using the full
+vertex set.
+
+For the shift map it is convenient to regard an \(f\)-vector as a function on all of \(\mathbb Z\)
+that happens to vanish outside \(0\le j\le n\). Write \(\mathbb Z^{(\mathbb Z)}\) for the group of
+finitely supported functions \(\mathbb Z\to\mathbb Z\), so that
+\(\mathcal F_n\subseteq\mathbb Z^{(\mathbb Z)}\). Then for every \(d\in\mathbb Z\) the shift map
+is the group automorphism
+#+begin_export latex
+\begin{equation}\label{eq:def-shift}
+\begin{split}
+  \shift^d\colon\mathbb Z^{(\mathbb Z)} &\longrightarrow \mathbb Z^{(\mathbb Z)},\\
+  \shift^d(\vec s\,)(j) &= s(j-d),
+\end{split}
+\end{equation}
+#+end_export
+which moves the entry in position \(j\) to position \(j+d\); for \(d\ge0\) it simply prepends
+\(d\) zeros, and for \(d<0\) it moves the first \(\lvert d\rvert\) entries into negative
+positions, which is what makes negative generator degrees harmless
+(Remark [[rem-shift-only-gaps]]). Finally
+#+begin_export latex
+\begin{align}
+  \mathrm{FF}(n;\vec d\,)&=\Bigl\lbrace\sum_i\shift^{d_i}(\vec s_i)\;:\;\vec s_i\in\mathcal F_n\Bigr\rbrace,
+    \label{eq:def-FF}\\
+  \mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)&=\Bigl\lbrace\sum_i\shift^{d_i}(\vec s_i)\;:\;\vec s_i\in S_n\Bigr\rbrace .
+    \label{eq:def-FFpr}
+\end{align}
+#+end_export
+
+Both parameters are always written out, in \(\mathrm{FF}\) and \(\mathrm{FF}_{\mathrm{pr}}\)
+alike, and the same holds for the chained-tuple sets \(\mathrm{CT}\) and
+\(\mathrm{CT}_{\mathrm{pr}}\) introduced below, even where \(n\) is fixed for the whole of a
+section. The semicolon is what separates \(n\) from the shift vector and is never omitted, so
+\(\mathrm{FF}(3;0,0)\) is the sumset at \(n=3\) for \(\vec d=(0,0)\) and not a sumset for a
+three-term \(\vec d\).
+#+end_definition
+
+** Notation: which quantities are tuples
+
+*An arrow marks a variable whose value is a tuple; a plain letter is a scalar.* The companion
+article uses the same convention. It needs stating in full here because two different kinds of index
+occur, and the difference between them matters.
+
+- \(\vec s\in\mathcal F_n\) is a whole \(f\)-vector; \(\vec d=(d_1,\dots,d_r)\) is the shift vector;
+  \(\vec u_n\) and \(\vec 1_n\) are the row and column vectors of Theorem [[thm-main]]. Each is a tuple, and
+  each carries an arrow.
+- *A plain subscript on an arrowed letter selects a member of the \(r\)-tuple*, and that member may
+  itself be a vector or a scalar: \(\vec s_i\) is the \(i\)-th \(f\)-vector of an \(r\)-tuple, and so
+  still carries an arrow; \(d_i\) is the \(i\)-th generator degree, a scalar, and does not.
+  *The one exception is the letter \(n\)*, which never indexes a tuple: a subscript \(n\) always
+  names the member of an \(n\)-indexed family, as in \(\mathcal F_n\) and \(S_n\), and that is what
+  it does in \(\vec u_n\) and \(\vec 1_n\) as well. Since \(r\)-tuples are indexed by \(i\) and
+  \(\vec d\) is the only tuple of which \(n\) could plausibly be an index, nothing is ambiguous.
+- *A parenthesised argument on a lowercase vector-valued letter selects a coordinate*, and is
+  always a scalar: \(s(j)\) is the number of \(j\)-subsets counted by \(\vec s\),
+  \(\HF(F/M)(j)\) is a dimension, \(x(j)\) a single entry of \(\vec x\). So \(s_i(j)\) (arrowed
+  letter, tuple subscript, coordinate argument) is the \(j\)-th coordinate of the \(i\)-th
+  \(f\)-vector, and is a scalar. *On a capital or an operator name a parenthesised argument is a
+  parameter instead*, and the result is whatever kind of object the name denotes: \(T_n(\delta)\)
+  is a matrix, \(\mathrm{FF}(n;\vec d\,)\) a set, \(F^p(n)\) and \(E^p(n,k)\) integers.
+- Matrices are capitals and never carry an arrow (\(A_n\), \(T_n(\delta)\)); their entries are written
+  \(A_n[\tau][\rho]\), \(u_n[\tau]\), also scalars. *Square brackets are only ever entry selection*,
+  never a parameter, which is why the \(n\) of \(A_n\) is a subscript and not a third bracket.
+- *The usual exception:* a subscript on a module or a graded object still means its
+  homogeneous component: \(\wedge^jV\), \(F_j\), \(I_j\), \(\mathrm{Mon}_j(L)\) are subspaces, not
+  coordinates of a vector, and follow the standard convention rather than this one.
+
+The distinction does real work in exactly one place, Definition [[def-fn]] against
+Theorem [[thm-chaining]]: without it, \(s_1\) would mean both "the first coordinate of \(\vec s\)"
+(where it equals \(n\) for a proper vector) and "the first \(f\)-vector of the tuple". Under the
+convention those are \(s(1)\) and \(\vec s_1\), and cannot be confused.
+
+The dictionary between the algebra and the combinatorics is exact:
+#+begin_export latex
+\begin{equation}\label{eq:dictionary}
+  I\;\longmapsto\;\Delta(I)=\lbrace\sigma\subseteq[n]\;:\;e_\sigma\notin I\rbrace
+\end{equation}
+#+end_export
+is a bijection from the monomial ideals of \(\Ext\) onto the order ideals of \(\mathcal P([n])\), inverse
+to \eqref{eq:exterior-face-ideal}; \(\HF\bigl((\Ext)/I\bigr)\) is the \(f\)-vector of \(\Delta(I)\); and both
+degenerate cases are included, \(I=\Ext\) going to the void family and \(I=0\) to the full simplex.
+Consequently
+\(\mathrm{FF}(n;\vec d\,)=\lbrace\HF(F/M):M\ \text{monomial}\rbrace\) and
+\(\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)=\lbrace\HF(F/M):M\ \text{proper monomial}\rbrace\).
+
+#+NAME: rem-shift-only-gaps
+#+begin_remark
+Both sets depend on \(\vec d\) only through the gaps \(\delta_i=d_i-d_{i-1}\ge0\): a global shift
+re-indexes \(\mathrm{FF}(n;\vec d\,)\) bijectively. Negative generator degrees are therefore allowed
+throughout, as they are in Amata and Crupi. Sortedness of \(\vec d\) is not optional; see
+Remark [[rem-sorted]].
+#+end_remark
+
+* Linusson's recursion
+:PROPERTIES:
+:CUSTOM_ID: sec-linusson
+:END:
+
+#+NAME: def-linusson
+#+begin_definition
+[cite/t:@Linusson1999 \S5] For \(p\ge0\) and \(n\ge-1\), let \(F^p(n)\) be the number of
+\(f\)-vectors of simplicial complexes on at most \(p\) vertices, no face of which has more than
+\(n\) elements — that is, \(f_1\le p\) and \(f_j=0\) for \(j>n\) — both degenerate \(f\)-vectors
+included; and let \(E^p(n,k)\) count those among them that contain every face of at most \(k\)
+elements but not every face of \(k+1\) elements, that is \(f_i=\binom pi\) for \(i\le k\) but
+\(f_{k+1}<\binom p{k+1}\).
+#+end_definition
+
+The two parameters play different roles, and the notation \(F^p(n)\) keeps both: \(p\) bounds the
+vertex set, \(n\) bounds the size of a face. They coincide at \(p=n\), which is the case this paper
+runs on, and there \(F^n(n)=\lvert\mathcal F_n\rvert\).
+
+#+NAME: thm-linusson
+#+begin_theorem
+[cite/t:@Linusson1999 Theorem 5.2] For \(0\le k\) and \(1\le n\le p\),
+#+begin_export latex
+\begin{equation}\label{eq:auto-8}
+  F^p(n)=\begin{cases}
+    1+\sum_{i=0}^{n}E^{p-1}(n,i)\,F^{p-1}(i-1), & n<p,\\
+    1+F^p(p-1), & n=p,
+  \end{cases}
+\end{equation}
+#+end_export
+#+begin_export latex
+\begin{equation}\label{eq:auto-9}
+  E^p(n,k)=\begin{cases}
+    \sum_{i=k}^{n}E^{p-1}(n,i)\,E^{p-1}(i-1,k-1), & k\le n<p,\\
+    E^p(p-1,k), & k<n=p,\\
+    1, & k=n=p,
+  \end{cases}
+\end{equation}
+#+end_export
+with \(F^p(-1)=1\), \(F^p(0)=2\), \(F^0(n)=2\), \(E^p(n,-1)=1\), \(E^p(n,n)=1\), and
+\(E^p(n,k)=0\) for \(k>n\). Moreover \(F^p(n)=\sum_kE^p(n,k)\).
+#+end_theorem
+
+#+NAME: rem-transcription
+#+begin_remark
+The transcription above was checked entry by entry against Linusson's own appendix: all \(100\)
+printed entries of his Table 5 and all \(99\) of his Table 6 are reproduced exactly, and an
+independent brute-force enumeration of order ideals agrees for every \(F^p(n)\) and
+\(E^p(n,k)\) with \(p\le5\). One wrinkle: at \(k=n=p\) the clause
+"\(f_{k+1}<\binom p{k+1}\)" read literally is vacuously false, since \(\binom p{p+1}=0\); but
+Linusson's stated boundary value \(E^p(n,n)=1\) and his Table 6 diagonal both require the clause to
+be dropped there. We follow Linusson.
+#+end_remark
+
+We use two consequences repeatedly. Setting \(p=n\) gives \(F^n(n)=|\mathcal F_n|\), and the
+proper count is a difference of two such.
+
+#+NAME: obs-fnn2
+#+begin_remark
+\(|S_n|=F^n(n)-F^{n-1}(n-1)\), giving
+#+begin_export latex
+\begin{equation}\label{eq:auto-10}
+  \lvert S_n\rvert = 1,\,2,\,5,\,16,\,70,\,457,\,4908,\,95248,\,3617645,\,286007155
+  \qquad(n=1,\dots,10),
+\end{equation}
+#+end_export
+whose first five terms agree with direct enumeration. The sequence \(F^p(p)\) is
+OEIS A007695 [cite:@OEIS]. There is also a second identity,
+#+begin_export latex
+\begin{equation}\label{eq:Sn-as-Fnn2}
+  \lvert S_n\rvert=F^n(n-2),
+\end{equation}
+#+end_export
+for instance \(|S_9|=F^9(7)=3617645\), a value printed in Linusson's Table 5. That identity is
+Proposition [[prop-fnn2]] below, proved by Alexander duality; equivalently, via
+\(F^n(n)=1+F^n(n-1)\), it says
+#+begin_export latex
+\begin{equation}\label{eq:Fnn2-equivalent}
+  F^n(n-1)-F^n(n-2)=F^{n-1}(n-1)-1 .
+\end{equation}
+#+end_export
+Nothing later depends on it.
+#+end_remark
+
+* Two statistics, and the joint distribution
+:PROPERTIES:
+:CUSTOM_ID: sec-statistics
+:END:
+
+#+NAME: def-stats
+#+begin_definition
+For \(\vec s\in\mathcal F_n\) put
+#+begin_export latex
+\begin{align}
+  \indeg(\vec s\,) &= \min\lbrace j:s(j)<\tbinom nj\rbrace,\label{eq:def-indeg}\\
+  \tp(\vec s\,) &= \max\lbrace j:s(j)>0\rbrace,\label{eq:def-top}
+\end{align}
+#+end_export
+with \(\indeg(\vec s\,)=n+1\) for the full simplex and \(\tp(\vec s\,)=-1\) for the void family. The
+symbol \(\indeg\) is the one of \eqref{eq:indeg-ideal}: this is its combinatorial shadow, and
+Lemma [[lem-dictionary]](2) is the statement that the two agree.
+#+end_definition
+
+#+NAME: def-A
+#+begin_definition
+(/The joint-distribution matrix./) Let \(A_n\) be the matrix whose entry
+#+begin_export latex
+\begin{equation}\label{eq:def-A}
+  A_n[\tau][\rho]=\#\bigl\lbrace \vec s\in\mathcal F_n:\tp(\vec s\,)=\tau,\ \indeg(\vec s\,)=\rho\bigr\rbrace
+\end{equation}
+#+end_export
+counts the elements of \(\mathcal F_n\) with the prescribed pair of statistics. *Rows are indexed by
+\(\tp\) and columns by \(\indeg\)*, over
+#+begin_export latex
+\begin{equation}\label{eq:def-A-range}
+  \tau=-1,0,1,\dots,n,\qquad \rho=0,1,\dots,n+1 ,
+\end{equation}
+#+end_export
+so \(A_n\) is \((n+2)\times(n+2)\). Two features of the range are forced by the conventions of
+Definition [[def-stats]] and are used repeatedly below: \(A_n\) is supported on \(\rho\le\tau+1\), and
+the two extreme rows are the single entries \(A_n[-1][0]=1\) (the void family) and \(A_n[n][n+1]=1\)
+(the full simplex). Every row sums to the number of \(\vec s\) with that value of \(\tp\), and the
+grand total is \(\lvert\mathcal F_n\rvert\).
+#+end_definition
+
+Note \(\indeg(\vec s\,)\le\tp(\vec s\,)+1\) always. For \(\tp(\vec s\,)<n\) this is because
+#+begin_export latex
+\begin{equation}\label{eq:indeg-le-top}
+  s\bigl(\tp(\vec s\,)+1\bigr)=0<\tbinom n{\tp(\vec s\,)+1},
+\end{equation}
+#+end_export
+so the minimum defining \(\indeg\) is attained no later
+than \(\tp(\vec s\,)+1\); and for \(\tp(\vec s\,)=n\) it holds because \(\indeg(\vec s\,)\le n+1\) outright, by
+the convention of Definition [[def-stats]]. The bound is therefore unconditional, the binomial
+coefficient \(\binom n{\tp(\vec s\,)+1}\) vanishing in exactly the case the second clause covers. So
+\(A_n\) is supported on \(\rho\le\tau+1\).
+
+#+NAME: lem-joint
+#+begin_lemma
+With the convention \(E^n(-2,\cdot)=0\),
+#+begin_export latex
+\begin{equation}\label{eq:auto-12}
+  A_n[\tau][\rho]\;=\;E^n(\tau,\rho-1)-E^n(\tau-1,\rho-1).
+\end{equation}
+#+end_export
+#+end_lemma
+
+#+begin_proof
+Work at \(p=n\). Every \(\vec s\in\mathcal F_n\) has \(f_1\le n\); conversely every \(f\)-vector counted by
+\(E^n(m,k)\) has \(f_1\le n\), hence belongs to a complex on at most \(n\) vertices, which embeds in
+\([n]\). So the objects counted by \(E^n(m,k)\) are exactly certain elements of \(\mathcal F_n\).
+Under that identification Linusson's clause "\(f_j=0\) for \(j>m\)" says precisely \(\tp(\vec s\,)\le m\),
+and his clause "\(f_i=\binom ni\) for \(i\le k\) but \(f_{k+1}<\binom n{k+1}\)" (with the boundary
+convention of Remark [[rem-transcription]]) says precisely \(\indeg(\vec s\,)=k+1\). Hence
+\[
+  E^n(m,k)=\#\lbrace \vec s\in\mathcal F_n:\tp(\vec s\,)\le m,\ \indeg(\vec s\,)=k+1\rbrace ,
+\]
+and subtracting the count at \(m=\tau-1\) from the count at \(m=\tau\) leaves \(\tp(\vec s\,)=\tau\)
+exactly. For \(\tau=-1\) the subtrahend would count \(f\)-vectors with \(\tp\le-2\), of which there
+are none (even the void \(f\)-vector has \(\tp=-1\)), which is the stated convention.
+#+end_proof
+
+So one run of Theorem [[thm-linusson]] at \(p=n\) delivers the entire joint distribution. Its
+\(\indeg\) marginal telescopes to \(E^n(n,\rho-1)\), which is Linusson's Table 6.
+
+#+NAME: ex-A
+#+begin_mexample
+At \(n=3\) the set \(\mathcal F_3\) has ten elements. Listing them with their statistics, first the
+\(f\)-vector and then \((\tp,\indeg)\), gives
+#+begin_export latex
+\[
+\begin{array}{llll}
+ (0,0,0,0)\colon(-1,0) & (1,0,0,0)\colon(0,1) & (1,1,0,0)\colon(1,1) & (1,2,0,0)\colon(1,1)\\
+ (1,2,1,0)\colon(2,1)  & (1,3,0,0)\colon(1,2) & (1,3,1,0)\colon(2,2) & (1,3,2,0)\colon(2,2)\\
+ (1,3,3,0)\colon(2,3)  & (1,3,3,1)\colon(3,4) & &
+\end{array}
+\]
+#+end_export
+and collecting them into \eqref{eq:def-A} (rows \(\tau=-1,\dots,3\) downward, columns
+\(\rho=0,\dots,4\) rightward)
+#+begin_export latex
+\[
+  A=\begin{pmatrix}
+    1&0&0&0&0\\ 0&1&0&0&0\\ 0&2&1&0&0\\ 0&1&2&1&0\\ 0&0&0&0&1
+  \end{pmatrix},
+  \qquad \text{row sums } (1,1,3,4,1),\ \text{total }10=\lvert\mathcal F_3\rvert .
+\]
+#+end_export
+The support condition \(\rho\le\tau+1\) is the vanishing above the superdiagonal; the two corner
+entries are the void family and the full simplex; and the antidiagonal symmetry of
+Corollary [[cor-persymmetry]] is already visible, the \(2\) at \((\tau,\rho)=(1,1)\) matching the
+\(2\) at \((2,2)\).
+
+The listing also locates the *two degenerate \(f\)-vectors* that Definition [[def-linusson]] counts
+along with the rest, since it is easy to guess the wrong pair. They are the first two entries:
+\((0,0,0,0)\), the \(f\)-vector of the void family, which has no faces at all; and \((1,0,0,0)\), the
+\(f\)-vector of \(\lbrace\emptyset\rbrace\), the complex whose only face is the empty one. They are
+the two with \(\tp\le0\), they occupy the two extreme rows of the top-left corner of \(A_n\), and they
+are exactly the two members of \(\mathcal F_3\) that no non-empty complex on a non-empty vertex set
+produces. The full simplex \((1,3,3,1)\) is *not* one of them: it is a perfectly ordinary complex, and
+it sits at the opposite corner of \(A_n\) as the unique element with \(\tp=n\).
+#+end_mexample
+
+#+NAME: rem-A-verified
+#+begin_remark
+Lemma [[lem-joint]] was also checked entrywise, for \(n\le6\) and with no mismatches, against
+direct enumeration of the order ideals themselves. At \(n=6\), with rows \(\tau=-1,\dots,6\) and
+columns \(\rho=0,\dots,7\), it is
+#+begin_export latex
+\begin{equation}\label{eq:auto-13}
+\begin{pmatrix}
+1&0&0&0&0&0&0&0\\
+0&1&0&0&0&0&0&0\\
+0&5&1&0&0&0&0&0\\
+0&20&14&1&0&0&0&0\\
+0&43&84&19&1&0&0&0\\
+0&25&143&84&14&1&0&0\\
+0&1&25&43&20&5&1&0\\
+0&0&0&0&0&0&0&1
+\end{pmatrix}
+\end{equation}
+#+end_export
+#+end_remark
+
+** Alexander duality, and the identity of Remark [[obs-fnn2]]
+
+The matrix \eqref{eq:auto-13} is visibly symmetric about its antidiagonal. Alexander duality
+explains the symmetry, and proves the identity left open in Section [[#sec-linusson]] as well.
+
+#+NAME: def-alexander
+#+begin_definition
+(/The Alexander dual, the binomial box, and the duality map./) For an order ideal \(\Delta\) of
+\(\mathcal P([n])\), the *Alexander dual* is
+#+begin_export latex
+\begin{equation}\label{eq:def-alexander-dual}
+  \Delta^{\vee}=\bigl\lbrace\sigma\subseteq[n]\;:\;[n]\setminus\sigma\notin\Delta\bigr\rbrace .
+\end{equation}
+#+end_export
+The *binomial box* is the set of integer vectors obeying the entrywise bound,
+#+begin_export latex
+\begin{equation}\label{eq:binomial-box}
+  \mathcal B_n=\bigl\lbrace\vec s\in\mathbb Z_{\ge0}^{n+1}\;:\;s(j)\le\tbinom nj\ \text{ for all }j\bigr\rbrace
+  \;\supseteq\;\mathcal F_n ,
+\end{equation}
+#+end_export
+and the *duality map* \(D_n\) is the self-map of \(\mathcal B_n\) given coordinatewise by
+#+begin_export latex
+\begin{equation}\label{eq:def-D}
+  D_n(\vec s\,)(j)=\tbinom nj-s(n-j) \qquad (0\le j\le n).
+\end{equation}
+#+end_export
+Per the convention of Section [[#sec-notation]], the parenthesised argument in
+\eqref{eq:def-D} selects a coordinate, so \(s(m)\) and \(D_n(\vec s\,)(j)\) are integers while
+\(\vec s\) and \(D_n(\vec s\,)\) are vectors. The subscript on \(D_n\) and \(\mathcal B_n\) is the
+ground-set size, as everywhere else; \(\Delta^{\vee}\) carries no subscript because the
+complement in \eqref{eq:def-alexander-dual} is taken inside the \([n]\) that \(\Delta\) already
+names.
+#+end_definition
+
+#+NAME: lem-alexander
+#+begin_lemma
+(/Alexander duality on \(f\)-vectors./) Let \(\Delta\) be an order ideal of \(\mathcal P([n])\),
+and let \(\Delta^{\vee}\), \(\mathcal B_n\) and \(D_n\) be as in Definition [[def-alexander]].
+Then \(\Delta^{\vee}\) is an order ideal, \((\Delta^{\vee})^{\vee}=\Delta\), and
+#+begin_export latex
+\begin{equation}\label{eq:alexander-f}
+  f_j(\Delta^{\vee})=\tbinom nj-f_{n-j}(\Delta).
+\end{equation}
+#+end_export
+Consequently \(D_n\) restricts to an involution of \(\mathcal F_n\), and it conjugates the two
+statistics into each other:
+#+begin_export latex
+\begin{align}
+  \indeg(D_n(\vec s\,)) &= n-\tp(\vec s\,),\label{eq:alexander-indeg}\\
+  \tp(D_n(\vec s\,)) &= n-\indeg(\vec s\,).\label{eq:alexander-top}
+\end{align}
+#+end_export
+Of these assertions, only one uses the combinatorics: that \(\Delta^{\vee}\) is an order ideal,
+equivalently that \(D_n\) maps \(\mathcal F_n\) into itself. On the box \(\mathcal B_n\) itself
+\(D_n\) is already an involution and already satisfies
+\eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}; the entrywise bound of
+\eqref{eq:binomial-box} is all that is needed for those, and it is needed only for the
+involution.
+#+end_lemma
+
+#+begin_proof
+If \(\sigma\in\Delta^{\vee}\) and \(\tau\subseteq\sigma\) then
+\[
+  [n]\setminus\sigma\;\subseteq\;[n]\setminus\tau ;
+\]
+were \([n]\setminus\tau\in\Delta\), downward closure would put
+\([n]\setminus\sigma\in\Delta\), which it is not. So \(\Delta^{\vee}\) is an order ideal. Double
+complementation gives \((\Delta^{\vee})^{\vee}=\Delta\). For \eqref{eq:alexander-f}, complementation
+\(\sigma\mapsto[n]\setminus\sigma\) is a bijection from the \(j\)-subsets to the \((n-j)\)-subsets,
+under which the \(j\)-members of \(\Delta^{\vee}\) correspond to the \((n-j)\)-subsets *not* in
+\(\Delta\). The formula shows \(D_n(\vec s\,)\) depends only on \(\vec s\), so \(D_n\) is a well-defined
+involution of \(\mathcal F_n\). Finally \(D_n(\vec s\,)(j)<\binom nj\) if and only if \(s(n-j)>0\), which
+is \eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}; the conventions \(\tp=-1\) for the void family and
+\(\indeg=n+1\) for the full simplex are exactly what make the two extremes correspond.
+
+For the last paragraph of the statement, observe that this final step used no property of \(\vec s\)
+beyond \(0\le s(n-j)\le\binom n{n-j}\). Both equivalences read off the definition of \(D_n\),
+#+begin_export latex
+\begin{align}
+  D_n(\vec s\,)(j)<\tbinom nj \;&\iff\; s(n-j)>0 ,\label{eq:D-below}\\
+  D_n(\vec s\,)(j)>0 \;&\iff\; s(n-j)<\tbinom n{n-j} ,\label{eq:D-above}
+\end{align}
+#+end_export
+and, since \(\binom nj=\binom n{n-j}\), the same bound gives
+#+begin_export latex
+\begin{equation}\label{eq:D-involution}
+  D_n(D_n(\vec s\,))(j)=\tbinom nj-\Bigl(\tbinom n{n-j}-s(j)\Bigr)=s(j) ,
+\end{equation}
+#+end_export
+so \(D_n\) is an involution of
+\(\mathcal B_n\). What \eqref{eq:alexander-f} adds is that this involution of the box restricts to one of the
+subset \(\mathcal F_n\), and that is where downward closure is used.
+#+end_proof
+
+#+NAME: ex-alexander-f3
+#+begin_mexample
+(/The involution on \(\mathcal F_3\)./) Continuing Example [[ex-A]]. With \(n=3\) the formula
+\(D_n(\vec s\,)(j)=\binom 3j-s(3-j)\) reads \(D_n(\vec s\,)=\bigl(1-s(3),\,3-s(2),\,3-s(1),\,1-s(0)\bigr)\):
+reverse the vector and subtract it from Pascal's row \((1,3,3,1)\). Applied to the ten elements listed
+in Example [[ex-A]], with \((\tp,\indeg)\) beside each:
+#+begin_export latex
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}llcll@{}}
+  \toprule
+  \(\vec s\) & \((\tp,\indeg)\) & & \(D_n(\vec s\,)\) & \((\tp,\indeg)\)\\
+  \midrule
+  \((0,0,0,0)\) & \((-1,0)\) & \(\longleftrightarrow\) & \((1,3,3,1)\) & \((3,4)\)\\
+  \((1,0,0,0)\) & \((0,1)\)  & \(\longleftrightarrow\) & \((1,3,3,0)\) & \((2,3)\)\\
+  \((1,1,0,0)\) & \((1,1)\)  & \(\longleftrightarrow\) & \((1,3,2,0)\) & \((2,2)\)\\
+  \((1,2,0,0)\) & \((1,1)\)  & \(\longleftrightarrow\) & \((1,3,1,0)\) & \((2,2)\)\\
+  \addlinespace
+  \((1,2,1,0)\) & \((2,1)\)  & \(=\)                   & \((1,2,1,0)\) & \((2,1)\)\\
+  \((1,3,0,0)\) & \((1,2)\)  & \(=\)                   & \((1,3,0,0)\) & \((1,2)\)\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+#+end_export
+Four two-cycles and two fixed points, accounting for all ten elements. Every row satisfies
+\eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}: in the first, \(\indeg(D_n(\vec s\,))=4=3-(-1)=n-\tp(\vec s\,)\) and
+\(\tp(D_n(\vec s\,))=3=3-0=n-\indeg(\vec s\,)\), and so on down. The two fixed points are the
+self-dual complexes, and note that a fixed point must have \(\tp+\indeg=n\), which is why there are
+any: the antidiagonal \(\tau+\rho=n\) of \(A_n\) is where the persymmetry of
+Corollary [[cor-persymmetry]] has its fixed entries.
+
+The first and last rows exchange the two extremes, the void family against the full simplex, and the
+second row exchanges \(\lbrace\emptyset\rbrace\) against the boundary of the simplex. Both pairs are
+cases where leaving a degenerate \(f\)-vector out of \(\mathcal F_n\) would break the involution, which is
+the point made after Proposition [[prop-fnn2]] below.
+
+Finally, reading the table for the five proper vectors, \(D_n\) carries
+#+begin_export latex
+\[
+  S_3=\bigl\lbrace(1,3,0,0),(1,3,1,0),(1,3,2,0),(1,3,3,0),(1,3,3,1)\bigr\rbrace
+\]
+#+end_export
+onto \(\lbrace(1,3,0,0),(1,2,0,0),(1,1,0,0),(1,0,0,0),(0,0,0,0)\rbrace\), which is exactly
+\(\lbrace\vec g\in\mathcal F_3:\tp(\vec g\,)\le1\rbrace\) with \(1=n-2\). So \(|S_3|=F^3(1)=5\), which
+is Proposition [[prop-fnn2]] at \(n=3\).
+#+end_mexample
+
+#+NAME: cor-persymmetry
+#+begin_corollary
+\(A_n[\tau][\rho]=A_n[n-\rho][n-\tau]\) for all \(\tau,\rho\): the matrix \(A_n\) is *persymmetric*, which
+is to say that it is symmetric about its antidiagonal (the diagonal running from the top-right entry
+to the bottom-left one) rather than about the main diagonal. With
+\(A_n\) read as in \eqref{eq:def-A} for *arbitrary* integers \(\tau,\rho\) (so that it vanishes
+outside the range \eqref{eq:def-A-range}), the identity holds on all of \(\mathbb Z^2\), and no
+check that the reflected indices stay in range is needed when it is applied inside a sum.
+#+end_corollary
+
+#+begin_proof
+By \eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}, \(D_n\) is a bijection of \(\mathcal F_n\) carrying the class
+\((\tp,\indeg)=(\tau,\rho)\) onto the class \((n-\rho,n-\tau)\). For the unrestricted form, note that
+\eqref{eq:def-A} counts an empty set whenever \(\tau\) or \(\rho\) leaves the range
+\eqref{eq:def-A-range}, and that the reflection
+#+begin_export latex
+\begin{equation}\label{eq:persymmetry-reflection}
+  (\tau,\rho)\;\longmapsto\;(n-\rho,\,n-\tau)
+\end{equation}
+#+end_export
+maps that range onto itself, so both sides vanish together outside it.
+#+end_proof
+
+#+NAME: prop-fnn2
+#+begin_proposition
+\(\lvert S_n\rvert=F^n(n-2)\) for every \(n\ge1\).
+#+end_proposition
+
+#+begin_proof
+By Definition [[def-linusson]] at \(p=n\), where the condition \(f_1\le n\) is automatic,
+\(F^n(m)\) is the number of \(\vec s\in\mathcal F_n\) with \(\tp(\vec s\,)\le m\). Now
+#+begin_export latex
+\begin{align}
+  D_n(\vec s\,)(n)   &= \tbinom nn-s(0) = 1-s(0) ,\label{eq:D-top}\\
+  D_n(\vec s\,)(n-1) &= \tbinom n{n-1}-s(1) = n-s(1) ,\label{eq:D-next}
+\end{align}
+#+end_export
+so
+#+begin_export latex
+\begin{align*}
+  \vec s\in S_n
+  &\iff s(0)=1\ \text{and}\ s(1)=n\\
+  &\iff D_n(\vec s\,)(n)=D_n(\vec s\,)(n-1)=0
+   \iff \tp(D_n(\vec s\,))\le n-2 .
+\end{align*}
+#+end_export
+As \(D_n\) is an involution of \(\mathcal F_n\) by Lemma [[lem-alexander]], it restricts to a bijection
+#+begin_export latex
+\begin{equation}\label{eq:Sn-bijection}
+  D\colon S_n\;\xrightarrow{\ \sim\ }\;\bigl\lbrace\vec g\in\mathcal F_n\;:\;\tp(\vec g\,)\le n-2\bigr\rbrace ,
+\end{equation}
+#+end_export
+a set of cardinality \(F^n(n-2)\).
+#+end_proof
+
+#+NAME: rem-fnn2-sharp
+#+begin_remark
+The hypothesis \(n\ge1\) is sharp rather than cosmetic. At \(n=0\) the left side of
+Proposition [[prop-fnn2]] is \(1\), since \(\lbrace\emptyset\rbrace\) is the one order ideal of
+\(\mathcal P(\emptyset)\) meeting condition (iii) of Section [[#sec-notation]] and its \(f\)-vector is
+\((1)\), while the right side is \(F^0(-2)=0\).
+#+end_remark
+
+Example [[ex-alexander-f3]] above exhibits the involution, the persymmetry and this proposition
+together on the ten elements of \(\mathcal F_3\).
+
+In words: *the proper \(f\)-vectors are Alexander-dual to the \(f\)-vectors of order ideals of
+dimension at most \(n-3\)*, and properness, two conditions at the bottom of \(\vec s\), becomes
+the vanishing of the top two entries of \(D_n(\vec s\,)\). Including both degenerate \(f\)-vectors in
+\(\mathcal F_n\), which Definition [[def-fn]] does and which convention (i) of Section
+[[#sec-notation]] requires, is what makes the duality an involution of the whole set rather than a
+partial map: the void family and the full simplex are exchanged, as are \(\lbrace\emptyset\rbrace\)
+and the boundary of the simplex.
+
+#+NAME: def-chained
+#+begin_definition
+(/Chained tuples./) Fix \(n\ge1\), \(r\ge1\) and a sorted \(\vec d\), with gaps
+\(\delta_i=d_i-d_{i-1}\). An \(r\)-tuple \((\vec s_1,\dots,\vec s_r)\in\mathcal F_n^{\,r}\) is
+*chained* for \(\vec d\) if
+#+begin_export latex
+\begin{equation}\label{eq:chaining-condition}
+  \tp(\vec s_{i-1})\;<\;\indeg(\vec s_i)+\delta_i \qquad (i=2,\dots,r) ,
+\end{equation}
+#+end_export
+and the set of all of them is written
+#+begin_export latex
+\begin{equation}\label{eq:chained-set}
+  \mathrm{CT}(n;\vec d\,)=\bigl\lbrace(\vec s_1,\dots,\vec s_r)\in\mathcal F_n^{\,r}\;:\;
+    \text{the tuple is chained}\bigr\rbrace ,
+\end{equation}
+#+end_export
+the letters being the initials of *chained tuples*. The tuple is *proper-chained* if in addition
+every entry lies in \(S_n\), and the set of those is written \(\mathrm{CT}_{\mathrm{pr}}(n;\vec d\,)\).
+
+Theorem [[thm-chaining]] below shows that \(\lvert\mathrm{CT}(n;\vec d\,)\rvert=\lvert\mathrm{FF}(n;\vec
+d\,)\rvert\) and Theorem [[thm-proper]] the proper analogue. Algebraically the chained tuples are the
+component tuples of the lex submodules, and the proper-chained ones those of the *proper* lex
+submodules; that is how both theorems are proved.
+#+end_definition
+
+#+NAME: rem-gap-reversal
+#+begin_remark
+The duality has one further consequence, and it constrains any future answer to the bijective
+question of Section [[#sec-verification]]. Applying \(D_n\) to every entry and reversing the order, the map
+#+begin_export latex
+\begin{equation}\label{eq:gap-reversal-map}
+  (\vec s_1,\dots,\vec s_r)\longmapsto\bigl(D_n(\vec s_r),\dots,D_n(\vec s_1)\bigr)
+\end{equation}
+#+end_export
+carries tuples chained for \((\delta_2,\dots,\delta_r)\) to tuples chained for the *reversed* gap
+vector \((\delta_r,\dots,\delta_2)\), by \eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}. So
+\(|\mathrm{FF}(n;\vec d\,)|\) is
+invariant under reversing the gaps, which was verified for \(n\le6\) over six gap vectors,
+including non-palindromic ones. This is an ingredient for a bijective proof of
+Theorem [[thm-chaining]], and a symmetry that any such proof must respect; it does not solve that
+problem.
+
+Two things delimit the symmetry sharply, both settled by computation, and the second of them is the
+subject of Remark [[rem-proper-not-reversible]] below.
+
+*Nothing more than reversal is true:* \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) is not invariant under arbitrary
+permutation of the gaps. At \(n=2\), \(r=4\), the three arrangements of the multiset
+\(\lbrace0,0,1\rbrace\) give
+#+begin_export latex
+\begin{equation}\label{eq:no-permutation-invariance}
+  (0,0,1)\mapsto96,\qquad (0,1,0)\mapsto111,\qquad (1,0,0)\mapsto96 ,
+\end{equation}
+#+end_export
+and the two that agree are precisely the two that are reverses of each other. So the involution of
+this remark is the whole of the symmetry.
+#+end_remark
+
+#+NAME: rem-proper-not-reversible
+#+begin_remark
+(/Gap reversal fails for the proper count./) The second delimitation is that the proper count does
+not inherit the symmetry of Remark [[rem-gap-reversal]]. It is also one reason the proper variant of
+Section [[#sec-proper]] costs more than imposing a restriction on the improper theory does.
+
+The argument there cannot be run for \(\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\), because \(D_n\) does not
+preserve \(S_n\): by Proposition [[prop-fnn2]] it carries \(S_n\) onto
+\(\lbrace\vec g\in\mathcal F_n:\tp(\vec g\,)\le n-2\rbrace\), a different subset of \(\mathcal F_n\), so
+the reversal map of Remark [[rem-gap-reversal]] does not carry \(\mathrm{CT}_{\mathrm{pr}}(n;\vec d\,)\)
+into itself. It does send a proper-chained tuple to a chained one; what it need not preserve is the
+entrywise properness.
+
+That much would leave open whether the invariance nonetheless holds for some other reason. It does
+not: the conclusion itself is false, not merely unproved. At \(n=3\) the gap vectors
+\((\delta_2,\delta_3)=(0,1)\) and \((1,0)\) give
+#+begin_export latex
+\begin{align}
+  \lvert\mathrm{FF}_{\mathrm{pr}}(3;0,0,1)\rvert &= 45,\label{eq:proper-not-reversible}\\
+  \lvert\mathrm{FF}_{\mathrm{pr}}(3;0,1,1)\rvert &= 51,\label{eq:proper-not-reversible-b}
+\end{align}
+#+end_export
+while the corresponding improper counts agree at \(236\), exactly as Remark
+[[rem-gap-reversal]] predicts. So \(45\ne51\) is a counterexample: any attempt to transport the
+reversal symmetry to the proper count must fail.
+
+The asymmetry is worth keeping in view when reading Section [[#sec-proper]]. Properness is two
+conditions at the bottom of \(\vec s\), and Alexander duality moves the bottom of a vector to its
+top; a symmetry built out of that duality therefore has no reason to respect a condition pinned to
+one end, and here it does not.
+#+end_remark
+
+* The chaining reformulation
+:PROPERTIES:
+:CUSTOM_ID: sec-chaining
+:END:
+
+This section replaces a sumset cardinality by a count of tuples with a nearest-neighbour constraint.
+The mechanism is that Amata and Crupi's lex submodules give a canonical representative for each
+achievable Hilbert function, and that being a lex submodule is a condition on consecutive components
+only.
+
+#+NAME: lem-dictionary
+#+begin_lemma
+Let \(I\subseteq \Ext\) be a monomial ideal and \(\vec s=\HF\bigl((\Ext)/I\bigr)\in\mathcal F_n\).
+1. For every integer \(t\ge0\): \(\mathfrak m^t\subseteq I\) if and only if \(\tp(\vec s\,)<t\).
+2. \(\indeg(I)=\indeg(\vec s\,)\).
+#+end_lemma
+
+#+begin_proof
+(1) \(\mathfrak m^t\) is spanned by the monomials of degree \(\ge t\), so
+\(\mathfrak m^t\subseteq I\) iff \(I_j=\wedge^jV\) for all \(j\ge t\), iff \(s(j)=0\) for all \(j\ge t\),
+iff \(\tp(\vec s\,)<t\). This covers \(t=0\) (then \(\mathfrak m^0=\Ext\subseteq I\) iff \(I=\Ext\) iff
+\(\tp(\vec s\,)=-1<0\)) and \(t>n\) (then \(\mathfrak m^t=0\) and \(\tp(\vec s\,)\le n<t\), both sides true). For
+\(t<0\) the equivalence fails, the left side being vacuously true and the right side impossible,
+which is exactly why sortedness of \(\vec d\) is needed in Theorem [[thm-chaining]].
+(2) \(\dim I_j=\binom nj-s(j)\), so the least \(j\) with \(I_j\ne0\) is the least \(j\) with
+\(s(j)<\binom nj\). For \(I=0\) both sides are \(n+1\) by convention; any value exceeding \(n\) gives
+the same truth value in (1), so the convention is harmless.
+#+end_proof
+
+#+NAME: thm-chaining
+#+begin_theorem
+Fix \(n\ge1\), \(r\ge1\) and integers \(d_1\le d_2\le\cdots\le d_r\), with
+\(\delta_i=d_i-d_{i-1}\). With \(\mathrm{CT}(n;\vec d\,)\) the set of chained tuples of
+Definition [[def-chained]],
+#+begin_export latex
+\begin{equation}\label{eq:auto-14}
+  \lvert\mathrm{FF}(n;\vec d\,)\rvert\;=\;\lvert\mathrm{CT}(n;\vec d\,)\rvert ,
+\end{equation}
+#+end_export
+#+end_theorem
+
+#+begin_proof
+(a) By Definition [[def-setup]] and the dictionary, \(\mathrm{FF}(n;\vec d\,)\) is the set of \(\HF(F/M)\)
+for \(M\) a monomial submodule. Indeed, for \(M=\bigoplus_iI_ig_i\),
+\[
+  \HF\Bigl(\frac FM\Bigr)(j)=\sum_i\dim\Bigl(\frac{\Ext}{I_i}\Bigr)_{j-d_i}
+    =\sum_i\shift^{d_i}(\vec s_i)(j) ,
+\]
+and as \((I_1,\dots,I_r)\) ranges over all tuples of monomial ideals, unconstrained by one another,
+\((\vec s_1,\dots,\vec s_r)\) ranges over all of \(\mathcal F_n^{\,r}\).
+
+(b) Restricted to *lex* ideals, \(I\mapsto\HF\bigl((\Ext)/I\bigr)\) is a bijection onto \(\mathcal F_n\). It is well
+defined (a lex ideal is monomial); injective, since a lex ideal is degreewise the lex-initial segment
+of \(\mathrm{Mon}_j(\Ext)\) of size \(\binom nj-s(j)\) and is therefore determined by \(\vec s\); and
+surjective by Kruskal--Katona in its exterior form [cite/t:@AramovaHerzogHibi1997 Theorem 4.1], every \(f\)-vector being attained by a compressed
+family, whose complementary ideal is lex.
+
+(c) By Amata and Crupi's Definition 2.6 \(\Leftrightarrow\) 2.7, a lex submodule of \(F\) is exactly
+an \(L=\bigoplus_iL_ig_i\) with every \(L_i\) a lex ideal and
+\[
+  \mathfrak m^{\,\rho_i+d_i-d_{i-1}}\;\subseteq\;L_{i-1}
+  \qquad (i=2,\dots,r),\qquad \rho_i=\indeg(L_i) .
+\]
+The exponent is \(\ge0\) because \(\rho_i\ge0\) and \(d_i\ge d_{i-1}\), so
+Lemma [[lem-dictionary]] applies and turns the side condition into
+\(\tp(\vec s_{i-1})<\indeg(\vec s_i)+\delta_i\). With (b) componentwise, \(L\mapsto(\vec s_1,\dots,\vec s_r)\) is a
+bijection from the lex submodules onto \(\mathrm{CT}(n;\vec d\,)\).
+
+(d) \(L\mapsto\HF(F/L)\) is a bijection from lex submodules onto \(\mathrm{FF}(n;\vec d\,)\). Injective: by
+Definition 2.6, \(\mathrm{Mon}_j(L)\) is the initial segment of \(\mathrm{Mon}_j(F)\) of size
+\(\dim F_j-\HF(F/L)(j)\) in the module order, and an initial segment is determined by its
+cardinality, so \(L\) is determined degreewise. Surjective: monomial submodules are graded, so
+#+begin_export latex
+\begin{equation}\label{eq:FF-in-lex}
+  \mathrm{FF}(n;\vec d\,)\;\subseteq\;\Bigl\lbrace\HF\Bigl(\frac FM\Bigr):M\ \text{graded}\Bigr\rbrace
+  \;=\;\Bigl\lbrace\HF\Bigl(\frac FL\Bigr):L\ \text{lex}\Bigr\rbrace
+\end{equation}
+#+end_export
+by Amata and Crupi's Theorem 4.2, implication (a) \(\Leftrightarrow\) (c); and conversely a lex
+submodule is monomial, so the reverse inclusion holds by (a).
+
+Composing (c) and (d) gives the claim.
+#+end_proof
+
+#+NAME: rem-explicit-inverse
+#+begin_remark
+(/An explicit inverse, and what it still needs./) It is worth saying exactly which map is being
+inverted, since there are two and they point in opposite directions. Theorem [[thm-chaining]] says
+that \(\lvert\mathrm{FF}(n;\vec d\,)\rvert=\lvert\mathrm{CT}(n;\vec d\,)\rvert\), with
+\(\mathrm{CT}(n;\vec d\,)\) the set of chained tuples \eqref{eq:chained-set}. What the theorem's proof
+establishes is more than that equality of cardinalities: the summation map \(\Sigma_{\vec d}\) of
+\eqref{eq:sumset-map}, restricted to the chained tuples,
+#+begin_export latex
+\begin{equation}\label{eq:sigma-restricted}
+\begin{split}
+  \Sigma_{\vec d}\colon\mathrm{CT}(n;\vec d\,) &\xrightarrow{\ \sim\ } \mathrm{FF}(n;\vec d\,),\\
+  (\vec s_1,\dots,\vec s_r) &\longmapsto \vec x=\sum_{i=1}^{r}\shift^{d_i}(\vec s_i),
+\end{split}
+\end{equation}
+#+end_export
+is a *bijection*. That is the content: the chained tuples are a set of representatives for the fibres
+of \(\Sigma_{\vec d}\), one from each.
+
+The question is then what the inverse of \eqref{eq:sigma-restricted} is. The proof above produces it
+through Amata--Crupi's lex submodule, hence algebraically. A *closed-form* inverse is now known.
+Define, for \(0\le i\le r\),
+#+begin_export latex
+\begin{equation}\label{eq:def-Q}
+  Q_i(j)=\max\Bigl(0,\;x(j)-\sum_{k>i}\tbinom n{j-d_k}\Bigr) ,
+\end{equation}
+#+end_export
+so that \(Q_0=\vec 0\) and \(Q_r=\vec x\), and put
+#+begin_export latex
+\begin{align}
+  \Phi_{\vec d}(\vec x\,) &= (\hat s_1,\dots,\hat s_r),\label{eq:water-filling}\\
+  \hat s_i(m) &= Q_i(m+d_i)-Q_{i-1}(m+d_i) .\label{eq:water-filling-component}
+\end{align}
+#+end_export
+Then \(\Phi_{\vec d}\) is the inverse of \eqref{eq:sigma-restricted}. The word *clamp* is meant in its
+numerical sense: \(\max(0,\cdot)\) applied degreewise, which clamps a would-be negative entry up to
+zero, and that single truncation is the whole of \eqref{eq:def-Q}. Taken degree by degree the effect
+is a *water-filling* from the last component, the metaphor being that \(\sum_{k>i}\binom n{j-d_k}\)
+is the capacity of the components after the \(i\)-th and only what overflows that capacity reaches
+the earlier ones; Example [[ex-water-filling]] below runs it by hand in the smallest case where it
+has anything to do.
+
+That \eqref{eq:water-filling} is the *unique* chained tuple
+summing to \(\vec x\) is proved using downward closure alone, with no Kruskal--Katona and no
+algebra, and the construction commutes with the involution of Remark [[rem-gap-reversal]] on the
+nose, so the
+symmetry that any bijective proof must respect is satisfied here by construction.
+
+That half has two features, both of which became visible only once it was formalised. It needs no
+sortedness, provided the chaining condition is read in the absolute form
+\eqref{eq:chaining-absolute} of Remark [[rem-sorted]] below. The *structure* it rests on is that a
+chained tuple has pairwise disjoint, increasing free windows
+\([\indeg(\vec s_i)+d_i,\;\tp(\vec s_i)+d_i]\), so that in any one degree at most one component is
+free while the earlier ones have vanished and the later ones are still full binomials; and that uses
+only the chaining condition together with \(\indeg\le\tp+1\). In particular it holds for arbitrary non-negative integer vectors satisfying those
+inequalities, whether or not they are \(f\)-vectors: being an \(f\)-vector is needed just for the
+single step identifying a below-window entry as the full binomial \(\binom n{\cdot}\). The clamp is
+thus elementary in a stronger sense than "no Kruskal--Katona": most of it is not about \(f\)-vectors
+at all.
+
+What is *not* yet combinatorial is the other half: that the clamps \eqref{eq:water-filling-component} are
+\(f\)-vectors at all. That is true, by Theorem [[thm-chaining]] again through the lex
+representative, but proving it directly is open. For \(r=2\) it reduces to two properties of the
+Kruskal--Katona shadow function, one of which we can prove and the other of which is verified far
+beyond any range the argument needs but remains open on a sporadic set; for \(r\ge3\) a further
+inequality is needed. So the bijection is explicit and one-directionally elementary, and the
+bijective-proof problem of Section [[#sec-verification]] stands.
+#+end_remark
+
+#+NAME: ex-water-filling
+#+begin_mexample
+(/The clamp \eqref{eq:water-filling} in the smallest case where it has something to do./) Take
+\(n=3\), \(r=2\) and \(\vec d=(0,0)\), so that there is one gap and it is \(\delta_2=0\), and take
+\(\vec x=(2,5,4,1)\in\mathrm{FF}(3;0,0)\).
+
+By hand first. The only \(\vec s\in\mathcal F_3\) with a non-zero entry in degree \(3\) is the
+full simplex \((1,3,3,1)\), so a decomposition \(\vec x=\vec s_1+\vec s_2\) has to use it in one of
+its two places, and then the other summand is forced to be \((1,2,1,0)\). The two ordered pairs are
+therefore
+#+begin_export latex
+\[
+  \bigl((1,2,1,0),\,(1,3,3,1)\bigr)
+  \qquad\text{and}\qquad
+  \bigl((1,3,3,1),\,(1,2,1,0)\bigr),
+\]
+#+end_export
+and exactly the first of them is chained, since
+#+begin_export latex
+\begin{align*}
+  \tp(1,2,1,0)&=2\;<\;4=\indeg(1,3,3,1)+\delta_2 ,\\
+  \tp(1,3,3,1)&=3\;\not<\;1=\indeg(1,2,1,0)+\delta_2 .
+\end{align*}
+#+end_export
+
+The clamp finds that pair without knowing either summand in advance. Here \(r=2\)
+and \(d_1=d_2=0\), so \(Q_2=\vec x\) and \(Q_0=\vec 0\), and the whole computation is the single
+vector
+#+begin_export latex
+\begin{align*}
+  Q_1(j) &= \max\Bigl(0,\;x(j)-\tbinom 3j\Bigr),\\
+  \bigl(Q_1(0),Q_1(1),Q_1(2),Q_1(3)\bigr) &= (1,2,1,0),
+\end{align*}
+#+end_export
+the four values being \(\max(0,2-1)=1\), \(\max(0,5-3)=2\), \(\max(0,4-3)=1\) and
+\(\max(0,1-1)=0\). Then \eqref{eq:water-filling-component} reads
+#+begin_export latex
+\begin{align*}
+  \hat s_1 &= Q_1-Q_0=(1,2,1,0),\\
+  \hat s_2 &= Q_2-Q_1=(2,5,4,1)-(1,2,1,0)=(1,3,3,1),
+\end{align*}
+#+end_export
+which is the chained pair, in the right order.
+
+The quantity \(Q_i(j)\) is what is left of \(x(j)\) after the
+components \(g_{i+1},\dots,g_r\) have been filled to their joint capacity
+\(\sum_{k>i}\binom n{j-d_k}\) in that degree, so degree by degree the last component is filled
+first and only the overflow reaches the earlier ones. In the present instance the capacity of
+\(g_2\) is \(\binom 3j=(1,3,3,1)\), the vector \(\vec x\) exceeds it by \((1,2,1,0)\), and that
+overflow is exactly \(\hat s_1\).
+
+The two directions are worth naming once on this example:
+#+begin_export latex
+\begin{align*}
+  \Sigma_{\vec d}\bigl((1,2,1,0),(1,3,3,1)\bigr) &= (2,5,4,1)=\vec x,\\
+  \Phi_{\vec d}(2,5,4,1) &= \bigl((1,2,1,0),(1,3,3,1)\bigr),
+\end{align*}
+#+end_export
+of which the first is just addition and the second is the one that needed a
+formula. The other ordered pair, \(\bigl((1,3,3,1),(1,2,1,0)\bigr)\), also sums to \(\vec x\), which
+is why \(\Sigma_{\vec d}\) is not injective on all of \(\mathcal F_3^{\,2}\); it is injective once
+restricted to \(\mathrm{CT}(3;0,0)\), which is what discards that pair.
+#+end_mexample
+
+#+NAME: rem-sorted
+#+begin_remark
+Three hypotheses are stated here rather than left implicit.
+
+*The order convention.* Amata and Crupi's module order makes \(g_1\)'s monomials the largest, so a
+lex submodule fills \(g_1\) first and the chaining condition constrains the *earlier* component
+\(I_{i-1}\) using the *later* component's initial degree. The inequality in Theorem [[thm-chaining]]
+is oriented accordingly.
+
+*Sortedness.* \(d_1\le\cdots\le d_r\) is required as stated, because it is what makes every exponent
+\(\rho_i+\delta_i\) non-negative, which is the range in which Lemma [[lem-dictionary]](1) holds. This
+costs nothing: \(\mathrm{FF}(n;\vec d\,)\) is symmetric in its summands, so an unsorted shift vector should be
+sorted first. The chained count as written is simply not the right-hand side for unsorted \(\vec d\).
+
+It is worth being precise about *where* sortedness is spent, because it is spent in one place only.
+Write the chaining condition in the equivalent *absolute* form
+#+begin_export latex
+\begin{equation}\label{eq:chaining-absolute}
+  \tp(\vec s_{i-1})+d_{i-1}\;<\;\indeg(\vec s_i)+d_i \qquad(i=2,\dots,r),
+\end{equation}
+#+end_export
+which is the condition of Theorem [[thm-chaining]] rearranged. For sorted \(\vec d\) the two forms are literally
+the same inequality. What sortedness buys is the passage to the *printed* form with the gap
+\(\delta_i=d_i-d_{i-1}\) as a non-negative integer, i.e. Lemma [[lem-dictionary]](1); and it buys only
+one of the two implications, since \eqref{eq:chaining-absolute} gives the printed inequality for every
+\(\vec d\), sorted or not. Everything downstream that uses the chaining condition only as a condition
+(the disjoint-window normal form and the uniqueness half of Remark
+[[rem-explicit-inverse]]) needs no sortedness at all when \eqref{eq:chaining-absolute} is taken as
+the definition. This was established while formalising the argument (Section
+[[#sec-verification]]), where the hypothesis turned out to be usable nowhere else.
+
+*Which half of Theorem 4.2.* Only implication (a) \(\Leftrightarrow\) (c) is used, the existence
+and uniqueness of a lex representative, and that half is sound. Clause (b) of the same theorem is
+*false as printed* for tied initial generator degrees, a defect treated in the third paper of this
+series; nothing here depends on it.
+#+end_remark
+
+* The counting theorem
+:PROPERTIES:
+:CUSTOM_ID: sec-main
+:END:
+
+#+NAME: def-uT
+#+begin_definition
+(/The initial vector and the transfer matrices./) With \(A_n\) as in Definition [[def-A]], define a
+*row vector* \(\vec u_n\) and, for each integer \(\delta\ge0\), a *square matrix* \(T_n(\delta)\) by
+#+begin_export latex
+\begin{align}
+  u_n[\tau] &= \sum_{\rho}A_n[\tau][\rho],\label{eq:def-u}\\
+  T_n(\delta)[\tau][\tau'] &= \sum_{\rho>\tau-\delta}A_n[\tau'][\rho].\label{eq:def-T}
+\end{align}
+#+end_export
+*The indexing is spelled out here rather than left to be inferred, because both indices of
+\(T_n(\delta)\) run over one and the same set and it is easy to mistake either for the other.* Both
+\(\vec u_n\) and \(T_n(\delta)\) are indexed by values of \(\tp\),
+#+begin_export latex
+\begin{equation}\label{eq:def-uT-range}
+  \tau,\tau'\in\lbrace-1,0,1,\dots,n\rbrace ,
+\end{equation}
+#+end_export
+so \(\vec u_n\) has \(n+2\) entries and \(T_n(\delta)\) is \((n+2)\times(n+2)\). In \(T_n(\delta)\) *the row
+index \(\tau\) is the \(\tp\) of the previous summand and the column index \(\tau'\) is the \(\tp\) of
+the current one*; the summation variable \(\rho\) is the \(\indeg\) of the current summand and is
+summed out, so it is not an index of \(T_n\). Thus \(u_n[\tau]\) counts the \(\vec s\in\mathcal F_n\)
+with \(\tp(\vec s\,)=\tau\), and \(T_n(\delta)[\tau][\tau']\) counts those with \(\tp(\vec s\,)=\tau'\)
+whose \(\indeg\) is large enough to be chained after a predecessor of \(\tp\) equal to \(\tau\).
+Finally \(\vec 1_n\) denotes the all-ones column vector of length \(n+2\), so that for a row vector
+\(\vec x\) the product \(\vec x\cdot\vec 1_n\) is just the sum of the entries of \(\vec x\). Note
+that \(\vec u_n\) is the row sum of
+\(A_n\), and that \(T_n(\delta)\) is *increasing entrywise in \(\delta\)*, since enlarging \(\delta\)
+only enlarges the range of \(\rho\).
+#+end_definition
+
+#+NAME: thm-main
+#+begin_theorem
+Fix \(n\ge1\), \(r\ge1\) and integers \(d_1\le\cdots\le d_r\), and let \(\delta_i=d_i-d_{i-1}\) for
+\(2\le i\le r\) be the gaps. With \(\vec u_n\), \(T_n(\delta)\) and \(\vec 1_n\) as in
+Definition [[def-uT]], built from the matrix \(A_n\) of Definition [[def-A]] (equivalently, by
+Lemma [[lem-joint]], assembled from one run of Linusson's recursion at \(p=n\)), we have
+#+begin_export latex
+\begin{equation}\label{eq:auto-15}
+  \lvert\mathrm{FF}(n;\vec d\,)\rvert\;=\;\vec u_n\cdot T_n(\delta_2)\cdot T_n(\delta_3)\cdots T_n(\delta_r)\cdot\vec 1_n .
+\end{equation}
+#+end_export
+#+end_theorem
+
+#+begin_proof
+By Theorem [[thm-chaining]], \(|\mathrm{FF}(n;\vec d\,)|\) counts tuples with
+\(\tp(\vec s_{i-1})<\indeg(\vec s_i)+\delta_i\). Constraint \(i\) involves \(s_{i-1}\) only through \(\tp\) and
+\(\vec s_i\) only through \(\tp\) and \(\indeg\). Summing over tuples in the order \(\vec s_1,\vec s_2,\dots,\vec s_r\)
+and grouping each \(\vec s_i\) by its \((\tp,\indeg)\) class therefore gives the stated product: \(u_n[\tau]\)
+counts the admissible \(\vec s_1\) with \(\tp=\tau\), and \(T_n(\delta_i)[\tau][\tau']\) counts the \(\vec s_i\)
+with \(\tp=\tau'\) whose \(\indeg=\rho\) satisfies \(\tau<\rho+\delta_i\).
+#+end_proof
+
+#+NAME: ex-uT
+#+begin_mexample
+Continuing Example [[ex-A]] at \(n=3\). The row sums of the matrix displayed there give the vector
+\(\vec u_n=(1,1,3,4,1)\), and \eqref{eq:def-u}--\eqref{eq:def-T} then produce
+#+begin_export latex
+\[
+  T_n(0)=\begin{pmatrix}
+    1&1&3&4&1\\ 0&1&3&4&1\\ 0&0&1&3&1\\ 0&0&0&1&1\\ 0&0&0&0&1
+  \end{pmatrix},
+  \;
+  T_n(1)=\begin{pmatrix}
+    1&1&3&4&1\\ 1&1&3&4&1\\ 0&1&3&4&1\\ 0&0&1&3&1\\ 0&0&0&1&1
+  \end{pmatrix},
+  \;
+  T_n(4)=\begin{pmatrix}
+    1&1&3&4&1\\ 1&1&3&4&1\\ 1&1&3&4&1\\ 1&1&3&4&1\\ 1&1&3&4&1
+  \end{pmatrix}.
+\]
+#+end_export
+\(T_n(0)\) is upper triangular with unit diagonal, which is Proposition [[prop-delta0]]. Increasing
+\(\delta\) by one shifts the whole pattern down one row, since the constraint
+\(\rho>\tau-\delta\) weakens by exactly one step; that is the entrywise monotonicity noted in
+Definition [[def-uT]]. At \(\delta=4=n+1\), the threshold of
+Proposition [[prop-threshold]], every row has become \(\vec u_n\) itself: the matrix is
+\(\vec 1_n\,\vec u_n\), of rank one, and its only non-zero eigenvalue is
+\(\vec u_n\cdot\vec 1_n=10=\lvert\mathcal F_3\rvert\), which is Proposition [[prop-perron-threshold]] in
+this instance. Reading off \(r=2\), \(\vec u_n\,T_n(0)\,\vec 1_n=43\) and \(\vec u_n\,T_n(4)\,\vec 1_n=100=10^2\).
+#+end_mexample
+
+One computation of \(A_n\) at fixed \(n\) answers every \(r\) and every shift vector at once, which
+is what makes values far outside brute-force range available: \(|\mathrm{FF}(8;0,0)|=27655902\) is immediate, while direct enumeration of the sumset
+becomes infeasible around \(n=6\), \(r=2\).
+
+#+NAME: cor-r1
+#+begin_corollary
+For \(r=1\), \(|\mathrm{FF}(n;\vec d\,)|=\sum_\tau u_n[\tau]=F^n(n)=|\mathcal F_n|\), which is Linusson's own count.
+#+end_corollary
+
+#+NAME: prop-threshold
+#+begin_proposition
+\(|\mathrm{FF}(n;\vec d\,)|=|\mathcal F_n|^{\,r}\) if and only if every gap satisfies \(\delta_i\ge n+1\).
+At \(\delta_i=n\) the constraint fails for exactly one pair, namely
+\((\vec s_{i-1},\vec s_i)=(\text{full simplex},\text{void family})\).
+#+end_proposition
+
+#+begin_proof
+The constraint \(\tau<\rho+\delta\) is vacuous exactly when \(\delta>\max\tau-\min\rho\). Over
+\(\mathcal F_n\), \(\max\tp=n\) (full simplex) and \(\min\indeg=0\) (void family), so the threshold is
+\(\delta\ge n+1\); at \(\delta=n\) the single violating pair is the one realising both extremes.
+#+end_proof
+
+For \(r=2\) this gives \(|\mathcal F_n|^2-1\) at \(\delta=n\), i.e. \(99\), \(675\), \(9215\) for
+\(n=3,4,5\), which matches the computed table.
+
+#+NAME: prop-delta0
+#+begin_proposition
+If all gaps vanish then \(T_n(0)\) is unipotent, meaning that \(T_n(0)-I\) is nilpotent, and
+\(|\mathrm{FF}(n;0,\dots,0)|\) is a polynomial in
+\(r\) of degree at most \(n+1\).
+#+end_proposition
+
+#+begin_proof
+\(T_n(0)[\tau][\tau']\ne0\) requires some \(\rho>\tau\) with \(A_n[\tau'][\rho]>0\); since
+\(\rho\le\tau'+1\) always, this forces \(\tau'\ge\tau\), so \(T_n(0)\) is triangular in the
+\(\tp\)-ordering. Its diagonal entries are
+\[
+  T_n(0)[\tau][\tau]=A_n[\tau][\tau+1]=1 ,
+\]
+the unique
+\(\vec s\) with \(\tp=\tau\) and \(\indeg=\tau+1\) being the full truncation at \(\tau\). So
+\(N=T_n(0)-I\) is strictly triangular, hence nilpotent with \(N^{n+2}=0\); expanding
+\((I+N)^{r-1}\) by the binomial theorem then terminates after \(n+2\) terms and is polynomial in
+\(r\) of degree at most \(n+1\), the matrix size minus one. That expansion is
+\eqref{eq:delta0-expansion}, where it is used again to pin the degree exactly.
+#+end_proof
+
+#+NAME: rem-delta0-structure
+#+begin_remark
+(/What the achievable set looks like when all the gaps vanish./) At \(\delta_i=0\) for every \(i\) the
+companion paper's polytope is simply the dilation \(r\cdot\Koz(n)\) of the Kozlov simplex, and it is
+natural to ask whether the achievable set inside it has a correspondingly simple description. It does,
+and saying what it is explains why the counting nevertheless needs the machinery above.
+
+Take \(\vec d=(0,\dots,0)\). Every coordinate satisfies \(0\le x(j)\le r\binom nj\), so division with
+remainder by the capacity of a single component is available:
+#+begin_export latex
+\begin{equation}\label{eq:delta0-digits}
+  x(j)=q_j\tbinom nj+f_j,\qquad 0\le f_j<\tbinom nj,\qquad 0\le q_j\le r ,
+\end{equation}
+#+end_export
+uniquely, for \(0\le j\le n\). Call \(q_j\) the *digit* of \(\vec x\) in degree \(j\) and \(f_j\) the
+remainder. Then \(\vec x\) lies in \(\mathrm{FF}(n;0,\dots,0)\) if and only if the digit sequence is
+non-increasing,
+#+begin_export latex
+\begin{equation}\label{eq:delta0-characterisation}
+  q_0\;\ge\;q_1\;\ge\;\cdots\;\ge\;q_n ,
+\end{equation}
+#+end_export
+and the clamps \eqref{eq:water-filling-component} are \(f\)-vectors.
+The clamps take a transparent form here. With all \(d_i=0\), equation \eqref{eq:def-Q} gives
+#+begin_export latex
+\[
+  \hat s_i(j)=\min\Bigl(\tbinom nj,\;\max\bigl(0,\;x(j)-(r-i)\tbinom nj\bigr)\Bigr),
+\]
+#+end_export
+so
+#+begin_export latex
+\begin{equation}\label{eq:delta0-clamp-digits}
+  \hat s_i(j)=\begin{cases}
+    \binom nj, & q_j>r-i,\\
+    f_j,       & q_j=r-i,\\
+    0,         & q_j<r-i .
+  \end{cases}
+\end{equation}
+#+end_export
+So the digit sequence does all the bookkeeping: component \(i\) is full in the degrees where the digit
+exceeds \(r-i\), zero where it falls below, and free exactly on the level set \(\lbrace j:q_j=r-i\rbrace\).
+Monotonicity of \(\vec q\) is precisely the statement that each of those three sets is an interval in
+the right position, which is what the disjoint increasing windows of Remark [[rem-explicit-inverse]]
+amount to in this case; and once \(\vec q\) is non-increasing, the only condition left on \(\vec x\) is
+that on each constant block of \(\vec q\) the remainders \(f_j\) continue the full skeleton below the
+block to an \(f\)-vector. That is *one Kruskal--Katona condition per block*, and nothing else.
+
+Two things follow, and they answer the question in opposite directions.
+
+The *set* is simple: it is a digit expansion in the mixed radix \(\binom n0,\dots,\binom nn\) whose
+digits must be non-increasing, cut down by one Kruskal--Katona condition per constant block. In
+particular monotonicity of the digits is a necessary condition that can be read off \(\vec x\) by
+inspection, with no enumeration.
+
+The *count* is not simple, and the reason is visible in the same description: a block of the digit
+sequence contributes the number of ways of continuing a full skeleton inside a window, which is
+exactly what Linusson's refined \(E^n(\cdot,\cdot)\) counts, and consecutive blocks interact through
+their shared boundary. That interaction is the transfer matrix. So the care in the proof of
+Theorem [[thm-delta0-degrees]] is not spent on the structure of the set at all; it is spent on showing
+that the longest path in the digraph of Remark [[rem-delta0-digraph]] is *unique*, which is what pins
+the degree exactly rather than bounding it.
+
+Monotonicity alone is not sufficient, and the smallest witness is small: at \(n=2\), \(r=1\) the
+vector \(\vec x=(0,1,0)\) has digits \((0,0,0)\), which are non-increasing, but it is not an
+\(f\)-vector, having a \(1\)-face and no empty face. The full characterisation
+\eqref{eq:delta0-characterisation} was checked exhaustively against brute-force enumeration of the
+sumset for \(n\le4\) and \(r\le3\), twelve cases, with exact agreement in every one; over the same
+range the monotonicity condition alone admits strictly more vectors, for instance \(93\) against
+\(\lvert\mathrm{FF}(3;0,0)\rvert=43\).
+#+end_remark
+
+The bound of Proposition [[prop-delta0]] is attained, and the leading coefficient is explicit. Both
+follow from two structural entries of \(A_n\).
+
+#+NAME: lem-A-structure
+#+begin_lemma
+For \(0\le j\le n\) one has \(A_n[j][j+1]=1\), the unique witness being the full truncation at \(j\);
+and for \(1\le j\le n\) one has \(A_n[j][j]=\binom nj-1\). Moreover \(A_n[0][0]=0\), and row \(\tau=-1\)
+of \(A_n\) is the single entry \(A_n[-1][0]=1\).
+#+end_lemma
+
+#+begin_proof
+If \(\tp(\vec s\,)=j\) and \(\indeg(\vec s\,)=j+1\) then \(s(i)=\binom ni\) for \(i\le j\) and \(s(i)=0\)
+for \(i>j\), so \(\vec s\) is the \(f\)-vector of the \(j\)-skeleton of the full simplex, and
+conversely that vector has \(\tp=j\) and \(\indeg=j+1\); one witness exactly. If instead
+\(\tp(\vec s\,)=\indeg(\vec s\,)=j\) then \(s(i)=\binom ni\) for \(i<j\), then
+\(0<s(j)<\binom nj\) (positive because \(\tp=j\), deficient because \(\indeg=j\)), and
+\(s(i)=0\) for \(i>j\). So \(\vec s\) is determined by
+#+begin_export latex
+\begin{equation}\label{eq:A-structure-m}
+  m=s(j)\;\in\;\bigl\lbrace1,\dots,\tbinom nj-1\bigr\rbrace ,
+\end{equation}
+#+end_export
+and every such \(m\) occurs: adjoin any \(m\) of the \(j\)-subsets to the full \((j-1)\)-skeleton,
+which stays an order ideal because every \((j-1)\)-subset is already present. The remaining two
+statements are the void family and the two degenerate rows.
+#+end_proof
+
+#+NAME: thm-delta0-degrees
+#+begin_theorem
+(/The exact degrees at \(\delta=0\)./) Let \(n\ge1\). Then \(|\mathrm{FF}(n;0,\dots,0)|\) is a
+polynomial in \(r\) of degree *exactly* \(n+1\), and \(|\mathrm{FF}_{\mathrm{pr}}(n;0,\dots,0)|\) one
+of degree *exactly* \(n-1\), with leading coefficients
+#+begin_export latex
+\begin{equation}\label{eq:delta0-leading}
+  \frac{1}{(n+1)!}\prod_{j=0}^{n}\binom nj
+  \qquad\text{and}\qquad
+  \frac{1}{(n-1)!}\prod_{j=2}^{n}\binom nj
+\end{equation}
+#+end_export
+respectively.
+#+end_theorem
+
+#+begin_proof
+Write \(N=T_n(0)-I\), strictly upper triangular in the \(\tp\)-ordering by Proposition
+[[prop-delta0]]. Expanding,
+#+begin_export latex
+\begin{equation}\label{eq:delta0-expansion}
+  \vec u_n\,T_n(0)^{r-1}\vec 1_n=\vec u_n\,(I+N)^{r-1}\vec 1_n
+  =\sum_{k\ge0}\binom{r-1}{k}\,c_k,\qquad c_k=\vec u_n\,N^k\vec 1_n ,
+\end{equation}
+#+end_export
+where \(\vec 1_n\) is, as in Definition [[def-uT]], the all-ones column vector, so that
+\(c_k=\vec u_n\,N^k\vec 1_n\) is the sum of all the entries of the row vector \(\vec u_n\,N^k\). Each
+\(\binom{r-1}{k}\) is a polynomial in \(r\) of degree exactly \(k\). As the \(\binom{r-1}{k}\)
+are linearly independent, *the degree is the largest \(k\) with \(c_k\ne0\)*, and the leading
+coefficient is that \(c_k\) divided by \(k!\).
+
+Since \(A_n\) is supported on \(\rho\le\tau'+1\), the superdiagonal of \(N\) is, by
+Lemma [[lem-A-structure]],
+#+begin_export latex
+\begin{equation}\label{eq:delta0-superdiag}
+  N[\tau][\tau+1]=A_n[\tau+1][\tau+1]+A_n[\tau+1][\tau+2]
+  =\Bigl(\tbinom n{\tau+1}-1\Bigr)+1=\tbinom n{\tau+1}
+  \quad(-1\le\tau\le n-1),
+\end{equation}
+#+end_export
+Pascal's row \(n\) exactly. For a strictly upper triangular matrix of size \(m\), the power
+\(N^{m-1}\) has a single possibly non-zero entry, in the corner, equal to the product of the
+superdiagonal, because only the full staircase path survives. Here \(m=n+2\), so
+#+begin_export latex
+\begin{equation}\label{eq:delta0-corner}
+  c_{n+1}=u_n[-1]\cdot\prod_{j=0}^{n}\tbinom nj ,
+\end{equation}
+#+end_export
+and \(u_n[-1]=1\) because the void family is the unique
+\(\vec s\) with \(\tp=-1\). This is non-zero, which gives the improper claim.
+
+For the proper variant one adjustment is needed: the proper matrix is *not* unipotent on the full
+index set, its columns \(\tau'=-1\) and \(\tau'=0\) vanishing identically. But \(\vec u_n\) vanishes on
+those two coordinates as well, so every product \(\vec u_n\,T'_n(0)^k\) agrees with the corresponding
+product over the principal block on \(\tau\in\lbrace1,\dots,n\rbrace\), and *that* block is
+unipotent. On it the superdiagonal is again \eqref{eq:delta0-superdiag}, with column indices
+\(\ge2\) so that the two zeroed columns are invisible, and \(u'_n[1]=A_n[1][2]=1\), the unique proper
+vector with \(\tp=1\) being \((1,n,0,\dots,0)\). The block has size \(n\), so
+\(c'_{n-1}=\prod_{j=2}^{n}\binom nj\ne0\).
+#+end_proof
+
+#+NAME: tab-delta0-polys
+#+begin_mexample
+The polynomials themselves are obtained by interpolating Theorem [[thm-main]] at enough values of
+\(r\). They are listed below by coefficient, ascending in \(r\), which is what lets \(n=7\) fit on the
+page; so the row for \(n\) reads \(\sum_kc_kr^k\) from left to right.
+#+begin_export latex
+\begingroup\footnotesize
+\begin{center}
+\begin{tabular}{@{}c*{9}{r}@{}}
+  \toprule
+  \multicolumn{10}{@{}l}{\(\lvert\mathrm{FF}(n;0^r)\rvert=\sum_kc_kr^k\), degree \(n+1\)}\\
+  \(n\) & \(c_0\) & \(c_1\) & \(c_2\) & \(c_3\) & \(c_4\) & \(c_5\) & \(c_6\) & \(c_7\) & \(c_8\)\\
+  \midrule
+  1 & 1 & 3/2 & 1/2 & & & & & &\\
+  2 & 1 & 13/6 & 3/2 & 1/3 & & & & &\\
+  3 & 1 & 37/12 & 29/8 & 23/12 & 3/8 & & & &\\
+  4 & 1 & 131/30 & 8 & 47/6 & 4 & 4/5 & & &\\
+  5 & 1 & 25/4 & 1219/72 & 79/3 & 1915/72 & 185/12 & 125/36 & &\\
+  6 & 1 & 2929/420 & 929/24 & 269/3 & 2869/24 & 8863/60 & 469/4 & 225/7 &\\
+  \addlinespace
+  \multicolumn{10}{@{}l}{\(\lvert\mathrm{FF}_{\mathrm{pr}}(n;0^r)\rvert=\sum_kc_kr^k\), degree \(n-1\)}\\
+  \(n\) & \(c_0\) & \(c_1\) & \(c_2\) & \(c_3\) & \(c_4\) & \(c_5\) & & &\\
+  \midrule
+  1 & 1 & & & & & & & &\\
+  2 & 1 & 1 & & & & & & &\\
+  3 & 1 & 5/2 & 3/2 & & & & & &\\
+  4 & 1 & 4 & 7 & 4 & & & & &\\
+  5 & 1 & 20/3 & 79/6 & 85/3 & 125/6 & & & &\\
+  6 & 1 & 10/3 & 315/4 & 1/6 & 595/4 & 225 & & &\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+#+end_export
+At \(n=7\) the coefficients no longer fit across a page, so the two polynomials are written out
+instead, broken after the \(r^4\) term:
+#+begin_export latex
+\begin{align*}
+  \lvert\mathrm{FF}(7;0^r)\rvert\;=\;&
+    \tfrac{84035}{128}r^{8}+\tfrac{868819}{480}r^{7}+\tfrac{2873311}{2880}r^{6}
+    +\tfrac{42091}{80}r^{5}+\tfrac{1452955}{1152}r^{4}\\
+  &{}+\tfrac{163871}{480}r^{3}\;\boldsymbol{-}\;\tfrac{267763}{1440}r^{2}
+    +\tfrac{2117}{40}r+1 ,\\[0.6ex]
+  \lvert\mathrm{FF}_{\mathrm{pr}}(7;0^r)\rvert\;=\;&
+    \tfrac{84035}{16}r^{6}\;\boldsymbol{-}\;\tfrac{91581}{80}r^{5}
+    \;\boldsymbol{-}\;\tfrac{81977}{48}r^{4}\\
+  &{}+\tfrac{170191}{48}r^{3}\;\boldsymbol{-}\;\tfrac{3274}{3}r^{2}
+    +\tfrac{3187}{60}r+1 .
+\end{align*}
+#+end_export
+Every one of these polynomials has constant term \(1\), as it must, because at \(r=0\) the empty
+sum is the single point \(\vec0\). The degrees and the leading coefficients agree with
+\eqref{eq:delta0-leading} in all fourteen cases.
+
+One feature is worth flagging, because it is easy to assume otherwise: *the coefficients are not all
+positive*, and the minus signs of the two \(n=7\) polynomials are set in bold above to make them
+visible. They first appear at \(n=7\), and there in
+*both* variants, at \(r^2\) in the improper polynomial and at \(r^2\), \(r^4\) and \(r^5\) in the
+proper one. So no positivity argument can be read into Theorem [[thm-delta0-degrees]]. Up to \(n=6\)
+every coefficient is positive, though the margin is thin: the \(r^3\) coefficient of the proper
+polynomial at \(n=6\) is \(1/6\).
+
+These polynomials were computed by exact rational interpolation of Theorem [[thm-main]] at
+\(r=1,\dots,\deg+1\), and each was then checked by evaluating the fitted polynomial at four further
+values of \(r\) against the matrix product; all of those agreed.
+#+end_mexample
+
+#+NAME: rem-delta0-digraph
+#+begin_remark
+(/Both degrees are longest paths./) Under one reading of Theorem [[thm-delta0-degrees]] its two
+exponents can be read off a picture, and that reading explains why the one step of the proof that
+needed care is the one that did.
+
+Let \(G\) be the weighted digraph on the vertex set \(\lbrace-1,0,\dots,n\rbrace\) of \(\tp\)-values
+whose adjacency matrix is \(N=T_n(0)-I\). Unipotence of \(T_n(0)\) says exactly that \(G\) is a *directed
+acyclic graph*: a non-negative matrix is unipotent precisely when every vertex carries a loop and
+there are no other directed cycles, since all \(n+2\) eigenvalues being \(1\) forces
+\(\operatorname{tr}(T_n(0)^k)=n+2\) for every \(k\), and the loops alone already supply that many closed
+walks of each length. Removing the loops leaves \(N\), and a non-negative matrix is nilpotent exactly
+when its digraph is acyclic. Here the arcs run \(\tau\to\tau'\) only for \(\tau'>\tau\), which is the
+triangularity, and the arc \(\tau\to\tau+1\) carries weight \(\binom n{\tau+1}\) by
+\eqref{eq:delta0-superdiag}.
+
+Now \((N^k)[\tau][\tau']\) is the total weight of the *paths* of length exactly \(k\) from \(\tau\) to
+\(\tau'\), paths and not walks because \(G\) is acyclic. So the expansion
+\eqref{eq:delta0-expansion} reads
+#+begin_export latex
+\begin{equation}\label{eq:delta0-paths}
+  a_r=\sum_{k\ge0}\binom{r-1}k\cdot\bigl(\text{total weight of paths of length }k\text{ in }G\bigr),
+\end{equation}
+#+end_export
+the paths being weighted by \(\vec u_n\) at their start and summed over their end. Since
+\(\binom{r-1}k\) has degree exactly \(k\), this gives at once:
+
+- the **degree** is the length of the longest path in \(G\) that \(\vec u_n\) reaches;
+- the **leading coefficient** is the total weight of those longest paths, divided by that length's
+  factorial.
+
+Both halves of the theorem are now visible. In the improper case a path of length \(n+1\) must pass
+through all \(n+2\) vertices, so it is the staircase \(-1\to0\to\cdots\to n\), unique, of weight
+\(\prod_{j=0}^n\binom nj\): degree \(n+1\), leading coefficient
+\(\prod_{j=0}^n\binom nj\big/(n+1)!\). In the proper case the vertices \(\tau=-1\) and \(\tau=0\) drop
+out (\(\vec u'_n\) vanishes on them, and columns \(-1\) and \(0\) of \(T'_n(0)\) vanish too, so nothing
+reaches them either), leaving a DAG on \(\lbrace1,\dots,n\rbrace\) whose longest path
+\(1\to2\to\cdots\to n\) has length \(n-1\) and weight \(\prod_{j=2}^n\binom nj\).
+
+This also says which step of the proof carries the content, and it is the same conclusion
+Remark [[rem-delta0-structure]] reaches from the other side. "Only the full staircase survives", the
+corner evaluation, is the assertion that \(G\) has exactly one longest path; everything else is the
+binomial expansion. It also explains the shape of the answer: a product of binomial coefficients
+appears because a longest path is forced to take every arc of the staircase, and a factorial divides
+it because \(\binom{r-1}{k}\) does.
+
+The picture is small enough to draw. At \(n=3\), reading \(T_n(0)\) off Example [[ex-uT]] and
+subtracting the identity gives
+#+begin_export latex
+\[
+  N=T_n(0)-I=\begin{pmatrix}
+    0&1&3&4&1\\ 0&0&3&4&1\\ 0&0&0&3&1\\ 0&0&0&0&1\\ 0&0&0&0&0
+  \end{pmatrix},
+\]
+#+end_export
+whose digraph is Figure \ref{fig:delta0-digraph}. Its superdiagonal weights are
+\(1,3,3,1\), which is Pascal's row \(n=3\) as \eqref{eq:delta0-superdiag} says. The longest path
+in the whole graph is the staircase \(-1\to0\to1\to2\to3\), of length \(4=n+1\) and weight
+\(1\cdot3\cdot3\cdot1=9\); it is the only path of that length, since a path of length \(4\) on
+five vertices must visit all of them. So the improper polynomial has degree \(4\) and leading
+coefficient \(9/4!=3/8\). Deleting the two vertices \(-1\) and \(0\), which the proper case
+does, leaves the staircase \(1\to2\to3\) as the longest path, of length \(2=n-1\) and weight
+\(3\cdot1=3\), so the proper polynomial has degree \(2\) and leading coefficient \(3/2!=3/2\).
+Both agree with the \(n=3\) lines of Example [[tab-delta0-polys]], where the polynomials are
+\(\tfrac38r^4+\cdots\) and \(\tfrac32r^2+\cdots\).
+
+#+begin_export latex
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[shorten >=1pt,
+  every node/.style={circle,draw,minimum size=7mm,inner sep=0pt,font=\small},
+  wt/.style={draw=none,shape=rectangle,inner sep=1pt,font=\footnotesize}]
+  \node (v0) at (0,0)   {$-1$};
+  \node (v1) at (2.1,0) {$0$};
+  \node (v2) at (4.2,0) {$1$};
+  \node (v3) at (6.3,0) {$2$};
+  \node (v4) at (8.4,0) {$3$};
+  % the staircase, drawn heavy: these are the arcs a longest path must use
+  \draw[->,very thick] (v0) -- node[wt,above] {$1$}  (v1);
+  \draw[->,very thick] (v1) -- node[wt,above] {$3$}  (v2);
+  \draw[->,very thick] (v2) -- node[wt,above] {$3$}  (v3);
+  \draw[->,very thick] (v3) -- node[wt,above] {$1$}  (v4);
+  % the remaining arcs
+  \draw[->] (v0) to[bend right=22] node[wt,below] {$3$} (v2);
+  \draw[->] (v0) to[bend right=30] node[wt,below] {$4$} (v3);
+  \draw[->] (v0) to[bend right=36] node[wt,below] {$1$} (v4);
+  \draw[->] (v1) to[bend left=22]  node[wt,above] {$4$} (v3);
+  \draw[->] (v1) to[bend left=30]  node[wt,above] {$1$} (v4);
+  \draw[->] (v2) to[bend right=22] node[wt,below] {$1$} (v4);
+\end{tikzpicture}
+\caption{The weighted acyclic digraph \(G\) of Remark~\ref{rem-delta0-digraph} at \(n=3\), with
+adjacency matrix \(N=T_n(0)-I\). Nodes are values of \(\tp\); the arc \(\tau\to\tau'\) carries
+weight \(N[\tau][\tau']\). The staircase arcs, drawn heavy, carry Pascal's row \(1,3,3,1\) and
+form the unique longest path: its length \(4\) is the degree of
+\(\lvert\mathrm{FF}(3;0^r)\rvert\) in \(r\) and its weight \(9\), divided by \(4!\), is the
+leading coefficient \(3/8\). The proper count lives on the sub-digraph spanned by
+\(\lbrace1,2,3\rbrace\).}
+\label{fig:delta0-digraph}
+\end{figure}
+#+end_export
+#+end_remark
+
+#+NAME: rem-delta0-degrees
+#+begin_remark
+The improper leading coefficient is \(\prod_{j=0}^{n}\binom nj\big/(n+1)!\), the numerator being the
+product of a whole row of Pascal's triangle (OEIS A001142). At \(n=2\) the two coefficients are
+\(2/3!=1/3\) and \(1/1!=1\), matching the improper values \(14,30,55,91\) for \(r=2,\dots,5\), a
+cubic with third difference \(2\), and the proper values
+\(|\mathrm{FF}_{\mathrm{pr}}(2;0^r)|=r+1\). Theorem [[thm-delta0-degrees]] was verified against
+independent computation of both counts for \(n=2,\dots,8\) and \(r\) up to \(n+4\); see
+Section [[#sec-verification]].
+#+end_remark
+
+* The proper variant
+:PROPERTIES:
+:CUSTOM_ID: sec-proper
+:END:
+
+The companion paper's polytope is built from \(S_n\), not \(\mathcal F_n\): its Hilbert functions come
+from *proper* monomial submodules. The count restricts accordingly, but the restriction is not free:
+it costs work in the proof below, and it costs a symmetry outright (Remark
+[[rem-proper-not-reversible]]).
+The argument of Theorem [[thm-chaining]] goes through the lex representative, so what must be checked
+is that the lex representative of a properly achievable Hilbert function is itself proper.
+
+#+NAME: lem-lexproper
+#+begin_lemma
+Let \(\vec x=\sum_i\shift^{d_i}(\vec s_i)\) with every \(\vec s_i\in S_n\). Then the unique lex submodule
+\(L\) with \(\HF(F/L)=\vec x\) is proper.
+#+end_lemma
+
+#+begin_proof
+By Definition 2.6, \(\mathrm{Mon}_j(L)\) is the initial segment of \(\mathrm{Mon}_j(F)\) of size
+\(C_j=\dim F_j-x(j)\), and the segment fills the slots \(g_1,g_2,\dots\) in order. So \(L\) is proper
+exactly when, for every \(i\), the segment does not reach \(g_i\)'s slot in the two module degrees
+\(j=d_i\) and \(j=d_i+1\), that is, when \(C_j\le\sum_{k<i}\binom n{j-d_k}\) there. Writing
+\(\binom nm=0\) and \(s_k(m)=0\) outside \(0\le m\le n\),
+\[
+  C_j=\sum_k\Bigl(\tbinom n{j-d_k}-s_k(j-d_k)\Bigr).
+\]
+For \(k\ge i\) and \(j\le d_i+1\) we have \(j-d_k\le d_i+1-d_k\le1\), and a proper \(\vec s_k\) has
+\(s_k(0)=1=\binom n0\) and \(s_k(1)=n=\binom n1\), while both vanish in negative degrees; so every
+such summand is zero. Hence
+\[
+  C_j\;=\;\sum_{k<i}\Bigl(\tbinom n{j-d_k}-s_k(j-d_k)\Bigr)\;\le\;\sum_{k<i}\tbinom n{j-d_k} ,
+\]
+which is exactly the capacity of the slots preceding \(g_i\).
+#+end_proof
+
+#+NAME: thm-proper
+#+begin_theorem
+Fix \(n\ge1\), \(r\ge1\) and a sorted \(\vec d\). Let \(A'_n\) be \(A_n\) with the columns \(\rho=0\) and
+\(\rho=1\) set to zero, \(\vec u'_n\) its row sums, and \(T'_n(\delta)\) built from \(A'_n\) as in
+Theorem [[thm-main]]. Then
+#+begin_export latex
+\begin{equation}\label{eq:auto-16}
+  \lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert
+  \;=\;\lvert\mathrm{CT}_{\mathrm{pr}}(n;\vec d\,)\rvert
+  \;=\;\vec u'_n\cdot T'_n(\delta_2)\cdots T'_n(\delta_r)\cdot\vec 1_n .
+\end{equation}
+#+end_export
+#+end_theorem
+
+#+begin_proof
+\(S_n=\lbrace \vec s\in\mathcal F_n:\indeg(\vec s\,)\ge2\rbrace\), which is what deleting the two columns
+implements. As in Theorem [[thm-chaining]](d), \(L\mapsto\HF(F/L)\) is injective on lex submodules; it
+carries proper lex submodules into \(\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\), since a proper lex submodule is a
+proper monomial submodule, and onto it: given \(\vec x\in\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\), Theorem 4.2
+(a) \(\Leftrightarrow\) (c) supplies the lex representative and Lemma [[lem-lexproper]] shows it is
+proper. Definition 2.6 \(\Leftrightarrow\) 2.7 with Lemma [[lem-dictionary]], restricted componentwise
+to lex ideals of initial degree \(\ge2\), identifies the proper lex submodules with the proper-chained
+tuples. The factorisation is then the rearrangement of Theorem [[thm-main]] verbatim.
+#+end_proof
+
+#+NAME: prop-proper-threshold
+#+begin_proposition
+For \(n\ge1\), \(|\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)|=|S_n|^{\,r}\) if and only if every gap satisfies
+\(\delta_i\ge n-1\).
+#+end_proposition
+
+#+begin_proof
+As in Proposition [[prop-threshold]], with \(\max\tp=n\) and \(\min\indeg=2\) over \(S_n\).
+#+end_proof
+
+#+NAME: rem-proper-sequences
+#+begin_remark
+Two sequences recorded in earlier work on this project are reproduced exactly by
+Theorem [[thm-proper]] and extended. For \(r=2\), \(n=2,\dots,9\):
+#+begin_export latex
+\begin{equation}\label{eq:auto-17}
+  \delta=0:\quad 3,\ 12,\ 69,\ 627,\ 9904,\ 296289,\ 18009389,\ 2346218172,
+\end{equation}
+#+end_export
+#+begin_export latex
+\begin{equation}\label{eq:auto-18}
+  \delta=1:\quad 4,\ 22,\ 162,\ 1858,\ 38232,\ 1571774,\ 138881518,\ 27635025278 .
+\end{equation}
+#+end_export
+The prefixes through \(n=6\) are the independently enumerated ones. Neither sequence, nor \(|S_n|\)
+itself, is currently in the OEIS.
+#+end_remark
+
+* Growth
+:PROPERTIES:
+:CUSTOM_ID: sec-growth
+:END:
+
+#+NAME: prop-recurrence
+#+begin_proposition
+For a constant gap \(\delta\), put
+#+begin_export latex
+\begin{equation}\label{eq:def-ar}
+  a_r\;:=\;\lvert\mathrm{FF}(n;0,\delta,2\delta,\dots,(r-1)\delta)\rvert
+  \;=\;\vec u_n\cdot T_n(\delta)^{r-1}\cdot\vec 1_n .
+\end{equation}
+#+end_export
+Then \(a_r\) satisfies the linear recurrence whose characteristic polynomial is
+that of \(T_n(\delta)\), and its exponential growth rate is the Perron root \(\lambda\) of
+\(T_n(\delta)\), in the sense that \(a_r^{1/r}\to\lambda\). The same holds for the proper count with
+\(T'_n(\delta)\).
+#+end_proposition
+
+#+begin_proof
+The recurrence is the Cayley--Hamilton theorem applied to \(T_n(\delta)\). That theorem says that the
+characteristic polynomial annihilates the matrix, and the vectors \(\vec u_n\) and \(\vec 1_n\) are
+fixed once and for all, so the same polynomial annihilates the scalar sequence \(a_r\). For the
+growth rate, the spectral radius of a matrix is the exponential growth rate of the norms of its
+powers, and that radius is the Perron root \(\lambda\) by Perron--Frobenius, since \(T_n(\delta)\)
+is non-negative. The same two arguments apply verbatim to \(T'_n(\delta)\).
+#+end_proof
+
+#+NAME: rem-recurrence-not-asymptotic
+#+begin_remark
+It is worth saying what Proposition [[prop-recurrence]] does *not* claim, since the natural stronger
+reading of it is false. There is in general no constant \(K\) with \(a_r\sim K\lambda^{\,r}\). At
+\(\delta=0\) the matrix is unipotent, so \(\lambda=1\), while \(a_r\) is a polynomial in \(r\) of
+degree exactly \(n+1\) by Theorem [[thm-delta0-degrees]]; the ratio \(a_r/\lambda^{\,r}\) is then
+\(a_r\) itself, and is unbounded. Such a constant does exist when the dominant eigenvalue is
+simple, which the Perron roots of Table \ref{tab:perron-roots} are consistent with for
+\(\delta\ge1\), but we do not prove it.
+#+end_remark
+
+#+NAME: mex-recurrences
+#+begin_mexample
+At \(n=2\), \(\delta=1\), the characteristic polynomial of \(T_n(1)\) is
+\(\lambda(\lambda-1)(\lambda^2-4\lambda+1)\), so \(a_r=5a_{r-1}-5a_{r-2}+a_{r-3}\); the values are
+\(5,20,76,285,1065\) for \(r=1,\dots,5\), and indeed \(5\cdot285-5\cdot76+20=1065\). The Perron root
+is \(2+\sqrt3\approx3.732\). At \(n=3\), \(\delta=1\), it is
+\(\lambda(\lambda^4-9\lambda^3+21\lambda^2-15\lambda+3)\), giving
+\(a_r=9a_{r-1}-21a_{r-2}+15a_{r-3}-3a_{r-4}\), checked against \(10,69,426,2532,14847\).
+
+In both cases a factor of \(\lambda\) can be dropped before reading off the recurrence, and it is
+worth saying why rather than leaving it to be noticed. \(T_n(\delta)\) is singular for
+\(\delta\ge1\): rows \(\tau=-1\) and \(\tau=0\) both equal \(\vec u_n\), since
+\(\rho>-1-\delta\) and \(\rho>-\delta\) admit the same \(\rho\ge0\). A root at \(0\)
+contributes a term \(c\cdot0^{\,r}\), which vanishes for \(r\ge1\), so the quotient annihilates
+the sequence just as the characteristic polynomial does and gives a shorter recurrence. The proper
+matrix shows the same phenomenon doubled: \(T'_n(0)\) has characteristic polynomial
+\(\lambda^2(\lambda-1)^n\), the two factors of \(\lambda\) being the two identically zero
+columns that Section [[#sec-proper]]'s invariant-block argument turns on.
+
+Across \(n\) and \(\delta\) the Perron roots are as collected in Table \ref{tab:perron-roots},
+with \(\lvert\mathcal F_n\rvert\) and \(\lvert S_n\rvert\) in the last two columns for
+comparison; an entry in bold has reached its limit exactly, which is
+Proposition [[prop-perron-threshold]].
+#+begin_export latex
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}cc rr cc@{}}
+  \toprule
+  \(n\) & \(\delta\) & \(\lambda(\delta)\) & \(\lambda_{\mathrm{pr}}(\delta)\)
+        & \(\lvert\mathcal F_n\rvert\) & \(\lvert S_n\rvert\)\\
+  \midrule
+  2 & 0 & 1 & 1 & 5 & 2\\
+  2 & 1 & 3.7321 & \textbf{2} & &\\
+  2 & 2 & 4.7913 & \textbf{2} & &\\
+  2 & 3 & \textbf{5} & \textbf{2} & &\\
+  \addlinespace
+  3 & 1 & 5.8188 & 4.3028 & 10 & 5\\
+  3 & 2 & 9.0138 & \textbf{5} & &\\
+  3 & 3 & 9.8990 & \textbf{5} & &\\
+  3 & 4 & \textbf{10} & \textbf{5} & &\\
+  \addlinespace
+  4 & 1 & 9.8557 & 8.7566 & 26 & 16\\
+  4 & 2 & 20.5859 & 15.3485 & &\\
+  4 & 3 & 25.2491 & \textbf{16} & &\\
+  4 & 4 & 25.9615 & \textbf{16} & &\\
+  4 & 5 & \textbf{26} & \textbf{16} & &\\
+  \addlinespace
+  5 & 1 & 17.7573 & 17.1251 & 96 & 70\\
+  5 & 2 & 57.8411 & 52.1804 & &\\
+  5 & 3 & 87.4360 & 69.3802 & &\\
+  5 & 4 & 95.4659 & \textbf{70} & &\\
+  5 & 5 & 95.9896 & \textbf{70} & &\\
+  5 & 6 & \textbf{96} & \textbf{70} & &\\
+  \bottomrule
+\end{tabular}
+\captionof{table}{The Perron root \(\lambda(\delta)\) of \(T_n(\delta)\) and the Perron root
+\(\lambda_{\mathrm{pr}}(\delta)\) of \(T'_n(\delta)\), for \(2\le n\le5\) and small constant
+gaps \(\delta\). A bold entry has reached its limiting value exactly, which happens from
+\(\delta=n+1\) on for the improper root and from \(\delta=n-1\) on for the proper one
+(Proposition~\ref{prop-perron-threshold}).}
+\label{tab:perron-roots}
+\end{center}
+\endgroup
+#+end_export
+At \(\delta=0\) both roots are \(1\), the unipotent case of Proposition [[prop-delta0]], where the
+growth is polynomial rather than exponential. The proper root reaches its limit two steps before the
+improper one, and the last improper step is always the narrowest.
+#+end_mexample
+
+#+NAME: prop-normalform
+#+begin_proposition
+(/Normal form: all the gap-dependence sits in one shift./) Two matrices are needed, and only two. The
+*base matrix* is the transfer matrix at gap zero,
+#+begin_export latex
+\begin{equation}\label{eq:def-B}
+  B_n\;=\;T_n(0),\qquad B_n[\tau][\tau']=\sum_{\rho>\tau}A_n[\tau'][\rho] ,
+\end{equation}
+#+end_export
+which by Proposition [[prop-delta0]] is unipotent and carries the Pascal superdiagonal of
+Lemma [[lem-A-structure]]. The *saturating one-step shift* on the \(\tp\)-index is the
+\((n+2)\times(n+2)\) matrix
+#+begin_export latex
+\begin{equation}\label{eq:def-P}
+  P_n[\tau][\tau']=\begin{cases}
+    1, & \tau'=\max(\tau-1,-1),\\
+    0, & \text{otherwise},
+  \end{cases}
+  \qquad \tau,\tau'\in\lbrace-1,0,\dots,n\rbrace .
+\end{equation}
+#+end_export
+Both are indexed as in Definition [[def-uT]]. Let \(e_{-1}\) be the standard basis vector supported at
+the index \(-1\). Then for every \(\delta\ge0\),
+#+begin_export latex
+\begin{align}
+  T_n(\delta) &= P_n^{\delta}B_n ,\label{eq:normalform}\\
+  \vec u_n    &= e_{-1}^{\!\top}B_n ,\label{eq:normalform-u}
+\end{align}
+#+end_export
+and consequently
+#+begin_export latex
+\begin{equation}\label{eq:normalform-product}
+  \lvert\mathrm{FF}(n;\vec d\,)\rvert
+   =e_{-1}^{\!\top}B_n\,P_n^{\delta_2}B_n\,P_n^{\delta_3}\cdots P_n^{\delta_r}B_n\,\vec 1_n .
+\end{equation}
+#+end_export
+#+end_proposition
+
+#+begin_proof
+By Definition [[def-uT]] the entries of the transfer matrix are
+#+begin_export latex
+\begin{equation*}
+  T_n(\delta)[\tau][\tau']=\sum_{\rho>\tau-\delta}A_n[\tau'][\rho] ,
+\end{equation*}
+#+end_export
+which depend on \(\tau\) and \(\delta\) only through the difference \(\tau-\delta\), and which
+therefore coincide with row \(\tau-\delta\) of \(T_n(0)\) whenever \(\tau-\delta\ge-1\). For
+\(\tau-\delta<-1\) the condition \(\rho>\tau-\delta\) is vacuous, and so is the condition
+\(\rho>-1\) that defines row \(-1\) of \(T_n(0)\), so instead of running off the index set the row
+saturates at row \(-1\). Shifting every row down by one and saturating at \(-1\) is exactly left
+multiplication by the matrix \(P_n\) of \eqref{eq:def-P}, which is \eqref{eq:normalform}. For
+\eqref{eq:normalform-u}, read off row \(-1\) of \(T_n(0)\):
+#+begin_export latex
+\begin{equation*}
+  T_n(0)[-1][\tau']=\sum_{\rho>-1}A_n[\tau'][\rho]=\sum_{\rho\ge0}A_n[\tau'][\rho]=u_n[\tau'] .
+\end{equation*}
+#+end_export
+Substituting \eqref{eq:normalform} and \eqref{eq:normalform-u} into Theorem [[thm-main]] gives
+\eqref{eq:normalform-product}.
+#+end_proof
+
+#+NAME: rem-normalform
+#+begin_remark
+The normal form has two consequences. First, *the count depends on each gap only through
+\(\min(\delta_i,n+1)\)*, because \(P_n\) saturates: \(P_n^{\delta}=P_n^{n+1}=\vec1_n\,e_{-1}^{\!\top}\) for
+every \(\delta\ge n+1\). Second, that same identity gives a second and shorter proof of
+Propositions [[prop-threshold]] and [[prop-perron-threshold]]: above the threshold
+\(T_n(\delta)=\vec1_n\,e_{-1}^{\!\top}B_n=\vec1_n\,\vec u_n\), manifestly of rank one with non-zero eigenvalue
+\(\vec u_n\cdot\vec1_n=\lvert\mathcal F_n\rvert\). The pair \((B_n,P_n)\), one unipotent
+matrix carrying the Pascal superdiagonal of Lemma [[lem-A-structure]] and one \(0/1\) shift, encodes
+every gap vector at once.
+
+It also explains why the matrices do not commute while the improper count is nevertheless
+reversal-symmetric
+(Example [[ex-factors]] and Remark [[rem-gap-reversal]]): the non-commutation is visible in
+\eqref{eq:normalform-product}, since \(P_n\) and \(B_n\) do not commute, whereas the reversal symmetry is the
+persymmetry of \(A_n\) applied factor by factor inside the bilinear form, a property the individual
+\(T_n(\delta)\) cannot express once \(\rho\) has been summed out.
+#+end_remark
+
+#+NAME: prop-perron-threshold
+#+begin_proposition
+(/The Perron root above the threshold./) Let \(\lambda(\delta)\) be the Perron root of \(T_n(\delta)\)
+and \(\lambda_{\mathrm{pr}}(\delta)\) that of its proper analogue. Then
+#+begin_export latex
+\begin{align}
+  \lambda(\delta) &= \lvert\mathcal F_n\rvert \quad\text{for every }\delta\ge n+1,\label{eq:perron-threshold}\\
+  \lambda_{\mathrm{pr}}(\delta) &= \lvert S_n\rvert \quad\text{for every }\delta\ge n-1 .\label{eq:perron-threshold-pr}
+\end{align}
+#+end_export
+In both cases the value is attained, not merely approached, and the thresholds are exactly those of
+Propositions [[prop-threshold]] and [[prop-proper-threshold]].
+#+end_proposition
+
+#+begin_proof
+By Definition [[def-uT]],
+\[
+  T_n(\delta)[\tau][\tau']=\sum_{\rho>\tau-\delta}A_n[\tau'][\rho] .
+\]
+The
+condition \(\rho>\tau-\delta\) is vacuous exactly when \(\delta>\max\tp-\min\indeg\), which over
+\(\mathcal F_n\) is \(\delta\ge n+1\), the computation already made in
+Proposition [[prop-threshold]]. When it is vacuous the inner sum no longer depends on \(\tau\):
+every row of \(T_n(\delta)\) is the same vector \(c\), where \(c[\tau']=\sum_\rho A_n[\tau'][\rho]\) is
+the number of \(\vec s\in\mathcal F_n\) with \(\tp(\vec s\,)=\tau'\). So \(T_n(\delta)=\vec1_n\,c^{\!\top}\)
+has rank one, its non-zero eigenvalue is \(c^{\!\top}\vec1_n=\sum_{\tau'}c[\tau']=|\mathcal F_n|\), and
+every other eigenvalue is \(0\). The proper statement is the same computation with \(\min\indeg=2\)
+over \(S_n\), giving the threshold \(\delta\ge n-1\) and the root \(|S_n|\).
+#+end_proof
+
+#+NAME: rem-perron
+#+begin_remark
+Proposition [[prop-perron-threshold]] is Propositions [[prop-threshold]] and
+[[prop-proper-threshold]] stated about the matrix instead of about the sumset. Those propositions say that above
+the threshold the chaining constraint is vacuous, so the sumset is a full Cartesian product and
+\(|\mathrm{FF}(n;\vec d\,)|\) is \(|\mathcal F_n|^{\,r}\) exactly. One level down, the constraint is what
+couples consecutive summands, and with it gone \(T_n(\delta)\) forgets its row index entirely. A rank-one matrix \(\vec1_n\,c^{\!\top}\)
+has a single non-zero eigenvalue, and it is the total count; multiplying \(r-1\) copies of it
+reproduces \(|\mathcal F_n|^{\,r}\) directly.
+
+Figure \ref{fig:perron-vs-delta} shows both roots at \(n=5\). The shape is the content of
+Proposition [[prop-perron-threshold]]: each climbs and then stops dead, the proper one two steps
+earlier than the improper, and after that they are constant rather than asymptotic.
+
+#+begin_export latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{../img/perron-vs-delta-n5.pdf}
+\caption{The Perron roots \(\lambda(\delta)\) and \(\lambda_{\mathrm{pr}}(\delta)\) of
+Definition~\ref{def-uT}'s transfer matrices at \(n=5\), against the gap \(\delta\). Dotted lines mark
+\(\lvert\mathcal F_5\rvert=96\) and \(\lvert S_5\rvert=70\); the vertical rules mark the two
+thresholds of Proposition~\ref{prop-perron-threshold}, \(\delta=n-1\) for the proper root and
+\(\delta=n+1\) for the improper. Each root is *equal* to its limit from its own threshold onward, not
+merely close to it.}
+\label{fig:perron-vs-delta}
+\end{figure}
+#+end_export
+
+Below the threshold the root is strictly smaller, and it climbs. For \(n=3\), where
+\(|\mathcal F_3|=10\) and \(|S_3|=5\), the improper roots at \(\delta=1,2,3,4\) are
+#+begin_export latex
+\begin{equation}\label{eq:auto-19}
+  5.8188\ldots,\quad 9.0138\ldots,\quad 9.8990\ldots,\quad 10,
+\end{equation}
+#+end_export
+reaching \(|\mathcal F_3|\) exactly at \(\delta=4=n+1\) and staying there; the proper roots at
+\(\delta=1,2\) are \(4.3028\ldots\) and \(5\), reaching \(|S_3|\) exactly at \(\delta=2=n-1\). The
+approach is from below in both cases, as it must be, since \(T_n(\delta)\) increases entrywise with
+\(\delta\). Note how narrow the last step is: at \(\delta=n\) the improper root is already
+\(9.8990\ldots\) against \(10\), and at \(n=6\) it is \(552.998\ldots\) against \(553\), which is
+Proposition [[prop-threshold]]'s "the constraint fails for exactly one pair" made quantitative.
+#+end_remark
+
+The remaining growth question is in the number of vertices. The count \(|\mathrm{FF}(n;\vec d\,)|\) itself
+cannot be polynomial in \(n\), since it dominates \(|\mathcal F_n|=F^n(n)\). The right generalisation
+is Linusson's own: keep the dimension bound and free the vertex bound.
+
+#+NAME: def-twoparam
+#+begin_definition
+For \(p\ge n\), let \(\mathcal F_n^{(p)}\) be the set of \(f\)-vectors with \(f_1\le p\) and
+\(f_j=0\) for \(j>n\), and \(\mathrm{FF}^{(p)}(n;\vec d\,)\) the corresponding sumset.
+#+end_definition
+
+#+NAME: thm-poly-p
+#+begin_theorem
+Fix \(n\ge1\) and \(r\ge1\); let \(d_1\le\cdots\le d_r\) be integers and put
+\(\delta_i=d_i-d_{i-1}\) for \(2\le i\le r\), so that \(\vec d\) is sorted and the gaps are
+non-negative. Let \(p\ge n\), let \(\mathcal F_n^{(p)}\) be as in Definition [[def-twoparam]], and set
+#+begin_export latex
+\begin{equation}\label{eq:Ap}
+  A^{(p)}_n[\tau][\rho]=E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1),
+  \qquad \tau=-1,\dots,n,\quad\rho=0,\dots,n+1,
+\end{equation}
+#+end_export
+with \(\vec u^{(p)}_n\) its vector of row sums and \(T^{(p)}_n(\delta)\) built from \(A^{(p)}_n\) by
+\eqref{eq:def-u}--\eqref{eq:def-T}, both indexed as in Definition [[def-uT]]. Then
+#+begin_export latex
+\begin{equation}\label{eq:auto-20}
+  \lvert\mathrm{FF}^{(p)}(n;\vec d\,)\rvert\;=\;\vec u^{(p)}_n\cdot T^{(p)}_n(\delta_2)\cdots T^{(p)}_n(\delta_r)\cdot\vec 1_n ,
+\end{equation}
+#+end_export
+and for fixed \(n\), \(r\) and \(\vec d\) this is a polynomial in \(p\).
+#+end_theorem
+
+#+begin_proof
+Lemma [[lem-joint]] and Theorems [[thm-chaining]] and [[thm-main]] go through verbatim over the exterior
+algebra on \(p\) generators, with one extra ingredient: the lex representative must respect the
+truncation, i.e. \(\mathfrak m^{n+1}F\subseteq M\) must force \(L\supseteq\mathfrak m^{n+1}F\). This
+is the mirror image of the capacity argument of Lemma [[lem-lexproper]]. In module degree
+\(j=d_i+m\) with \(m\ge n+1\), every component \(k\le i\) has \(s_k(j-d_k)=0\) because
+\(\tp(s_k)\le n\); hence \(C_j\ge\sum_{k\le i}\binom p{j-d_k}\), with \(C_j\) as in that lemma's
+proof, and the initial segment covers
+\(g_i\)'s slot. Polynomiality in \(p\) is then immediate from Theorem [[thm-main]]'s formula, each
+entry \(E^p(\tau,\rho-1)\) being a polynomial in \(p\) for fixed \(\tau,\rho\) by Linusson's
+Theorem 5.3.
+#+end_proof
+
+*Status.* The reduction above is proved; the polynomiality of the entries is Linusson's Theorem 5.3,
+which we cite rather than reprove, so Theorem [[thm-poly-p]] is proved modulo that citation. It was
+verified against brute-force truncated sumsets for \(n\le3\), \(p\le5\), \(r\le3\), with no
+mismatches.
+
+#+NAME: ex-poly-p-tables
+#+begin_mexample
+(/The polynomials in \(p\)./) Nine configurations, chosen to span the regimes: all gaps zero, a constant gap
+\(\delta=1\), a saturating gap \(\delta=4>n\) where the summands have come apart, and two
+non-constant gap vectors that are reverses of each other.
+#+begin_export latex
+\begingroup\footnotesize
+\begin{center}
+\begin{tabular}{@{}ccl@{}}
+  \toprule
+  \(\vec d\) & gaps & \(\lvert\mathrm{FF}^{(p)}(n;\vec d\,)\rvert\) \\
+  \midrule
+  \multicolumn{3}{@{}l}{\(n=2\)}\\
+  \((0,0)\)   & \((0)\)    & \(p^{3}-\tfrac12p^{2}+\tfrac52p+3\)\\
+  \((0,1)\)   & \((1)\)    & \(\tfrac1{12}p^{5}+\tfrac1{12}p^{4}+\tfrac5{12}p^{3}+\tfrac{11}{12}p^{2}+\tfrac52p+4\)\\
+  \((0,0,0)\) & \((0,0)\)  & \(3p^{3}-2p^{2}+5p+4\)\\
+  \((0,1,2)\) & \((1,1)\)  & \(\tfrac1{24}p^{7}+\tfrac1{36}p^{6}+\tfrac13p^{5}+\tfrac{19}{36}p^{4}+\tfrac{43}{24}p^{3}+\tfrac{31}9p^{2}+\tfrac{41}6p+8\)\\
+  \addlinespace
+  \multicolumn{3}{@{}l}{\(n=3\)}\\
+  \((0,0)\)   & \((0)\)    & \(\tfrac7{90}p^{6}-\tfrac3{10}p^{5}+\tfrac{29}{72}p^{4}+\tfrac34p^{3}-\tfrac{173}{360}p^{2}+\tfrac{51}{20}p+3\)\\
+  \((0,1)\)   & \((1)\)    & \(\tfrac1{1080}p^{9}-\tfrac7{720}p^{7}+\tfrac3{80}p^{6}+\tfrac1{48}p^{5}+\tfrac5{48}p^{4}+\tfrac{473}{1080}p^{3}+\tfrac{103}{120}p^{2}+\tfrac{51}{20}p+4\)\\
+  \((0,4)\)   & \((4)\)    & \(\tfrac1{32400}p^{12}-\tfrac1{5400}p^{11}+\cdots+\tfrac{2321}{3600}p^{2}+\tfrac{17}5p+4\)\\
+  \((0,1,3)\) & \((1,2)\)  & \(\tfrac1{32400}p^{14}-\tfrac1{6480}p^{13}+\cdots+\tfrac{1563}{400}p^{2}+\tfrac{527}{60}p+8\)\\
+  \((0,2,3)\) & \((2,1)\)  & \(\tfrac1{32400}p^{14}-\tfrac1{4050}p^{13}+\cdots+\tfrac{14299}{3600}p^{2}+\tfrac{527}{60}p+8\)\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+#+end_export
+Each polynomial was obtained by exact rational interpolation at \(p=n,\dots,n+\deg+1\) and then
+checked by evaluating it at three further values of \(p\) against the matrix product of
+Theorem [[thm-poly-p]]; the two longest are abbreviated in the middle, their full coefficient lists
+being unenlightening. Two features are immediate. The coefficients are *not* positive, unlike the
+\(r\)-direction up to \(n=6\); and the two non-constant gap vectors \((1,2)\) and \((2,1)\), reverses
+of each other, give *different* polynomials. The second of those is taken up in
+Remark [[rem-reversal-only-at-p-n]] below.
+#+end_mexample
+
+#+NAME: rem-reversal-only-at-p-n
+#+begin_remark
+(/Gap reversal is a \(p=n\) phenomenon./) The last two rows of Example [[ex-poly-p-tables]] give
+different polynomials for gap vectors that are reverses of each other, while
+Remark [[rem-gap-reversal]] proves that \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) *is* invariant under
+reversing the gaps. Both are correct, and the apparent tension locates the hypothesis. At \(p=n\) the
+two polynomials take the same value, \(\lvert\mathrm{FF}(3;0,1,3)\rvert=\lvert\mathrm{FF}(3;0,2,3)\rvert=607\),
+which is the symmetry; for \(p>n\) they part company, \(6696\) against \(6592\) at \(p=4\) and
+\(94402\) against \(87165\) at \(p=5\). That is as it should be. The symmetry comes from the Alexander
+duality of Lemma [[lem-alexander]], which complements inside \([n]\), and in the truncated setting of
+Definition [[def-twoparam]] the vertex bound \(p\) and the dimension bound \(n\) differ, so there is
+no involution of \(\mathcal F_n^{(p)}\) with which to run the argument. The invariance is special to
+the untruncated case, and no reversal symmetry should be expected of the polynomials themselves.
+#+end_remark
+
+#+NAME: ex-factors
+#+begin_mexample
+The factors, written out. Take \(n=3\), \(r=3\) and \(\vec d=(0,1,3)\), so the gaps are
+\((\delta_2,\delta_3)=(1,2)\) and the product of Theorem [[thm-main]] is \(\vec u_n\,T_n(1)\,T_n(2)\,\vec1_n\)
+with the matrices of Example [[ex-uT]]. Multiplying left to right,
+#+begin_export latex
+\[
+  \vec u_n=(1,1,3,4,1)
+  \ \xrightarrow{\ T_n(1)\ }\ (2,5,19,33,10)
+  \ \xrightarrow{\ T_n(2)\ }\ (26,59,187,266,69),
+\]
+#+end_export
+whose entries sum to \(\lvert\mathrm{FF}(3;0,1,3)\rvert=607\). Each application of a transfer matrix
+advances one summand: the vector after \(k\) factors records, for each value of \(\tp\), how many
+chained \((k+1)\)-tuples end in a summand with that \(\tp\).
+
+Now reverse the gaps, \(\vec d=(0,2,3)\) and \((\delta_2,\delta_3)=(2,1)\). The intermediate vector is
+different, \(\vec u_n\,T_n(2)=(5,9,28,39,10)\), but the total is again \(607\), which is the
+gap-reversal symmetry of Remark [[rem-gap-reversal]]. It is worth seeing that this is *not* because
+the factors commute: at \(n=3\),
+#+begin_export latex
+\[
+  T_n(1)T_n(2)\ \ne\ T_n(2)T_n(1),
+\]
+#+end_export
+already in the first row, \((5,9,28,39,10)\) against \((2,5,19,33,10)\). The symmetry belongs to the
+bilinear form \(\vec u_n\,(\cdot)\,\vec1_n\) and to the duality behind it, not to the matrices
+themselves.
+#+end_mexample
+
+Linusson's Theorem 5.3 and Proposition 5.4 give the degree and the leading coefficient of his own
+count as a polynomial in \(p\). They transport through the product of Theorem [[thm-poly-p]], and the
+result is clean. For each gap put \(\kappa_i=\max(0,n-\delta_i)\).
+
+#+NAME: thm-asymptotics-p
+#+begin_theorem
+(/Degree and leading coefficient in \(p\)./) Fix \(n\ge1\), \(r\ge1\) and a sorted \(\vec d\) with
+gaps \(\delta_i=d_i-d_{i-1}\). Then
+#+begin_export latex
+\begin{equation}\label{eq:degree-in-p}
+  \deg_p\lvert\mathrm{FF}^{(p)}(n;\vec d\,)\rvert
+   \;=\; r\binom{n+1}{2}\;-\;\sum_{i=2}^{r}\binom{\kappa_i+1}{2},
+\end{equation}
+#+end_export
+which is strictly increasing in each \(\delta_i\) up to \(\delta_i=n\) and constant thereafter. If
+moreover every gap satisfies \(\delta_i\ge1\), then the summands decouple to leading order:
+#+begin_export latex
+\begin{equation}\label{eq:lc-in-p}
+  \lvert\mathrm{FF}^{(p)}(n;\vec d\,)\rvert\;\sim\;F^p(n)\prod_{i=2}^{r}E^p(n,\kappa_i)
+  \qquad(p\to\infty).
+\end{equation}
+#+end_export
+#+end_theorem
+
+#+begin_proof
+By Lemma [[lem-joint]] the entries of \(A^{(p)}_n\) are differences \(E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1)\),
+and Linusson's Theorem 5.3 gives \(\deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2}\), so the subtrahend has degree
+strictly smaller (by exactly \(\tau\)) and cannot cancel the leading term. Hence
+\(\deg_pA^{(p)}[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2}\), with leading coefficient the positive quantity
+of his Proposition 5.4.
+
+Expanding the matrix product of Theorem [[thm-poly-p]] as a sum over paths
+\(\tau_1,\dots,\tau_r\), every term is a product of such entries, all with positive leading
+coefficients, so again nothing cancels and the degree is the maximum over paths. The path degree
+*separates position by position*,
+#+begin_export latex
+\begin{equation}\label{eq:path-degree}
+  \sum_{j}h_{\delta_{j+1}}(\tau_j)+\binom{\tau_r+1}{2},
+  \qquad h_\delta(t)=\binom{t+1}{2}-\binom{\max(1,t-\delta+1)}{2},
+\end{equation}
+#+end_export
+so the maximisation separates into one independent choice per position. For \(\delta\ge1\)
+the function \(h_\delta\) is strictly increasing on \(\lbrace0,\dots,n\rbrace\), so the maximiser is
+unique (every \(\tau_j=n\)), which gives \eqref{eq:degree-in-p} and, since a unique maximising
+path contributes a single product of leading coefficients, the product form \eqref{eq:lc-in-p}.
+#+end_proof
+
+#+NAME: rem-asymptotics-zero-gaps
+#+begin_remark
+At \(\delta_i=0\) the function \(h_0\) of \eqref{eq:path-degree} is identically zero, so the
+maximiser is no longer unique and the leading coefficient becomes a *sum* over the degree-maximising
+paths, which are pinned to \(\tau=n\) wherever a positive gap follows and free non-decreasing
+across runs of zero gaps. The degree formula \eqref{eq:degree-in-p} is unaffected. The product form
+\eqref{eq:lc-in-p} genuinely fails: at \(n=2\) with the single gap \(\delta_2=0\) the leading
+coefficient is \(1\), against \(1/6\) for the product. This is the same phenomenon as
+Proposition [[prop-delta0]], where vanishing gaps collapse the transfer matrix to a unipotent one,
+seen now in the \(p\)-direction rather than the \(r\)-direction.
+
+Two smaller observations follow. The degree and the leading coefficient are already those of the
+saturated case at \(\delta_i=n\), one step before the threshold \(\delta_i\ge n+1\) of
+Proposition [[prop-threshold]]; the two regimes first differ in lower-order terms, the single
+violating pair recorded there surviving at every \(p\). The proper variant transports as well,
+which is Theorem [[thm-asymptotics-p-proper]] below.
+#+end_remark
+
+The transport of the proper count is the same argument run on the principal block, and the outcome
+is a uniform shift by one. Put
+#+begin_export latex
+\begin{align}
+  S_n^{(p)} &= \bigl\lbrace\vec s\in\mathcal F_n^{(p)}\;:\;\indeg(\vec s\,)\ge2\bigr\rbrace,\label{eq:def-Snp}\\
+  \lvert S_n^{(p)}\rvert &= \sum_{k=1}^{n}E^p(n,k)=F^p(n)-F^{p-1}(n) ,\label{eq:card-Snp}
+\end{align}
+#+end_export
+let \(\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\) be the corresponding sumset, and write
+\(\kappa_i'=\max(1,n-\delta_i)\).
+
+#+NAME: thm-asymptotics-p-proper
+#+begin_theorem
+(/The proper analogue./) Let \(A'^{(p)}_n\) be the matrix \(A^{(p)}_n\) with its columns \(\rho=0\)
+and \(\rho=1\) set to zero, let \(\vec u'^{(p)}_n\) be the vector of its row sums, and let
+\(T'^{(p)}_n(\delta)\) be built from \(A'^{(p)}_n\) by \eqref{eq:def-u}--\eqref{eq:def-T}. Then, for every
+\(p\ge n\),
+#+begin_export latex
+\begin{equation}\label{eq:proper-p-product}
+  \lvert\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\rvert
+  \;=\;\vec u'^{(p)}_n\cdot T'^{(p)}_n(\delta_2)\cdots T'^{(p)}_n(\delta_r)\cdot\vec 1_n ,
+\end{equation}
+#+end_export
+and this count is a polynomial in \(p\), whose degree is
+#+begin_export latex
+\begin{equation}\label{eq:proper-degree-in-p}
+  \deg_p\lvert\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\rvert
+   \;=\; r\binom{n+1}{2}\;-\;1\;-\;\sum_{i=2}^{r}\binom{\kappa_i'+1}{2},
+\end{equation}
+#+end_export
+The degree is strictly increasing in each \(\delta_i\) up to \(\delta_i=n-1\), and it is constant
+thereafter. If moreover every gap satisfies \(\delta_i\ge1\), then
+#+begin_export latex
+\begin{equation}\label{eq:proper-lc-in-p}
+  \lvert\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\rvert\;\sim\;E^p(n,1)\prod_{i=2}^{r}E^p(n,\kappa_i')
+  \qquad(p\to\infty),
+\end{equation}
+#+end_export
+where \(E^p(n,1)\) may be replaced by \(\lvert S_n^{(p)}\rvert\), of which it is the dominant term.
+#+end_theorem
+
+#+begin_proof
+For the formula, the proofs of Theorems [[thm-proper]] and [[thm-poly-p]] compose. Over \(p\)
+generators the capacity argument of Lemma [[lem-lexproper]] reads \(s_k(0)=1=\binom p0\) and
+\(s_k(1)=p=\binom p1\) and goes through verbatim, so the lex representative of a properly
+achievable Hilbert function is again proper, and deleting the \(\indeg\le1\) columns implements
+the restriction, as in Theorem [[thm-proper]].
+
+For the asymptotics, observe first that row \(\tau=-1\) of \(A^{(p)}_n\) is \(e_0\) and row
+\(\tau=0\) is \(e_1\), so that both of them die with the deleted columns. Hence \(\vec u'^{(p)}_n\) vanishes at \(\tau=-1,0\) and the columns
+\(\tau'=-1,0\) of every \(T'^{(p)}_n(\delta)\) vanish, confining the whole product to the principal
+block \(\tau\in\lbrace1,\dots,n\rbrace\), the restriction that already repaired the proper half of
+Theorem [[thm-delta0-degrees]], now at every gap simultaneously. On the block every surviving
+entry is an untouched entry of \(A^{(p)}_n\), with the degrees and positive leading coefficients of
+Theorem [[thm-asymptotics-p]]'s proof; the inner sums now start at \(\max(2,\tau-\delta+1)\)
+rather than \(\max(1,\tau-\delta+1)\), so nothing cancels, and the path degree separates as in
+\eqref{eq:path-degree} with \(h_\delta\) replaced by
+#+begin_export latex
+\begin{equation}\label{eq:h-prime}
+  h'_\delta(t)=\binom{t+1}{2}-\binom{\max(2,\,t-\delta+1)}{2} ,
+\end{equation}
+#+end_export
+and a path-independent constant \(-\binom22=-1\) contributed by the first factor. On \(\lbrace1,\dots,n\rbrace\), \(h'_0\equiv0\) and \(h'_\delta\)
+is strictly increasing for \(\delta\ge1\), so the unique maximiser is again the all-\(n\) path;
+its factors have degrees \(\binom{n+1}{2}-1\) and \(\binom{n+1}{2}-\binom{\kappa_i'+1}{2}\), with leading
+coefficients those of \(E^p(n,1)\) and \(E^p(n,\kappa_i')\) by Linusson's Proposition 5.4, which
+gives \eqref{eq:proper-degree-in-p} and \eqref{eq:proper-lc-in-p}.
+#+end_proof
+
+#+NAME: rem-proper-p
+#+begin_remark
+At \(\delta_i=0\) the leading coefficient again becomes a sum over the degree-maximising paths,
+now confined to the principal block. At \(n=2\) with all \(r-1\) gaps zero that sum equals
+\(r/2\), because there are \(r\) weakly increasing chains
+\(1\le\tau_1\le\dots\le\tau_{r-1}\le2\) and each of them carries a single factor
+\(\tfrac12\).
+
+The one-step window that the improper count leaves between saturation and threshold closes here.
+Over \(S_n^{(p)}\) the statistics satisfy \(\tp\le n\) and \(\indeg\ge2\) at every \(p\), so
+\(\lvert\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\rvert=\lvert S_n^{(p)}\rvert^{\,r}\) holds *exactly*
+when every \(\delta_i\ge n-1\), which is the \(p\)-analogue of
+Proposition [[prop-proper-threshold]] and is also the point at which \(\kappa_i'\), and hence the
+degree, saturates. The reason the two thresholds coincide here and not in the improper case is that
+the improper violating pair at \(\delta_i=n\) was the full truncation against the void family,
+and the void family is not proper.
+
+The verification was carried out in the same style as for Theorem [[thm-asymptotics-p]]. The degree
+and the leading coefficient were checked by exact rational interpolation over \(125\)
+configurations with \(n\le5\), \(r\le4\) and gaps \(0\) to \(n+2\), reaching degrees as high
+as \(37\); and the transfer formula \eqref{eq:proper-p-product} was checked against brute-force
+proper truncated sumsets for \(n\le3\), \(p\le5\) and \(r\le3\). No mismatch was found.
+#+end_remark
+
+#+NAME: ex-degrees-p
+#+begin_mexample
+(/The two degree formulas on the configurations of Example [[ex-poly-p-tables]]./) With
+\(\kappa_i=\max(0,n-\delta_i)\) and \(\kappa_i'=\max(1,n-\delta_i)\) as in the two theorems, the
+degrees predicted by \eqref{eq:degree-in-p} and \eqref{eq:proper-degree-in-p} against the degrees of
+the interpolated polynomials:
+#+begin_export latex
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}cccrrrr@{}}
+  \toprule
+  \(n\) & \(\vec d\) & gaps & \(\deg_p\lvert\mathrm{FF}^{(p)}(n;\vec d\,)\rvert\) & \eqref{eq:degree-in-p}
+        & \(\deg_p\lvert\mathrm{FF}^{(p)}_{\mathrm{pr}}(n;\vec d\,)\rvert\) & \eqref{eq:proper-degree-in-p}\\
+  \midrule
+  2 & \((0,0)\)   & \((0)\)   & 3  & 3  & 2  & 2\\
+  2 & \((0,1)\)   & \((1)\)   & 5  & 5  & 4  & 4\\
+  2 & \((0,0,0)\) & \((0,0)\) & 3  & 3  & 2  & 2\\
+  2 & \((0,1,2)\) & \((1,1)\) & 7  & 7  & 6  & 6\\
+  \addlinespace
+  3 & \((0,0)\)   & \((0)\)   & 6  & 6  & 5  & 5\\
+  3 & \((0,1)\)   & \((1)\)   & 9  & 9  & 8  & 8\\
+  3 & \((0,4)\)   & \((4)\)   & 12 & 12 & 10 & 10\\
+  3 & \((0,1,3)\) & \((1,2)\) & 14 & 14 & 13 & 13\\
+  3 & \((0,2,3)\) & \((2,1)\) & 14 & 14 & 13 & 13\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+#+end_export
+Every entry agrees. Three things in the table are the theorems rather than the data. The degree is
+one lower in the proper column throughout, which is the \(-1\) of \eqref{eq:proper-degree-in-p},
+contributed by the first factor alone and so independent of the gaps. The seventh row has
+\(\delta=4>n=3\), where \(\kappa_i=0\) and the degree has saturated: raising the gap further changes
+nothing, which is the "constant thereafter" clause of Theorem [[thm-asymptotics-p]]. And the last two
+rows agree in both columns although the underlying polynomials differ, the degree depending on the
+gaps only through the multiset \(\lbrace\kappa_i\rbrace\) while the polynomial depends on their order.
+
+The leading coefficients behave as the two theorems and Remark [[rem-asymptotics-zero-gaps]] predict:
+the product forms \eqref{eq:lc-in-p} and \eqref{eq:proper-lc-in-p} hold in the seven rows whose gaps
+are all at least \(1\), and fail in the two rows with a zero gap, where the leading coefficient
+becomes a sum over several degree-maximising paths. At \(n=2\) with \(\vec d=(0,0)\) the true improper
+leading coefficient is \(1\), against \(1/6\) for the product.
+#+end_mexample
+
+* Verification, tables, and open problems
+:PROPERTIES:
+:CUSTOM_ID: sec-verification
+:END:
+
+** How the results were checked
+
+Every claim above labelled "verified" was checked against a route independent of the formula being
+tested. Specifically:
+
+- *Against brute force.* Direct enumeration of the order ideals of \(\mathcal P([n])\), forming the
+  sumset explicitly, with no recursion and no Kruskal--Katona: agreement in all \(41\)
+  configuration-and-variant pairs with \(n\le6\), \(r\le4\) and gaps \(0\) to \(6\), including
+  asymmetric gap vectors such as \((0,1,3)\) and \((0,2,4)\), for both the proper and the improper
+  count.
+- *Against Linusson's own tables.* All \(199\) printed entries of his Tables 5 and 6, exactly
+  (Remark [[rem-transcription]]).
+- *Against a computer-algebra oracle.* Amata and Crupi's ~ExteriorModules~ package [cite:@AmataCrupi2021] for Macaulay2
+  enumerates lex submodules directly. Its counts \(43\), \(69\), \(99\) and \(236\) for \(n=3\) with
+  \(d=(0,0)\), \((0,1)\), \((-1,2)\) and \((0,0,1)\) are reproduced, as is \(368\) for \(n=4\),
+  \(d=(0,1)\). The case \((-1,2)\) exercises the negative-degree hypothesis.
+- *Against a proof assistant.* The combinatorial content of this paper has been formalised in Lean 4
+  with Mathlib, in the same development as the companion article's: the definitions and statements of
+  Sections [[#sec-statistics]] to [[#sec-growth]], with the exceptions set out below. Every certified
+  statement rests on the three standard axioms of Lean's kernel (~propext~, ~Classical.choice~,
+  ~Quot.sound~) and on no others, and the development contains no incomplete proof.
+
+  What follows describes what is *not* certified. That is the more useful thing to publish, because
+  it tells the reader what they are being asked to take on trust, and because it does not go out of
+  date as the development grows. Three things lie outside.
+
+  *The algebra, in two quite different sizes.* None of Definition [[def-setup]] is formalised: not
+  the exterior algebra, not monomial or lex submodules, and with them neither Lemma
+  [[lem-dictionary]], nor Lemma [[lem-lexproper]], nor the surjectivity half of Theorem
+  [[thm-chaining]]. These are not equally far away, and treating them alike would misdescribe the
+  work involved. Lemma [[lem-dictionary]] is *elementary*: its two clauses are a spanning
+  observation and a dimension count, and what it lacks is the objects rather than an argument. It
+  needs a graded \(\Ext\) with accessible graded pieces, monomial ideals, \(\mathfrak m^t\), and the
+  correspondence between monomial ideals and order ideals that makes \(\HF\bigl((\Ext)/I\bigr)\) an
+  \(f\)-vector. The surjectivity half of Theorem [[thm-chaining]] needs all of that *and* Amata
+  and Crupi's theory of lex submodules: their Definition 2.6 \(\Leftrightarrow\) 2.7, the
+  existence and uniqueness of a lex representative in their Theorem 4.2, and Kruskal--Katona in
+  the exterior form of [cite/t:@AramovaHerzogHibi1997]. That is a substantially larger
+  undertaking, and is in any case open combinatorially. The formal development is
+  purely combinatorial: it counts order ideals and their \(f\)-vectors and never constructs a
+  submodule. Consequently, wherever a result needs the bridge from the combinatorics to the algebra,
+  that bridge is an explicit hypothesis rather than a proof. The counting identities of Theorems
+  [[thm-main]] and [[thm-proper]] are certified *unconditionally* as statements about chained tuples;
+  their readings as statements about \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) and
+  \(\lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert\) are certified given that hypothesis, which
+  is exactly what "proved modulo" means in the text above.
+
+  *Linusson's results.* Theorem [[thm-linusson]] and his Theorem 5.3 are cited rather than reproved,
+  so Lemma [[lem-joint]] and everything resting on them is outside the formalisation: Theorem
+  [[thm-poly-p]] and Theorems [[thm-asymptotics-p]] and [[thm-asymptotics-p-proper]]. For Lemma
+  [[lem-joint]] this is deliberate and costs nothing, since \(A_n\) is defined by counting in
+  Definition [[def-A]] and the recursion is nowhere needed.
+
+  *What "Perron root" is not.* Perron--Frobenius theory is not available in the library used. Of
+  Proposition [[prop-perron-threshold]] what is certified is therefore the eigenvalue statement, for
+  both roots: above its threshold each of \(T_n(\delta)\) and \(T'_n(\delta)\) has rank one, the vector
+  \(\vec 1_n\) is an eigenvector with eigenvalue \(\lvert\mathcal F_n\rvert\) and
+  \(\lvert S_n\rvert\) respectively, and no other eigenvalue is non-zero. What is not certified is
+  the word *Perron*,
+  that this is the eigenvalue of largest modulus with a non-negative eigenvector, and in the
+  rank-one case the gap is only the comparison against \(0\), but it is a gap. The same limitation
+  leaves the growth claim of Proposition [[prop-recurrence]] outside, and there, unlike here, no
+  degeneracy makes the gap small. That proposition's other half *is* certified: the linear recurrence
+  follows from the Cayley--Hamilton theorem, needs no spectral theory at all, and holds for both
+  matrices unconditionally.
+
+  The formalisation turned up two kinds of thing. Several of the strengthenings recorded above were
+  found here, each of them a hypothesis that turned out to be unnecessary; and one hypothesis turned
+  out to be *missing*, namely Theorem [[thm-proper]]'s \(n\ge1\), without which the statement is
+  false at \(n=0\), where \(A'_n\) vanishes identically while
+  \(\lvert\mathrm{FF}_{\mathrm{pr}}(0;\vec d\,)\rvert=1\).
+
+- *Against previously recorded values.* The two sequences of Remark [[rem-proper-sequences]].
+- *Internal consistency.* The \(r=1\) specialisation (Corollary [[cor-r1]]) and the product-regime
+  identities (Propositions [[prop-threshold]] and [[prop-proper-threshold]]) for \(n=2,\dots,6\),
+  \(r\le4\), both variants.
+
+No mismatch was found in any of these.
+
+** Open problems
+
+Three of the problems listed in the first draft of this paper have since been settled, and are not
+repeated here: the asymptotics in \(p\) are now Theorems [[thm-asymptotics-p]]
+and [[thm-asymptotics-p-proper]] with Remark [[rem-asymptotics-zero-gaps]], the exact degrees at
+\(\delta=0\) are Theorem [[thm-delta0-degrees]], and the identity \(\lvert S_n\rvert=F^n(n-2)\)
+is Proposition [[prop-fnn2]]. Two problems remain.
+
+1. *A bijective proof.* Theorem [[thm-chaining]] is proved by way of a canonical representative;
+   a direct bijection between \(\mathrm{FF}(n;\vec d\,)\) and the chained tuples, not routed through lex
+   submodules, would explain the constraint combinatorially rather than algebraically. Remark
+   [[rem-gap-reversal]] is a constraint on any answer rather than a step toward one: such a
+   bijection must be compatible with the gap-reversing involution recorded there. The explicit
+   inverse of Remark [[rem-explicit-inverse]] is half of an answer: it is closed-form, its
+   uniqueness is elementary, and it is equivariant under that involution. What is missing is a
+   direct proof that its clamps are \(f\)-vectors.
+2. *Beyond constant gaps.* The formula handles an arbitrary sorted \(\vec d\), but the growth results of
+   Section [[#sec-growth]] assume a constant gap. Non-constant gap vectors give products of distinct
+   matrices. Proposition [[prop-normalform]] is the structural answer, and it reduces the problem
+   to the pair \((B_n,P_n)\); the count also factorises across any saturated gap. What it does not give
+   is a closed form, and the natural routes to one are closed off: no two distinct \(T_n(\delta)\)
+   commute, they generate the full matrix algebra so there is no common triangularisation or
+   invariant filtration, and the only permutation symmetry is the reversal of
+   \eqref{eq:no-permutation-invariance}.
+
+** Integer sequences
+
+Six sequences arising here appear not to be in the OEIS: \(|S_n|\) itself, and the \(r=2\)
+proper and improper counts at \(\delta=0\) and \(\delta=1\), together with one \(r=3\) example. Of
+these \(|S_n|=1,2,5,16,70,457,4908,95248,3617645,286007155\), the number of \(f\)-vectors of
+simplicial complexes on exactly \(n\) vertices, seems the most natural candidate for submission,
+being the first-difference sequence of A007695, which has no separate entry. Nothing has been
+submitted.
+
+#+begin_export latex
+\appendix
+#+end_export
+
+* Tables
+:PROPERTIES:
+:CUSTOM_ID: sec-app-tables
+:END:
+
+@@latex:\label{sec:app-tables}@@
+Linusson closes his paper with two tables, and they are part of why it is usable rather than
+merely correct: Table 5 gives the counts \(F^p(n)\) themselves, and Table 6 gives \(E^p(p,k)\),
+the refinement his recursion actually runs on, with \(F^p(p)\) recovered as a row sum in the last
+column. This appendix gives the analogues, in the same pairing and the same order. Every entry
+was produced by the formulas of this paper and independently reproduced by brute-force
+enumeration wherever that is feasible; Section [[#sec-verification]] says over which ranges.
+
+** The joint distribution
+
+Table @@latex:\ref{tab-app-A}@@ is the analogue of Linusson's Table 6: the matrix \(A_n\) of
+Definition [[def-A]], which is what the transfer-matrix formula is built from, for
+\(n=1,\dots,6\). Rows are indexed by \(\tp\) and columns by \(\indeg\), both as in
+\eqref{eq:def-A-range}; a dot is a zero. The last column is the row sum \(u_n[\tau]\) of
+\eqref{eq:def-u}, so reading it downwards gives the vector \(\vec u_n\) of Theorem [[thm-main]],
+and the bold entry is the grand total \(\lvert\mathcal F_n\rvert\). The support condition
+\(\rho\le\tau+1\) of Definition [[def-A]] is visible as the staircase, and the two extreme rows
+are the single entries \(A_n[-1][0]=1\) and \(A_n[n][n+1]=1\) named there. The \(n=3\) block is the
+matrix displayed in Example [[ex-A]].
+
+The correspondence with Linusson's Table 6 is in fact an identity and not merely an analogy.
+Summing \eqref{eq:Ap} at \(p=n\) over \(\tau\) telescopes,
+#+begin_export latex
+\begin{equation}\label{eq:colsum-is-E}
+  \sum_{\tau=-1}^{n}A_n[\tau][\rho]\;=\;E^n(n,\rho-1) ,
+\end{equation}
+#+end_export
+the subtracted terms cancelling in pairs, and the boundary term vanishing because nothing sits
+below the void family, so that \(E^p(m,k)\) is zero once \(m\le-2\). The bottom row of each block
+below is therefore *exactly* the corresponding row of his Table 6,
+re-indexed by \(\rho=k+1\), and the grand total is his \(F^n(n)\). Our refinement splits his by
+\(\tp\); his is recovered by forgetting that split.
+
+#+begin_export latex
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}r|rrr|r@{}}
+\multicolumn{5}{@{}l}{\(n=1\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 1 & 1 & \(\mathbf{3}\)\\
+\end{tabular}
+\end{center}
+\addvspace{4pt}
+\begin{center}
+\begin{tabular}{@{}r|rrrr|r@{}}
+\multicolumn{6}{@{}l}{\(n=2\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & 3 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & 1 & 1 & \(\cdot\) & \(2\)\\
+\(2\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 2 & 1 & 1 & \(\mathbf{5}\)\\
+\end{tabular}
+\end{center}
+\addvspace{4pt}
+\begin{center}
+\begin{tabular}{@{}r|rrrrr|r@{}}
+\multicolumn{7}{@{}l}{\(n=3\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & 3 & 4 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & 2 & 1 & \(\cdot\) & \(\cdot\) & \(3\)\\
+\(2\) & \(\cdot\) & 1 & 2 & 1 & \(\cdot\) & \(4\)\\
+\(3\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 4 & 3 & 1 & 1 & \(\mathbf{10}\)\\
+\end{tabular}
+\end{center}
+\addvspace{4pt}
+\begin{center}
+\begin{tabular}{@{}r|rrrrrr|r@{}}
+\multicolumn{8}{@{}l}{\(n=4\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & 3 & 4 & 5 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & 3 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(4\)\\
+\(2\) & \(\cdot\) & 4 & 5 & 1 & \(\cdot\) & \(\cdot\) & \(10\)\\
+\(3\) & \(\cdot\) & 1 & 4 & 3 & 1 & \(\cdot\) & \(9\)\\
+\(4\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 9 & 10 & 4 & 1 & 1 & \(\mathbf{26}\)\\
+\end{tabular}
+\end{center}
+\addvspace{4pt}
+\begin{center}
+\begin{tabular}{@{}r|rrrrrrr|r@{}}
+\multicolumn{9}{@{}l}{\(n=5\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & 3 & 4 & 5 & 6 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & 4 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(5\)\\
+\(2\) & \(\cdot\) & 10 & 9 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(20\)\\
+\(3\) & \(\cdot\) & 9 & 24 & 9 & 1 & \(\cdot\) & \(\cdot\) & \(43\)\\
+\(4\) & \(\cdot\) & 1 & 9 & 10 & 4 & 1 & \(\cdot\) & \(25\)\\
+\(5\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 25 & 43 & 20 & 5 & 1 & 1 & \(\mathbf{96}\)\\
+\end{tabular}
+\end{center}
+\addvspace{4pt}
+\begin{center}
+\begin{tabular}{@{}r|rrrrrrrr|r@{}}
+\multicolumn{10}{@{}l}{\(n=6\)}\\[2pt]
+\(\tau\backslash\rho\) & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \(u_n[\tau]\)\\
+\hline
+\(-1\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(0\) & \(\cdot\) & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(1\)\\
+\(1\) & \(\cdot\) & 5 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(6\)\\
+\(2\) & \(\cdot\) & 20 & 14 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(35\)\\
+\(3\) & \(\cdot\) & 43 & 84 & 19 & 1 & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(147\)\\
+\(4\) & \(\cdot\) & 25 & 143 & 84 & 14 & 1 & \(\cdot\) & \(\cdot\) & \(267\)\\
+\(5\) & \(\cdot\) & 1 & 25 & 43 & 20 & 5 & 1 & \(\cdot\) & \(95\)\\
+\(6\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & \(\cdot\) & 1 & \(1\)\\
+\hline
+\(\Sigma\) & 1 & 95 & 267 & 147 & 35 & 6 & 1 & 1 & \(\mathbf{553}\)\\
+\end{tabular}
+\end{center}
+\endgroup
+\captionof{table}{The joint distribution \(A_n[\tau][\rho]\) of \((\tp,\indeg)\) on \(\mathcal F_n\),
+for \(n=1,\dots,6\).}
+\label{tab-app-A}
+#+end_export
+
+** The counts
+
+Tables @@latex:\ref{tab-app-imp}@@ and @@latex:\ref{tab-app-pro}@@ are the analogue of
+Linusson's Table 5. His is indexed by his two parameters \(p\) and \(n\); ours needs three, since
+a count here depends on \(n\), on the rank \(r\), and on the shift vector. The tables therefore
+fix the shift vector to the constant-gap family
+\(\vec d=(0,\delta,2\delta,\dots,(r-1)\delta)\), which is the one Section [[#sec-growth]] works
+in and the one in which the thresholds are visible.
+
+*The \(r=1\) column is a check, and it is where the two papers meet.* At rank one there is no
+gap to vary, so that column is constant down each block; and there is no transfer matrix either,
+the product of Theorem [[thm-main]] degenerating to \(\vec u_n\cdot\vec 1_n\). It therefore reads
+\(\lvert\mathcal F_n\rvert\) in Table @@latex:\ref{tab-app-imp}@@ and \(\lvert S_n\rvert\) in
+Table @@latex:\ref{tab-app-pro}@@. The first of those, \(5,10,26,96,553\), is exactly the
+diagonal \(F^n(n)\) of Linusson's Table 5 -- equivalently the last column of his Table 6, which
+is Corollary [[cor-r1]] read off a table instead of proved. The second, \(2,5,16,70,457\), is the
+sequence \(\lvert S_n\rvert\) of Section [[#sec-verification]].
+
+Three things in them are stated as results elsewhere and can be read off directly. The improper
+count reaches \(\lvert\mathcal F_n\rvert^{\,r}\) at \(\delta=n+1\) and the proper count reaches
+\(\lvert S_n\rvert^{\,r}\) at \(\delta=n-1\), which is Propositions [[prop-threshold]] and
+[[prop-proper-threshold]]; the two-step gap between the thresholds is accounted for by the pair
+that fails at \(\delta_i=n\), the full simplex against the void family, the void family not being
+proper. The \(n=2\), \(\delta=0\) row is the one worked through in
+Remark [[rem-delta0-degrees]], its improper half \(14,30,55,91\) being the cubic with third
+difference \(2\) and its proper half \(r+1\). And every row with \(\delta\ge n+1\) repeats the one
+above it, there being nothing left for a wider gap to decouple.
+
+#+begin_export latex
+\begingroup\footnotesize
+\begin{center}
+\begin{tabular}{@{}ccrrrrr@{}}
+\toprule
+\(n\) & \(\delta\) & \(r=1\) & \(r=2\) & \(r=3\) & \(r=4\) & \(r=5\)\\
+\midrule
+\(2\) & \(0\) & 5 & 14 & 30 & 55 & 91\\
+ & \(1\) & 5 & 20 & 76 & 285 & 1\,065\\
+ & \(2\) & 5 & 24 & 115 & 551 & 2\,640\\
+ & \(3\) & 5 & 25 & 125 & 625 & 3\,125\\
+\addlinespace
+\(3\) & \(0\) & 10 & 43 & 125 & 290 & 581\\
+ & \(1\) & 10 & 69 & 426 & 2\,532 & 14\,847\\
+ & \(2\) & 10 & 91 & 821 & 7\,401 & 66\,712\\
+ & \(3\) & 10 & 99 & 980 & 9\,701 & 96\,030\\
+ & \(4\) & 10 & 100 & 1\,000 & 10\,000 & 100\,000\\
+\addlinespace
+\(4\) & \(0\) & 26 & 194 & 816 & 2\,491 & 6\,202\\
+ & \(1\) & 26 & 368 & 4\,200 & 44\,021 & 445\,373\\
+ & \(2\) & 26 & 556 & 11\,521 & 237\,440 & 4\,888\,880\\
+ & \(3\) & 26 & 657 & 16\,589 & 418\,857 & 10\,575\,748\\
+ & \(4\) & 26 & 675 & 17\,524 & 454\,949 & 11\,811\,150\\
+ & \(5\) & 26 & 676 & 17\,576 & 456\,976 & 11\,881\,376\\
+\addlinespace
+\(5\) & \(0\) & 96 & 1\,433 & 9\,315 & 38\,800 & 122\,801\\
+ & \(1\) & 96 & 3\,405 & 81\,845 & 1\,667\,849 & 31\,570\,587\\
+ & \(2\) & 96 & 6\,264 & 373\,078 & 21\,733\,283 & 1\,259\,247\,991\\
+ & \(3\) & 96 & 8\,454 & 739\,600 & 64\,670\,555 & 5\,654\,555\,977\\
+ & \(4\) & 96 & 9\,165 & 874\,945 & 83\,527\,401 & 7\,974\,017\,466\\
+ & \(5\) & 96 & 9\,215 & 884\,544 & 84\,907\,009 & 8\,150\,188\,320\\
+ & \(6\) & 96 & 9\,216 & 884\,736 & 84\,934\,656 & 8\,153\,726\,976\\
+\addlinespace
+\(6\) & \(0\) & 553 & 19\,145 & 204\,141 & 1\,195\,136 & 4\,891\,732\\
+ & \(1\) & 553 & 60\,586 & 3\,443\,671 & 147\,428\,310 & 5\,540\,778\,582\\
+ & \(2\) & 553 & 145\,746 & 30\,713\,150 & 6\,051\,460\,353 & 1\,168\,581\,488\,805\\
+ & \(3\) & 553 & 245\,035 & 105\,135\,755 & 44\,903\,400\,311 & 19\,165\,840\,095\,040\\
+ & \(4\) & 553 & 296\,059 & 158\,343\,036 & 84\,684\,938\,944 & 45\,291\,110\,452\,581\\
+ & \(5\) & 553 & 305\,618 & 168\,901\,132 & 93\,343\,953\,511 & 51\,586\,946\,480\,989\\
+ & \(6\) & 553 & 305\,808 & 169\,111\,271 & 93\,518\,227\,055 & 51\,715\,410\,450\,144\\
+ & \(7\) & 553 & 305\,809 & 169\,112\,377 & 93\,519\,144\,481 & 51\,716\,086\,897\,993\\
+\bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+\captionof{table}{\(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) for the constant-gap shift vector
+\(\vec d=(0,\delta,\dots,(r-1)\delta)\).}
+\label{tab-app-imp}
+#+end_export
+
+#+begin_export latex
+\begingroup\footnotesize
+\begin{center}
+\begin{tabular}{@{}ccrrrrr@{}}
+\toprule
+\(n\) & \(\delta\) & \(r=1\) & \(r=2\) & \(r=3\) & \(r=4\) & \(r=5\)\\
+\midrule
+\(2\) & \(0\) & 2 & 3 & 4 & 5 & 6\\
+ & \(1\) & 2 & 4 & 8 & 16 & 32\\
+ & \(2\) & 2 & 4 & 8 & 16 & 32\\
+ & \(3\) & 2 & 4 & 8 & 16 & 32\\
+\addlinespace
+\(3\) & \(0\) & 5 & 12 & 22 & 35 & 51\\
+ & \(1\) & 5 & 22 & 95 & 409 & 1\,760\\
+ & \(2\) & 5 & 25 & 125 & 625 & 3\,125\\
+ & \(3\) & 5 & 25 & 125 & 625 & 3\,125\\
+ & \(4\) & 5 & 25 & 125 & 625 & 3\,125\\
+\addlinespace
+\(4\) & \(0\) & 16 & 69 & 184 & 385 & 696\\
+ & \(1\) & 16 & 162 & 1\,478 & 13\,100 & 115\,128\\
+ & \(2\) & 16 & 246 & 3\,776 & 57\,956 & 889\,536\\
+ & \(3\) & 16 & 256 & 4\,096 & 65\,536 & 1\,048\,576\\
+ & \(4\) & 16 & 256 & 4\,096 & 65\,536 & 1\,048\,576\\
+ & \(5\) & 16 & 256 & 4\,096 & 65\,536 & 1\,048\,576\\
+\addlinespace
+\(5\) & \(0\) & 70 & 627 & 2\,592 & 7\,385 & 16\,926\\
+ & \(1\) & 70 & 1\,858 & 37\,181 & 675\,786 & 11\,847\,871\\
+ & \(2\) & 70 & 3\,805 & 199\,805 & 10\,436\,280 & 544\,655\,005\\
+ & \(3\) & 70 & 4\,857 & 336\,980 & 23\,379\,749 & 1\,622\,092\,290\\
+ & \(4\) & 70 & 4\,900 & 343\,000 & 24\,010\,000 & 1\,680\,700\,000\\
+ & \(5\) & 70 & 4\,900 & 343\,000 & 24\,010\,000 & 1\,680\,700\,000\\
+ & \(6\) & 70 & 4\,900 & 343\,000 & 24\,010\,000 & 1\,680\,700\,000\\
+\addlinespace
+\(6\) & \(0\) & 457 & 9\,904 & 67\,448 & 269\,765 & 798\,101\\
+ & \(1\) & 457 & 38\,232 & 1\,816\,426 & 70\,055\,219 & 2\,478\,448\,508\\
+ & \(2\) & 457 & 104\,870 & 20\,596\,002 & 3\,895\,494\,074 & 729\,778\,783\,985\\
+ & \(3\) & 457 & 183\,337 & 72\,771\,631 & 28\,858\,243\,615 & 11\,443\,058\,404\,405\\
+ & \(4\) & 457 & 208\,582 & 95\,199\,955 & 43\,450\,688\,041 & 19\,831\,546\,046\,752\\
+ & \(5\) & 457 & 208\,849 & 95\,443\,993 & 43\,617\,904\,801 & 19\,933\,382\,494\,057\\
+ & \(6\) & 457 & 208\,849 & 95\,443\,993 & 43\,617\,904\,801 & 19\,933\,382\,494\,057\\
+ & \(7\) & 457 & 208\,849 & 95\,443\,993 & 43\,617\,904\,801 & 19\,933\,382\,494\,057\\
+\bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+\captionof{table}{\(\lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert\), the proper count, for the
+same shift vectors.}
+\label{tab-app-pro}
+#+end_export
+
+
+* Acknowledgements
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+This paper uses Svante Linusson's 1999 paper structurally, and not only as a citation: the
+refinement he introduced for his own recursion turns out to be exactly the statistic the rank-\(r\)
+count requires, and the present paper would have no content without it. Aliaksandra Kupreyeva's Bachelor's thesis [cite:@Kupreyeva2019]
+(Linköping University, 2019; report LiTH-MAT-EX--2019/05--SE), written under my supervision, is where
+counting questions about \(f\)-vectors entered this project.
+
+Just as Geheimrat Goethe had the diligent Friedrich Wilhelm Riemer to help him write /Die
+Wahlverwandtschaften/, just as Grothendieck had Jean Dieudonné to help him complete EGA, I have
+*Claude*! What exactly that amounted to is set out in the disclosure section below.
+
+Computations were carried out in SageMath, in Python, and in Macaulay2, the latter using Amata and
+Crupi's own ~ExteriorModules~ package.
+
+* Disclosure of AI assistance
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+This manuscript was produced with substantial assistance from a large language model, Claude
+(Anthropic), and the extent of it is set out here rather than left to be inferred. It is more
+extensive in this paper than in its companion.
+
+The model: identified that Linusson's refined count \(E^p(n,k)\) is the joint-distribution object the
+rank-\(r\) problem needs, and proved Lemma [[lem-joint]]; found and proved the chaining reformulation
+of Theorem [[thm-chaining]], including the dictionary of Lemma [[lem-dictionary]] and the hypotheses
+recorded in Remark [[rem-sorted]]; assembled and proved Theorem [[thm-main]] and its consequences
+(Corollary [[cor-r1]], Propositions [[prop-threshold]] and [[prop-delta0]]); found and proved
+Lemma [[lem-lexproper]], without which the proper variant of Theorem [[thm-proper]] would not follow;
+derived the growth results of Section [[#sec-growth]], including Theorem [[thm-poly-p]]; transcribed
+Linusson's Theorem 5.2 from the printed page and validated it against both of his appendix tables;
+wrote all the supporting code; and drafted the exposition. The author set the problem, directed the
+scope, and required the separation of proved from verified results that Section [[#sec-intro]]'s table
+records.
+
+Two corrections the model made to its own earlier work are worth recording, as evidence of what the
+verification was for: an initial value of \(|S_9|\) was wrong by one, caught by checking against
+OEIS A007695 and against Linusson's printed table; and a threshold in Propositions [[prop-threshold]]
+and [[prop-proper-threshold]] had been stated for the wrong one of the two variants.
+
+Every counting claim in this paper was checked along a route independent of the formula being tested,
+as set out in Section [[#sec-verification]], and the reference list has been checked against primary
+sources. The author has verified the results to the best of his ability, made the final edits, and
+assumes full responsibility for any errors, mistakes or gaps that remain.
+
+* Funding
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+This research received no external funding. It was carried out as part of the author's regular duties
+at Linköping University, within the fraction of that employment allocated to research.
+
+* Conflicts of interest
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+The author declares no financial or non-financial conflicts of interest. The nature and extent of
+large-language-model assistance in producing this manuscript is disclosed in full in the section
+above.
+
+* References
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+#+print_bibliography: :heading none
+
+# Local Variables:
+# org-fragtog-mode: t
+# org-latex-prefer-user-labels: t
+# End:
+* exterior-convex_article2_draft_7                                  :noexport:
+:PROPERTIES:
+:NOTER_DOCUMENT: exterior-convex_article2_draft_7.pdf
+:END:
+
+# Jan's org-noter comments. TAGGED :noexport: so this heading and everything under it
+# stay out of the PDF while remaining editable -- add freely. The comments below are his
+# on DRAFT 5, carried over verbatim; what was done about each is listed in the editorial
+# block at the top of this file. New comments on draft 7 go under "draft 7" at the end.
+
+** section 1
+- It is not \(I_{\Delta}\) is not exactly the Stanley-Reisner ideal, since it lives
+  in the extorior algebra; what does previous article use? Exterior face ideal?
+- Check citations; there is excessive things like Kozlov Kozlov [Koz97]
+  and Snellman [Sne26]
+- in section 1.3 (sec:orgbe7ef95) define T and u before eq:auto-3. 
+- in the table in section 1.4, explain that "verified" means verified in LEAN.
+
+** section 2
+Remove "Nothing in this section has to be read in order to read the introduction"
+
+
+** section 3
+- Say that \(k\) is a field; \(k\) should also be in the notations table earlier.
+- def-fn: \(\mathcal{F}_{n}\) and \(S_{n}\)  as two rows of an eqnalign or similar,
+  both numbered. 
+
+
+** section 4
+- example 11: since \(|\mathcal{F}_{n}| = F^{n}(n)\) and \(F^{n}(n)\) includes
+  the count of two "degenerate f-vectors", these are in the list, indicate which.
+  I guess (0,0,0,0) and (1,3,3,1)? But perhaps (1,0,0,0)?
+
+
+
+
+** section 5
+- lem-alexander: continue the example by showing the involution
+  on \(\mathcal{F}_{3}\).
+- prop-fnn2: Move "The hypothesis is sharp..." to a remark.
+
+
+
+** section 6
+eq:water-f, be elaborate.
+You are looking at a map (i'm going to call it B, temporarily)
+B : inside(RHS(eq:auto-14)) --> FF(\vek{d})
+B((s1,...,sr)) = vek{x}
+is that correct?
+Also, explain "clamp".
+
+** section 7
+- prop-delta0 and thm-delta0-degrees: in this case, the convex hull is a dilation of a simplex. Do the
+  f-vectors have a particular simple structure, that can be described directly?
+  I'm surprisd that this case needs so much care.
+- ex-delta0-polys: extend the tables to n=6,7 respectively, so that these negative
+  coeffs can be observed directly (use sidewaystable or whatnot if necessary,
+  or break poly into parts)
+
+
+
+** section 8
+
+** section 9
+prop-normalform: what is B?
+thm-poly-p: follow with some tables with these polynomials, and with a very
+"sparse" gap-vector, one with constant gap, some others
+asymptotics-p: tabulate some of these polynmials to illustrate the theorem
+
+** draft 6
+(new comments here)
+    
+
+** draft 7
+
