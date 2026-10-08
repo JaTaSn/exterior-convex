@@ -1516,11 +1516,9 @@ submodule is monomial, so the reverse inclusion holds by (a).
 Composing (c) and (d) gives the claim.
 #+end_proof
 
-#+NAME: rem-explicit-inverse
-#+begin_remark
-(/An explicit inverse, and what it still needs./) It is worth saying exactly which map is being
-inverted, since there are two and they point in opposite directions. Theorem [[thm-chaining]] says
-that \(\lvert\mathrm{FF}(n;\vec d\,)\rvert=\lvert\mathrm{CT}(n;\vec d\,)\rvert\), with
+It is worth saying exactly which map is being inverted, since there are two and they point in
+opposite directions. Theorem [[thm-chaining]] says that
+\(\lvert\mathrm{FF}(n;\vec d\,)\rvert=\lvert\mathrm{CT}(n;\vec d\,)\rvert\), with
 \(\mathrm{CT}(n;\vec d\,)\) the set of chained tuples \eqref{eq:chained-set}. What the theorem's proof
 establishes is more than that equality of cardinalities: the summation map \(\Sigma_{\vec d}\) of
 \eqref{eq:sumset-map}, restricted to the chained tuples,
@@ -1533,50 +1531,93 @@ establishes is more than that equality of cardinalities: the summation map \(\Si
 \end{equation}
 #+end_export
 is a *bijection*. That is the content: the chained tuples are a set of representatives for the fibres
-of \(\Sigma_{\vec d}\), one from each.
+of \(\Sigma_{\vec d}\), one from each. The proof produces the inverse through Amata--Crupi's lex
+submodule, hence algebraically. The inverse also has a closed form.
 
-The question is then what the inverse of \eqref{eq:sigma-restricted} is. The proof above produces it
-through Amata--Crupi's lex submodule, hence algebraically. A *closed-form* inverse is now known.
-Define, for \(0\le i\le r\),
+#+NAME: lem-explicit-inverse
+#+begin_lemma
+(/The explicit inverse./) For \(\vec x\in\mathrm{FF}(n;\vec d\,)\) and \(0\le i\le r\) put
 #+begin_export latex
 \begin{equation}\label{eq:def-Q}
   Q_i(j)=\max\Bigl(0,\;x(j)-\sum_{k>i}\tbinom n{j-d_k}\Bigr) ,
 \end{equation}
 #+end_export
-so that \(\vec Q_0=\vec 0\) and \(\vec Q_r=\vec x\), and put
+so that \(\vec Q_0=\vec 0\) and \(\vec Q_r=\vec x\), and
 #+begin_export latex
 \begin{align}
   \Phi_{\vec d}(\vec x\,) &= (\vec{\hat s}_1,\dots,\vec{\hat s}_r),\label{eq:water-filling}\\
   \hat s_i(m) &= Q_i(m+d_i)-Q_{i-1}(m+d_i) .\label{eq:water-filling-component}
 \end{align}
 #+end_export
-Then \(\Phi_{\vec d}\) is the inverse of \eqref{eq:sigma-restricted}. The word *clamp* is meant in its
-numerical sense: \(\max(0,\cdot)\) applied degreewise, which clamps a would-be negative entry up to
-zero, and that single truncation is the whole of \eqref{eq:def-Q}. Taken degree by degree the effect
-is a *water-filling* from the last component, the metaphor being that \(\sum_{k>i}\binom n{j-d_k}\)
-is the capacity of the components after the \(i\)-th and only what overflows that capacity reaches
-the earlier ones; Example [[ex-water-filling]] below runs it by hand in the smallest case where it
-has anything to do.
+1. If \((\vec s_1,\dots,\vec s_r)\in\mathrm{CT}(n;\vec d\,)\) and
+   \(\Sigma_{\vec d}(\vec s_1,\dots,\vec s_r)=\vec x\), then \((\vec s_1,\dots,\vec s_r)=\Phi_{\vec d}(\vec x\,)\).
+   Consequently \(\Phi_{\vec d}\) is the inverse of \eqref{eq:sigma-restricted}.
+2. \(\Phi_{\vec d}\) is equivariant under the involution \eqref{eq:gap-reversal-map}: if
+   \(\vec x^{\vee}\) denotes the image of \(\vec x\) under that involution, read on sums, then the
+   \(i\)-th component of \(\Phi_{\vec d'}(\vec x^{\vee})\) is \(D_n(\vec{\hat s}_{r+1-i})\), where
+   \(\vec d'\) is the reflected shift vector defined in the proof.
+#+end_lemma
 
-That \eqref{eq:water-filling} is the *unique* chained tuple
-summing to \(\vec x\) is proved using downward closure alone, with no Kruskal--Katona and no
-algebra, and the construction commutes with the involution of Remark [[rem-gap-reversal]] on the
-nose, so the
-symmetry that any bijective proof must respect is satisfied here by construction.
+#+begin_proof
+(1) Write \(\iota_k=\indeg(\vec s_k)+d_k\) and \(t_k=\tp(\vec s_k)+d_k\), so that, in absolute degree
+\(j\), component \(k\) contributes \(s_k(j-d_k)=\binom n{j-d_k}\) when \(j<\iota_k\) and \(0\) when
+\(j>t_k\), by the definitions of \(\indeg\) and \(\tp\). The chaining condition in its absolute form
+\eqref{eq:chaining-absolute} is \(t_{k-1}<\iota_k\), and \(\indeg\le\tp+1\) gives
+\(\iota_k\le t_k+1\); together they give \(\iota_{k-1}\le t_{k-1}+1\le\iota_k\), so the \(\iota_k\) are
+non-decreasing. Fix \(j\) and let \(i\) be the largest index with \(\iota_i\le j\), or \(i=0\) if there is
+none. For \(k>i\) we have \(j<\iota_k\), so component \(k\) is full in degree \(j\); for \(k<i\) we have
+\(t_k<\iota_{k+1}\le\iota_i\le j\), so component \(k\) vanishes there. Hence
+\[
+  x(j)=\sum_{k>i}\tbinom n{j-d_k}+s_i(j-d_i),
+\]
+with the last term absent when \(i=0\). Substituting into \eqref{eq:def-Q}: for \(i'\ge i\) the
+argument of the maximum is \(\sum_{i<k\le i'}\binom n{j-d_k}+s_i(j-d_i)\ge0\), so \(Q_{i'}(j)\) equals
+it; for \(i'<i\) the argument is at most \(s_i(j-d_i)-\binom n{j-d_i}\le0\), since every
+\(f\)-vector lies in the box \eqref{eq:binomial-box}, so \(Q_{i'}(j)=0\). Taking differences,
+\(Q_k(j)-Q_{k-1}(j)\) is \(0\) for \(k<i\), \(s_i(j-d_i)\) for \(k=i\), and \(\binom n{j-d_k}\) for
+\(k>i\), which is \(s_k(j-d_k)\) in every case. So \(\hat s_k=\vec s_k\) for every \(k\). By
+Theorem [[thm-chaining]] every \(\vec x\in\mathrm{FF}(n;\vec d\,)\) is the sum of some chained tuple,
+which is therefore \(\Phi_{\vec d}(\vec x\,)\); so \(\Phi_{\vec d}\) inverts \eqref{eq:sigma-restricted}.
 
-That half has two features, both of which became visible only once it was formalised. It needs no
-sortedness, provided the chaining condition is read in the absolute form
-\eqref{eq:chaining-absolute} of Remark [[rem-sorted]] below. The *structure* it rests on is that a
-chained tuple has pairwise disjoint, increasing free windows
-\([\indeg(\vec s_i)+d_i,\;\tp(\vec s_i)+d_i]\), so that in any one degree at most one component is
-free while the earlier ones have vanished and the later ones are still full binomials; and that uses
-only the chaining condition together with \(\indeg\le\tp+1\). In particular it holds for arbitrary non-negative integer vectors satisfying those
-inequalities, whether or not they are \(f\)-vectors: being an \(f\)-vector is needed just for the
-single step identifying a below-window entry as the full binomial \(\binom n{\cdot}\). The clamp is
-thus elementary in a stronger sense than "no Kruskal--Katona": most of it is not about \(f\)-vectors
-at all.
+(2) Put \(J=d_1+d_r+n\) and \(d'_i=d_1+d_r-d_{r+1-i}\), the reflected shift vector, again sorted,
+whose gaps are those of \(\vec d\) in reverse order, and
+\(x^{\vee}(j')=\sum_k\binom n{j'-d'_k}-x(J-j')\), and write \(Q'_i\) and \(\hat s'_i\) for
+\eqref{eq:def-Q} and \eqref{eq:water-filling-component} computed from \(\vec x^{\vee}\) on
+\(\vec d'\). With \(j=J-j'\) we have
+\((j'-d'_k)+(j-d_{r+1-k})=n\), so \(\binom n{j'-d'_k}=\binom n{j-d_{r+1-k}}\), and splitting the sum
+at \(k=i\),
+\[
+  Q'_i(j')=\max\bigl(0,\;T_i(j)-x(j)\bigr),\qquad T_i(j)=\sum_{l>r-i}\tbinom n{j-d_l}.
+\]
+Since \(\max(0,a)=a+\max(0,-a)\) and \(\max\bigl(0,x(j)-T_i(j)\bigr)=Q_{r-i}(j)\), this is
+\(Q'_i(j')=T_i(j)-x(j)+Q_{r-i}(j)\). Take \(j'=m+d'_i\), so that \(j=(n-m)+d_{r+1-i}\). Then
+\(T_i(j)-T_{i-1}(j)=\binom n{n-m}=\binom nm\), the \(x(j)\) cancel, and
+#+begin_export latex
+\begin{align*}
+  \hat s'_i(m)&=Q'_i(j')-Q'_{i-1}(j')=\tbinom nm-\bigl(Q_{r+1-i}(j)-Q_{r-i}(j)\bigr)\\
+  &=\tbinom nm-\hat s_{r+1-i}(n-m)=D_n(\vec{\hat s}_{r+1-i})(m).
+\end{align*}
+#+end_export
+#+end_proof
 
-What is *not* yet combinatorial is the other half: that the clamps \eqref{eq:water-filling-component} are
+Two features of the proof of (1) are worth recording; both became visible only once it was
+formalised (Section [[#sec-verification]]), where it is ~phi_injOn_chained~. It needs no sortedness,
+the chaining condition being read in the absolute form \eqref{eq:chaining-absolute} of Remark
+[[rem-sorted]] below. And it uses about \(f\)-vectors only the box bound, in one step: everything
+else holds for arbitrary non-negative integer vectors satisfying the chaining condition and
+\(\indeg\le\tp+1\), so the clamp is elementary in a stronger sense than "no Kruskal--Katona". The
+word *clamp* is meant in its numerical sense: \(\max(0,\cdot)\) applied degreewise, which clamps a
+would-be negative entry up to zero, and that single truncation is the whole of \eqref{eq:def-Q}.
+Taken degree by degree the effect is a *water-filling* from the last component, the metaphor being
+that \(\sum_{k>i}\binom n{j-d_k}\) is the capacity of the components after the \(i\)-th and only what
+overflows that capacity reaches the earlier ones; Example [[ex-water-filling]] below runs it by hand
+in the smallest case where it has anything to do. Part (2) says that the symmetry any bijective proof
+must respect, that of Remark [[rem-gap-reversal]], holds here by construction.
+
+#+NAME: rem-explicit-inverse
+#+begin_remark
+(/What the explicit inverse still needs./) Lemma [[lem-explicit-inverse]] is the elementary half
+of the bijection. What is *not* yet combinatorial is the other half: that the clamps \eqref{eq:water-filling-component} are
 \(f\)-vectors at all. That is true, by Theorem [[thm-chaining]] again through the lex
 representative, but proving it directly is open. For \(r=2\) it reduces to two properties of the
 Kruskal--Katona shadow function \(\partial_l\): subadditivity,
@@ -1679,8 +1720,8 @@ which is the condition of Theorem [[thm-chaining]] rearranged. Since \(\delta_i\
 sortedness is not spent on the chaining condition at all. It is spent on the exponent
 \(\rho_i+\delta_i\) in Amata and Crupi's construction, which must be non-negative for
 Lemma [[lem-dictionary]](1) to apply. Everything downstream that uses the chaining condition only as
-a condition (the disjoint-window normal form and the uniqueness half of Remark
-[[rem-explicit-inverse]]) needs no sortedness. This was established while formalising the argument
+a condition (the disjoint-window normal form and part (1) of Lemma
+[[lem-explicit-inverse]]) needs no sortedness. This was established while formalising the argument
 (Section [[#sec-verification]]), where the hypothesis turned out to be usable nowhere else; the
 formal development still assumes a sorted \(\vec d\), but only so as to read each gap as a natural
 number.
@@ -1871,7 +1912,7 @@ so
 So the digit sequence does all the bookkeeping: component \(i\) is full in the degrees where the digit
 exceeds \(r-i\), zero where it falls below, and free exactly on the level set \(\lbrace j:q(j)=r-i\rbrace\).
 Monotonicity of \(\vec q\) is precisely the statement that each of those three sets is an interval in
-the right position, which is what the disjoint increasing windows of Remark [[rem-explicit-inverse]]
+the right position, which is what the disjoint increasing windows in the proof of Lemma [[lem-explicit-inverse]]
 amount to in this case; and once \(\vec q\) is non-increasing, the only condition left on \(\vec x\) is
 that on each constant block of \(\vec q\) the remainders \(y(j)\) continue the full skeleton below the
 block to an \(f\)-vector. That is *one Kruskal--Katona condition per block*, and nothing else.
@@ -3029,7 +3070,7 @@ is Proposition [[prop-fnn2]]. Two problems remain.
    submodules, would explain the constraint combinatorially rather than algebraically. Remark
    [[rem-gap-reversal]] is a constraint on any answer rather than a step toward one: such a
    bijection must be compatible with the gap-reversing involution recorded there. The explicit
-   inverse of Remark [[rem-explicit-inverse]] is half of an answer: it is closed-form, its
+   inverse of Lemma [[lem-explicit-inverse]] is half of an answer: it is closed-form, its
    uniqueness is elementary, and it is equivariant under that involution. What is missing is a
    direct proof that its clamps are \(f\)-vectors.
 2. *Beyond constant gaps.* The formula handles an arbitrary sorted \(\vec d\), but the growth results of
@@ -3363,8 +3404,8 @@ derived the growth results of Section [[#sec-growth]], including Theorem [[thm-p
 Linusson's Theorem 5.2 from the printed page and validated it against both of his appendix tables;
 found the Alexander-duality argument of Section [[#sec-statistics]] (Lemma [[lem-alexander]],
 Corollary [[cor-persymmetry]], Proposition [[prop-fnn2]]); proved Theorem [[thm-delta0-degrees]] and
-found the digraph reading of Remark [[rem-delta0-digraph]]; found the explicit inverse of Remark
-[[rem-explicit-inverse]]; proved Propositions [[prop-normalform]] and [[prop-perron-threshold]] and
+found the digraph reading of Remark [[rem-delta0-digraph]]; found the explicit inverse of Lemma
+[[lem-explicit-inverse]]; proved Propositions [[prop-normalform]] and [[prop-perron-threshold]] and
 Theorems [[thm-asymptotics-p]] and [[thm-asymptotics-p-proper]]; computed the tables of the
 appendix; wrote the Lean formalisation described in Section [[#sec-verification]], in its
 entirety; wrote all the supporting code; and drafted the exposition. The author set the problem,
