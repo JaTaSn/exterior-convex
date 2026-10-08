@@ -664,7 +664,7 @@ tuples and only conditionally as statements about \(\lvert\mathrm{FF}(n;\vec d\,
 the algebra being a hypothesis rather than a proof. Section [[#sec-verification]] sets out exactly
 what lies inside and what lies outside.
 
-The asymptotics in \(n\), the analogue of Linusson's own \S2.2, are not attempted.
+The asymptotics in \(n\), which Linusson himself leaves as an open problem, are not attempted.
 
 * Notation
 :PROPERTIES:
@@ -1510,7 +1510,7 @@ cardinality, so \(L\) is determined degreewise. Surjective: monomial submodules 
   \;=\;\Bigl\lbrace\HF\Bigl(\frac FL\Bigr):L\ \text{lex}\Bigr\rbrace
 \end{equation}
 #+end_export
-by Amata and Crupi's Theorem 4.2, implication (a) \(\Leftrightarrow\) (c); and conversely a lex
+by Amata and Crupi's Theorem 4.2 [cite:@AmataCrupi2020KK], implication (a) \(\Leftrightarrow\) (c); and conversely a lex
 submodule is monomial, so the reverse inclusion holds by (a).
 
 Composing (c) and (d) gives the claim.
@@ -2927,7 +2927,7 @@ tested. Specifically:
   correspondence between monomial ideals and order ideals that makes \(\HF\bigl((\Ext)/I\bigr)\) an
   \(f\)-vector. The surjectivity half of Theorem [[thm-chaining]] needs all of that *and* Amata
   and Crupi's theory of lex submodules: their Definition 2.6 \(\Leftrightarrow\) 2.7, the
-  existence and uniqueness of a lex representative in their Theorem 4.2, and Kruskal--Katona in
+  existence and uniqueness of a lex representative in their Theorem 4.2 [cite:@AmataCrupi2020KK], and Kruskal--Katona in
   the exterior form of [cite/t:@AramovaHerzogHibi1997]. That is a substantially larger
   undertaking, and is in any case open combinatorially. The formal development is
   purely combinatorial: it counts order ideals and their \(f\)-vectors and never constructs a
