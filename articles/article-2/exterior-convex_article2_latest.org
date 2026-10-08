@@ -1579,9 +1579,13 @@ at all.
 What is *not* yet combinatorial is the other half: that the clamps \eqref{eq:water-filling-component} are
 \(f\)-vectors at all. That is true, by Theorem [[thm-chaining]] again through the lex
 representative, but proving it directly is open. For \(r=2\) it reduces to two properties of the
-Kruskal--Katona shadow function, one of which we can prove and the other of which is verified far
-beyond any range the argument needs but remains open on a sporadic set; for \(r\ge3\) a further
-inequality is needed. So the bijection is explicit and one-directionally elementary, and the
+Kruskal--Katona shadow function \(\partial_l\): subadditivity,
+\(\partial_l(p+q)\le\partial_l(p)+\partial_l(q)\), which follows from Kruskal--Katona by placing two
+colex families on disjoint ground sets; and level monotonicity, \(\partial_l(c)\le\partial_{l+1}(c)\),
+which we can prove except on a sporadic set of cases, the smallest being \(l=4\), \(c=6\). Every
+instance of the second that the argument uses at a given \(n\) was checked exactly for \(n\le16\),
+so for \(r=2\) a combinatorial proof is complete for \(n\le16\); in general it is not. For \(r\ge3\)
+a further inequality is needed, and is open. So the bijection is explicit and one-directionally elementary, and the
 bijective-proof problem of Section [[#sec-verification]] stands.
 #+end_remark
 
@@ -1682,9 +1686,13 @@ formal development still assumes a sorted \(\vec d\), but only so as to read eac
 number.
 
 *Which half of Theorem 4.2.* Only implication (a) \(\Leftrightarrow\) (c) is used, the existence
-and uniqueness of a lex representative, and that half is sound. Clause (b) of the same theorem is
-*false as printed* for tied initial generator degrees, a defect treated in the third paper of this
-series; nothing here depends on it.
+and uniqueness of a lex representative, and that half is sound. The implication (b) \(\Rightarrow\) (a) of the same
+theorem fails when initial generator degrees tie. The smallest instance is \(n=1\), \(r=2\),
+\(\vec d=(0,0)\), with Hilbert sequence \((h_0,h_1)=(1,2)\): it satisfies (b), but \(h_0=1\) forces a
+non-zero \(v\in M_0\), and then \(e_1v\ne0\) lies in \(M_1\), so \(h_1\le1\). The function
+~isHilbertSequence~ of Amata and Crupi's Macaulay2 package [cite:@AmataCrupi2021] also rejects it.
+The repair, and the corrected statement, are in the third paper of this series; nothing here
+depends on (b).
 #+end_remark
 
 * The counting theorem
@@ -2479,6 +2487,16 @@ every row of \(T_n(\delta)\) is the same row vector \(\vec u_n\), whose entry
 \(\vec u_n\cdot\vec1_n=\sum_{\tau'}u_n[\tau']=|\mathcal F_n|\), and
 every other eigenvalue is \(0\). The proper statement is the same computation with \(\min\indeg=2\)
 over \(S_n\), giving the threshold \(\delta\ge n-1\) and the root \(|S_n|\).
+
+That the thresholds are exact, that is, that the root is strictly smaller below them, follows from
+the comparison theorem of Perron--Frobenius theory: if \(0\le M\le M'\) entrywise, \(M\ne M'\) and
+\(M'\) is irreducible, then the spectral radius of \(M\) is strictly smaller than that of \(M'\)
+[cite:@HornJohnson2013 Ch. 8]. Here \(M'=T_n(n+1)=\vec1_n\,\vec u_n\) has every entry positive,
+because \(\vec u_n\) does, and so is irreducible; for \(\delta\le n\) the matrix \(T_n(\delta)\) lies
+below it by the monotonicity in Definition [[def-uT]], and differs from it, since the full simplex
+followed by the void family is not chained at \(\delta=n\). The proper case is the same argument on
+the block \(\lbrace1,\dots,n\rbrace\), where \(T'_n(n-1)\) is positive and, for \(\delta\le n-2\), a
+summand with \(\tp=n\) followed by one with \(\indeg=2\) is not chained.
 #+end_proof
 
 #+NAME: rem-perron
@@ -2915,10 +2933,15 @@ tested. Specifically:
   purely combinatorial: it counts order ideals and their \(f\)-vectors and never constructs a
   submodule. Consequently, wherever a result needs the bridge from the combinatorics to the algebra,
   that bridge is an explicit hypothesis rather than a proof. The counting identities of Theorems
-  [[thm-main]] and [[thm-proper]] are certified *unconditionally* as statements about chained tuples;
-  their readings as statements about \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) and
-  \(\lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert\) are certified given that hypothesis, which
-  is exactly what "proved modulo" means in the text above.
+  [[thm-main]] and [[thm-proper]] are certified *unconditionally* as statements about chained
+  tuples. Every statement about \(\lvert\mathrm{FF}(n;\vec d\,)\rvert\) or
+  \(\lvert\mathrm{FF}_{\mathrm{pr}}(n;\vec d\,)\rvert\) (those two theorems, Corollary [[cor-r1]],
+  Propositions [[prop-threshold]], [[prop-proper-threshold]] and [[prop-normalform]], Theorem
+  [[thm-delta0-degrees]], and the reading of Proposition [[prop-recurrence]] as a statement about
+  counts) is certified given that hypothesis, which the paper itself discharges algebraically, in
+  Theorem [[thm-chaining]] and Lemma [[lem-lexproper]]. This is a different thing from the
+  "proved modulo" of the table in Section [[#sec-intro]], which refers only to Linusson's
+  Theorem 5.3.
 
   *Linusson's results.* Theorem [[thm-linusson]] and his Theorem 5.3 are cited rather than reproved,
   so Lemma [[lem-joint]] and everything resting on them is outside the formalisation: Theorem
@@ -3311,18 +3334,28 @@ recorded in Remark [[rem-sorted]]; assembled and proved Theorem [[thm-main]] and
 Lemma [[lem-lexproper]], without which the proper variant of Theorem [[thm-proper]] would not follow;
 derived the growth results of Section [[#sec-growth]], including Theorem [[thm-poly-p]]; transcribed
 Linusson's Theorem 5.2 from the printed page and validated it against both of his appendix tables;
-wrote all the supporting code; and drafted the exposition. The author set the problem, directed the
-scope, and required the separation of proved from verified results that Section [[#sec-intro]]'s table
-records.
+found the Alexander-duality argument of Section [[#sec-statistics]] (Lemma [[lem-alexander]],
+Corollary [[cor-persymmetry]], Proposition [[prop-fnn2]]); proved Theorem [[thm-delta0-degrees]] and
+found the digraph reading of Remark [[rem-delta0-digraph]]; found the explicit inverse of Remark
+[[rem-explicit-inverse]]; proved Propositions [[prop-normalform]] and [[prop-perron-threshold]] and
+Theorems [[thm-asymptotics-p]] and [[thm-asymptotics-p-proper]]; computed the tables of the
+appendix; wrote the Lean formalisation described in Section [[#sec-verification]], in its
+entirety; wrote all the supporting code; and drafted the exposition. The author set the problem,
+directed the scope, and required the separation of proved from verified results that Section
+[[#sec-intro]]'s table records. He also required that the combinatorial core be formalised and
+machine-checked, and the formalisation was then carried out by the model.
 
 Two corrections the model made to its own earlier work are worth recording, as evidence of what the
 verification was for: an initial value of \(|S_9|\) was wrong by one, caught by checking against
 OEIS A007695 and against Linusson's printed table; and a threshold in Propositions [[prop-threshold]]
 and [[prop-proper-threshold]] had been stated for the wrong one of the two variants.
 
-Every counting claim in this paper was checked along a route independent of the formula being tested,
-as set out in Section [[#sec-verification]], and the reference list has been checked against primary
-sources. The author has verified the results to the best of his ability, made the final edits, and
+Every structural claim in this paper was checked computationally, along a route independent of the
+formula being tested, over the ranges stated in Section [[#sec-verification]], which also lists the
+few checks that compare one form of a formula with another. Values beyond those ranges, such as the
+few table entries beyond brute-force range and the polynomials at \(n=7\), come from the formulas
+themselves, which are proved and, in their combinatorial form, formalised. The reference list has
+been checked against primary sources. The author has verified the results to the best of his ability, made the final edits, and
 assumes full responsibility for any errors, mistakes or gaps that remain.
 
 * Funding
