@@ -3041,8 +3041,12 @@ Linusson closes his paper with two tables, and they are part of why it is usable
 merely correct: Table 5 gives the counts \(F^p(n)\) themselves, and Table 6 gives \(E^p(p,k)\),
 the refinement his recursion actually runs on, with \(F^p(p)\) recovered as a row sum in the last
 column. This appendix gives the analogues, in the same pairing and the same order. Every entry
-was produced by the formulas of this paper and independently reproduced by brute-force
-enumeration wherever that is feasible; Section [[#sec-verification]] says over which ranges.
+was produced by the formulas of this paper and checked against direct enumeration of the
+sumset, with no recursion and no transfer matrix, wherever that was feasible: every entry of both
+count tables with \(n\le5\), except the improper count for \(n=5\), \(r=5\), \(\delta\ge3\), and for
+\(n=6\) the entries with \(r\le3\), with \(r=4\), \(\delta\le1\), and with \(r=5\), \(\delta=0\). That is
+\(103\) of the \(120\) improper and \(107\) of the \(120\) proper entries with \(r\ge2\), with no
+mismatch.
 
 ** The joint distribution
 

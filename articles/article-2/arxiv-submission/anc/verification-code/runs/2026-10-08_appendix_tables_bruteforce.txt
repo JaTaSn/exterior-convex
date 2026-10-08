@@ -1,0 +1,368 @@
+# date: 2026-10-08 14:57 CEST
+# host: jts-office
+# python: Python 3.14.8, numpy 2.4.6
+# cwd: /home/jan/Repositories/ai-workspace/20-projects/exterior-convex
+# command: nice -n 19 /usr/bin/python3 code/oneoff/appendix_tables_bruteforce.py
+# git HEAD: 04d9e798 (script untracked)
+
+parsed 150 + 150 cells from article/exterior-convex_article2_latest.tex
+|F_n| = {2: 5, 3: 10, 4: 26, 5: 96, 6: 553}  |S_n| = {2: 2, 3: 5, 4: 16, 5: 70, 6: 457}
+PASS imp n=2 delta=0 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS imp n=2 delta=1 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS imp n=2 delta=2 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS imp n=2 delta=3 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS imp n=3 delta=0 r=1        printed 10 formula 10 brute 10  (0.0s)
+PASS imp n=3 delta=1 r=1        printed 10 formula 10 brute 10  (0.0s)
+PASS imp n=3 delta=2 r=1        printed 10 formula 10 brute 10  (0.0s)
+PASS imp n=3 delta=3 r=1        printed 10 formula 10 brute 10  (0.0s)
+PASS imp n=3 delta=4 r=1        printed 10 formula 10 brute 10  (0.0s)
+PASS imp n=4 delta=0 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=4 delta=1 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=4 delta=2 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=4 delta=3 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=4 delta=4 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=4 delta=5 r=1        printed 26 formula 26 brute 26  (0.0s)
+PASS imp n=5 delta=0 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=1 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=2 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=3 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=4 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=5 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=5 delta=6 r=1        printed 96 formula 96 brute 96  (0.0s)
+PASS imp n=6 delta=0 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=1 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=2 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=3 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=4 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=5 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=6 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS imp n=6 delta=7 r=1        printed 553 formula 553 brute 553  (0.0s)
+PASS pro n=2 delta=0 r=1        printed 2 formula 2 brute 2  (0.0s)
+PASS pro n=2 delta=1 r=1        printed 2 formula 2 brute 2  (0.0s)
+PASS pro n=2 delta=2 r=1        printed 2 formula 2 brute 2  (0.0s)
+PASS pro n=2 delta=3 r=1        printed 2 formula 2 brute 2  (0.0s)
+PASS pro n=3 delta=0 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS pro n=3 delta=1 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS pro n=3 delta=2 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS pro n=3 delta=3 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS pro n=3 delta=4 r=1        printed 5 formula 5 brute 5  (0.0s)
+PASS pro n=4 delta=0 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=4 delta=1 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=4 delta=2 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=4 delta=3 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=4 delta=4 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=4 delta=5 r=1        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=5 delta=0 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=1 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=2 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=3 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=4 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=5 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=5 delta=6 r=1        printed 70 formula 70 brute 70  (0.0s)
+PASS pro n=6 delta=0 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=1 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=2 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=3 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=4 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=5 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=6 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=6 delta=7 r=1        printed 457 formula 457 brute 457  (0.0s)
+PASS pro n=2 delta=0 r=2        printed 3 formula 3 brute 3  (0.0s)
+PASS pro n=2 delta=1 r=2        printed 4 formula 4 brute 4  (0.0s)
+PASS pro n=2 delta=2 r=2        printed 4 formula 4 brute 4  (0.0s)
+PASS pro n=2 delta=3 r=2        printed 4 formula 4 brute 4  (0.0s)
+PASS pro n=2 delta=0 r=3        printed 4 formula 4 brute 4  (0.0s)
+PASS pro n=2 delta=1 r=3        printed 8 formula 8 brute 8  (0.0s)
+PASS pro n=2 delta=2 r=3        printed 8 formula 8 brute 8  (0.0s)
+PASS pro n=2 delta=3 r=3        printed 8 formula 8 brute 8  (0.0s)
+PASS pro n=2 delta=0 r=4        printed 5 formula 5 brute 5  (0.0s)
+PASS imp n=2 delta=0 r=2        printed 14 formula 14 brute 14  (0.0s)
+PASS imp n=2 delta=1 r=2        printed 20 formula 20 brute 20  (0.0s)
+PASS imp n=2 delta=2 r=2        printed 24 formula 24 brute 24  (0.0s)
+PASS imp n=2 delta=3 r=2        printed 25 formula 25 brute 25  (0.0s)
+PASS pro n=3 delta=0 r=2        printed 12 formula 12 brute 12  (0.0s)
+PASS pro n=3 delta=1 r=2        printed 22 formula 22 brute 22  (0.0s)
+PASS pro n=3 delta=2 r=2        printed 25 formula 25 brute 25  (0.0s)
+PASS pro n=3 delta=3 r=2        printed 25 formula 25 brute 25  (0.0s)
+PASS pro n=3 delta=4 r=2        printed 25 formula 25 brute 25  (0.0s)
+PASS pro n=2 delta=0 r=5        printed 6 formula 6 brute 6  (0.0s)
+PASS pro n=2 delta=1 r=4        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=2 delta=2 r=4        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=2 delta=3 r=4        printed 16 formula 16 brute 16  (0.0s)
+PASS pro n=2 delta=1 r=5        printed 32 formula 32 brute 32  (0.0s)
+PASS pro n=2 delta=2 r=5        printed 32 formula 32 brute 32  (0.0s)
+PASS pro n=2 delta=3 r=5        printed 32 formula 32 brute 32  (0.0s)
+PASS pro n=3 delta=0 r=3        printed 22 formula 22 brute 22  (0.0s)
+PASS imp n=2 delta=0 r=3        printed 30 formula 30 brute 30  (0.0s)
+PASS imp n=3 delta=0 r=2        printed 43 formula 43 brute 43  (0.0s)
+PASS imp n=3 delta=1 r=2        printed 69 formula 69 brute 69  (0.0s)
+PASS imp n=3 delta=2 r=2        printed 91 formula 91 brute 91  (0.0s)
+PASS imp n=3 delta=3 r=2        printed 99 formula 99 brute 99  (0.0s)
+PASS imp n=3 delta=4 r=2        printed 100 formula 100 brute 100  (0.0s)
+PASS imp n=2 delta=1 r=3        printed 76 formula 76 brute 76  (0.0s)
+PASS pro n=3 delta=1 r=3        printed 95 formula 95 brute 95  (0.0s)
+PASS imp n=2 delta=2 r=3        printed 115 formula 115 brute 115  (0.0s)
+PASS imp n=2 delta=3 r=3        printed 125 formula 125 brute 125  (0.0s)
+PASS pro n=3 delta=2 r=3        printed 125 formula 125 brute 125  (0.0s)
+PASS pro n=3 delta=3 r=3        printed 125 formula 125 brute 125  (0.0s)
+PASS pro n=3 delta=4 r=3        printed 125 formula 125 brute 125  (0.0s)
+PASS pro n=3 delta=0 r=4        printed 35 formula 35 brute 35  (0.0s)
+PASS imp n=2 delta=0 r=4        printed 55 formula 55 brute 55  (0.0s)
+PASS pro n=4 delta=0 r=2        printed 69 formula 69 brute 69  (0.0s)
+PASS pro n=4 delta=1 r=2        printed 162 formula 162 brute 162  (0.0s)
+PASS pro n=4 delta=2 r=2        printed 246 formula 246 brute 246  (0.0s)
+PASS pro n=4 delta=3 r=2        printed 256 formula 256 brute 256  (0.0s)
+PASS pro n=4 delta=4 r=2        printed 256 formula 256 brute 256  (0.0s)
+PASS pro n=4 delta=5 r=2        printed 256 formula 256 brute 256  (0.0s)
+PASS pro n=3 delta=0 r=5        printed 51 formula 51 brute 51  (0.0s)
+PASS imp n=2 delta=1 r=4        printed 285 formula 285 brute 285  (0.0s)
+PASS imp n=2 delta=0 r=5        printed 91 formula 91 brute 91  (0.0s)
+PASS imp n=3 delta=0 r=3        printed 125 formula 125 brute 125  (0.0s)
+PASS pro n=3 delta=1 r=4        printed 409 formula 409 brute 409  (0.0s)
+PASS imp n=4 delta=0 r=2        printed 194 formula 194 brute 194  (0.0s)
+PASS imp n=4 delta=1 r=2        printed 368 formula 368 brute 368  (0.0s)
+PASS imp n=4 delta=2 r=2        printed 556 formula 556 brute 556  (0.0s)
+PASS imp n=4 delta=3 r=2        printed 657 formula 657 brute 657  (0.0s)
+PASS imp n=4 delta=4 r=2        printed 675 formula 675 brute 675  (0.0s)
+PASS imp n=4 delta=5 r=2        printed 676 formula 676 brute 676  (0.0s)
+PASS imp n=2 delta=2 r=4        printed 551 formula 551 brute 551  (0.0s)
+PASS imp n=2 delta=3 r=4        printed 625 formula 625 brute 625  (0.0s)
+PASS pro n=3 delta=2 r=4        printed 625 formula 625 brute 625  (0.0s)
+PASS pro n=3 delta=3 r=4        printed 625 formula 625 brute 625  (0.0s)
+PASS pro n=3 delta=4 r=4        printed 625 formula 625 brute 625  (0.0s)
+PASS imp n=3 delta=1 r=3        printed 426 formula 426 brute 426  (0.0s)
+PASS imp n=3 delta=2 r=3        printed 821 formula 821 brute 821  (0.0s)
+PASS imp n=3 delta=3 r=3        printed 980 formula 980 brute 980  (0.0s)
+PASS imp n=3 delta=4 r=3        printed 1000 formula 1000 brute 1000  (0.0s)
+PASS pro n=4 delta=0 r=3        printed 184 formula 184 brute 184  (0.0s)
+PASS imp n=3 delta=0 r=4        printed 290 formula 290 brute 290  (0.0s)
+PASS imp n=2 delta=1 r=5        printed 1065 formula 1065 brute 1065  (0.0s)
+PASS pro n=3 delta=1 r=5        printed 1760 formula 1760 brute 1760  (0.0s)
+PASS pro n=4 delta=1 r=3        printed 1478 formula 1478 brute 1478  (0.0s)
+PASS imp n=2 delta=2 r=5        printed 2640 formula 2640 brute 2640  (0.0s)
+PASS imp n=2 delta=3 r=5        printed 3125 formula 3125 brute 3125  (0.0s)
+PASS pro n=3 delta=2 r=5        printed 3125 formula 3125 brute 3125  (0.0s)
+PASS pro n=3 delta=3 r=5        printed 3125 formula 3125 brute 3125  (0.0s)
+PASS pro n=3 delta=4 r=5        printed 3125 formula 3125 brute 3125  (0.0s)
+PASS pro n=4 delta=2 r=3        printed 3776 formula 3776 brute 3776  (0.0s)
+PASS pro n=4 delta=0 r=4        printed 385 formula 385 brute 385  (0.0s)
+PASS pro n=4 delta=3 r=3        printed 4096 formula 4096 brute 4096  (0.0s)
+PASS pro n=4 delta=4 r=3        printed 4096 formula 4096 brute 4096  (0.0s)
+PASS pro n=4 delta=5 r=3        printed 4096 formula 4096 brute 4096  (0.0s)
+PASS imp n=3 delta=0 r=5        printed 581 formula 581 brute 581  (0.0s)
+PASS pro n=5 delta=0 r=2        printed 627 formula 627 brute 627  (0.0s)
+PASS pro n=5 delta=1 r=2        printed 1858 formula 1858 brute 1858  (0.0s)
+PASS pro n=5 delta=2 r=2        printed 3805 formula 3805 brute 3805  (0.0s)
+PASS pro n=5 delta=3 r=2        printed 4857 formula 4857 brute 4857  (0.0s)
+PASS pro n=5 delta=4 r=2        printed 4900 formula 4900 brute 4900  (0.0s)
+PASS pro n=5 delta=5 r=2        printed 4900 formula 4900 brute 4900  (0.0s)
+PASS pro n=5 delta=6 r=2        printed 4900 formula 4900 brute 4900  (0.0s)
+PASS imp n=3 delta=1 r=4        printed 2532 formula 2532 brute 2532  (0.0s)
+PASS imp n=4 delta=0 r=3        printed 816 formula 816 brute 816  (0.0s)
+PASS imp n=5 delta=0 r=2        printed 1433 formula 1433 brute 1433  (0.0s)
+PASS imp n=5 delta=1 r=2        printed 3405 formula 3405 brute 3405  (0.0s)
+PASS imp n=5 delta=2 r=2        printed 6264 formula 6264 brute 6264  (0.0s)
+PASS imp n=5 delta=3 r=2        printed 8454 formula 8454 brute 8454  (0.0s)
+PASS imp n=5 delta=4 r=2        printed 9165 formula 9165 brute 9165  (0.0s)
+PASS imp n=5 delta=5 r=2        printed 9215 formula 9215 brute 9215  (0.0s)
+PASS imp n=5 delta=6 r=2        printed 9216 formula 9216 brute 9216  (0.0s)
+PASS imp n=3 delta=2 r=4        printed 7401 formula 7401 brute 7401  (0.0s)
+PASS imp n=4 delta=1 r=3        printed 4200 formula 4200 brute 4200  (0.0s)
+PASS pro n=4 delta=0 r=5        printed 696 formula 696 brute 696  (0.0s)
+PASS imp n=3 delta=3 r=4        printed 9701 formula 9701 brute 9701  (0.0s)
+PASS imp n=3 delta=4 r=4        printed 10000 formula 10000 brute 10000  (0.0s)
+PASS imp n=4 delta=2 r=3        printed 11521 formula 11521 brute 11521  (0.0s)
+PASS imp n=4 delta=3 r=3        printed 16589 formula 16589 brute 16589  (0.0s)
+PASS imp n=4 delta=4 r=3        printed 17524 formula 17524 brute 17524  (0.0s)
+PASS imp n=4 delta=5 r=3        printed 17576 formula 17576 brute 17576  (0.0s)
+PASS pro n=4 delta=1 r=4        printed 13100 formula 13100 brute 13100  (0.0s)
+PASS imp n=4 delta=0 r=4        printed 2491 formula 2491 brute 2491  (0.0s)
+PASS imp n=3 delta=1 r=5        printed 14847 formula 14847 brute 14847  (0.0s)
+PASS pro n=5 delta=0 r=3        printed 2592 formula 2592 brute 2592  (0.0s)
+PASS pro n=4 delta=2 r=4        printed 57956 formula 57956 brute 57956  (0.0s)
+PASS pro n=4 delta=3 r=4        printed 65536 formula 65536 brute 65536  (0.0s)
+PASS pro n=4 delta=4 r=4        printed 65536 formula 65536 brute 65536  (0.0s)
+PASS pro n=4 delta=5 r=4        printed 65536 formula 65536 brute 65536  (0.0s)
+PASS imp n=3 delta=2 r=5        printed 66712 formula 66712 brute 66712  (0.0s)
+PASS imp n=4 delta=0 r=5        printed 6202 formula 6202 brute 6202  (0.0s)
+PASS imp n=3 delta=3 r=5        printed 96030 formula 96030 brute 96030  (0.1s)
+PASS imp n=3 delta=4 r=5        printed 100000 formula 100000 brute 100000  (0.1s)
+PASS imp n=4 delta=1 r=4        printed 44021 formula 44021 brute 44021  (0.0s)
+PASS pro n=5 delta=1 r=3        printed 37181 formula 37181 brute 37181  (0.0s)
+PASS imp n=5 delta=0 r=3        printed 9315 formula 9315 brute 9315  (0.0s)
+PASS pro n=6 delta=0 r=2        printed 9904 formula 9904 brute 9904  (0.0s)
+PASS pro n=6 delta=1 r=2        printed 38232 formula 38232 brute 38232  (0.0s)
+PASS pro n=6 delta=2 r=2        printed 104870 formula 104870 brute 104870  (0.0s)
+PASS pro n=6 delta=3 r=2        printed 183337 formula 183337 brute 183337  (0.1s)
+PASS pro n=6 delta=4 r=2        printed 208582 formula 208582 brute 208582  (0.1s)
+PASS pro n=6 delta=5 r=2        printed 208849 formula 208849 brute 208849  (0.1s)
+PASS pro n=6 delta=6 r=2        printed 208849 formula 208849 brute 208849  (0.1s)
+PASS pro n=6 delta=7 r=2        printed 208849 formula 208849 brute 208849  (0.1s)
+PASS pro n=5 delta=0 r=4        printed 7385 formula 7385 brute 7385  (0.0s)
+PASS pro n=4 delta=1 r=5        printed 115128 formula 115128 brute 115128  (0.1s)
+PASS pro n=5 delta=2 r=3        printed 199805 formula 199805 brute 199805  (0.0s)
+PASS imp n=6 delta=0 r=2        printed 19145 formula 19145 brute 19145  (0.0s)
+PASS imp n=6 delta=1 r=2        printed 60586 formula 60586 brute 60586  (0.0s)
+PASS imp n=6 delta=2 r=2        printed 145746 formula 145746 brute 145746  (0.0s)
+PASS imp n=6 delta=3 r=2        printed 245035 formula 245035 brute 245035  (0.1s)
+PASS imp n=6 delta=4 r=2        printed 296059 formula 296059 brute 296059  (0.1s)
+PASS imp n=6 delta=5 r=2        printed 305618 formula 305618 brute 305618  (0.1s)
+PASS imp n=6 delta=6 r=2        printed 305808 formula 305808 brute 305808  (0.1s)
+PASS imp n=6 delta=7 r=2        printed 305809 formula 305809 brute 305809  (0.1s)
+PASS imp n=4 delta=2 r=4        printed 237440 formula 237440 brute 237440  (0.1s)
+PASS imp n=5 delta=1 r=3        printed 81845 formula 81845 brute 81845  (0.1s)
+PASS pro n=5 delta=3 r=3        printed 336980 formula 336980 brute 336980  (0.1s)
+PASS pro n=5 delta=4 r=3        printed 343000 formula 343000 brute 343000  (0.1s)
+PASS pro n=5 delta=5 r=3        printed 343000 formula 343000 brute 343000  (0.1s)
+PASS pro n=5 delta=6 r=3        printed 343000 formula 343000 brute 343000  (0.1s)
+PASS imp n=4 delta=3 r=4        printed 418857 formula 418857 brute 418857  (0.2s)
+PASS imp n=4 delta=4 r=4        printed 454949 formula 454949 brute 454949  (0.2s)
+PASS imp n=4 delta=5 r=4        printed 456976 formula 456976 brute 456976  (0.2s)
+PASS imp n=5 delta=2 r=3        printed 373078 formula 373078 brute 373078  (0.1s)
+PASS pro n=5 delta=0 r=5        printed 16926 formula 16926 brute 16926  (0.1s)
+PASS imp n=5 delta=3 r=3        printed 739600 formula 739600 brute 739600  (0.3s)
+PASS imp n=5 delta=4 r=3        printed 874945 formula 874945 brute 874945  (0.3s)
+PASS imp n=5 delta=5 r=3        printed 884544 formula 884544 brute 884544  (0.3s)
+PASS imp n=5 delta=6 r=3        printed 884736 formula 884736 brute 884736  (0.3s)
+PASS pro n=4 delta=2 r=5        printed 889536 formula 889536 brute 889536  (0.4s)
+PASS imp n=5 delta=0 r=4        printed 38800 formula 38800 brute 38800  (0.1s)
+PASS pro n=4 delta=3 r=5        printed 1048576 formula 1048576 brute 1048576  (0.4s)
+PASS pro n=4 delta=4 r=5        printed 1048576 formula 1048576 brute 1048576  (0.4s)
+PASS pro n=4 delta=5 r=5        printed 1048576 formula 1048576 brute 1048576  (0.5s)
+PASS imp n=4 delta=1 r=5        printed 445373 formula 445373 brute 445373  (0.2s)
+PASS pro n=5 delta=1 r=4        printed 675786 formula 675786 brute 675786  (0.3s)
+PASS pro n=6 delta=0 r=3        printed 67448 formula 67448 brute 67448  (0.2s)
+PASS imp n=5 delta=0 r=5        printed 122801 formula 122801 brute 122801  (0.1s)
+PASS imp n=4 delta=2 r=5        printed 4888880 formula 4888880 brute 4888880  (2.5s)
+PASS imp n=5 delta=1 r=4        printed 1667849 formula 1667849 brute 1667849  (0.9s)
+PASS imp n=6 delta=0 r=3        printed 204141 formula 204141 brute 204141  (0.3s)
+PASS imp n=4 delta=3 r=5        printed 10575748 formula 10575748 brute 10575748  (6.1s)
+PASS imp n=4 delta=4 r=5        printed 11811150 formula 11811150 brute 11811150  (7.8s)
+PASS imp n=4 delta=5 r=5        printed 11881376 formula 11881376 brute 11881376  (7.9s)
+PASS pro n=5 delta=2 r=4        printed 10436280 formula 10436280 brute 10436280  (5.9s)
+PASS pro n=6 delta=1 r=3        printed 1816426 formula 1816426 brute 1816426  (1.1s)
+PASS pro n=5 delta=3 r=4        printed 23379749 formula 23379749 brute 23379749  (12.0s)
+PASS pro n=5 delta=4 r=4        printed 24010000 formula 24010000 brute 24010000  (12.2s)
+PASS pro n=5 delta=5 r=4        printed 24010000 formula 24010000 brute 24010000  (12.2s)
+PASS pro n=5 delta=6 r=4        printed 24010000 formula 24010000 brute 24010000  (12.2s)
+PASS imp n=6 delta=1 r=3        printed 3443671 formula 3443671 brute 3443671  (2.0s)
+PASS pro n=6 delta=0 r=4        printed 269765 formula 269765 brute 269765  (1.0s)
+PASS imp n=5 delta=2 r=4        printed 21733283 formula 21733283 brute 21733283  (8.2s)
+PASS pro n=6 delta=2 r=3        printed 20596002 formula 20596002 brute 20596002  (5.6s)
+PASS pro n=5 delta=1 r=5        printed 11847871 formula 11847871 brute 11847871  (3.4s)
+PASS imp n=5 delta=3 r=4        printed 64670555 formula 64670555 brute 64670555  (13.4s)
+PASS imp n=6 delta=2 r=3        printed 30713150 formula 30713150 brute 30713150  (6.5s)
+PASS pro n=6 delta=3 r=3        printed 72771631 formula 72771631 brute 72771631  (13.5s)
+PASS imp n=5 delta=4 r=4        printed 83527401 formula 83527401 brute 83527401  (15.5s)
+PASS imp n=5 delta=5 r=4        printed 84907009 formula 84907009 brute 84907009  (15.4s)
+PASS imp n=5 delta=6 r=4        printed 84934656 formula 84934656 brute 84934656  (15.5s)
+PASS pro n=6 delta=4 r=3        printed 95199955 formula 95199955 brute 95199955  (16.3s)
+PASS pro n=6 delta=5 r=3        printed 95443993 formula 95443993 brute 95443993  (15.9s)
+PASS pro n=6 delta=6 r=3        printed 95443993 formula 95443993 brute 95443993  (16.4s)
+PASS pro n=6 delta=7 r=3        printed 95443993 formula 95443993 brute 95443993  (16.5s)
+PASS imp n=6 delta=0 r=4        printed 1195136 formula 1195136 brute 1195136  (4.9s)
+PASS imp n=6 delta=3 r=3        printed 105135755 formula 105135755 brute 105135755  (14.8s)
+PASS pro n=6 delta=0 r=5        printed 798101 formula 798101 brute 798101  (6.3s)
+PASS imp n=6 delta=4 r=3        printed 158343036 formula 158343036 brute 158343036  (20.2s)
+PASS imp n=5 delta=1 r=5        printed 31570587 formula 31570587 brute 31570587  (4.8s)
+PASS imp n=6 delta=5 r=3        printed 168901132 formula 168901132 brute 168901132  (21.9s)
+PASS imp n=6 delta=6 r=3        printed 169111271 formula 169111271 brute 169111271  (21.3s)
+PASS imp n=6 delta=7 r=3        printed 169112377 formula 169112377 brute 169112377  (21.1s)
+PASS pro n=5 delta=2 r=5        printed 544655005 formula 544655005 brute 544655005  (70.3s)
+PASS imp n=6 delta=0 r=5        printed 4891732 formula 4891732 brute 4891732  (41.8s)
+PASS pro n=6 delta=1 r=4        printed 70055219 formula 70055219 brute 70055219  (23.8s)
+PASS pro n=5 delta=3 r=5        printed 1622092290 formula 1622092290 brute 1622092290  (195.4s)
+PASS pro n=5 delta=4 r=5        printed 1680700000 formula 1680700000 brute 1680700000  (37.5s)
+PASS pro n=5 delta=5 r=5        printed 1680700000 formula 1680700000 brute 1680700000  (42.3s)
+PASS pro n=5 delta=6 r=5        printed 1680700000 formula 1680700000 brute 1680700000  (42.2s)
+PASS imp n=6 delta=1 r=4        printed 147428310 formula 147428310 brute 147428310  (44.1s)
+PASS imp n=5 delta=2 r=5        printed 1259247991 formula 1259247991 brute 1259247991  (162.4s)
+SKIP imp n=5 delta=3 r=5        exceeded 300 s (predicted work 6.28e+09)
+SKIP imp n=5 delta=4 r=5        predicted work 8.10e+09 > 6.28e+09
+SKIP imp n=5 delta=5 r=5        predicted work 8.24e+09 > 6.28e+09
+SKIP imp n=5 delta=6 r=5        predicted work 8.24e+09 > 6.28e+09
+SKIP pro n=6 delta=2 r=4        predicted work 9.46e+09 > 6.28e+09
+SKIP imp n=6 delta=2 r=4        predicted work 1.71e+10 > 6.28e+09
+SKIP pro n=6 delta=1 r=5        predicted work 3.29e+10 > 6.28e+09
+SKIP pro n=6 delta=3 r=4        predicted work 3.33e+10 > 6.28e+09
+SKIP pro n=6 delta=4 r=4        predicted work 4.36e+10 > 6.28e+09
+SKIP pro n=6 delta=5 r=4        predicted work 4.37e+10 > 6.28e+09
+SKIP pro n=6 delta=6 r=4        predicted work 4.37e+10 > 6.28e+09
+SKIP pro n=6 delta=7 r=4        predicted work 4.37e+10 > 6.28e+09
+SKIP imp n=6 delta=3 r=4        predicted work 5.83e+10 > 6.28e+09
+SKIP imp n=6 delta=1 r=5        predicted work 8.35e+10 > 6.28e+09
+SKIP imp n=6 delta=4 r=4        predicted work 8.77e+10 > 6.28e+09
+SKIP imp n=6 delta=5 r=4        predicted work 9.36e+10 > 6.28e+09
+SKIP imp n=6 delta=6 r=4        predicted work 9.37e+10 > 6.28e+09
+SKIP imp n=6 delta=7 r=4        predicted work 9.37e+10 > 6.28e+09
+SKIP pro n=6 delta=2 r=5        predicted work 1.79e+12 > 6.28e+09
+SKIP imp n=6 delta=2 r=5        predicted work 3.36e+12 > 6.28e+09
+SKIP pro n=6 delta=3 r=5        predicted work 1.32e+13 > 6.28e+09
+SKIP pro n=6 delta=4 r=5        predicted work 1.99e+13 > 6.28e+09
+SKIP pro n=6 delta=5 r=5        predicted work 2.00e+13 > 6.28e+09
+SKIP pro n=6 delta=6 r=5        predicted work 2.00e+13 > 6.28e+09
+SKIP pro n=6 delta=7 r=5        predicted work 2.00e+13 > 6.28e+09
+SKIP imp n=6 delta=3 r=5        predicted work 2.49e+13 > 6.28e+09
+SKIP imp n=6 delta=4 r=5        predicted work 4.69e+13 > 6.28e+09
+SKIP imp n=6 delta=5 r=5        predicted work 5.17e+13 > 6.28e+09
+SKIP imp n=6 delta=6 r=5        predicted work 5.18e+13 > 6.28e+09
+SKIP imp n=6 delta=7 r=5        predicted work 5.18e+13 > 6.28e+09
+
+Coverage summary
+  imp: brute-forced 133 of 150 cells (r>=2: 103 of 120)
+    n=2 r=1: delta done [0, 1, 2, 3]
+    n=2 r=2: delta done [0, 1, 2, 3]
+    n=2 r=3: delta done [0, 1, 2, 3]
+    n=2 r=4: delta done [0, 1, 2, 3]
+    n=2 r=5: delta done [0, 1, 2, 3]
+    n=3 r=1: delta done [0, 1, 2, 3, 4]
+    n=3 r=2: delta done [0, 1, 2, 3, 4]
+    n=3 r=3: delta done [0, 1, 2, 3, 4]
+    n=3 r=4: delta done [0, 1, 2, 3, 4]
+    n=3 r=5: delta done [0, 1, 2, 3, 4]
+    n=4 r=1: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=2: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=3: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=4: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=5: delta done [0, 1, 2, 3, 4, 5]
+    n=5 r=1: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=2: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=3: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=4: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=5: delta done [0, 1, 2]  NOT done [3, 4, 5, 6]
+    n=6 r=1: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=2: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=3: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=4: delta done [0, 1]  NOT done [2, 3, 4, 5, 6, 7]
+    n=6 r=5: delta done [0]  NOT done [1, 2, 3, 4, 5, 6, 7]
+  pro: brute-forced 137 of 150 cells (r>=2: 107 of 120)
+    n=2 r=1: delta done [0, 1, 2, 3]
+    n=2 r=2: delta done [0, 1, 2, 3]
+    n=2 r=3: delta done [0, 1, 2, 3]
+    n=2 r=4: delta done [0, 1, 2, 3]
+    n=2 r=5: delta done [0, 1, 2, 3]
+    n=3 r=1: delta done [0, 1, 2, 3, 4]
+    n=3 r=2: delta done [0, 1, 2, 3, 4]
+    n=3 r=3: delta done [0, 1, 2, 3, 4]
+    n=3 r=4: delta done [0, 1, 2, 3, 4]
+    n=3 r=5: delta done [0, 1, 2, 3, 4]
+    n=4 r=1: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=2: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=3: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=4: delta done [0, 1, 2, 3, 4, 5]
+    n=4 r=5: delta done [0, 1, 2, 3, 4, 5]
+    n=5 r=1: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=2: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=3: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=4: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=5 r=5: delta done [0, 1, 2, 3, 4, 5, 6]
+    n=6 r=1: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=2: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=3: delta done [0, 1, 2, 3, 4, 5, 6, 7]
+    n=6 r=4: delta done [0, 1]  NOT done [2, 3, 4, 5, 6, 7]
+    n=6 r=5: delta done [0]  NOT done [1, 2, 3, 4, 5, 6, 7]
+
+mismatches: 0
+OVERALL: PASS
+elapsed 1399.5 s
+exit 0
