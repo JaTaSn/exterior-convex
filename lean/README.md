@@ -46,7 +46,7 @@ Kozlov's theorem, the sumset identity and the main theorem), per
 does not carry. Same standard: no `sorry` anywhere, three standard axioms only.
 
 **Since 2026-09-14, rung 5: §5.1** ("Properness, and the permissive convention") is formalised in
-`20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/Permissive.lean` — the permissive set `S_n⁺`, the `μ₁ ≤ 1` chain, Kozlov's theorem
+`lean/ExteriorConvex/Spine/Permissive.lean` — the permissive set `S_n⁺`, the `μ₁ ≤ 1` chain, Kozlov's theorem
 in permissive form, the properness-is-a-facet identity (minus the dimension clause), and the
 `f₁`-fibration `prop-permissive-fibres`, which until 2026-09-13 the manuscript stated without
 proof. Same standard again; the only change to an existing file was dropping `private` from
@@ -59,12 +59,12 @@ census stays a Sage verification, deliberately.
 
 | file | rung | contents | state |
 |---|---|---|---|
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/Bridge.lean` | 1 | `mem_extremePoints_convexHull_iff` (`lem-exposed-vertex`), `mem_extremePoints_add_iff` (`lem-vertexdecomp`) | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/Windows.lean` | 2 | `exists_strictMax_two_iff` (the rank-two feasibility criterion), `thm_ones_windows` | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/Simplex.lean` | 2 | the all-ones geometric layer; `thm_ones` about the Minkowski sum itself | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/Binomial.lean` | 3 | `choose_ratio_lt`, `choose_ratio_pos_iff`, `choose_ratio_eq_zero` (`lem-binomial-ratio`) | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/ExtremalMatrix.lean` | 3 | general-leg-vector layer (`ravA`, `ravA_succ`, `ravA_injOn`, `coefAt`, `value_diff_eq_sum`, `abel_sum`); all five §8.3 propositions; `extremal_matrix_iff` and `extremal_matrix_kozlov` | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/Count.lean` | 3 | `cor-vdesc`: `vertices_eq_image`, `image_injOn`, `card_zeroPairs`, `card_vertices`, `card_vertices_kozlov` | **proved** |
+| `lean/ExteriorConvex/Vertices/Bridge.lean` | 1 | `mem_extremePoints_convexHull_iff` (`lem-exposed-vertex`), `mem_extremePoints_add_iff` (`lem-vertexdecomp`) | **proved** |
+| `lean/ExteriorConvex/Vertices/Windows.lean` | 2 | `exists_strictMax_two_iff` (the rank-two feasibility criterion), `thm_ones_windows` | **proved** |
+| `lean/ExteriorConvex/Vertices/Simplex.lean` | 2 | the all-ones geometric layer; `thm_ones` about the Minkowski sum itself | **proved** |
+| `lean/ExteriorConvex/Vertices/Binomial.lean` | 3 | `choose_ratio_lt`, `choose_ratio_pos_iff`, `choose_ratio_eq_zero` (`lem-binomial-ratio`) | **proved** |
+| `lean/ExteriorConvex/Vertices/ExtremalMatrix.lean` | 3 | general-leg-vector layer (`ravA`, `ravA_succ`, `ravA_injOn`, `coefAt`, `value_diff_eq_sum`, `abel_sum`); all five §8.3 propositions; `extremal_matrix_iff` and `extremal_matrix_kozlov` | **proved** |
+| `lean/ExteriorConvex/Vertices/Count.lean` | 3 | `cor-vdesc`: `vertices_eq_image`, `image_injOn`, `card_zeroPairs`, `card_vertices`, `card_vertices_kozlov` | **proved** |
 
 ### The §§4–6 layer (added 2026-09-13, session 23)
 
@@ -76,12 +76,12 @@ in `Complexes.lean` marks where it would go).
 
 | file | rung | contents | state |
 |---|---|---|---|
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/Complexes.lean` | 1 | `IsOrderIdeal`, `IsComplex`, `fEntry`, `fvec`, `Sset`, the five supporting facts, `shiftIncl`, `projIncl` | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/LYM.lean` | 2 | `lym` (`lem-lym`), `skel`/`skelSet`/`lymChain`, `hull_skel_eq` (`lem-mu`, both inclusions) | **proved**, minus `lem-mu`'s affine-independence clause (deliberately skipped, see file header) |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/KozlovThm.lean` | 3 | `kozlov` (`thm-kozlov`), `skelComplex` and its face counts, `hull_Sset_eq` (`cor-facets` inclusively) | **proved**, minus `cor-facets`' facet-status clause and the `proj` form (see file header) |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/Sumset.lean` | 4 | `ffvec`, `ffSet`, `ff_eq_sumset` (`prop-sumset`), `main` (`thm-main`), `main_chain` | **proved**, general `r` |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/EdgeCases.lean` | — | `edge_case_r_one`, `Sset_one`, `edge_case_n_one` (`prop-edge-cases` parts 1, 3) | **proved**; parts 2/4 are non-statements; part 5's ingredient is now rung 5's `permissive_hull`, but the summand-by-summand statement itself (a permissive `ffSet` + a mirror of `Sumset.lean`) is **not formalised** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Spine/Permissive.lean` | 5 | §5.1: `SsetPerm`, `e0`, `lymChainPerm`, `hull_skel_perm_eq` (`lem-mu-permissive`), `permissive_hull`/`hull_SsetPerm_eq` (`prop-permissive-hull`), `rasimpB` + `properness_*` (`prop-properness-facet` in part), `relabel`/`fEntry_relabel`/`exists_relabel` + `permissive_fibres`/`fibre_eq`/`fibres_disjoint` (`prop-permissive-fibres`) | **proved**, minus the affine-independence/dimension clauses (see below) |
+| `lean/ExteriorConvex/Spine/Complexes.lean` | 1 | `IsOrderIdeal`, `IsComplex`, `fEntry`, `fvec`, `Sset`, the five supporting facts, `shiftIncl`, `projIncl` | **proved** |
+| `lean/ExteriorConvex/Spine/LYM.lean` | 2 | `lym` (`lem-lym`), `skel`/`skelSet`/`lymChain`, `hull_skel_eq` (`lem-mu`, both inclusions) | **proved**, minus `lem-mu`'s affine-independence clause (deliberately skipped, see file header) |
+| `lean/ExteriorConvex/Spine/KozlovThm.lean` | 3 | `kozlov` (`thm-kozlov`), `skelComplex` and its face counts, `hull_Sset_eq` (`cor-facets` inclusively) | **proved**, minus `cor-facets`' facet-status clause and the `proj` form (see file header) |
+| `lean/ExteriorConvex/Spine/Sumset.lean` | 4 | `ffvec`, `ffSet`, `ff_eq_sumset` (`prop-sumset`), `main` (`thm-main`), `main_chain` | **proved**, general `r` |
+| `lean/ExteriorConvex/Spine/EdgeCases.lean` | — | `edge_case_r_one`, `Sset_one`, `edge_case_n_one` (`prop-edge-cases` parts 1, 3) | **proved**; parts 2/4 are non-statements; part 5's ingredient is now rung 5's `permissive_hull`, but the summand-by-summand statement itself (a permissive `ffSet` + a mirror of `Sumset.lean`) is **not formalised** |
+| `lean/ExteriorConvex/Spine/Permissive.lean` | 5 | §5.1: `SsetPerm`, `e0`, `lymChainPerm`, `hull_skel_perm_eq` (`lem-mu-permissive`), `permissive_hull`/`hull_SsetPerm_eq` (`prop-permissive-hull`), `rasimpB` + `properness_*` (`prop-properness-facet` in part), `relabel`/`fEntry_relabel`/`exists_relabel` + `permissive_fibres`/`fibre_eq`/`fibres_disjoint` (`prop-permissive-fibres`) | **proved**, minus the affine-independence/dimension clauses (see below) |
 
 ### The manuscript ↔ Lean correspondence
 
@@ -149,17 +149,17 @@ checked with `lean_verify`, axioms `propext`/`Classical.choice`/`Quot.sound` onl
 ### The article-2 counting layer (rungs A–B, `Counting/`, added 2026-09-16/17, session 29)
 
 Per `working-notes/PLAN-formalise-article2.org`: `def-stats`, `def-A`, `lem-alexander`,
-`cor-persymmetry` and `prop-fnn2` from `article/exterior-convex_article2_draft_3.org`. Everything
+`cor-persymmetry` and `prop-fnn2` from `articles/article-2/exterior-convex_article2_latest.org`. Everything
 lives over ℕ-valued `f`-vectors (`fvecN : Fin (n+1) → ℕ`); article 2's `𝓕_n` is `Fn`, the
 `f`-vectors of **order ideals** (convention (i), void family included — simpler than the
-`IsComplex` convention the older files use, and load-bearing: `D` exchanges the void family and
+`IsComplex` convention the older files use, and load-bearing: `D_n` exchanges the void family and
 the full simplex). Every "proved" checked with `lean_verify`: axioms
 `propext`/`Classical.choice`/`Quot.sound` only.
 
 | file | rung | contents | state |
 |---|---|---|---|
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Counting/Stats.lean` | A | `fvecN`, `Fn`, `top`, `indeg`, `Amat`, support condition, both corner entries | **proved** |
-| `20-projects/exterior-convex/LEAN/ExteriorConvex/Counting/Duality.lean` | B | `dualIdeal`, `eq:alexander-f`, `Dvec`, the statistic conjugation, `Amat_persymmetric`, `SnF`, `Fcount`, `card_SnF_eq_Fcount`, `Sset_eq_image_SnF` | **proved** |
+| `lean/ExteriorConvex/Counting/Stats.lean` | A | `fvecN`, `Fn`, `top`, `indeg`, `Amat`, support condition, both corner entries | **proved** |
+| `lean/ExteriorConvex/Counting/Duality.lean` | B | `dualIdeal`, `eq:alexander-f`, `Dvec`, the statistic conjugation, `Amat_persymmetric`, `SnF`, `Fcount`, `card_SnF_eq_Fcount`, `Sset_eq_image_SnF` | **proved** |
 
 | manuscript (article 2) | Lean | note |
 |---|---|---|
@@ -169,7 +169,7 @@ the full simplex). Every "proved" checked with `lean_verify`: axioms
 | `def-A`, support + corners | `indeg_le_top_add_one` (every vector), `Amat_eq_zero_of_add_one_lt`, `Amat_corner_void`, `Amat_corner_full` | |
 | `lem-alexander` (family level) | `dualIdeal`, `IsOrderIdeal.dual`, `dualIdeal_dualIdeal` | the involution needs no order-ideal hypothesis at all |
 | `eq:alexander-f` | `fEntry_dualIdeal_add` (ℕ-safe additive form `f_j(Δ^∨) + f_{n−j}(Δ) = C(n,j)`), `fEntry_dualIdeal` | true for every family, by the explicit complementation bijection |
-| `lem-alexander` (`D` on `𝓕_n`) | `Dvec`, `fvecN_dualIdeal`, `Dvec_mem_Fn`, `Dvec_Dvec`, `Dvec_Dvec_of_mem_Fn` | only the involution needs the entrywise bound `s(j) ≤ C(n,j)` (automatic on `𝓕_n`) |
+| `lem-alexander` (`D_n` on `𝓕_n`) | `Dvec`, `fvecN_dualIdeal`, `Dvec_mem_Fn`, `Dvec_Dvec`, `Dvec_Dvec_of_mem_Fn` | only the involution needs the entrywise bound `s(j) ≤ C(n,j)` (automatic on `𝓕_n`) |
 | `eq:alexander-stats` | `indeg_Dvec`, `top_Dvec` | **finding:** both conjugations hold for *every* `s⃗ : Fin (n+1) → ℕ`, not only on `𝓕_n` — truncated ℕ-subtraction hands the strengthening over free; the manuscript's claim that the boundary conventions are "exactly what make the two extremes correspond" is confirmed by the case analysis (the empty-filter branch is `n − (−1) = n + 1`, on the nose) |
 | `cor-persymmetry` | `Amat_persymmetric` | for **all** `(τ,ρ) ∈ ℤ²`, off-range classes matching emptily |
 | `def-linusson` `F^n(m)` at `p = n` | `Fcount` | **by counting** — `#{s⃗ ∈ 𝓕_n : tp(s⃗) ≤ m}`; the recursion `thm-linusson` and `lem-joint` are deliberately **not formalised** (the plan's "computational shortcut, not a logical dependency") |
@@ -215,8 +215,8 @@ totally is what lets the counting identities hold for arbitrary, unsorted `d⃗`
 | `thm-main` | `card_chainedTuples` (**unconditional**), `card_ffSetN` (with `hsurj`) | the split is the point: the counting identity needs no hypothesis at all, so surjectivity cannot be assumed by accident. `ffSetN` is a fresh definition — `Spine/Sumset.lean`'s `ffSet` is the `IsComplex` variant, i.e. `FF_pr`, and using it would have given a true theorem about the wrong object |
 | `cor-r1` | `sum_uVec`, `card_chainedTuples_one` | |
 | `prop-threshold` | `chainedTuples_eq_piFinset_iff`, `card_chainedTuples_eq_pow_iff`, `Tmat_eq_vecMulVec_of_le`, `filter_not_chained_at_n` | the sharpness clause is a `Finset` *identity*, not a count: the violating pair at `δ = n` is provably the singleton `{(fullVec, 0⃗)}`. Needs no sortedness |
-| `lem-A-structure` | `Amat_superdiag`, `Amat_diag`, `Amat_zero_zero`, `Amat_row_void_eq_zero`, `truncVec` | **finding:** `Amat_diag` holds for all `j ≤ n`, so the printed third claim `A[0][0] = 0` *is* the `j = 0` case of the second, `C(n,0) − 1 = 0`. One clause could go |
-| `prop-normalform` | `Pmat`, `Pmat_pow_apply`, `Tmat_row_shift`, `Tmat_eq_Pmat_pow_mul`, `uVec_eq_single_vecMul`, `card_chainedTuples_normalform` | the printed `δ ≥ 0` here is **genuinely necessary**, unlike the threshold results: for `δ ≤ −(n+2)` the totalised `T(δ)` is the zero matrix, which no `PᵟB` is. The `max(τ−δ,−1)` clamp becomes truncated ℕ-subtraction on the index, so no `max` appears |
+| `lem-A-structure` | `Amat_superdiag`, `Amat_diag`, `Amat_zero_zero`, `Amat_row_void_eq_zero`, `truncVec` | **finding:** `Amat_diag` holds for all `j ≤ n`, so the printed third claim `A_n[0][0] = 0` *is* the `j = 0` case of the second, `C(n,0) − 1 = 0`. One clause could go |
+| `prop-normalform` | `Pmat`, `Pmat_pow_apply`, `Tmat_row_shift`, `Tmat_eq_Pmat_pow_mul`, `uVec_eq_single_vecMul`, `card_chainedTuples_normalform` | the printed `δ ≥ 0` here is **genuinely necessary**, unlike the threshold results: for `δ ≤ −(n+2)` the totalised `T_n(δ)` is the zero matrix, which no `P_nᵟ B_n` is. The `max(τ−δ,−1)` clamp becomes truncated ℕ-subtraction on the index, so no `max` appears |
 | `prop-perron-threshold`, improper | `Tmat_eq_vecMulVec_of_le` (rank one), `Tmat_mulVec_onesCol_of_le` (`1⃗` an eigenvector), `eigenvalue_eq_zero_or_card` (over ℚ) | **the word "Perron" is not certified** — that this is the eigenvalue of largest modulus with a non-negative eigenvector needs Perron–Frobenius, absent from Mathlib. Jan's decision, 2026-09-17; the spectral-radius formulation is a stretch goal |
 | `prop-delta0` | `Tmat_zero_blockTriangular`, `Tmat_zero_diag`, `Tmat_zero_superdiag` (`eq:delta0-superdiag`), `Nmat_pow_eq_zero` | |
 | `thm-delta0-degrees`, improper | `cBracket_eq_zero_of_ge`, `cBracket_top`, `delta0Poly`, `delta0Poly_natDegree`, `delta0Poly_leadingCoeff`, `thm_delta0_degrees_improper` | an explicit `Polynomial ℚ` is exhibited, which is what the statement asserts. **Finding:** the printed `n ≥ 1` is *slack* for this half — it holds at `n = 0` too (degree 1, leading coefficient 1, count `r+1`). Kept, since the proper half needs it |
@@ -230,7 +230,7 @@ totally is what lets the counting identities hold for arbitrary, unsorted `d⃗`
 | `thm-poly-p`, `thm-asymptotics-p`, `thm-asymptotics-p-proper` | — | rest on Linusson's Theorem 5.3, cited not reproved; outside the development |
 
 **Why everything numeric lives over ℚ.** From `Nmat` onward the matrices are cast once into ℚ and
-stay there. Two reasons, and the second is the sharper one. `T(0) − I` cannot live over ℕ at all,
+stay there. Two reasons, and the second is the sharper one. `T_n(0) − I` cannot live over ℕ at all,
 since truncated subtraction would silently give the wrong matrix. But ℕ-*division* would be worse:
 `/` is total in Lean and `Nat` division floors, so `cpBracket 3 2 / 2!` would evaluate to `1` rather
 than `3/2` — a **wrong leading coefficient that still typechecks and still builds**. The `/0` case is
@@ -239,7 +239,7 @@ not, and it is invisible. Cast early.
 
 ## What is *not* here
 
-`20-projects/exterior-convex/LEAN/ExteriorConvex/Vertices/ExtremalMatrix.lean` builds the general-leg-vector layer and uses it for `prop-adjacent`, which needs no
+`lean/ExteriorConvex/Vertices/ExtremalMatrix.lean` builds the general-leg-vector layer and uses it for `prop-adjacent`, which needs no
 sums at all: consecutive vertices differ by one basis vector, so *both* summands cross the
 coordinate `⟨d+t⟩` and the proposition is the observation that they need its coefficient to have
 opposite signs.

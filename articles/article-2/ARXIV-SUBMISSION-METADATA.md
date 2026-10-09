@@ -1,6 +1,7 @@
 # arXiv submission metadata — article 2
 
-Prepared 2026-10-08 against `exterior-convex_article2_latest.org` (51 pp. pdfLaTeX build). Like
+Prepared 2026-10-08, last regenerated 2026-10-09, against `exterior-convex_article2_latest.org`
+(51 pp. in both builds). Like
 article 1, article 2 now has a standing `_latest` name instead of a draft number.
 Copy-paste source for the arXiv form. The abstract follows arXiv's conventions: `$…$` delimiters
 for inline mathematics (arXiv renders those on the HTML abstract page), no project macros, less
@@ -98,8 +99,11 @@ Per-submission choice, as for Part I.
       home. It re-derives the arXiv `.org` from the current draft (drops the showkeys margin
       labels, inserts §10.2 *Code, formalisation and tables*), inlines the bibliography,
       rebuilds `anc/`, compiles three times with pdfLaTeX and refuses to finish on any error,
-      undefined reference or missing character. Last run: 51 pp., 0 errors, 0 undefined, 0 missing
-      characters, 0 overfull boxes.
+      undefined reference or missing character. **It also freezes the date** (`\today` would
+      print whatever day arXiv recompiles on) -- `ARXIV_DATE=...` overrides the default of the
+      build day, and the chosen date is printed in the run summary. Last run 2026-10-09:
+      51 pp., 0 errors, 0 undefined, 0 missing characters, 0 overfull boxes, dated
+      "October 9, 2026".
 - [ ] **Reference certificate** (`93-CONVENTIONS/manuscript-style.md`, "The reference
       certificate"): Part I has `references/REFERENCE-CERTIFICATE.md`; **Part II has none**, and
       its references were located with a language model's help. Open item in the project TODO.

@@ -424,3 +424,51 @@ document. Nothing in this document was supplied from memory of the cited works.*
   `20-projects/exterior-convex/working-notes/review-article2-step2-drafts-2026-10-08.org`.
 - **Still to supply (Jan)**: Horn–Johnson 2nd ed. (theorem number), Linusson 1999 published
   version (numbering), and optionally Stanley 1996.
+
+## Acquisition attempts (2026-10-09, Claude on jts-pc)
+
+The three outstanding sources were chased from jts-pc, with the LiU VPN up (`ppp0`, peer
+`130.236.0.1`). **None was obtained**, so entries 11 and 12 and finding 5 stand exactly as written
+above. What follows records the routes tried, so they are not tried again blindly.
+
+- **Linusson 1999, published Combinatorica version.** Unpaywall (`10.1007/s004930050055`) returns
+  `oa_status: closed`, `has_repository_copy: false`, no OA locations at all — so the
+  open-access-first rule is satisfied and the subscription route is the correct one. But
+  `link.springer.com/content/pdf/10.1007/s004930050055.pdf` answers **HTTP 200 with a 3 KB
+  "Client Challenge — JavaScript is disabled in your browser" page**, not the PDF. This is the
+  bot-challenge-before-entitlement behaviour the workspace convention already records for
+  ScienceDirect and SSRN; Springer now does it too, and the 200 status makes it easier to mistake
+  for success. **A scripted fetch cannot get this paper. It needs a browser on the VPN**, and the
+  file then belongs in `literature/subscription/` with its provenance stated.
+- **Horn & Johnson, *Matrix Analysis*, 2nd ed.** Three routes, all closed:
+  - *The NAS library* (`jts-nas.tailcc45b2.ts.net/library/textbooks/`): all **46** items were
+    listed across the seven sections and searched for *horn*, *johnson*, *matrix*, *linear*,
+    *perron* and *stanley*. The only hits are Schrijver's linear programming, Baccelli et al., and
+    Stanley's *Enumerative Combinatorics* vols. 1–2. **Neither Horn–Johnson nor Stanley's
+    *Combinatorics and Commutative Algebra* is in the library**, confirming section B's note by
+    enumeration rather than by name search alone.
+  - *Cambridge's own free front matter and index PDFs* for ISBN 978-0-521-83940-2 (which would at
+    least give §8.4's exact title and page range): `assets.cambridge.org` **times out from this
+    machine**, twice, at 90 s, and the same URL fetched through the agent's own web tool returned
+    no content. Not retried further; note that even the index gives page numbers, not theorem
+    numbers, so this route could never have settled 8.4.5 on its own.
+  - *Secondary corroboration.* Several sources agree that chapter 8 of the 2nd edition is
+    "Positive and Nonnegative Matrices" with a §8.4 "Irreducible nonnegative matrices", which is
+    where a statement requiring `M′` irreducible would live. That is consistent with the `.bib`
+    note's "believed Theorem 8.4.5" but **corroborates nothing**: no source consulted states what
+    8.4.5 says. The citation therefore still reads "Ch. 8", and it was **not** tightened to "§8.4"
+    on this evidence — the section title was not confirmed from Cambridge's own table of contents.
+  - *The year, finding 6.* Left as `year = {2013}`, deliberately. Cambridge's own pages disagree
+    with each other: the hardback with this ISBN is dated **22 October 2012** (Crossref and the
+    Cambridge assets record) while the Higher Education listing gives **20 December 2012**, and
+    2013 is the year the edition is normally cited by and is what the copyright page is understood
+    to say. The copyright page is the only authority and it is inside the front matter PDF that
+    could not be fetched. Changing a year on the strength of a bookseller date, against the
+    edition's conventional year, is the failure mode this certificate exists to prevent, so
+    nothing was changed; **this stays an open question for whoever opens the book.**
+
+**Consequence for the responsibility paragraph.** "The reference list has been checked against
+primary sources" is still not wholly true, for exactly the two reasons already stated — not for any
+new one. Nothing in the manuscript's citations was altered on 2026-10-09 except `Stanley1996`'s
+`edition` field, which is a rendering fix (`{2nd}` printed "2nd."; `{2}` prints "2nd ed.") and
+touches no claim.

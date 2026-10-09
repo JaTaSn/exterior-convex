@@ -417,7 +417,9 @@
 #      Academic Press, so there was no two-imprint split at all; 209--214 was simply
 #      wrong.  Corrected here and in references.bib.  No longer a pre-submission item.]
 #   1. The reference certificate (93-CONVENTIONS/manuscript-style.md section 5).
-#   2. OEIS.  Six absent sequences are flagged in TODO.md; |S_n| is the most
+#   2. OEIS.  Seven absent sequences are flagged in TODO.md (the seventh, the proper
+#      n = 4, delta = 0 row of tab-app-pro, added to section 10.4 on 2026-10-09);
+#      |S_n| is the most
 #      submittable.  NOTHING has been submitted and nothing should be without
 #      Jan's decision -- see the repo's OEIS policy.
 #   3. Whether to cite article 1 as "submitted"/"in preparation" -- depends on
@@ -3057,8 +3059,10 @@ is Proposition [[prop-fnn2]]. Two problems remain.
 
 ** Integer sequences
 
-Six sequences arising here appear not to be in the OEIS (searched October 2026): \(|S_n|\) itself, and the \(r=2\)
-proper and improper counts at \(\delta=0\) and \(\delta=1\), together with one \(r=3\) example. Of
+Seven sequences arising here appear not to be in the OEIS (searched October 2026): \(|S_n|\) itself, the \(r=2\)
+proper and improper counts at \(\delta=0\) and \(\delta=1\), one \(r=3\) example, and the proper
+count at \(n=4\), \(\delta=0\) read along \(r\), that is \(16,69,184,385,696\), the row of
+Table @@latex:\ref{tab-app-pro}@@. Of
 these \(|S_n|=1,2,5,16,70,457,4908,95248,3617645,286007155\), the number of \(f\)-vectors of
 simplicial complexes on exactly \(n\) vertices, seems the most natural candidate for submission,
 being the first-difference sequence of A007695, which has no separate entry. Nothing has been
