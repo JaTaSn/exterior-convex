@@ -637,8 +637,8 @@ constraint relating consecutive entries only:
 \end{equation}
 #+end_export
 That is proved from Amata and Crupi's theory of lex submodules [cite:@AmataCrupi2020;@AmataCrupi2020KK], which supplies a canonical
-representative for each achievable Hilbert function; the constraint is their Definition 2.7 chaining
-condition read off the \(f\)-vectors. Once the constraint is nearest-neighbour, the transfer-matrix
+representative for each achievable Hilbert function; the constraint is the chaining condition of
+[cite:@AmataCrupi2020KK Definition 2.7], read off the \(f\)-vectors. Once the constraint is nearest-neighbour, the transfer-matrix
 form is a rearrangement.
 
 ** What is proved, and what is only observed
@@ -707,7 +707,7 @@ symbol they also share its meaning.
   \(V\)                    & is an \(n\)-dimensional \(k\)-vector space.\\
   \(\Ext\)                 & is the exterior algebra on \(V\) (Definition~\ref{def-setup}); the letter \(E\) is not used for it.\\
   \(\wedge^jV\)         & is its degree-\(j\) component, of dimension \(\binom nj\).\\
-  \(I_\Delta\)             & is the exterior face ideal of \(\Delta\), inside \(\Ext\) \eqref{eq:exterior-face-ideal}.\\
+  \(I_\Delta\)             & is the exterior face ideal of \(\Delta\), inside \(\Ext\) (Equation~\ref{eq:exterior-face-ideal}).\\
   \addlinespace
   \multicolumn{2}{@{}l}{\emph{Complexes and their \(f\)-vectors}}\\
   \(\mathcal P([n])\)      & is the lattice of all subsets of \([n]\).\\
@@ -728,9 +728,9 @@ symbol they also share its meaning.
   \(\mathrm{FF}(n;\vek d)\) & is the sumset of the shifted copies of \(\mathcal F_n\) (Definition~\ref{def-fn}).\\
   \(\mathrm{FF}_{\mathrm{pr}}(n;\vek d)\) & is the proper one, built from \(S_n\) in its place.\\
   \(0^r\)                   & is the shift vector \((0,\dots,0)\) of length \(r\), all gaps zero.\\
-  \(\mathrm{CT}(n;\vek d)\)   & is the set of chained tuples \eqref{eq:chained-set}, which \(\Sigma_{\vek d}\) sends onto \(\mathrm{FF}(n;\vek d)\).\\
+  \(\mathrm{CT}(n;\vek d)\)   & is the set of chained tuples (Equation~\ref{eq:chained-set}), which \(\Sigma_{\vek d}\) sends onto \(\mathrm{FF}(n;\vek d)\).\\
   \(\mathrm{CT}_{\mathrm{pr}}(n;\vek d)\) & is the proper one, with every entry in \(S_n\).\\
-  \(\Sigma_{\vek d}\), \(\Phi_{\vek d}\) & are the summation map \eqref{eq:sumset-map} and its inverse on chained tuples \eqref{eq:water-filling}.\\
+  \(\Sigma_{\vek d}\), \(\Phi_{\vek d}\) & are the summation map (Equation~\ref{eq:sumset-map}) and its inverse (Equation~\ref{eq:water-filling}).\\
   \(F^p(n)\), \(E^p(n,k)\)  & are Linusson's two counts (Definition~\ref{def-linusson}).\\
   \(\vek u_n\), \(T_n(\delta)\), \(\vek 1_n\) & are a row vector, a transfer matrix and a column of ones (Definition~\ref{def-uT}).\\
   \(A'_n\), \(\vek u'_n\), \(T'_n(\delta)\) & are their proper versions, built over \(S_n\) (Theorem~\ref{thm-proper}).\\
@@ -738,8 +738,8 @@ symbol they also share its meaning.
   \addlinespace
   \multicolumn{2}{@{}l}{\emph{Alexander duality}}\\
   \(\Delta^{\vee}\)        & is the Alexander dual of \(\Delta\) (Definition~\ref{def-alexander}).\\
-  \(\mathcal B_n\)         & is the binomial box \eqref{eq:binomial-box}, which contains \(\mathcal F_n\).\\
-  \(D_n\)                  & is the duality map \eqref{eq:def-D} on \(\mathcal B_n\).\\
+  \(\mathcal B_n\)         & is the binomial box (Equation~\ref{eq:binomial-box}), which contains \(\mathcal F_n\).\\
+  \(D_n\)                  & is the duality map (Equation~\ref{eq:def-D}) on \(\mathcal B_n\).\\
   \bottomrule
 \end{tabular}
 \end{center}
@@ -1513,10 +1513,10 @@ and as \((I_1,\dots,I_r)\) ranges over all tuples of monomial ideals, unconstrai
 (b) Restricted to *lex* ideals, \(I\mapsto\HF\bigl((\Ext)/I\bigr)\) is a bijection onto \(\mathcal F_n\). It is well
 defined (a lex ideal is monomial); injective, since a lex ideal is degreewise the lex-initial segment
 of \(\mathrm{Mon}_j(\Ext)\) of size \(\binom nj-s(j)\) and is therefore determined by \(\vek s\); and
-surjective by Kruskal--Katona in its exterior form [cite/t:@AramovaHerzogHibi1997 Theorem 4.1], every \(f\)-vector being attained by a compressed
+surjective by Kruskal--Katona in its exterior form [cite:@AramovaHerzogHibi1997 Theorem 4.1], every \(f\)-vector being attained by a compressed
 family, whose complementary ideal is lex.
 
-(c) By Amata and Crupi's Definition 2.6 \(\Leftrightarrow\) 2.7, a lex submodule of \(F\) is exactly
+(c) By the equivalence of Definitions 2.6 and 2.7 of [cite:@AmataCrupi2020KK], a lex submodule of \(F\) is exactly
 an \(L=\bigoplus_iL_ig_i\) with every \(L_i\) a lex ideal and
 \[
   \mathfrak m^{\,\rho_i+d_i-d_{i-1}}\;\subseteq\;L_{i-1}
@@ -1537,7 +1537,7 @@ cardinality, so \(L\) is determined degreewise. Surjective: monomial submodules 
   \;=\;\Bigl\lbrace\HF\Bigl(\frac FL\Bigr):L\ \text{lex}\Bigr\rbrace
 \end{equation}
 #+end_export
-by Amata and Crupi's Theorem 4.2 [cite:@AmataCrupi2020KK], implication (a) \(\Leftrightarrow\) (c); and conversely a lex
+by [cite:@AmataCrupi2020KK Theorem 4.2], implication (a) \(\Leftrightarrow\) (c); and conversely a lex
 submodule is monomial, so the reverse inclusion holds by (a).
 
 Composing (c) and (d) gives the claim.
@@ -2975,7 +2975,8 @@ tested. Specifically:
 - *Against Linusson's own tables.* All \(199\) printed entries of Tables 5 and 6 in the appendix of
   his preprint [cite:@Linusson1999preprint], exactly; those tables are not in the published version
   (Remark [[rem-transcription]]).
-- *Against a computer-algebra oracle.* Amata and Crupi's ~ExteriorModules~ package [cite:@AmataCrupi2021] for Macaulay2
+- *Against a computer-algebra oracle.* Amata and Crupi's ~ExteriorModules~ package
+  [cite:@AmataCrupi2021] for Macaulay2 [cite:@Macaulay2]
   enumerates lex submodules directly. Its counts \(43\), \(69\), \(99\) and \(236\) for \(n=3\) with
   \(d=(0,0)\), \((0,1)\), \((-1,2)\) and \((0,0,1)\) are reproduced, as is \(368\) for \(n=4\),
   \(d=(0,1)\). The case \((-1,2)\) exercises the negative-degree hypothesis.
@@ -3001,8 +3002,9 @@ tested. Specifically:
   needs a graded \(\Ext\) with accessible graded pieces, monomial ideals, \(\mathfrak m^t\), and the
   correspondence between monomial ideals and order ideals that makes \(\HF\bigl((\Ext)/I\bigr)\) an
   \(f\)-vector. The surjectivity half of Theorem [[thm-chaining]] needs all of that *and* Amata
-  and Crupi's theory of lex submodules: their Definition 2.6 \(\Leftrightarrow\) 2.7, the
-  existence and uniqueness of a lex representative in their Theorem 4.2 [cite:@AmataCrupi2020KK], and Kruskal--Katona in
+  and Crupi's theory of lex submodules: the equivalence of Definitions 2.6 and 2.7 of
+  [cite:@AmataCrupi2020KK], the
+  existence and uniqueness of a lex representative in [cite:@AmataCrupi2020KK Theorem 4.2], and Kruskal--Katona in
   the exterior form of [cite/t:@AramovaHerzogHibi1997]. That is a substantially larger
   undertaking, and is in any case open combinatorially. The formal development is
   purely combinatorial: it counts order ideals and their \(f\)-vectors and never constructs a
@@ -3419,8 +3421,10 @@ Just as Geheimrat Goethe had the diligent Friedrich Wilhelm Riemer to help him w
 Wahlverwandtschaften/, just as Grothendieck had Jean Dieudonné to help him complete EGA, I have
 *Claude*! What exactly that amounted to is set out in the disclosure section below.
 
-Computations were carried out in SageMath, in Python, and in Macaulay2, the latter using Amata and
-Crupi's own ~ExteriorModules~ package.
+Computations were carried out in SageMath [cite:@SageMath] (version 10.9), in Python, and in
+Macaulay2 [cite:@Macaulay2] (version 1.26.06). The Macaulay2 work used Amata and Crupi's own
+~ExteriorModules~ package [cite:@AmataCrupi2021]. All three are free and open-source software,
+and this paper would have been appreciably harder to write without them.
 
 * Disclosure of AI assistance
 :PROPERTIES:
