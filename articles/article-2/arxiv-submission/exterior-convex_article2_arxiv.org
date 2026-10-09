@@ -971,8 +971,8 @@ printed entries of its Table 5, of \(F^p(n)\), and all \(99\) of its Table 6, of
 reproduced exactly, and an
 independent brute-force enumeration of order ideals agrees for every \(F^p(n)\) and
 \(E^p(n,k)\) with \(p\le5\). *The appendix is in the preprint only*: the published version is
-shorter, carries no appendix, and prints a single table, of \(M^p(n)\), so ``Table 5'' and
-``Table 6'' always mean the preprint's here, while every numbered result cited is the published
+shorter, carries no appendix, and prints a single table, of \(M^p(n)\), so "Table 5" and
+"Table 6" always mean the preprint's here, while every numbered result cited is the published
 one. One wrinkle: at \(k=n=p\) the clause
 "\(f_{k+1}<\binom p{k+1}\)" read literally is vacuously false, since \(\binom p{p+1}=0\); but
 Linusson's stated boundary value \(E^p(n,n)=1\) and his Table 6 diagonal both require the clause to
