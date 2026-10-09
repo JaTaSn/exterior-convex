@@ -1,7 +1,8 @@
 # arXiv submission metadata — article 2
 
 Prepared 2026-10-08, last regenerated 2026-10-09, against `exterior-convex_article2_latest.org`
-(51 pp. in both builds). Like
+(51 pp. in the xelatex draft, **52 pp. in the pdfLaTeX arXiv build** since 2026-10-09, when the
+Linusson preprint gained its own bibliography entry). Like
 article 1, article 2 now has a standing `_latest` name instead of a draft number.
 Copy-paste source for the arXiv form. The abstract follows arXiv's conventions: `$…$` delimiters
 for inline mathematics (arXiv renders those on the HTML abstract page), no project macros, less
@@ -73,7 +74,7 @@ exterior algebra; Hilbert function; f-vector; simplicial complex; enumeration; t
 ## Comments field
 
 ```
-51 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
+52 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
 ```
 
 Plain ASCII on purpose ("Linkoping"). Update the page count if the review changes it.
@@ -102,7 +103,7 @@ Per-submission choice, as for Part I.
       undefined reference or missing character. **It also freezes the date** (`\today` would
       print whatever day arXiv recompiles on) -- `ARXIV_DATE=...` overrides the default of the
       build day, and the chosen date is printed in the run summary. Last run 2026-10-09:
-      51 pp., 0 errors, 0 undefined, 0 missing characters, 0 overfull boxes, dated
+      52 pp., 0 errors, 0 undefined, 0 missing characters, 0 overfull boxes, dated
       "October 9, 2026".
 - [ ] **Reference certificate** (`93-CONVENTIONS/manuscript-style.md`, "The reference
       certificate"): Part I has `references/REFERENCE-CERTIFICATE.md`; **Part II has none**, and

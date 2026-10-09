@@ -420,7 +420,7 @@
 #   * delta = 0 polynomiality         degree bound PROVED; the EXACT degrees
 #                                     (n+1 improper, n-1 proper) are OBSERVED
 #                                     for n = 2..7, not proved
-#   * Polynomiality in p              PROVED MODULO Linusson's Theorem 5.3;
+#   * Polynomiality in p              PROVED MODULO Linusson's Theorem 3.3;
 #                                     verified n <= 3, p <= 5, r <= 3
 #   * |S_n| = F^n(n-2)                OBSERVED for n <= 10, NOT PROVED
 #   * n-asymptotics                   NOT ATTEMPTED (time-boxed)
@@ -927,7 +927,7 @@ Remark [[rem-sorted]].
 
 #+NAME: def-linusson
 #+begin_definition
-[cite/t:@Linusson1999 \S5] For \(p\ge0\) and \(n\ge-1\), let \(F^p(n)\) be the number of
+[cite/t:@Linusson1999 \S3] For \(p\ge0\) and \(n\ge-1\), let \(F^p(n)\) be the number of
 \(f\)-vectors of simplicial complexes on at most \(p\) vertices, no face of which has more than
 \(n\) elements — that is, \(f_1\le p\) and \(f_j=0\) for \(j>n\) — both degenerate \(f\)-vectors
 included; and let \(E^p(n,k)\) count those among them that contain every face of at most \(k\)
@@ -941,7 +941,7 @@ runs on, and there \(F^n(n)=\lvert\mathcal F_n\rvert\).
 
 #+NAME: thm-linusson
 #+begin_theorem
-[cite/t:@Linusson1999 Theorem 5.2] For \(0\le k\) and \(1\le n\le p\),
+[cite/t:@Linusson1999 Theorem 3.2] For \(0\le k\) and \(1\le n\le p\),
 #+begin_export latex
 \begin{equation}\label{eq:auto-8}
   F^p(n)=\begin{cases}
@@ -965,10 +965,15 @@ with \(F^p(-1)=1\), \(F^p(0)=2\), \(F^0(n)=2\), \(E^p(n,-1)=1\), \(E^p(n,n)=1\),
 
 #+NAME: rem-transcription
 #+begin_remark
-The transcription above was checked entry by entry against Linusson's own appendix: all \(100\)
-printed entries of his Table 5 and all \(99\) of his Table 6 are reproduced exactly, and an
+The transcription above was checked entry by entry against the appendix of Linusson's preprint
+[cite:@Linusson1999preprint]: all \(100\)
+printed entries of its Table 5, of \(F^p(n)\), and all \(99\) of its Table 6, of \(E^p(p,k)\), are
+reproduced exactly, and an
 independent brute-force enumeration of order ideals agrees for every \(F^p(n)\) and
-\(E^p(n,k)\) with \(p\le5\). One wrinkle: at \(k=n=p\) the clause
+\(E^p(n,k)\) with \(p\le5\). *The appendix is in the preprint only*: the published version is
+shorter, carries no appendix, and prints a single table, of \(M^p(n)\), so ``Table 5'' and
+``Table 6'' always mean the preprint's here, while every numbered result cited is the published
+one. One wrinkle: at \(k=n=p\) the clause
 "\(f_{k+1}<\binom p{k+1}\)" read literally is vacuously false, since \(\binom p{p+1}=0\); but
 Linusson's stated boundary value \(E^p(n,n)=1\) and his Table 6 diagonal both require the clause to
 be dropped there. We follow Linusson.
@@ -2554,9 +2559,13 @@ every other eigenvalue is \(0\). The proper statement is the same computation wi
 over \(S_n\), giving the threshold \(\delta\ge n-1\) and the root \(|S_n|\).
 
 That the thresholds are exact, that is, that the root is strictly smaller below them, follows from
-the comparison theorem of Perron--Frobenius theory: if \(0\le M\le M'\) entrywise, \(M\ne M'\) and
-\(M'\) is irreducible, then the spectral radius of \(M\) is strictly smaller than that of \(M'\)
-[cite:@HornJohnson2013 Ch. 8]. Here \(M'=T_n(n+1)=\vek1_n\,\vek u_n\) has every entry positive,
+two results of Perron--Frobenius theory. For \(0\le M\le M'\) entrywise the spectral radius of
+\(M\) is at most that of \(M'\) [cite:@HornJohnson2013 Corollary 8.1.19]; and when \(M'\) is
+irreducible the two are equal only if \(M=\zeta DM'D^{-1}\) for some diagonal unitary \(D\) and
+some \(\zeta\) of modulus one [cite:@HornJohnson2013 Theorem 8.4.5], which for non-negative
+\(M\) and \(M'\) forces \(M=M'\) entrywise, since it makes each \(M[i][j]\) equal to
+\(|M'[i][j]|\). So \(M\ne M'\) makes the inequality strict.
+Here \(M'=T_n(n+1)=\vek1_n\,\vek u_n\) has every entry positive,
 because \(\vek u_n\) does, and so is irreducible; for \(\delta\le n\) the matrix \(T_n(\delta)\) lies
 below it by the monotonicity in Definition [[def-uT]], and differs from it, since the full simplex
 followed by the void family is not chained at \(\delta=n\). The proper case is the same argument on
@@ -2652,10 +2661,10 @@ is the mirror image of the capacity argument of Lemma [[lem-lexproper]]. In modu
 proof, and the initial segment covers
 \(g_i\)'s slot. Polynomiality in \(p\) is then immediate from Theorem [[thm-main]]'s formula, each
 entry \(E^p(\tau,\rho-1)\) being a polynomial in \(p\) for fixed \(\tau,\rho\) by Linusson's
-Theorem 5.3.
+Theorem 3.3.
 #+end_proof
 
-*Status.* The reduction above is proved; the polynomiality of the entries is Linusson's Theorem 5.3,
+*Status.* The reduction above is proved; the polynomiality of the entries is Linusson's Theorem 3.3,
 which we cite rather than reprove, so Theorem [[thm-poly-p]] is proved modulo that citation. It was
 verified against brute-force truncated sumsets for \(n\le3\), \(p\le5\), \(r\le3\), with no
 mismatches.
@@ -2743,7 +2752,7 @@ bilinear form \(\vek u_3\,(\cdot)\,\vek1_3\) and to the duality behind it, not t
 themselves.
 #+end_mexample
 
-Linusson's Theorem 5.3 and Proposition 5.4 give the degree and the leading coefficient of his own
+Linusson's Theorem 3.3 and Proposition 2.8 give the degree and the leading coefficient of his own
 count as a polynomial in \(p\). They transport through the product of Theorem [[thm-poly-p]], and the
 result is clean. For each gap put \(\kappa_i=\max(0,n-\delta_i)\).
 
@@ -2769,10 +2778,10 @@ moreover every gap satisfies \(\delta_i\ge1\), then the summands decouple to lea
 
 #+begin_proof
 By Lemma [[lem-joint]] the entries of \(A^{(p)}_n\) are differences \(E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1)\),
-and Linusson's Theorem 5.3 gives \(\deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2}\), so the subtrahend has degree
+and Linusson's Theorem 3.3 gives \(\deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2}\), so the subtrahend has degree
 strictly smaller (by exactly \(\tau\)) and cannot cancel the leading term. Hence
 \(\deg_pA^{(p)}_n[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2}\), with leading coefficient the positive quantity
-of his Proposition 5.4.
+of his Proposition 2.8.
 
 Expanding the matrix product of Theorem [[thm-poly-p]] as a sum over paths
 \(\tau_1,\dots,\tau_r\), every term is a product of such entries, all with positive leading
@@ -2873,7 +2882,7 @@ rather than \(\max(1,\tau-\delta+1)\), so nothing cancels, and the path degree s
 and a constant \(-\binom22=-1\), the same for every path, contributed by the first factor. On \(\lbrace1,\dots,n\rbrace\), \(h'_0\equiv0\) and \(h'_\delta\)
 is strictly increasing for \(\delta\ge1\), so the unique maximiser is again the all-\(n\) path;
 its factors have degrees \(\binom{n+1}{2}-1\) and \(\binom{n+1}{2}-\binom{\kappa_i'+1}{2}\), with leading
-coefficients those of \(E^p(n,1)\) and \(E^p(n,\kappa_i')\) by Linusson's Proposition 5.4, which
+coefficients those of \(E^p(n,1)\) and \(E^p(n,\kappa_i')\) by Linusson's Proposition 2.8, which
 gives \eqref{eq:proper-degree-in-p} and \eqref{eq:proper-lc-in-p}.
 #+end_proof
 
@@ -2963,7 +2972,8 @@ tested. Specifically:
   \(n\le6\), \(r\le4\) and gaps \(0\) to \(6\), including unequal gaps such as
   \(\vek d=(0,0,1)\) and \((0,1,3)\). The range is a union rather than a box: \(r=4\) occurs only
   for \(n\le3\), and \(n=6\) only for \(r=2\).
-- *Against Linusson's own tables.* All \(199\) printed entries of his Tables 5 and 6, exactly
+- *Against Linusson's own tables.* All \(199\) printed entries of Tables 5 and 6 in the appendix of
+  his preprint [cite:@Linusson1999preprint], exactly; those tables are not in the published version
   (Remark [[rem-transcription]]).
 - *Against a computer-algebra oracle.* Amata and Crupi's ~ExteriorModules~ package [cite:@AmataCrupi2021] for Macaulay2
   enumerates lex submodules directly. Its counts \(43\), \(69\), \(99\) and \(236\) for \(n=3\) with
@@ -3006,9 +3016,9 @@ tested. Specifically:
   counts) is certified given that hypothesis, which the paper itself discharges algebraically, in
   Theorem [[thm-chaining]] and Lemma [[lem-lexproper]]. This is a different thing from the
   "proved modulo" of the table in Section [[#sec-intro]], which refers only to Linusson's
-  Theorem 5.3.
+  Theorem 3.3.
 
-  *Linusson's results.* Theorem [[thm-linusson]] and his Theorem 5.3 are cited rather than reproved,
+  *Linusson's results.* Theorem [[thm-linusson]] and his Theorem 3.3 are cited rather than reproved,
   so Lemma [[lem-joint]] and everything resting on them is outside the formalisation: Theorem
   [[thm-poly-p]] and Theorems [[thm-asymptotics-p]] and [[thm-asymptotics-p-proper]]. For Lemma
   [[lem-joint]] this is deliberate and costs nothing, since \(A_n\) is defined by counting in
@@ -3100,7 +3110,8 @@ submitted.
 :END:
 
 @@latex:\label{sec:app-tables}@@
-Linusson closes his paper with two tables, and they are part of why it is usable rather than
+Linusson closes the preprint version of his paper [cite:@Linusson1999preprint] with two tables,
+and they are part of why it is usable rather than
 merely correct: Table 5 gives the counts \(F^p(n)\) themselves, and Table 6 gives \(E^p(p,k)\),
 the refinement his recursion actually runs on, with \(F^p(p)\) recovered as a row sum in the last
 column. This appendix gives the analogues, in the same pairing and the same order. Every entry
@@ -3400,7 +3411,8 @@ recorded in Remark [[rem-sorted]]; assembled and proved Theorem [[thm-main]] and
 (Corollary [[cor-r1]], Propositions [[prop-threshold]] and [[prop-delta0]]); found and proved
 Lemma [[lem-lexproper]], without which the proper variant of Theorem [[thm-proper]] would not follow;
 derived the growth results of Section [[#sec-growth]], including Theorem [[thm-poly-p]]; transcribed
-Linusson's Theorem 5.2 from the printed page and validated it against both of his appendix tables;
+Linusson's Theorem 3.2 from the printed page and validated it against both of his preprint's
+appendix tables;
 found the Alexander-duality argument of Section [[#sec-statistics]] (Lemma [[lem-alexander]],
 Corollary [[cor-persymmetry]], Proposition [[prop-fnn2]]); proved Theorem [[thm-delta0-degrees]] and
 found the digraph reading of Remark [[rem-delta0-digraph]]; found the explicit inverse of Lemma
@@ -3414,7 +3426,7 @@ machine-checked, and the formalisation was then carried out by the model.
 
 Two corrections the model made to its own earlier work are worth recording, as evidence of what the
 verification was for: an initial value of \(|S_9|\) was wrong by one, caught by checking against
-OEIS A007695 and against Linusson's printed table; and a threshold in Propositions [[prop-threshold]]
+OEIS A007695 and against Linusson's printed Table 5; and a threshold in Propositions [[prop-threshold]]
 and [[prop-proper-threshold]] had been stated for the wrong one of the two variants.
 
 Every structural claim in this paper was checked computationally, along a route independent of the

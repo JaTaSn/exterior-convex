@@ -472,3 +472,78 @@ primary sources" is still not wholly true, for exactly the two reasons already s
 new one. Nothing in the manuscript's citations was altered on 2026-10-09 except `Stanley1996`'s
 `edition` field, which is a rendering fix (`{2nd}` printed "2nd."; `{2}` prints "2nd ed.") and
 touches no claim.
+
+## Both sources supplied — findings 5 and 6 resolved (2026-10-09, later)
+
+Jan obtained both from a browser on the LiU VPN and put them in
+`20-projects/exterior-convex/literature/subscription/`. Both were read. **Both findings turned out
+to be real defects, not formalities**, and the manuscript has been corrected.
+
+### Finding 5 — resolved, and the answer was no
+
+Finding 5 asked whether the published Combinatorica version keeps the preprint's numbering and
+still prints both appendix tables. **It does neither.** The journal version is 13 pages against the
+preprint's 26 and was substantially cut and reorganised. Every locator in article 2 was therefore
+wrong for the version its `.bib` entry names. Verified against the PDF, statement by statement:
+
+| article 2 cited | in the published version |
+|---|---|
+| §5 (`def-linusson`) | **§3**, "The number of f-vectors for simplicial complexes" |
+| Theorem 5.2 (`thm-linusson`) | **Theorem 3.2**, equations (6) and (7) — transcription matches exactly |
+| Theorem 5.3 (polynomiality in *p*) | **Theorem 3.3** |
+| Proposition 5.4 (leading coefficient) | **Proposition 2.8**, carried to *E* and *F* by Theorem 3.3 |
+| Tables 5 and 6 | **not present at all** |
+
+The last row is the one that mattered. The published version **has no appendix** and prints exactly
+one table, its own Table 1, of *M*ᵖ(*n*). The *f*-vector tables — Table 5 of *F*ᵖ(*n*) and Table 6 of
+*E*ᵖ(*p*,*k*), the 100 + 99 entries article 2 checks itself against — exist only in the preprint.
+Confirmed three ways: the string `3617645` (the value §4 says is "printed in Linusson's Table 5")
+does not occur anywhere in the published text; §3 contains no numeric data at all; and the words
+"appendix" and "Table" occur in the published version only in the caption of Table 1.
+
+A verification claim is only as good as a reader's ability to repeat it, so §10.1's
+"all 199 printed entries" would have sent a reader to a paper that does not contain them.
+**Corrected:** every numbered result now cites the published version at its published number, and
+the tables are cited to a separate `@unpublished` entry, `Linusson1999preprint`. The distinction is
+stated once in `rem-transcription` and holds for the whole paper.
+
+Also confirmed in §3's prose, so the manuscript's boundary values are sourced: *F*ᵖ(−1) = 1,
+*F*ᵖ(0) = 2, *F*⁰(*n*) = 2, *E*ᵖ(*n*,−1) = 1, *E*ᵖ(*n*,*n*) = 1, *E*ᵖ(*n*,*k*) = 0 for *k* > *n*,
+and *F*ᵖ(*n*) = ∑ₖ *E*ᵖ(*n*,*k*) as published equation (5). Bibliographic data all match: volume 19,
+number 2, pages 255–266, 1999; received 28 February 1996, revised 26 February 1998.
+
+### Finding 6 — resolved, and "believed Theorem 8.4.5" was right about the number and wrong about the theorem
+
+**The year is settled and was nearly changed on worse evidence.** The copyright page reads
+"First published 1985 / First paperback edition 1990 / **Second edition first published 2013**",
+copyright "1985, 2013", with Library of Congress "QA188.H66 2012". Crossref's 2012-10-22 and
+Cambridge's "20 December 2012" are release dates for the ISBN, not the edition's year.
+`year = {2013}` stands, now on the primary source rather than on convention.
+
+**The locator was wrong.** Theorem 8.4.5 exists, and it is *not* a strict-comparison theorem. It is
+the equality case:
+
+> **Theorem 8.4.5.** Let *A*, *B* ∈ *Mₙ*. Suppose that *A* is nonnegative and irreducible, and
+> *A* ≥ |*B*|. Let λ = e^{iφ}ρ(*B*) be a given maximum-modulus eigenvalue of *B*. If
+> ρ(*A*) = ρ(*B*), then there is a diagonal unitary matrix *D* ∈ *Mₙ* such that
+> *B* = e^{iφ}*DAD*⁻¹.
+
+Section 8.4, "Irreducible nonnegative matrices" (p. 533), contains **only** Lemmas 8.4.1–8.4.3,
+Theorems 8.4.4–8.4.5 and Corollaries 8.4.6–8.4.7, and none of them is the strict comparison. In
+this book the strict inequality appears **only as Problem 8.2.P15(b)**, and only for *B* positive.
+So neither the old "Ch. 8" nor the believed "Theorem 8.4.5" would have supported the sentence as a
+reader would check it.
+
+**Corrected, and the statement is still true** — it just needs two results rather than one:
+
+> **Corollary 8.1.19.** Let *A*, *B* ∈ *Mₙ* be nonnegative. If 0 ≤ *A* ≤ *B*, then
+> ρ(*A*) ≤ ρ(*B*).
+
+gives the weak inequality, and Theorem 8.4.5 excludes equality: for non-negative *M* and *M*′ it
+forces each *M*[*i*][*j*] = |*M*′[*i*][*j*]|, hence *M* = *M*′. `prop-perron-threshold` now cites
+both and says in one clause how the second delivers strictness, so a reader who looks up 8.4.5 is
+not left wondering why an equality theorem was cited for a strict inequality.
+
+**Status of entries 11 and 12.** Entry 11 (Horn & Johnson) is now **VERIFIED** against the book.
+Entry 12 (Stanley, *Combinatorics and Commutative Algebra*) is **still not verified** — it was not
+supplied, is not in the NAS library, and its claim carries no locator, so the risk stays low.
