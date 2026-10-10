@@ -1,0 +1,38 @@
+0. INDEPENDENT ROUTE: same checks with A_bruteforce (no E, no F, no recursion), n <= 6
+   agrees with the recursion route everywhere
+
+1. SUPPORT:  T_n(delta)[tau][tau'] > 0  <=>  tau' >= tau - delta
+   n = 1..9, delta = 0..n+3: all agree
+
+2-3. IRREDUCIBLE and APERIODIC (improper)
+   n=1: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=2: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=3: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=4: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=5: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=6: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=7: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=8: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+   n=9: delta=0 irreducible False;  delta>=1 irreducible {True};  self-loop at every vertex True
+
+4. a_r / lambda^r
+   n=3 delta=0  lambda=1.000080  r=6,14,22: 1049.496149, 20397.143672, 109884.443852   DIVERGES (expected: a_r is a polynomial, lambda = 1)
+   n=3 delta=1  lambda=5.818804  r=6,14,22: 2.231957, 2.235544, 2.235545   converges
+   n=3 delta=2  lambda=9.013844  r=6,14,22: 1.121125, 1.121126, 1.121126   converges
+   n=4 delta=0  lambda=1.000100  r=6,14,22: 13403.955616, 606198.769859, 5135996.934659   DIVERGES (expected: a_r is a polynomial, lambda = 1)
+   n=4 delta=1  lambda=9.855737  r=6,14,22: 4.843428, 4.884589, 4.884638   converges
+   n=4 delta=2  lambda=20.585886  r=6,14,22: 1.322442, 1.322451, 1.322451   converges
+   n=5 delta=0  lambda=1.000120  r=6,14,22: 322453.760100, 35473457.177799, 478386785.059772   DIVERGES (expected: a_r is a polynomial, lambda = 1)
+   n=5 delta=1  lambda=17.757256  r=6,14,22: 18.425647, 18.926225, 18.927528   converges
+   n=5 delta=2  lambda=57.841104  r=6,14,22: 1.945853, 1.946113, 1.946113   converges
+
+5. PROPER variant
+   n=2: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=3: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=4: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=5: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=6: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=7: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+   n=8: full index set irreducible False;  principal block tau in 1..n, delta>=1: {True}
+
+ALL CHECKS PASS

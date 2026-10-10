@@ -103,6 +103,17 @@ theorem Tmat_zero_apply_eq_sum (k k' : Fin (n + 2)) :
   simp only [Finset.mem_filter, Finset.mem_Icc, tauOf, sub_zero]
   omega
 
+/-! The paper obtains the triangularity below as the `δ = 0` case of
+`lem-transfer-support`, where the support condition `τ' ≥ τ − δ` reads
+`τ' ≥ τ`.  That derivation is one line here, recorded as an `example`:
+the proof given afterwards is the one the rest of the development
+depends on and is deliberately left in place. -/
+
+example {k k' : Fin (n + 2)} (h : k' < k) : Tmat n 0 k k' = 0 :=
+  Nat.eq_zero_of_not_pos fun hp =>
+    absurd ((Tmat_pos_iff n 0 k k').mp hp)
+      (by have : k'.val < k.val := h; simp only [tauOf]; omega)
+
 /-- `prop-delta0`, triangularity: `T(0)[τ][τ'] = 0` for `τ' < τ` — a
 non-zero entry needs `τ + 1 ≤ ρ ≤ τ' + 1`. -/
 theorem Tmat_zero_eq_zero_of_lt {k k' : Fin (n + 2)} (h : k' < k) :

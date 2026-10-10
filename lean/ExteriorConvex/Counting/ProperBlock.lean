@@ -95,6 +95,45 @@ theorem Tpmat_apply_eq_zero_of_le_one (δ : ℤ) (k : Fin (n + 2))
   exact Finset.sum_eq_zero fun ρ _ =>
     Apmat_eq_zero_of_le_zero (by simp only [tauOf]; omega)
 
+/-- `lem-transfer-support`, proper half: on the principal block
+`τ' ∈ {1, …, n}`, `T′(δ)[τ][τ'] > 0 ↔ τ' ≥ τ − δ`.
+
+Same argument as `Tmat_pos_iff`.  The `⇐` half needs
+`A′[τ'][τ'+1] = A[τ'][τ'+1] = 1`, and `Apmat_eq_of_le` supplies the
+first equality only when `2 ≤ τ' + 1`, i.e. `τ' ≥ 1` — **which is
+exactly the hypothesis, and exactly why the paper's proper statement
+is restricted to the principal block**.  Off the block there is nothing
+to say, and the statement would be *false*: `Tpmat_apply_eq_zero_of_le_one`
+gives `T′(δ)[τ][τ'] = 0` for every `τ` and every `δ` when `τ' ≤ 0`, while
+the right-hand side holds whenever `δ` is large.
+
+**The hypothesis is `2 ≤ k'.val`, not `1 ≤ k'.val`.**  `tauOf k' = k'.val − 1`,
+so the principal block `τ' ≥ 1` is `k'.val ≥ 2`; `k'.val ≥ 1` would be
+`τ' ≥ 0` and would include the vanishing column `τ' = 0`.  This matches
+`Tpmat_apply_eq_zero_of_le_one`'s `k'.val ≤ 1` as its exact complement. -/
+theorem Tpmat_pos_iff (n : ℕ) (δ : ℤ) (k k' : Fin (n + 2))
+    (hk' : 2 ≤ k'.val) :
+    0 < Tpmat n δ k k' ↔ tauOf k - δ ≤ tauOf k' := by
+  have hτ' : (1 : ℤ) ≤ tauOf k' := by simp only [tauOf]; omega
+  rw [Tpmat_apply]
+  constructor
+  · intro hpos
+    by_contra hcon
+    rw [Finset.sum_eq_zero fun ρ hρ => ?_] at hpos
+    · exact absurd hpos (lt_irrefl 0)
+    · rw [Finset.mem_filter] at hρ
+      exact Apmat_eq_zero_of_add_one_lt (by omega)
+  · intro hle
+    have h2 : tauOf k' ≤ (n : ℤ) := tauOf_le k'
+    have hmem : tauOf k' + 1 ∈
+        (Finset.Icc (0 : ℤ) ((n : ℤ) + 1)).filter (fun ρ => tauOf k - δ < ρ) := by
+      rw [Finset.mem_filter, Finset.mem_Icc]
+      exact ⟨⟨by omega, by omega⟩, by omega⟩
+    have hone : Apmat n (tauOf k') (tauOf k' + 1) = 1 := by
+      rw [Apmat_eq_of_le (by simp only [tauOf]; omega), Amat_superdiag_tauOf]
+    calc 0 < Apmat n (tauOf k') (tauOf k' + 1) := by rw [hone]; exact Nat.one_pos
+      _ ≤ _ := Finset.single_le_sum (fun _ _ => Nat.zero_le _) hmem
+
 /-- Any row vector through `T′(δ)` lands supported on `{1, …, n}`: the
 coordinates `−1` and `0` of `v⃗ T′(δ)` vanish for **any** `v⃗`. -/
 theorem vecMul_Tpmat_eq_zero_of_le_one (δ : ℤ) (v : Fin (n + 2) → ℕ)

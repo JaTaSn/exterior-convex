@@ -30,7 +30,7 @@ Jan Snellman
 ORCID `0009-0002-6676-5068` (attached through the arXiv account). Affiliation: Department of
 Mathematics (MAI), Linköping University.
 
-## Abstract
+## Abstract — full length (1,413 characters)
 
 ```
 Let $E$ be the exterior algebra on $n$ generators over a field, and let $F$ be a graded free $E$-module with $r$ generators of degrees $d_1 \le \dots \le d_r$. The Hilbert function of a quotient $F/M$, where $M$ is a monomial submodule in the sense of Amata and Crupi, is a sum of shifted $f$-vectors of simplicial complexes, and a companion paper determines the convex hull of the set of these Hilbert functions. Here we count them. For $r=1$ the count is the number of $f$-vectors of simplicial complexes on $n$ vertices, which Linusson computed in 1999 by a recursion through compressed complexes. We show that no new recursion is needed in higher rank: the number of Hilbert functions is a product of $r-1$ transfer matrices, one for each gap $d_{i+1}-d_i$ between consecutive generator degrees, whose entries are differences of Linusson's own refined counts. The rank therefore enters only as the length of a matrix product. The key step, proved using Amata and Crupi's lex submodules, replaces the size of a sumset by a count of tuples of $f$-vectors subject to a nearest-neighbour constraint. We prove the same result for the proper variant from which the companion paper's polytope is built, and derive consequences: a linear recurrence in $r$ for constant gaps, polynomiality in $r$ when all gaps vanish, the exact gap beyond which the count is a plain power, and polynomiality in the number of vertices.
@@ -42,6 +42,40 @@ the exterior algebra is `$E$` on `$n$` generators rather than `\Ext` on an `n`-d
 (top degree, initial degree) are left to the paper; `[cite:@SnellmanArticle1]` becomes "a
 companion paper", identified in the Comments field. Every claim in it is one the manuscript's
 abstract already makes.
+
+## Abstract — a three-quarter abridgement, added 2026-10-10 at Jan's request
+
+Jan asked for a version at three quarters of the manuscript abstract's length. The manuscript's is
+**266 words**; this is **202**, against a target of 199, counted the same way on both
+(whitespace-separated tokens, math included). It is shorter than the block above and drops
+different things, so **the two are alternatives, not a revision** — pick one at submission.
+
+What this one cuts, none of which is a claim: the bridge theorem, the
+lexification-preserves-properness lemma, and the clause explaining that Linusson's \(r = 1\) count
+comes from a recursion through compressed complexes. Everything the manuscript abstract *asserts*
+is still asserted.
+
+```
+Let $E$ be the exterior algebra of an $n$-dimensional vector space over a field, let $F$ be a
+graded free $E$-module with $r$ generators of degrees $d_1 \le \dots \le d_r$, and let $M$ range
+over the monomial submodules of Amata and Crupi. The Hilbert function of $F/M$ is a shifted sum of
+$f$-vectors of simplicial complexes; the companion paper determines the convex hull of such sums,
+and here we count them. For $r = 1$ the count is Linusson's (1999); we show that no new recursion
+is needed for general $r$. Using two statistics of an $f$-vector -- its top nonvanishing degree
+and the initial degree of the corresponding ideal -- we prove that the number of achievable
+Hilbert functions is a product of $r-1$ transfer matrices, one per generator-degree gap, with
+entries differences of Linusson's refined counts $E^p(n,k)$. The rank enters only as the length of
+a matrix product. The same holds for the proper variant. Consequences: a linear recurrence in $r$
+for constant gaps, with exact exponential asymptotics $K \lambda^r$ when the gap is positive;
+polynomiality in $r$ when all gaps vanish; a threshold beyond which the count is a plain power;
+and polynomiality in the number of vertices.
+```
+
+**Note the difference in substance, not only length:** the longer block above predates
+2026-10-10 and says "a linear recurrence in $r$ for constant gaps" with no asymptotic constant. The
+paper now *proves* $a_r = K\lambda^r + O(\varrho^r)$ for every positive gap
+(Proposition 47), so the longer abstract **understates the paper** and needs that clause adding if
+it is the one used.
 
 ## Categories — [Jan]
 
@@ -74,10 +108,13 @@ exterior algebra; Hilbert function; f-vector; simplicial complex; enumeration; t
 ## Comments field
 
 ```
-52 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
+56 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
 ```
 
-Plain ASCII on purpose ("Linkoping"). Update the page count if the review changes it.
+Plain ASCII on purpose ("Linkoping"). **56 pages**, as the arXiv version builds on 2026-10-10 — up
+from 52. Mind the one-page gap between the two builds, which is not an error: the draft build is
+**55 pp.**, and the generator adds §10.2 *Code, formalisation and tables*, which exists only in the
+arXiv version. **The number here must be the arXiv one**, and the generator prints it.
 
 ## Report number — [Jan]
 
@@ -102,12 +139,37 @@ Per-submission choice, as for Part I.
       rebuilds `anc/`, compiles three times with pdfLaTeX and refuses to finish on any error,
       undefined reference or missing character. **It also freezes the date** (`\today` would
       print whatever day arXiv recompiles on) -- `ARXIV_DATE=...` overrides the default of the
-      build day, and the chosen date is printed in the run summary. Last run 2026-10-09:
-      52 pp., 0 errors, 0 undefined, 0 missing characters, 0 overfull boxes, dated
-      "October 9, 2026".
-- [ ] **Reference certificate** (`93-CONVENTIONS/manuscript-style.md`, "The reference
-      certificate"): Part I has `references/REFERENCE-CERTIFICATE.md`; **Part II has none**, and
-      its references were located with a language model's help. Open item in the project TODO.
+      build day, and the chosen date is printed in the run summary. Last run **2026-10-10**:
+      **55 pp.**, 0 errors, 0 undefined, 0 missing characters, 0 overfull boxes, dated
+      "October 10, 2026" — **56 pp. for the arXiv build**, against 55 for the draft, the difference
+      being §10.2, which only the arXiv version carries. Two things since the 2026-10-09 run: Lemma 44 and Proposition 47 (the
+      asymptotic remark became a proposition, and everything after Proposition 45 renumbered by
+      two), and §10.1 rewritten once the Lean side caught up. **The generator also gained a guard
+      that day**: it used to count errors in the log only, and reported `ok: ? pages, 0 errors`
+      for a run that produced no PDF at all. It now asserts the artefact exists.
+- [x] **Reference certificate — done, and extended twice.**
+      `references/REFERENCE-CERTIFICATE-article2.md` was written 2026-10-08, extended 2026-10-09
+      when Jan supplied Horn–Johnson and Linusson's published version (findings 5 and 6, **both
+      real defects**: every Linusson locator was wrong for the version the `.bib` names, and
+      "Theorem 8.4.5" is an equality theorem that had been cited for a strict inequality), and
+      extended again 2026-10-10 for the two new Horn–Johnson locators (5.7.10 p. 372, 8.3.1
+      p. 529) and the new `FlajoletSedgewick2009` (Theorem V.7 p. 343, Note V.31(iii) p. 342),
+      all four read in the primary sources and quoted. That pass also found one more manuscript
+      defect: §1.4's table still said "Linusson's Thm. 5.3", the *preprint's* number, where the
+      other eight references say 3.3 — corrected. **All seventeen cited keys now have an entry**;
+      the one locator-level gap left is `Stanley1996`, never supplied, whose single claim carries
+      no locator.
+- [x] **The ancillary directory is 455 kB, not 16.6 MB** (2026-10-10). It had reached 231 MB on
+      disk because it copied the published `verification-code/` wholesale, and a bulk sync had put
+      23 raw JSON dumps into `runs/` — article-1-era polytope computations, 218 MB, the largest
+      40.9 MB each, none of them backing a claim in this paper. The generator now works from an
+      **explicit include list** — `.sage`, `.py`, `.m2`, `.jl`, `.maple`, plus the one `.md` that
+      documents the scripts — and prints everything it leaves out. `runs/` is not shipped at all,
+      and neither are Amata and Crupi's two vendored Macaulay2 packages, which are theirs and in
+      any case ship with Macaulay2 itself (`needsPackage "ExteriorModules"`, verified against
+      1.26.06). §10.2 and `anc/README.md` both say so plainly and point at the repository. Result:
+      101 scripts, 639 kB; `anc/` 1.6 MB on disk; **tarball 455 kB**, against article 1's shipped
+      824 kB.
 - [ ] **arXiv rate limits**: two submissions per calendar month, three active at once. Count this
       month's before submitting.
 - [ ] Re-verify the arXiv LLM policy against the live page.

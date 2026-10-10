@@ -118,6 +118,52 @@
 #                                            used 18 times here for the Perron roots of section 9
 #   \scalebox{0.82}{$\bigwedge$}V            exact control; needs graphicx
 
+# THE ASYMPTOTIC REMARK BECAME A PROPOSITION -- 2026-10-10, on Jan's go-ahead.
+#
+# rem-recurrence-not-asymptotic used to close with "we do not prove it".  It is now proved for
+# every delta >= 1, and the remark keeps only the delta = 0 counterexample, which is what made it
+# worth having.  Two numbered statements are NEW, both in section 9, so EVERYTHING AFTER THEM IS
+# RENUMBERED BY TWO:
+#   * lem-transfer-support   T_n(delta)[tau][tau'] > 0  <=>  tau' >= tau - delta.
+#   * prop-growth-constant   a_r = K lambda^r + O(rho^r), K > 0, rho < lambda, for delta >= 1.
+#
+# The lemma is the whole content.  Its proof is that the largest indeg available at top = tau' is
+# tau'+1, attained by the full truncation at tau'.  Everything else is a one-line reading of it:
+# delta = 0 gives upper triangularity (prop-delta0's own first step, now reachable from the general
+# statement); delta >= 1 gives strong connectivity; and tau -> tau is always an arc, so a loop sits
+# at every vertex and the period is 1.
+#
+# The citation is Flajolet-Sedgewick Theorem V.7, "Asymptotics of paths in graphs", read out of the
+# copy in math-library and not recalled -- it needs the matrix irreducible AND aperiodic, and it is
+# STRONGER than what the remark declined to claim, since it carries an error term.  Note V.31(iii)
+# is its own aperiodicity criterion and is cited for that step.  Jan is the one who spotted that
+# section V.5 "Paths in graphs and automata" is this exact transfer-matrix setting.
+#
+# WHAT THIS DOES NOT CHANGE: prop-recurrence stays irreducibility-FREE, deliberately, because it
+# covers delta = 0 where T_n(0) is reducible; that is why its two Horn-Johnson citations (5.7.10
+# and 8.3.1) were chosen as they were on the same day.  Do not "simplify" it by routing it through
+# the new lemma -- it would lose delta = 0.
+#
+# LEAN, AND THIS CHANGED THE SAME DAY.  The first version of this note said neither new statement
+# was in the formal development.  Half of that is permanent and half lasted four hours:
+#   * prop-growth-constant stays outside, and will -- it appeals to F&S Theorem V.7, which is no
+#     more in Mathlib than Perron-Frobenius is.
+#   * lem-transfer-support IS formalised, both halves, as Tmat_pos_iff (Counting/Structure.lean,
+#     not Transfer.lean -- the reverse direction needs Amat_superdiag and the imports only run one
+#     way) and Tpmat_pos_iff (Counting/ProperBlock.lean, beside the columns-vanish lemma it is the
+#     exact complement of).  lake build clean, 8830 jobs, no sorry, standard three axioms.
+# Section 10.1 says all of this, and says one more thing that came OUT of the formalisation: the
+# proper half's restriction to the principal block tau' >= 1 is SHARP, not a convenience.  At
+# tau' = 0 the column of T'(delta) vanishes for every delta while the support condition holds for
+# large delta, so relaxing it to tau' >= 0 makes the equivalence false-iff-true.  That is now the
+# third item in 10.1's "what the formalisation turned up", which previously had two.
+# DO NOT re-merge those two bullets into one claim again: the proposition and the lemma have
+# genuinely different status now.
+#
+# VERIFIED BEFORE WRITTEN: code/oneoff/transfer_irreducibility.py, log
+# runs/2026-10-10_transfer_irreducibility.txt, two routes kept separate (A_bruteforce for n <= 6,
+# independent of E, F and the recursion; A_from_linusson for n <= 9).  ALL CHECKS PASS.
+#
 # LINUSSON'S p AND n STAY AS HE PRINTS THEM -- SETTLED BY JAN 2026-10-10, do not re-open.
 #
 # The question, and it is a fair one: in F^p(n) the letter n is Linusson's FACE-SIZE bound, while
@@ -472,6 +518,12 @@
 #   * Lemma (lexification/properness) PROVED
 #   * Theorem (proper counting)       PROVED, verified incl. recorded sequences
 #   * Recurrence/Perron in r          PROVED (Cayley-Hamilton); spectra computed
+#   * Support of T_n(delta)           PROVED; verified n <= 6 independently, n <= 9 by formula
+#   * a_r ~ K lambda^r, delta >= 1    PROVED (F&S Thm V.7); FALSE at delta = 0 and the remark
+#                                     keeps that counterexample.  NOT in Lean and will not be.
+#   * Support of T_n(delta), in Lean  PROVED, both halves (Tmat_pos_iff, Tpmat_pos_iff), and the
+#                                     proper half's tau' >= 1 is SHARP -- the formalisation is
+#                                     what established that
 #   * delta = 0 polynomiality         degree bound PROVED; the EXACT degrees
 #                                     (n+1 improper, n-1 proper) are OBSERVED
 #                                     for n = 2..7, not proved
@@ -544,7 +596,8 @@ Amata and Crupi's lex submodules, that replaces a sumset cardinality by a count 
 a nearest-neighbour constraint. We give the same theorem for the /proper/ variant that the companion
 paper's polytope is built from, prove the lemma that makes the restriction legitimate (lexification
 preserves properness), and derive consequences: a linear recurrence in \(r\) for
-constant gaps, polynomiality in \(r\) when all gaps vanish, an exact threshold beyond which the count
+constant gaps together with the exact exponential asymptotics \(K\lambda^{\,r}\) when the gap is
+positive, polynomiality in \(r\) when all gaps vanish, an exact threshold beyond which the count
 degenerates to a plain power, and polynomiality in the number of vertices.
 #+end_abstract
 
@@ -711,12 +764,14 @@ The distinction is kept explicit throughout.
 | Thm. [[thm-main]], the counting theorem | proved; verified, 41 shift vectors |
 | Lem. [[lem-lexproper]], lexification preserves properness | proved |
 | Thm. [[thm-proper]], the proper count | proved; reproduces recorded sequences |
+| Lem. [[lem-transfer-support]], the support of \(T_n(\delta)\) | proved; verified, \(n\le6\) |
 | Prop. [[prop-recurrence]], recurrence in \(r\) | proved |
+| Prop. [[prop-growth-constant]], the constant \(K\) for \(\delta\ge1\) | proved; hypotheses verified, \(n\le6\) |
 | Prop. [[prop-delta0]], degree bound at \(\delta=0\) | proved |
 | Thm. [[thm-delta0-degrees]], the *exact* degrees at \(\delta=0\) | proved; verified, \(n\le8\) |
 | Prop. [[prop-perron-threshold]], the Perron root above threshold | proved; verified, \(n\le6\) |
 | Prop. [[prop-normalform]], the normal form \(T_n(\delta)=P_n^{\delta}B_n\) | proved; verified, \(n\le8\) |
-| Thm. [[thm-poly-p]], polynomiality in \(p\) | proved modulo Linusson's Thm. 5.3 |
+| Thm. [[thm-poly-p]], polynomiality in \(p\) | proved modulo Linusson's Thm. 3.3 |
 | Thm. [[thm-asymptotics-p]], degree and leading coefficient in \(p\) | proved modulo the same; verified, \(n\le5\) |
 | Thm. [[thm-asymptotics-p-proper]], the proper analogue in \(p\) | proved modulo the same; verified, \(n\le5\) |
 | Prop. [[prop-fnn2]], \(\lvert S_n\rvert=F^n(n-2)\) | proved, by Alexander duality |
@@ -2417,6 +2472,58 @@ itself, appears to be in the OEIS (searched October 2026).
 :CUSTOM_ID: sec-growth
 :END:
 
+#+NAME: lem-transfer-support
+#+begin_lemma
+(/The support of the transfer matrix./) Let \(n\ge1\) and \(\delta\ge0\). For all \(\tau,\tau'\) in
+the range \eqref{eq:def-uT-range},
+#+begin_export latex
+\begin{equation}\label{eq:transfer-support}
+  T_n(\delta)[\tau][\tau']>0\quad\Longleftrightarrow\quad\tau'\ge\tau-\delta .
+\end{equation}
+#+end_export
+In \(T'_n(\delta)\) the two columns \(\tau'=-1\) and \(\tau'=0\) vanish identically, and
+\eqref{eq:transfer-support} holds as stated for every \(\tau'\in\lbrace1,\dots,n\rbrace\).
+#+end_lemma
+
+#+begin_proof
+By \eqref{eq:def-T} the entry \(T_n(\delta)[\tau][\tau']=\sum_{\rho>\tau-\delta}A_n[\tau'][\rho]\)
+is a sum of non-negative terms, so it is positive exactly when some \(\rho>\tau-\delta\) has
+\(A_n[\tau'][\rho]>0\). The largest \(\rho\) with \(A_n[\tau'][\rho]>0\) is \(\rho=\tau'+1\).
+Nothing larger occurs, since \(A_n\) is supported on \(\rho\le\tau+1\) by Definition [[def-A]],
+which in row \(\tau'\) reads \(\rho\le\tau'+1\); and \(\tau'+1\) does occur, being attained by the
+full truncation at \(\tau'\), the unique \(\vek s\) with \(s(j)=\binom nj\) for \(j\le\tau'\) and
+\(s(j)=0\) beyond, which is the void family at \(\tau'=-1\) and the full simplex at \(\tau'=n\).
+The sum is therefore positive if and only if \(\tau'+1>\tau-\delta\), which for integers is
+\(\tau'\ge\tau-\delta\).
+
+For the proper matrix, \(A'_n\) is \(A_n\) with the columns \(\rho=0\) and \(\rho=1\) deleted
+(Theorem [[thm-proper]]). A row \(\tau'\le0\) of \(A_n\) is supported on \(\rho\le\tau'+1\le1\) and
+is therefore deleted entirely, which is the vanishing of those two columns of \(T'_n(\delta)\); and
+for \(\tau'\ge1\) the entry \(A_n[\tau'][\tau'+1]=1\) survives the deletion, since \(\tau'+1\ge2\),
+so the argument above applies to \(A'_n\) word for word.
+#+end_proof
+
+Read \eqref{eq:transfer-support} as a statement about the digraph on the \(\tp\)-values, in the
+manner of Remark [[rem-delta0-digraph]]: the arcs of \(T_n(\delta)\) are exactly the pairs
+\(\tau\to\tau'\) with \(\tau'\ge\tau-\delta\), so one may move up without limit and down by at most
+\(\delta\). Three readings of that are used below.
+
+- At \(\delta=0\) the condition is \(\tau'\ge\tau\), so \(T_n(0)\) is upper triangular. That is the
+  first step of the proof of Proposition [[prop-delta0]] again, reached here from the general
+  statement instead of separately.
+- For \(\delta\ge1\) the digraph is strongly connected, so \(T_n(\delta)\) is *irreducible*: every
+  \(\tau\) has an arc to \(n\), since \(n\ge\tau-\delta\), and from \(n\) one may descend to any
+  \(\tau'\ge n-\delta\), so repeating reaches every value down to \(-1\) in at most
+  \(\lceil(n+1)/\delta\rceil\) steps.
+- For every \(\delta\ge0\) there is a loop at each vertex, since \(\tau\ge\tau-\delta\). Together
+  with irreducibility that makes \(T_n(\delta)\) *aperiodic* for \(\delta\ge1\), by criterion (iii)
+  of [cite:@FlajoletSedgewick2009 Note V.31].
+
+The same three readings hold for \(T'_n(\delta)\) on the principal block
+\(\tau,\tau'\in\lbrace1,\dots,n\rbrace\), with \(\lceil(n-1)/\delta\rceil\) in place of
+\(\lceil(n+1)/\delta\rceil\). Off that block \(T'_n(\delta)\) is reducible for every \(\delta\),
+the two vanishing columns meaning that no arc enters \(\tau'=-1\) or \(\tau'=0\) at all.
+
 #+NAME: prop-recurrence
 #+begin_proposition
 For a constant gap \(\delta\), put
@@ -2460,10 +2567,57 @@ It is worth saying what Proposition [[prop-recurrence]] does *not* claim, since 
 reading of it is false. There is in general no constant \(K\) with \(a_r\sim K\lambda^{\,r}\). At
 \(\delta=0\) the matrix is unipotent, so \(\lambda=1\), while \(a_r\) is a polynomial in \(r\) of
 degree exactly \(n+1\) by Theorem [[thm-delta0-degrees]]; the ratio \(a_r/\lambda^{\,r}\) is then
-\(a_r\) itself, and is unbounded. Such a constant does exist when the dominant eigenvalue is
-simple, strictly dominant in modulus, and not annihilated by \(\vek u_n\) and \(\vek1_n\), which the Perron roots of Table \ref{tab:perron-roots} are consistent with for
-\(\delta\ge1\), but we do not prove it.
+\(a_r\) itself, and is unbounded. The hypothesis that fails there is irreducibility, and
+\(\delta=0\) is the only place it fails: for every \(\delta\ge1\) the constant does exist, and
+Proposition [[prop-growth-constant]] produces it, together with an error term. The Perron roots of
+Table \ref{tab:perron-roots} are the \(\lambda\) of that proposition.
 #+end_remark
+
+#+NAME: prop-growth-constant
+#+begin_proposition
+(/The constant, for a positive gap./) Fix \(n\ge1\) and a constant gap \(\delta\ge1\), let \(a_r\) be
+as in \eqref{eq:def-ar}, and let \(\lambda\) be the Perron root of \(T_n(\delta)\). Then there are
+constants \(K>0\) and \(\varrho\) with \(0\le\varrho<\lambda\) such that
+#+begin_export latex
+\begin{equation}\label{eq:growth-constant}
+  a_r\;=\;K\lambda^{\,r}+O(\varrho^{\,r})\qquad(r\to\infty) ,
+\end{equation}
+#+end_export
+and in particular \(a_r\sim K\lambda^{\,r}\). The same holds for the proper count, with
+\(T'_n(\delta)\), its own Perron root and its own constants.
+#+end_proposition
+
+#+begin_proof
+By Lemma [[lem-transfer-support]], and the second and third of the readings drawn from it above,
+\(T_n(\delta)\) is irreducible and aperiodic for \(\delta\ge1\). Put \(F(z)=(I-zT_n(\delta))^{-1}\), so that
+\([z^m]F_{\tau,\tau'}(z)=\bigl(T_n(\delta)^m\bigr)[\tau][\tau']\). Then
+[cite:@FlajoletSedgewick2009 Theorem V.7] applies and gives
+#+begin_export latex
+\begin{equation}\label{eq:fs-v7}
+  \bigl(T_n(\delta)^m\bigr)[\tau][\tau']\;=\;\varphi_{\tau,\tau'}\lambda^{\,m}+O(\varrho^{\,m}),
+  \qquad 0\le\varrho<\lambda ,
+\end{equation}
+#+end_export
+with constants \(\varphi_{\tau,\tau'}>0\), the dominant eigenvalue \(\lambda\) there being the
+largest positive eigenvalue of \(T_n(\delta)\), which is its Perron root. Taking \(m=r-1\) in
+\eqref{eq:fs-v7} and summing against \(\vek u_n\) and \(\vek 1_n\), a sum of \((n+2)^2\) terms and
+so a finite one, \eqref{eq:def-ar} gives
+\[
+  a_r\;=\;\Bigl(\sum_{\tau,\tau'}u_n[\tau]\varphi_{\tau,\tau'}\Bigr)\lambda^{\,r-1}+O(\varrho^{\,r-1}) .
+\]
+Every \(u_n[\tau]\) is positive, as in the proof of Proposition [[prop-recurrence]], so the bracket
+is positive; put \(K=\lambda^{-1}\sum_{\tau,\tau'}u_n[\tau]\varphi_{\tau,\tau'}>0\). Finally
+\(O(\varrho^{\,r-1})=O(\varrho^{\,r})\), the two differing only by the constant factor
+\(\varrho^{-1}\) when \(\varrho>0\) and both being zero for \(r\ge2\) when \(\varrho=0\). That is
+\eqref{eq:growth-constant}, and \(K>0\) with \(\varrho<\lambda\) gives the asymptotic equivalence.
+
+For the proper count, \(T'_n(\delta)\) is not irreducible on the whole index set, by
+Lemma [[lem-transfer-support]]. But the proof of Proposition [[prop-recurrence]] has already
+reduced that count to the same product taken over the principal block \(\lbrace1,\dots,n\rbrace\),
+where \(\vek u'_n\) is positive and which carries every non-zero eigenvalue of \(T'_n(\delta)\); and
+on that block \(T'_n(\delta)\) is irreducible and aperiodic for \(\delta\ge1\), again by
+Lemma [[lem-transfer-support]]. The argument above then runs on the block verbatim.
+#+end_proof
 
 #+NAME: mex-recurrences
 #+begin_mexample
@@ -3080,7 +3234,10 @@ tested. Specifically:
   shift vectors tried, each in both the proper and the improper variant (\(82\) comparisons), with
   \(n\le6\), \(r\le4\) and gaps \(0\) to \(6\), including unequal gaps such as
   \(\vek d=(0,0,1)\) and \((0,1,3)\). The range is a union rather than a box: \(r=4\) occurs only
-  for \(n\le3\), and \(n=6\) only for \(r=2\).
+  for \(n\le3\), and \(n=6\) only for \(r=2\). Lemma [[lem-transfer-support]], and with it the
+  irreducibility and aperiodicity drawn from it, was checked this way as well, from an \(A_n\)
+  built by direct enumeration with no recursion, for \(n\le6\) and every \(\delta\le n+2\); it
+  agrees everywhere with the same checks run on the \(A_n\) of Lemma [[lem-joint]].
 - *Against Linusson's own tables.* All \(199\) printed entries of Tables 5 and 6 in the appendix of
   his preprint [cite:@Linusson1999preprint], exactly; those tables are not in the published version
   (Remark [[rem-transcription]]).
@@ -3144,15 +3301,30 @@ tested. Specifically:
   that this is the eigenvalue of largest modulus with a non-negative eigenvector, and in the
   rank-one case the gap is only the comparison against \(0\), but it is a gap. The same limitation
   leaves the growth claim of Proposition [[prop-recurrence]] outside, and there, unlike here, no
-  degeneracy makes the gap small. That proposition's other half *is* certified: the linear recurrence
+  degeneracy makes the gap small; and it leaves Proposition [[prop-growth-constant]] outside
+  altogether, that proposition being an appeal to the same theory in the sharper form of
+  [cite:@FlajoletSedgewick2009 Theorem V.7]. Lemma [[lem-transfer-support]], which supplies that
+  proposition's hypotheses, *is* certified, in both halves and unconditionally in \(\delta\);
+  being purely combinatorial, it needed none of the algebra. Its \(\delta=0\) case re-derives the
+  block-triangularity of \(T_n(0)\) that the development had previously obtained separately, and
+  both derivations are kept. Proposition [[prop-recurrence]]'s other half *is* certified: the linear recurrence
   follows from the Cayley--Hamilton theorem, needs no spectral theory at all, and holds for both
   matrices unconditionally.
 
-  The formalisation turned up two kinds of thing. Several of the strengthenings recorded above were
-  found here, each of them a hypothesis that turned out to be unnecessary; and one hypothesis turned
-  out to be missing, namely Theorem [[thm-proper]]'s \(n\ge1\), without which the statement is
-  false at \(n=0\), where \(A'_n\) vanishes identically while
-  \(\lvert\mathrm{FF}_{\mathrm{pr}}(0;\vek d)\rvert=1\).
+  The formalisation turned up three kinds of thing, one for each way a hypothesis can be wrong.
+  Several of the strengthenings recorded above were found here, each of them a hypothesis that
+  turned out to be unnecessary. One hypothesis turned out to be *missing*, namely
+  Theorem [[thm-proper]]'s \(n\ge1\), without which the statement is false at \(n=0\), where
+  \(A'_n\) vanishes identically while
+  \(\lvert\mathrm{FF}_{\mathrm{pr}}(0;\vek d)\rvert=1\). And one turned out to be *exactly
+  sharp*: the proper half of Lemma [[lem-transfer-support]] is restricted to the principal block
+  \(\tau'\in\lbrace1,\dots,n\rbrace\), and formalising it is what established that the
+  restriction cannot be relaxed to \(\tau'\ge0\). It cannot, because the column \(\tau'=0\) of
+  \(T'_n(\delta)\) vanishes identically for every \(\delta\) while the support condition
+  \(\tau'\ge\tau-\delta\) holds for every \(\tau\) once \(\delta\) is large; so the
+  equivalence would fail in the worst way, with a false left-hand side and a true right-hand one.
+  The boundary is the exact complement of the one the development had already proved for the
+  vanishing columns, which is the sort of agreement that makes a formalisation worth having.
 
 - *Against previously recorded values.* The two sequences of Remark [[rem-proper-sequences]].
 - *Internal consistency.* The \(r=1\) specialisation (Corollary [[cor-r1]]) and the product-regime
@@ -3163,8 +3335,15 @@ tested. Specifically:
   be listed beyond small \(n\): Theorem [[thm-delta0-degrees]] for \(n\le8\) and \(r\le n+4\) (the
   binomial expansion of its proof against the transfer product); Proposition [[prop-normalform]] for
   \(n\le8\) and \(\delta\le n+3\), exactly; Proposition [[prop-perron-threshold]] for \(n\le6\), in
-  floating point and exactly at the threshold; and the gap reversal of Remark [[rem-gap-reversal]]
-  for \(n\le6\) and six gap vectors. These confirm the algebra, not the count.
+  floating point and exactly at the threshold; the gap reversal of Remark [[rem-gap-reversal]]
+  for \(n\le6\) and six gap vectors; Lemma [[lem-transfer-support]] for \(n\le9\) and
+  \(\delta\le n+3\), exactly, with the irreducibility for \(\delta\ge1\), its failure at
+  \(\delta=0\) and the loop at every vertex read off the same matrices; and the conclusion of
+  Proposition [[prop-growth-constant]] numerically, the ratio \(a_r/\lambda^{\,r}\) settling to six
+  decimal places by \(r=14\) for \(n\le5\) and \(\delta\ge1\) and diverging at \(\delta=0\), which
+  is the counterexample of Remark [[rem-recurrence-not-asymptotic]] reproducing itself. That last
+  check is the one that would have caught a misreading of the cited theorem's indexing, which the
+  structural checks could not. These confirm the algebra, not the count.
 - *Interpolated polynomials.* The polynomials of Examples [[tab-delta0-polys]] and
   [[ex-poly-p-tables]] were fitted in exact arithmetic and checked at ten further points; they agree
   with brute-force counts at \(n\le4\), \(r\le3\) and at \(n=5\), \(r=2\) for the first, and at

@@ -2,7 +2,11 @@
 
 *(`ai-workspace/20-projects/exterior-convex/article/exterior-convex_article2_latest.org`, at
 commit `98514c11` of 2026-10-08; written 2026-10-08 by Claude (Claude Code, on jts-office), at
-Jan Snellman's request. Line numbers refer to that `.org` source, which is the source of truth.
+Jan Snellman's request. **Extended 2026-10-09** (findings 5 and 6, once Jan supplied both books)
+**and 2026-10-10** (the two new Horn–Johnson locators, the new `FlajoletSedgewick2009`, and one
+correction to the manuscript) — both extensions are dated sections at the end, so the original
+text above them stands as written. Line numbers refer to that `.org` source, which is the source
+of truth.
 The bibliography checked is `literature/exterior-convex-references.bib` in the same project.)*
 
 ## Purpose
@@ -547,3 +551,91 @@ not left wondering why an equality theorem was cited for a strict inequality.
 **Status of entries 11 and 12.** Entry 11 (Horn & Johnson) is now **VERIFIED** against the book.
 Entry 12 (Stanley, *Combinatorics and Commutative Algebra*) is **still not verified** — it was not
 supplied, is not in the NAS library, and its claim carries no locator, so the risk stays low.
+
+---
+
+## Today's three new locators and one new reference (2026-10-10, Claude on jts-yoga)
+
+The manuscript gained, on 2026-10-10, two Horn–Johnson locators in `prop-recurrence`'s proof and a
+whole new reference carrying two locators in the new `lem-transfer-support` / `prop-growth-constant`
+material. None of them was covered above, because all of them postdate the sections above. All four
+are now verified **against the primary sources, read here, and quoted**.
+
+### Entry 11 extended — `HornJohnson2013`, two further locators
+
+Same copy as finding 6: `math-library/textbooks/linear-algebra/horn-johnson-2013-matrix-analysis-2ed.pdf`,
+662 pdf pages. Printed page numbers below.
+
+> **Theorem 5.7.10** (p. 372). "If *f* is a pre-norm on *Mₙ*, in particular, if it is a vector
+> norm, then lim_{*k*→∞} [*f*(*Aᵏ*)]^{1/*k*} = ρ(*A*) for all *A* ∈ *Mₙ*."
+
+Supports `prop-recurrence`'s step that ‖*Tₙ*(δ)^*k*‖^{1/*k*} → ρ(*Tₙ*(δ)) for ‖·‖ the entry sum.
+**Exactly the right form**: the paper claims only that the entry sum is a norm, and 5.7.10 asks for
+a *pre-norm*, so no submultiplicativity is needed. Gelfand's formula in this book (Corollary 5.6.14)
+would have required a matrix norm; the manuscript's choice is the weaker hypothesis and is correct.
+
+> **Theorem 8.3.1** (p. 529). "If *A* ∈ *Mₙ* is nonnegative, then ρ(*A*) is an eigenvalue of *A*
+> and there is a nonnegative nonzero vector *x* such that *Ax* = ρ(*A*)*x*."
+
+Supports the step that the spectral radius is itself an eigenvalue, the Perron root. The
+manuscript quotes this one essentially verbatim and **needs no irreducibility**, which is the
+point — `prop-recurrence` covers δ = 0, where *Tₙ*(0) is reducible. Verified that 8.3.1 as printed
+carries no irreducibility hypothesis.
+
+### Entry 15 — Flajolet & Sedgewick (2009) — `FlajoletSedgewick2009` — **VERIFIED**
+
+**Citation:** P. Flajolet, R. Sedgewick, *Analytic Combinatorics*, Cambridge University Press,
+2009, ISBN 978-0-521-89806-5, DOI `10.1017/CBO9780511801655`.
+
+**Copy checked:** `math-library/textbooks/combinatorics/analyticcombinatoricsbook.pdf`, 822 pdf
+pages. The book is **freely available from the authors**, so it is held legitimately and is not a
+`subscription/` item.
+
+**Claims supported and verdicts:**
+
+- `prop-growth-constant`'s proof, `[cite:@FlajoletSedgewick2009 Theorem V.7]` — **verified**,
+  printed p. 343, in §V.5 "Paths in graphs and automata", titled "Asymptotics of paths in graphs":
+
+  > "Consider the matrix *F*(*z*) = (*I* − *zT*)⁻¹, where *T* is a scalar non-negative matrix, in
+  > particular, the adjacency matrix of a graph equipped with positive weights. … If *T* is
+  > irreducible and aperiodic, then ρ = λ₁⁻¹ is the unique dominant singularity of each
+  > *F*^{*i*,*j*}(*z*), and \[*zⁿ*\]*F*^{*i*,*j*}(*z*) = ϕ_{*i*,*j*}λ₁ⁿ + *O*(ϱⁿ), 0 ≤ ϱ < λ₁, for
+  > computable constants ϕ_{*i*,*j*} > 0."
+
+  The manuscript's use is exactly this, with λ₁ identified as the Perron root and
+  \[*zᵐ*\]*F*_{τ,τ′}(*z*) = (*Tₙ*(δ)^*m*)\[τ\]\[τ′\], which is immediate from the resolvent.
+  Both hypotheses — irreducible **and** aperiodic — are the two the paper establishes from
+  `lem-transfer-support`, and neither is dispensable in the source.
+- The digraph paragraph after `lem-transfer-support`, `[cite:@FlajoletSedgewick2009 Note V.31]`,
+  criterion (iii) — **verified**, printed p. 342, "Sufficient conditions for aperiodicity":
+
+  > "(iii) *T* is irreducible and at least one diagonal element of *T* is non-zero."
+
+  The paper's argument is a loop at *every* vertex, which is stronger, so the criterion applies.
+  Criterion (i) ("*T* has strictly positive entries") would **not** serve: *Tₙ*(δ) has zero
+  entries for δ ≤ *n*, by `lem-transfer-support` itself.
+- Not relied on, but noted so a reader is not surprised: **Note V.34** (printed p. 345) is this
+  book's statement of the named Perron–Frobenius theorem, derived there from Theorem V.7's proof.
+  The manuscript does not cite it, and does not need to.
+
+### One correction to the manuscript, found by this pass
+
+`.org:774`, the §1.4 summary table, read "proved modulo Linusson's **Thm. 5.3**" — the *preprint's*
+number, which finding 5 established is **Theorem 3.3** in the published version that `Linusson1999`
+names. Every one of the other eight references to that result in the manuscript already said 3.3;
+this single cell had been missed, and it sits in the paper's most-read table. **Corrected.**
+
+### Status after this pass
+
+Checked against the manuscript's actual citation list — seventeen keys, extracted from the `.org`
+rather than recalled: `AmataCrupi2020`, `AmataCrupi2020KK`, `AmataCrupi2021`,
+`AramovaHerzogHibi1997`, `FlajoletSedgewick2009`, `HornJohnson2013`, `Kozlov1997`, `Kruskal1963`,
+`Kupreyeva2019`, `Linusson1999`, `Linusson1999preprint`, `Macaulay2`, `OEIS`, `SageMath`,
+`Skoldberg1999`, `SnellmanArticle1`, `Stanley1996`.
+
+Every one of them now has an entry, and every theorem-level locator in the manuscript has been
+read in a primary source, with **one** exception: `Stanley1996` (entry 12), which was never
+supplied and whose single claim carries no locator. `Kruskal1963` is bibliographically verified
+with no passage relied on (entry 13–14); note that `Katona1968`, which entry 13–14 also covers, is
+**no longer cited** by the manuscript — the entry is harmless but describes one key more than the
+paper uses. The remaining decision is Jan's and is small.

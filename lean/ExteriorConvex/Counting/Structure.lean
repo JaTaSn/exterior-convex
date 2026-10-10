@@ -201,6 +201,57 @@ theorem Amat_superdiag (n : ℕ) {j : ℕ} (hj : j ≤ n) :
     Amat n (j : ℤ) ((j : ℤ) + 1) = 1 := by
   rw [Amat, filter_superdiag_eq n hj, card_singleton]
 
+/-- The superdiagonal entry, stated at the manuscript's `τ' ∈ {−1,…,n}`
+rather than at a natural number: `A[τ'][τ'+1] = 1` for every index.  The
+two cases are `Amat_superdiag` for `τ' ≥ 0` and `Amat_corner_void` for
+`τ' = −1`, and this is the only place they are needed together. -/
+theorem Amat_superdiag_tauOf (n : ℕ) (k' : Fin (n + 2)) :
+    Amat n (tauOf k') (tauOf k' + 1) = 1 := by
+  rcases Nat.eq_zero_or_pos k'.val with h0 | hpos
+  · have hm : tauOf k' = -1 := by simp only [tauOf]; omega
+    rw [hm]; simpa using Amat_corner_void n
+  · obtain ⟨j, hj⟩ : ∃ j, k'.val = j + 1 := ⟨k'.val - 1, by omega⟩
+    have hjn : j ≤ n := by have := k'.isLt; omega
+    have hm : tauOf k' = (j : ℤ) := by simp only [tauOf]; omega
+    rw [hm]; exact Amat_superdiag n hjn
+
+/-! ## `lem-transfer-support`: the support of `T(δ)` -/
+
+/-- `lem-transfer-support`: `T(δ)[τ][τ'] > 0 ↔ τ' ≥ τ − δ`.
+
+The entry is a sum of non-negative terms over `ρ > τ − δ`, and the
+largest `ρ` carrying a non-zero `A[τ'][ρ]` is `ρ = τ' + 1`
+(`Amat_superdiag_tauOf`, attained by the full truncation at `τ'`), while
+everything above it vanishes (`Amat_eq_zero_of_add_one_lt`).  So the sum
+is positive exactly when `τ' + 1 > τ − δ`.
+
+Unconditional in `δ : ℤ`, as `Tmat` itself is.
+
+**Why this file and not `Transfer.lean`**, where `Tmat` is defined and
+where the job brief suggested putting it: the `⇐` half needs
+`Amat_superdiag`, which lives here, and `Structure.lean` imports
+`Transfer.lean` and not the other way round. -/
+theorem Tmat_pos_iff (n : ℕ) (δ : ℤ) (k k' : Fin (n + 2)) :
+    0 < Tmat n δ k k' ↔ tauOf k - δ ≤ tauOf k' := by
+  rw [Tmat_apply]
+  constructor
+  · intro hpos
+    by_contra hcon
+    rw [Finset.sum_eq_zero fun ρ hρ => ?_] at hpos
+    · exact absurd hpos (lt_irrefl 0)
+    · rw [Finset.mem_filter] at hρ
+      exact Amat_eq_zero_of_add_one_lt (by omega)
+  · intro hle
+    have h1 : (-1 : ℤ) ≤ tauOf k' := neg_one_le_tauOf k'
+    have h2 : tauOf k' ≤ (n : ℤ) := tauOf_le k'
+    have hmem : tauOf k' + 1 ∈
+        (Finset.Icc (0 : ℤ) ((n : ℤ) + 1)).filter (fun ρ => tauOf k - δ < ρ) := by
+      rw [Finset.mem_filter, Finset.mem_Icc]
+      exact ⟨⟨by omega, by omega⟩, by omega⟩
+    calc 0 < Amat n (tauOf k') (tauOf k' + 1) := by
+            rw [Amat_superdiag_tauOf]; exact Nat.one_pos
+      _ ≤ _ := Finset.single_le_sum (fun _ _ => Nat.zero_le _) hmem
+
 /-! ## The diagonal of `A` (`lem-A-structure`, second claim) -/
 
 /-- Realisation half of the diagonal count: for `1 ≤ m < C(n,j)` there is
