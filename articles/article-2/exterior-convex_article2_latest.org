@@ -94,6 +94,30 @@
 #                                            used 18 times here for the Perron roots of section 9
 #   \scalebox{0.82}{$\bigwedge$}V            exact control; needs graphicx
 
+# LINUSSON'S p AND n STAY AS HE PRINTS THEM -- SETTLED BY JAN 2026-10-10, do not re-open.
+#
+# The question, and it is a fair one: in F^p(n) the letter n is Linusson's FACE-SIZE bound, while
+# everywhere else in this paper n is dim V.  Jan was confused by exactly this and asked whether to
+# switch the two slots, or rename.  Counted before deciding: the generic statements (superscript p)
+# put n in the bound slot about 39 times; the specialised ones (superscript n, the p = n case this
+# paper runs on) CANNOT use n there, because n is taken -- so they already write m (E^n(m,k)),
+# tau (E^n(tau,rho-1)) or an expression (F^n(n-2)).  Lemma 10's proof, section 7's degree formula
+# and the appendix all do this already; it is a silent workaround, not separate notation.
+#
+# Two alternatives were weighed and both rejected:
+#   - SWAP the slots, F^n(p).  Rejected on structure, not taste: this paper holds the vertex bound
+#     fixed at n and VARIES the face bound, so the swap puts the varying parameter in the cramped
+#     superscript and the constant one in the argument, and changes the superscript on nearly every
+#     occurrence.
+#   - RENAME the bound slot n -> m in the generic statements only.  Cheap (Def 4, Thm 5), and it
+#     would restore section 3.1's promise that n always means dim V.  REJECTED BY JAN, on the
+#     ground that quoting Linusson's own theorem is worth quoting it in his own letters: a reader
+#     checking Theorem 3.2 against the published paper should see the same symbols.
+#
+# What was done instead: the paragraph after Definition 4 now SAYS this out loud -- the letters are
+# Linusson's, the n there is not the n of this paper, and the face bound is written m or tau where
+# the two would collide.  The confusion was real and the text, not the reader, was causing it.
+#
 # VECTOR MARKING -- now \vek, which is latex-common.setup's \boldsymbol.  (That line used to say
 # the setupfile defines \vec; it does not, it defines \vek.)  The history, worth having since the
 # question has now gone round once: Jan first settled on \overline here, matching
@@ -952,7 +976,11 @@ Lemma [[lem-joint]] uses it for. It is used nowhere else.
 
 The two parameters play different roles, and the notation \(F^p(n)\) keeps both: \(p\) bounds the
 vertex set, \(n\) bounds the size of a face. They coincide at \(p=n\), which is the case this paper
-runs on, and there \(F^n(n)=\lvert\mathcal F_n\rvert\).
+runs on, and there \(F^n(n)=\lvert\mathcal F_n\rvert\). *Both letters are Linusson's own*, kept so
+that this definition and Theorem [[thm-linusson]] can be read against his paper as printed. The
+cost is that the \(n\) of this one definition is not the \(n\) of the rest of this paper, which
+fixes \(\dim V=n\) throughout; wherever the two would collide, the face bound is written \(m\) or
+\(\tau\) instead, as in Lemma [[lem-joint]].
 
 #+NAME: thm-linusson
 #+begin_theorem
