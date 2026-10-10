@@ -2438,7 +2438,10 @@ characteristic polynomial annihilates the matrix, and the vectors \(\vek u_n\) a
 fixed once and for all, so the same polynomial annihilates the scalar sequence \(a_r\). For the
 growth rate, write \(\Vert M\Vert\) for the sum of the entries of a non-negative matrix \(M\); it is
 a norm on non-negative matrices, so \(\Vert T_n(\delta)^k\Vert^{1/k}\) tends to the spectral radius
-of \(T_n(\delta)\), which is the Perron root \(\lambda\) by Perron--Frobenius. Every entry of
+of \(T_n(\delta)\) [cite:@HornJohnson2013 Theorem 5.7.10], and that radius is itself an
+eigenvalue, the Perron root \(\lambda\), because \(T_n(\delta)\) is non-negative
+[cite:@HornJohnson2013 Theorem 8.3.1]. Neither step needs irreducibility, which \(T_n(0)\) does
+not have. Every entry of
 \(\vek u_n\) is positive, since each value \(\tau=-1,\dots,n\) of \(\tp\) is attained, so
 \[
   \bigl(\min_\tau u_n[\tau]\bigr)\,\Vert T_n(\delta)^{r-1}\Vert\;\le\;a_r\;\le\;
