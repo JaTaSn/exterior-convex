@@ -51,6 +51,16 @@
 # loaded by latex-common.setup, and etoolbox is already here for the biblatex fix below.
 #+LATEX_HEADER: \AtEndEnvironment{mexample}{\hfill$\Diamond$}
 #+LATEX_HEADER: \AtEndEnvironment{remark}{\hfill$\clubsuit$}
+# 2026-10-10 (Jan): definitions get one too, and he knows it is against the style guides he has
+# read.  The reason is specific rather than decorative.  latex-common.setup sets
+# \theoremstyle{definition}, so a definition's body is upright roman -- the SAME face as the
+# surrounding prose -- and two definitions here are followed immediately by flowing text with no
+# signal of any kind that the definition has stopped: Definition 4 (def-linusson), followed by
+# "The two parameters play different roles...", and Definition 9 (def-A), followed by "Note
+# indeg(s) <= top(s)+1 always...".  The second is the bad one: "Note ..." could perfectly well be
+# the definition's last clause.  Both definitions are long and carry real prose inside them, which
+# is the same condition that produced the two markers above on 2026-10-02.
+#+LATEX_HEADER: \AtEndEnvironment{definition}{\hfill$\lozenge$}
 #+LATEX_HEADER: \AtEndPreamble{\AtEveryBibitem{\clearfield{note}\clearfield{annotation}\clearfield{addendum}}}
 # hyperref is loaded by latex-common.setup; without this every cross-reference and every
 # table-of-contents entry is drawn inside a coloured box.
