@@ -105,16 +105,31 @@ The arXiv form has no keyword field; these are the manuscript's, for journals an
 exterior algebra; Hilbert function; f-vector; simplicial complex; enumeration; transfer matrix; lex submodule; Kruskal-Katona theorem
 ```
 
-## Comments field
+## Comments field — 334 characters, against arXiv's 400-character limit
+
+**The limit is 400 characters** (Jan, 2026-10-10). The version this file carried until then was
+**429** and would have been rejected or silently truncated.
 
 ```
-56 pages. Part II of a series; Part I is report LiTH-MAT-R-2026/04, Linkoping University, DOI 10.3384/LiTH-MAT-R-2026-04, arXiv:2609.23605. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper states exactly what is not). The formalisation, the verification code and computed tables of the counts are in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex .
+56 pages. Part I is arXiv:2609.23605, report LiTH-MAT-R-2026/04, DOI 10.3384/LiTH-MAT-R-2026-04. Most of the combinatorial content is formalised in Lean 4 + Mathlib (no sorry, no extra axioms; the paper says which parts are not). Formalisation, code and tables in the anc directory and at https://gitlab.liu.se/jansn19/exterior-convex
 ```
 
-Plain ASCII on purpose ("Linkoping"). **56 pages**, as the arXiv version builds on 2026-10-10 — up
-from 52. Mind the one-page gap between the two builds, which is not an error: the draft build is
-**55 pp.**, and the generator adds §10.2 *Code, formalisation and tables*, which exists only in the
-arXiv version. **The number here must be the arXiv one**, and the generator prints it.
+**What the 95 characters went on, and what was kept.** Cut: "Part II of a series", which
+"Part I is arXiv:…" already implies; "Linkoping University", since the DOI and the report number
+identify it; and the wordier forms of the last sentence. **Kept deliberately**: both of Part I's
+identifiers, because a reader may have either; the parenthesis about `sorry` and axioms, which is
+the substance of the Lean claim rather than decoration; and the repository URL, which is the one
+thing in the field a reader cannot reconstruct.
+
+This is also where the Lean formalisation is advertised, and it stays out of the abstract — the
+practice article 1 set.
+
+**The remaining 66 characters are worth leaving unspent.** Article 2 goes to arXiv before its
+report, so the report number does not exist yet; `report LiTH-MAT-R-2026/NN` is about 26
+characters and will fit here on a replacement, alongside filling in the Report-no field.
+
+Everything is plain ASCII, which the field wants. Note the page count is the **arXiv** build's
+56, not the draft's 55 — §10.2 exists only in the arXiv version.
 
 ## Report number — SETTLED 2026-10-10: leave it empty, arXiv goes first
 
