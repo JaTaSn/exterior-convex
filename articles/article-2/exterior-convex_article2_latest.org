@@ -126,17 +126,24 @@
 # closure/complement bar; on 2026-10-09 he moved THIS PAPER to \vek, because primes on top of
 # overarrows read badly -- \vec d' in lem-explicit-inverse is the case that prompted it.
 #
-# THIS IS A TRIAL, in Jan's own words ("we will see").  The risk he named himself is a clash with
-# the liberal use of bold for emphasis in the flowing text, which section 3.1 in particular is
-# full of.  Look at the PDF before treating it as settled.
+# SETTLED BY JAN 2026-10-10, no longer a trial: bold stays in article 2.  The clash he feared,
+# with the liberal use of bold for emphasis in flowing text, is real but mild in practice -- bold
+# text emphasis is upright, bold mathematics italic -- and he thinned the emphasis separately the
+# same day (ten run-in heads and phrases unbolded).
 #
-# THE CONSEQUENCE TO WEIGH IF IT IS KEPT: article 1 is PUBLISHED (LiTH-MAT-R 2026/04,
-# arXiv 2609.23605) and marks a vector with \vec, so the two papers of the series no longer agree.
-# Section 3.1 now says so in as many words; it used to claim "The companion article uses the same
-# convention", which this change made false, and that sentence is the one thing here that must not
-# be left stale either way.  Reverting is `\vek' -> `\vec' throughout plus that sentence and the
-# four bold/arrow wordings in section 3.1 (headline sentence, two bullets, the classical-notation
-# bullet).
+# THE TWO PAPERS NOW DIFFER, DELIBERATELY, AND FOR TWO DIFFERENT REASONS.  Article 1 is PUBLISHED
+# (LiTH-MAT-R 2026/04, arXiv 2609.23605) and keeps \vec; it will not be rewritten and resubmitted
+# to change a glyph.  Jan's own statement of the asymmetry, worth keeping in his words:
+#   - article 2 is bold BECAUSE of the unfortunate interaction of arrows with primes and other
+#     diacritics -- \vec d' in lem-explicit-inverse is the case that prompted it;
+#   - article 1 would go bold, IF it ever does, for CONSISTENCY WITH ARTICLE 2 -- not for its own
+#     typography, which has no primed vectors to speak of.
+# So a future version of article 1, or a journal submission of it, may adopt bold.  That is a
+# standing option, not a debt.
+#
+# Section 3.1 says the two papers differ and how; it used to claim "The companion article uses the
+# same convention", which this change made false.  THAT SENTENCE IS THE ONE THING HERE THAT MUST
+# NOT BE LEFT STALE -- if article 1 ever goes bold, it has to change back.
 
 #+title: Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank
 #+subtitle: II: Generalizing Linusson's count to sumsets of \(f\)-vectors
@@ -669,7 +676,9 @@ form is a rearrangement.
 
 The distinction is kept explicit throughout.
 
-#+ATTR_LATEX: :font \small :align ll
+#+NAME: tab-what-is-proved
+#+CAPTION: What is proved and what is only observed, statement by statement.
+#+ATTR_LATEX: :font \small :align ll :float nil
 | result | status |
 |---+---|
 | Thm. [[thm-linusson]], Linusson's recursion | cited; transcription verified against his tables |
@@ -766,6 +775,8 @@ symbol they also share its meaning.
   \(D_n\)                  & is the duality map (Equation~\ref{eq:def-D}) on \(\mathcal B_n\).\\
   \bottomrule
 \end{tabular}
+\captionof{table}{The notation of this paper, with the statement in which each symbol is defined.}
+\label{tab-notation}
 \end{center}
 \endgroup
 #+end_export
@@ -1010,13 +1021,14 @@ with \(F^p(-1)=1\), \(F^p(0)=2\), \(F^0(n)=2\), \(E^p(n,-1)=1\), \(E^p(n,n)=1\),
 #+begin_remark
 The transcription above was checked entry by entry against the appendix of Linusson's preprint
 [cite:@Linusson1999preprint]: all \(100\)
-printed entries of its Table 5, of \(F^p(n)\), and all \(99\) of its Table 6, of \(E^p(p,k)\), are
+printed entries of the preprint's Table 5, of \(F^p(n)\), and all \(99\) of its Table 6, of
+\(E^p(p,k)\), are
 reproduced exactly, and an
 independent brute-force enumeration of order ideals agrees for every \(F^p(n)\) and
 \(E^p(n,k)\) with \(p\le5\). *The appendix is in the preprint only*: the published version is
-shorter, carries no appendix, and prints a single table, of \(M^p(n)\), so "Table 5" and
-"Table 6" always mean the preprint's here, while every numbered result cited is the published
-one. One wrinkle: at \(k=n=p\) the clause
+shorter, carries no appendix, and prints a single table, of \(M^p(n)\). Linusson's tables are
+therefore always named as his below, since this paper has tables of its own and they are numbered
+in the same series; every numbered *result* cited is the published one. One wrinkle: at \(k=n=p\) the clause
 "\(f_{k+1}<\binom p{k+1}\)" read literally is vacuously false, since \(\binom p{p+1}=0\); but
 Linusson's stated boundary value \(E^p(n,n)=1\) and his Table 6 diagonal both require the clause to
 be dropped there. We follow Linusson.
@@ -1079,8 +1091,8 @@ Lemma [[lem-dictionary]](2) is the statement that the two agree.
   A_n[\tau][\rho]=\#\bigl\lbrace \vek s\in\mathcal F_n:\tp(\vek s)=\tau,\ \indeg(\vek s)=\rho\bigr\rbrace
 \end{equation}
 #+end_export
-counts the elements of \(\mathcal F_n\) with the prescribed pair of statistics. *Rows are indexed by
-\(\tp\) and columns by \(\indeg\)*, over
+counts the elements of \(\mathcal F_n\) with the prescribed pair of statistics. Rows are indexed by
+\(\tp\) and columns by \(\indeg\), over
 #+begin_export latex
 \begin{equation}\label{eq:def-A-range}
   \tau=-1,0,1,\dots,n,\qquad \rho=0,1,\dots,n+1 ,
@@ -1161,7 +1173,7 @@ entries are the void family and the full simplex; and the antidiagonal symmetry 
 Corollary [[cor-persymmetry]] is already visible, the \(2\) at \((\tau,\rho)=(1,1)\) matching the
 \(2\) at \((2,2)\).
 
-The listing also locates the *two degenerate \(f\)-vectors* that Definition [[def-linusson]] counts
+The listing also locates the two degenerate \(f\)-vectors that Definition [[def-linusson]] counts
 along with the rest, since it is easy to guess the wrong pair. They are the first two entries:
 \((0,0,0,0)\), the \(f\)-vector of the void family, which has no faces at all; and \((1,0,0,0)\), the
 \(f\)-vector of \(\lbrace\emptyset\rbrace\), the complex whose only face is the empty one. They are
@@ -1312,6 +1324,8 @@ in Example [[ex-A]], with \((\tp,\indeg)\) beside each:
   \((1,3,0,0)\) & \((1,2)\)  & \(=\)                   & \((1,3,0,0)\) & \((1,2)\)\\
   \bottomrule
 \end{tabular}
+\captionof{table}{The duality \(D_3\) on \(\mathcal F_3\), each \(f\)-vector with its \((\tp,\indeg)\).}
+\label{tab-duality-n3}
 \end{center}
 \endgroup
 #+end_export
@@ -1343,7 +1357,7 @@ is Proposition [[prop-fnn2]] at \(n=3\).
 \(A_n[\tau][\rho]=A_n[n-\rho][n-\tau]\) for all \(\tau,\rho\): the matrix \(A_n\) is *persymmetric*, which
 is to say that it is symmetric about its antidiagonal (the diagonal running from the top-right entry
 to the bottom-left one) rather than about the main diagonal. With
-\(A_n\) read as in \eqref{eq:def-A} for *arbitrary* integers \(\tau,\rho\) (so that it vanishes
+\(A_n\) read as in \eqref{eq:def-A} for arbitrary integers \(\tau,\rho\) (so that it vanishes
 outside the range \eqref{eq:def-A-range}), the identity holds on all of \(\mathbb Z^2\), and no
 check that the reflected indices stay in range is needed when it is applied inside a sum.
 #+end_corollary
@@ -1447,7 +1461,7 @@ question of Section [[#sec-verification]]. Applying \(D_n\) to every entry and r
   (\vek s_1,\dots,\vek s_r)\longmapsto\bigl(D_n(\vek s_r),\dots,D_n(\vek s_1)\bigr)
 \end{equation}
 #+end_export
-carries tuples chained for \((\delta_2,\dots,\delta_r)\) to tuples chained for the *reversed* gap
+carries tuples chained for \((\delta_2,\dots,\delta_r)\) to tuples chained for the reversed gap
 vector \((\delta_r,\dots,\delta_2)\), by \eqref{eq:alexander-indeg}--\eqref{eq:alexander-top}. So
 \(|\mathrm{FF}(n;\vek d)|\) is
 invariant under reversing the gaps, which was verified for \(n\le6\) over six gap vectors,
@@ -1619,7 +1633,7 @@ so that \(\vek Q_0=\vek 0\) and \(\vek Q_r=\vek x\), and
   \hat s_i(m) &= Q_i(m+d_i)-Q_{i-1}(m+d_i) .\label{eq:water-filling-component}
 \end{align}
 #+end_export
-Write \(\vek d'=(d'_1,\dots,d'_r)\) for the *reflected shift vector*, \(d'_i=d_1+d_r-d_{r+1-i}\);
+Write \(\vek d'=(d'_1,\dots,d'_r)\) for the reflected shift vector, \(d'_i=d_1+d_r-d_{r+1-i}\);
 it is again sorted, its gap vector is that of \(\vek d\) reversed, as in
 Remark [[rem-gap-reversal]], and \(d'_1=d_1\).
 
@@ -1780,7 +1794,7 @@ is oriented accordingly.
 costs nothing: \(\mathrm{FF}(n;\vek d)\) is symmetric in its summands, so an unsorted shift vector should be
 sorted first. The chained count as written is simply not the right-hand side for unsorted \(\vek d\).
 
-It is worth being precise about *where* sortedness is spent, because it is spent in one place only.
+Sortedness is spent in one place only.
 Write the chaining condition in the equivalent *absolute* form
 #+begin_export latex
 \begin{equation}\label{eq:chaining-absolute}
@@ -1823,8 +1837,8 @@ depends on (b).
   T_n(\delta)[\tau][\tau'] &= \sum_{\rho>\tau-\delta}A_n[\tau'][\rho].\label{eq:def-T}
 \end{align}
 #+end_export
-*The indexing is spelled out here rather than left to be inferred, because both indices of
-\(T_n(\delta)\) run over one and the same set and it is easy to mistake either for the other.* Both
+The indexing is spelled out here rather than left to be inferred, because both indices of
+\(T_n(\delta)\) run over one and the same set and it is easy to mistake either for the other. Both
 \(\vek u_n\) and \(T_n(\delta)\) are indexed by values of \(\tp\),
 #+begin_export latex
 \begin{equation}\label{eq:def-uT-range}
@@ -2132,6 +2146,8 @@ page; so the row for \(n\) reads \(\sum_kb_kr^k\) from left to right.
   6 & 1 & 10/3 & 315/4 & 1/6 & 595/4 & 225 & & &\\
   \bottomrule
 \end{tabular}
+\captionof{table}{The coefficients \(b_k\) of \(\lvert\mathrm{FF}(n;0^r)\rvert=\sum_kb_kr^k\), ascending in \(r\).}
+\label{tab-zero-gap-coeffs}
 \end{center}
 \endgroup
 #+end_export
@@ -2183,7 +2199,7 @@ needed care is the one that did.
 Let \(G\) be the weighted digraph on the vertex set \(\lbrace-1,0,\dots,n\rbrace\) of \(\tp\)-values
 whose adjacency matrix is \(N=T_n(0)-I\). Since \(T_n(0)\) is upper triangular with unit diagonal
 (Proposition [[prop-delta0]]), \(N\) is strictly upper triangular: the arcs run \(\tau\to\tau'\) only
-for \(\tau'>\tau\), so \(G\) is a *directed acyclic graph*, and the arc \(\tau\to\tau+1\) carries weight \(\binom n{\tau+1}\) by
+for \(\tau'>\tau\), so \(G\) is a directed acyclic graph, and the arc \(\tau\to\tau+1\) carries weight \(\binom n{\tau+1}\) by
 \eqref{eq:delta0-superdiag}.
 
 Now \((N^k)[\tau][\tau']\) is the total weight of the *paths* of length exactly \(k\) from \(\tau\) to
@@ -2424,12 +2440,18 @@ simple, strictly dominant in modulus, and not annihilated by \(\vek u_n\) and \(
 
 #+NAME: mex-recurrences
 #+begin_mexample
-At \(n=2\), \(\delta=1\), the characteristic polynomial of \(T_2(1)\) is
-\(\lambda(\lambda-1)(\lambda^2-4\lambda+1)\), so \(a_r=5a_{r-1}-5a_{r-2}+a_{r-3}\); the values are
+At \(n=2\), \(\delta=1\), the characteristic polynomial of \(T_2(1)\) and the recurrence it gives are
+\[
+  \lambda(\lambda-1)(\lambda^2-4\lambda+1),\qquad a_r=5a_{r-1}-5a_{r-2}+a_{r-3};
+\]
+the values are
 \(5,20,76,285,1065\) for \(r=1,\dots,5\), and indeed \(5\cdot285-5\cdot76+20=1065\). The Perron root
-is \(2+\sqrt3\approx3.732\). At \(n=3\), \(\delta=1\), it is
-\(\lambda(\lambda^4-9\lambda^3+21\lambda^2-15\lambda+3)\), giving
-\(a_r=9a_{r-1}-21a_{r-2}+15a_{r-3}-3a_{r-4}\), checked against \(10,69,426,2532,14847\).
+is \(2+\sqrt3\approx3.732\). At \(n=3\), \(\delta=1\) they are
+\[
+  \lambda(\lambda^4-9\lambda^3+21\lambda^2-15\lambda+3),\qquad
+  a_r=9a_{r-1}-21a_{r-2}+15a_{r-3}-3a_{r-4},
+\]
+checked against \(10,69,426,2532,14847\).
 
 In both cases a factor of \(\lambda\) can be dropped before reading off the recurrence, and it is
 worth saying why rather than leaving it to be noticed. \(T_n(\delta)\) is singular for
@@ -2554,8 +2576,8 @@ Substituting \eqref{eq:normalform} and \eqref{eq:normalform-u} into Theorem [[th
 
 #+NAME: rem-normalform
 #+begin_remark
-The normal form has two consequences. First, *the count depends on each gap only through
-\(\min(\delta_i,n+1)\)*, because \(P_n\) saturates: \(P_n^{\delta}=P_n^{n+1}=\vek1_n\,e_{-1}^{\!\top}\) for
+The normal form has two consequences. First, the count depends on each gap *only* through
+\(\min(\delta_i,n+1)\), because \(P_n\) saturates: \(P_n^{\delta}=P_n^{n+1}=\vek1_n\,e_{-1}^{\!\top}\) for
 every \(\delta\ge n+1\). Second, that same identity gives a second and shorter proof of
 Propositions [[prop-threshold]] and [[prop-perron-threshold]]: above the threshold
 \(T_n(\delta)=\vek1_n\,e_{-1}^{\!\top}B_n=\vek1_n\,\vek u_n\), manifestly of rank one with non-zero eigenvalue
@@ -2700,8 +2722,11 @@ algebra on \(p\) generators, with one extra ingredient: the lex representative m
 truncation, i.e. \(\mathfrak m^{n+1}F\subseteq M\) must force \(L\supseteq\mathfrak m^{n+1}F\). This
 is the mirror image of the capacity argument of Lemma [[lem-lexproper]]. In module degree
 \(j=d_i+m\) with \(m\ge n+1\), every component \(k\le i\) has \(s_k(j-d_k)=0\) because
-\(\tp(s_k)\le n\); hence \(C_j\ge\sum_{k\le i}\binom p{j-d_k}\), with \(C_j\) as in that lemma's
-proof, and the initial segment covers
+\(\tp(s_k)\le n\); hence
+\[
+  C_j\;\ge\;\sum_{k\le i}\binom p{j-d_k},
+\]
+with \(C_j\) as in that lemma's proof, and the initial segment covers
 \(g_i\)'s slot. Polynomiality in \(p\) is then immediate from Theorem [[thm-main]]'s formula, each
 entry \(E^p(\tau,\rho-1)\) being a polynomial in \(p\) for fixed \(\tau,\rho\) by Linusson's
 Theorem 3.3.
@@ -2738,6 +2763,8 @@ non-constant gap vectors that are reverses of each other.
   \((0,2,3)\) & \((2,1)\)  & \(\tfrac1{32400}p^{14}-\tfrac1{4050}p^{13}+\cdots+\tfrac{14299}{3600}p^{2}+\tfrac{527}{60}p+8\)\\
   \bottomrule
 \end{tabular}
+\captionof{table}{The counts \(\lvert\mathrm{FF}^{(p)}(n;\vek d)\rvert\) as polynomials in \(p\), for nine shift vectors.}
+\label{tab-poly-in-p}
 \end{center}
 \endgroup
 #+end_export
@@ -2820,10 +2847,20 @@ moreover every gap satisfies \(\delta_i\ge1\), then the summands decouple to lea
 #+end_theorem
 
 #+begin_proof
-By Lemma [[lem-joint]] the entries of \(A^{(p)}_n\) are differences \(E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1)\),
-and Linusson's Theorem 3.3 gives \(\deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2}\), so the subtrahend has degree
+By Lemma [[lem-joint]] the entries of \(A^{(p)}_n\) are the differences
+\[
+  E^p(\tau,\rho-1)-E^p(\tau-1,\rho-1),
+\]
+and Linusson's Theorem 3.3 gives
+\[
+  \deg_pE^p(m,k)=\binom{m+1}{2}-\binom{k+1}{2},
+\]
+so the subtrahend has degree
 strictly smaller (by exactly \(\tau\)) and cannot cancel the leading term. Hence
-\(\deg_pA^{(p)}_n[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2}\), with leading coefficient the positive quantity
+\[
+  \deg_pA^{(p)}_n[\tau][\rho]=\binom{\tau+1}{2}-\binom{\rho}{2},
+\]
+with leading coefficient the positive quantity
 of his Proposition 2.8.
 
 Expanding the matrix product of Theorem [[thm-poly-p]] as a sum over paths
@@ -2979,6 +3016,8 @@ the interpolated polynomials:
   3 & \((0,2,3)\) & \((2,1)\) & 14 & 14 & 13 & 13\\
   \bottomrule
 \end{tabular}
+\captionof{table}{Predicted against interpolated degrees in \(p\), improper and proper.}
+\label{tab-degree-check}
 \end{center}
 \endgroup
 #+end_export
@@ -3084,7 +3123,7 @@ tested. Specifically:
 
   The formalisation turned up two kinds of thing. Several of the strengthenings recorded above were
   found here, each of them a hypothesis that turned out to be unnecessary; and one hypothesis turned
-  out to be *missing*, namely Theorem [[thm-proper]]'s \(n\ge1\), without which the statement is
+  out to be missing, namely Theorem [[thm-proper]]'s \(n\ge1\), without which the statement is
   false at \(n=0\), where \(A'_n\) vanishes identically while
   \(\lvert\mathrm{FF}_{\mathrm{pr}}(0;\vek d)\rvert=1\).
 
@@ -3157,7 +3196,8 @@ submitted.
 @@latex:\label{sec:app-tables}@@
 Linusson closes the preprint version of his paper [cite:@Linusson1999preprint] with two tables,
 and they are part of why it is usable rather than
-merely correct: Table 5 gives the counts \(F^p(n)\) themselves, and Table 6 gives \(E^p(p,k)\),
+merely correct: his Table 5 gives the counts \(F^p(n)\) themselves, and his Table 6 gives
+\(E^p(p,k)\),
 the refinement his recursion actually runs on, with \(F^p(p)\) recovered as a row sum in the last
 column. This appendix gives the analogues, in the same pairing and the same order. Every entry
 was produced by the formulas of this paper and checked against direct enumeration of the

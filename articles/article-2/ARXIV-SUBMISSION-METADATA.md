@@ -1,8 +1,8 @@
 # arXiv submission metadata — article 2
 
 Prepared 2026-10-08, last regenerated 2026-10-09, against `exterior-convex_article2_latest.org`
-(51 pp. in the xelatex draft, **52 pp. in the pdfLaTeX arXiv build** since 2026-10-09, when the
-Linusson preprint gained its own bibliography entry). Like
+(**52 pp. in both builds** as of 2026-10-10, when the tables gained captions; the two had briefly
+differed, 51 against 52, after the Linusson preprint gained its own bibliography entry). Like
 article 1, article 2 now has a standing `_latest` name instead of a draft number.
 Copy-paste source for the arXiv form. The abstract follows arXiv's conventions: `$…$` delimiters
 for inline mathematics (arXiv renders those on the HTML abstract page), no project macros, less
