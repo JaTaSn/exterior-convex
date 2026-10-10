@@ -116,11 +116,27 @@ from 52. Mind the one-page gap between the two builds, which is not an error: th
 **55 pp.**, and the generator adds §10.2 *Code, formalisation and tables*, which exists only in the
 arXiv version. **The number here must be the arXiv one**, and the generator prints it.
 
-## Report number — [Jan]
+## Report number — SETTLED 2026-10-10: leave it empty, arXiv goes first
 
-Jan's standing order (2026-09-14) is report series first, arXiv afterwards. **No LiTH-MAT-R
-number for article 2 is recorded anywhere in the workspace.** If one is taken, put it here and in
-the Comments, and cite it as article 1's arXiv version cites its report.
+**Decided by Jan on 2026-10-10: for this paper, arXiv first and the LiTH-MAT-R report afterwards.**
+That reverses his own standing order of 2026-09-14 — report series first, arXiv afterwards — which
+article 1 followed exactly (report 2026-09-18 as LiTH-MAT-R 2026/04, arXiv 2609.23605 two days
+later). **It is an exception for article 2, not a new general rule.**
+
+The reason is external and has nothing to do with the paper: the person who signs off on the report
+series is off sick, which is also holding up Jan's report on the zero locus of iterated
+commutators. Waiting would have delayed a finished paper on someone else's illness.
+
+```
+(leave the Report-no field empty)
+```
+
+**What this costs, and the one thing to remember.** Article 1's arXiv version carries its report
+number in the Comments field; article 2's cannot, because there is no number yet. So the citation
+runs the other way: **when the report is eventually taken, it should cite this paper's arXiv id**,
+and the arXiv entry can be updated with the report number later — the Report-no field is revisable
+on a replacement, unlike the MSC field. Tracked at `80-QUEUE/TODO/lith-report-signoff-blocked.md`
+in the working repository.
 
 ## DOI field
 
@@ -170,8 +186,17 @@ Per-submission choice, as for Part I.
       1.26.06). §10.2 and `anc/README.md` both say so plainly and point at the repository. Result:
       101 scripts, 639 kB; `anc/` 1.6 MB on disk; **tarball 455 kB**, against article 1's shipped
       824 kB.
-- [ ] **arXiv rate limits**: two submissions per calendar month, three active at once. Count this
-      month's before submitting.
+- [x] **arXiv rate limits — not a constraint.** Two submissions per calendar month, three active
+      at once. The workspace's own record (`50-writing/preprints-publications/ARXIV-PREPRINTS.md`)
+      shows **one** recent submission, 2609.23605, announced **2026-09-20** — last month — and
+      nothing at all in October 2026. Worth one glance at the arXiv account page to confirm, since
+      that record is ours and not arXiv's.
+- [x] **The repository URL is reachable by the world** — checked by Jan in a fresh browser,
+      2026-10-10: `gitlab.liu.se/jansn19/exterior-convex` loads for an anonymous visitor. That
+      matters because both §10.2 and the Comments field print it, and a URL in a published paper
+      that 404s is worse than no URL. (The check was meaningful rather than vacuous: a private
+      sibling repository was confirmed *not* reachable in the same browser.) The only other
+      external links in the `.tex` are macaulay2.com, oeis.org, orcid.org and sagemath.org.
 - [ ] Re-verify the arXiv LLM policy against the live page.
 - [ ] Pack: `cd arxiv-submission && ./make-tarball.sh` → `../arxiv-submission.tar.gz`. Needs only
       `tar`. To submit without the ancillary trees, delete `anc/lean` and `anc/verification-code`
