@@ -43,14 +43,28 @@
 # path out of a bibliography headed for arXiv.
 #+LATEX_HEADER: \usepackage{etoolbox}
 # End-of-environment markers (2026-10-02, Jan), the same device article 1 has carried since
-# 2026-09-13: examples and remarks run long here and it was not clear where they stopped, so each
-# ends in an unobtrusive symbol playing the part of a q.e.d. box.  A lozenge closes an Example, as
-# in article 1; a club closes a Remark.  \clubsuit is the cloverleaf Jan asked for -- there is a
-# true cloverleaf at U+2318, but reaching it needs a named font that has the glyph, which is more
-# fragility than a proof-reading mark is worth.  Both symbols come from amssymb/base, already
-# loaded by latex-common.setup, and etoolbox is already here for the biblatex fix below.
+# 2026-09-13: examples, remarks and now definitions run long here and it was not clear where they
+# stopped, so each ends in an unobtrusive symbol playing the part of a q.e.d. box.
+#
+# REVISED 2026-10-10 (Jan).  A lozenge still closes an Example, as in article 1, but a Remark now
+# ends in a right-pointing triangle and a Definition in a left-pointing one.  What this replaces,
+# and why: the Remark's old mark was the cloverleaf Jan had asked for in October, rendered as
+# \clubsuit (a true cloverleaf is U+2318, but reaching it needs a named font that has the glyph,
+# which is more fragility than a proof-reading mark is worth).  The Definition's was \lozenge,
+# added earlier the same day, and it was too close to the Example's \Diamond to tell apart at
+# 10.95 pt -- page 13 of that build happened to show all three marks together and made the case.
+# The two triangles are distinct from the diamond and from each other at a glance.
+#
+# Jan first asked for \medtriangleleft and \medtriangleright.  Those are NOT in amssymb: they
+# come from MnSymbol, mdsymbol or fdsymbol, each of which replaces the math fonts wholesale, and
+# MnSymbol is known to collide with amssymb.  That is far too much machinery for a proof-reading
+# mark, and it would have to survive BOTH engines -- xelatex with fontspec for the draft, pdflatex
+# with T1/lmodern for arXiv.  The plain triangles are core LaTeX, need no package, and Jan agreed
+# on the spot.
+#
+# etoolbox is already here for the biblatex fix below.
 #+LATEX_HEADER: \AtEndEnvironment{mexample}{\hfill$\Diamond$}
-#+LATEX_HEADER: \AtEndEnvironment{remark}{\hfill$\clubsuit$}
+#+LATEX_HEADER: \AtEndEnvironment{remark}{\hfill$\triangleright$}
 # 2026-10-10 (Jan): definitions get one too, and he knows it is against the style guides he has
 # read.  The reason is specific rather than decorative.  latex-common.setup sets
 # \theoremstyle{definition}, so a definition's body is upright roman -- the SAME face as the
@@ -60,7 +74,7 @@
 # indeg(s) <= top(s)+1 always...".  The second is the bad one: "Note ..." could perfectly well be
 # the definition's last clause.  Both definitions are long and carry real prose inside them, which
 # is the same condition that produced the two markers above on 2026-10-02.
-#+LATEX_HEADER: \AtEndEnvironment{definition}{\hfill$\lozenge$}
+#+LATEX_HEADER: \AtEndEnvironment{definition}{\hfill$\triangleleft$}
 #+LATEX_HEADER: \AtEndPreamble{\AtEveryBibitem{\clearfield{note}\clearfield{annotation}\clearfield{addendum}}}
 # hyperref is loaded by latex-common.setup; without this every cross-reference and every
 # table-of-contents entry is drawn inside a coloured box.
