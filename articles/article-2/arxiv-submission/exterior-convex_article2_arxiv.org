@@ -117,7 +117,7 @@
 #+title: Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank
 #+subtitle: II: Generalizing Linusson's count to sumsets of \(f\)-vectors
 #+author: Jan Snellman \orcidlink{0009-0002-6676-5068}
-#+date: October 9, 2026
+#+date: October 10, 2026
 
 # ---------------------------------------------------------------------------
 # EDITORIAL NOTES (Org comments -- not exported). Article 2, draft 7, 2026-10-04.
@@ -685,7 +685,7 @@ tuples and only conditionally as statements about \(\lvert\mathrm{FF}(n;\vek d)\
 the algebra being a hypothesis rather than a proof. Section [[#sec-verification]] sets out exactly
 what lies inside and what lies outside.
 
-The asymptotics in \(n\), which Linusson himself leaves as an open problem, are not attempted.
+The asymptotics in \(n\), which Linusson leaves as an open problem, are not attempted.
 
 * Notation
 :PROPERTIES:
@@ -927,12 +927,27 @@ Remark [[rem-sorted]].
 
 #+NAME: def-linusson
 #+begin_definition
-[cite/t:@Linusson1999 \S3] For \(p\ge0\) and \(n\ge-1\), let \(F^p(n)\) be the number of
+[cite/t:@Linusson1999 \S3] Fix \(p\ge0\). For \(n\ge-1\), let \(F^p(n)\) be the number of
 \(f\)-vectors of simplicial complexes on at most \(p\) vertices, no face of which has more than
-\(n\) elements — that is, \(f_1\le p\) and \(f_j=0\) for \(j>n\) — both degenerate \(f\)-vectors
-included; and let \(E^p(n,k)\) count those among them that contain every face of at most \(k\)
+\(n\) elements. In coordinates those two bounds read \(f_1\le p\) and \(f_j=0\) for \(j>n\). Both
+degenerate \(f\)-vectors are counted: \((0,0,\dots)\), of the empty complex, and
+\((1,0,0,\dots)\), of the complex whose only face is \(\emptyset\). For \(k\ge-1\), let
+\(E^p(n,k)\) count those among them that contain every face of at most \(k\)
 elements but not every face of \(k+1\) elements, that is \(f_i=\binom pi\) for \(i\le k\) but
 \(f_{k+1}<\binom p{k+1}\).
+
+We also set
+#+begin_export latex
+\begin{equation}\label{eq:E-minus-two}
+  E^p(-2,k)=0\qquad\text{for every }k .
+\end{equation}
+#+end_export
+This is a convention, and it is needed because the clause \(f_j=0\) for \(j>n\) stops doing its
+work at \(n=-2\). That clause constrains only the \(f_j\) with \(j\ge0\), so at \(n=-2\) it says
+exactly what it says at \(n=-1\), and the empty complex still satisfies it; taken literally the
+definition would therefore give \(E^p(-2,-1)=1\) rather than \(0\). Setting
+\eqref{eq:E-minus-two} restores the reading the clause has for every \(n\ge-1\), which is what
+Lemma [[lem-joint]] uses it for. It is used nowhere else.
 #+end_definition
 
 The two parameters play different roles, and the notation \(F^p(n)\) keeps both: \(p\) bounds the
@@ -1064,7 +1079,7 @@ coefficient \(\binom n{\tp(\vek s)+1}\) vanishing in exactly the case the second
 
 #+NAME: lem-joint
 #+begin_lemma
-With the convention \(E^n(-2,\cdot)=0\),
+With the convention \eqref{eq:E-minus-two} of Definition [[def-linusson]],
 #+begin_export latex
 \begin{equation}\label{eq:auto-12}
   A_n[\tau][\rho]\;=\;E^n(\tau,\rho-1)-E^n(\tau-1,\rho-1).
