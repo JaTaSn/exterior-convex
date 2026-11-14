@@ -833,6 +833,13 @@ evidence points elsewhere (finding 9): HOT p. 2 attribute the Gorenstein ⇔ sym
 to Stanley's 1978 *Hilbert functions of graded algebras*. Beck–Robins (Ch. 4, Notes 7, p. 98) state
 the equivalence for Gorenstein polytopes in their own definition, without naming Stanley.
 
+*Added 2026-11-14, later the same day:* `math-library` holds Stanley's *Enumerative Combinatorics*,
+volumes 1 and 2, and neither stands in for this book. In volume 1 (2nd ed., searchable text)
+"Gorenstein" occurs only for Gorenstein* posets (index: pp. 312, 403). Volume 2 has no text layer;
+its subjects (trees, algebraic and D-finite generating functions, symmetric functions) are not where
+the theorem lives. Neither *Combinatorics and Commutative Algebra* nor the 1978 paper is in the
+library.
+
 ### 24. Kruskal (1963), Katona (1968) — `Kruskal1963`, `Katona1968`
 
 **Citations:** as in article 1's certificate, entries 12–13. The current `.bib` fields match,
