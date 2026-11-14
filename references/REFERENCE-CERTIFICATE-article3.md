@@ -7,6 +7,11 @@ built PDF beside it (63 pp., built 2026-11-14 17:36) was used only to confirm wh
 printed. The bibliography checked is `literature/exterior-convex-references.bib` in the same
 project, as it stood at that commit.)*
 
+*Updated the same evening, after Jan supplied three of the missing sources: McMullen 1977 (entry 21)
+and Savage–Schuster 2012 (entry 22) are now verified against the text, and Ceballos–Padrol–Sarmiento
+(entry 9) against the JCTA version. Findings 8 and 10 and the two lists at the end are updated to
+match. Each passage added was extracted from the supplied PDF.*
+
 ## Purpose
 
 Same purpose as the certificates for articles 1 and 2 (`REFERENCE-CERTIFICATE.md` and
@@ -110,14 +115,14 @@ what registry check was done instead.
    proof is unaffected. **Suggested fix:** add "on the principal block τ ∈ [1, n] (Part II, Lemma
    44)" once, at `.org:2046`.
 
-8. **McMullen (1977) is attributed but not verified, and nothing held ties the theorem to that
-   paper.** `thm-mcmullen` is quoted from Haase–Juhnke-Kubitzke–Sanyal–Theobald, Theorem 2.3, which is
-   verified (entry 11). That paper credits the result to "Bernstein and McMullen; see [13, Theorem
-   19.4]", [13] being Gruber's *Convex and Discrete Geometry*. **It does not cite McMullen 1977 at
-   all.** Beck–Robins do cite McMullen 1977, but for a different theorem (their Theorem 5.3). The
-   Crossref data are right, and the Org comment at `.org:2233–2238` already says McMullen's own
-   theorem number is unchecked. To make `.org:2230` checkable, Jan needs the paper (Wiley, closed
-   access; Unpaywall `is_oa: false`).
+8. ~~**McMullen (1977) is attributed but not verified, and nothing held ties the theorem to that
+   paper.**~~ **Resolved the same evening: the theorem is McMullen's Theorem 6 (p. 121)**, applied
+   to the lattice-point enumerator, which his §6 (p. 127) shows is a ℤᵈ-valuation. Quotations in
+   entry 21. `thm-mcmullen` is quoted from Haase–Juhnke-Kubitzke–Sanyal–Theobald, Theorem 2.3
+   (entry 11), which credits "Bernstein and McMullen; see [13, Theorem 19.4]", [13] being Gruber's
+   book, and does not cite McMullen 1977 itself. **Suggested fix:** the Org comment at
+   `.org:2233–2238` says McMullen's theorem number is unchecked; it can now say
+   "[McMullen1977, Theorem 6]".
 
 9. **`Stanley1996` is still unverified, and the one held source that names a theorem points to a
    different Stanley work.** `.org:1858–1859` says "by a theorem of Stanley" h*-palindromicity is
@@ -131,12 +136,11 @@ what registry check was done instead.
     version.** These are Ceballos–Padrol–Sarmiento (Example 2.2, Section 2; arXiv v1 only, the
     project TODO), Hibi–Olsen–Tsuchiya (Lemma 1.1; see finding 6), Liu–Solus (Theorem 4.3),
     Chen–Li–Sam (Theorem 1.4), Savage–Visontai (no locator used) and Santos (Theorem 1.4, §1.4;
-    arXiv v3, which its own comment calls the accepted version). **The JCTA numbering of
-    Ceballos–Padrol–Sarmiento could not be checked.** The article is in Elsevier's open archive
-    (Unpaywall: bronze), but ScienceDirect answered the one scripted request with HTTP 403 and a
-    challenge page, and Elsevier's API needs a key. It needs a browser; no subscription is required.
-    Beck–Robins was checked in the authors' 2020 draft of the second edition (in `math-library`),
-    not in the 2015 Springer printing.
+    arXiv v3, which its own comment calls the accepted version). ~~**The JCTA numbering of
+    Ceballos–Padrol–Sarmiento could not be checked.**~~ **Checked the same evening, in the JCTA
+    copy Jan saved from a browser: Example 2.2 and the Cayley trick in §2 keep their numbers**
+    (entry 9). Beck–Robins was checked in the authors' 2020 draft of the second edition (in
+    `math-library`), not in the 2015 Springer printing.
 
 11. **Optional tightenings** (the claims are all supported as they stand):
     - `.org:2347`, "[Ziegler1995 Chapter 2]": the statement is Lemma 2.9 (p. 60).
@@ -471,8 +475,16 @@ Crossref confirms every field. The arXiv API has v1 only.
   trick states that this correspondence is a bijection between triangulations of Δᵐ⁻¹ × Δⁿ⁻¹ and
   fine mixed subdivisions of mΔⁿ⁻¹". **Supported**, nearly word for word.
 
-**Status: verified in arXiv v1; the JCTA numbering is not checked** (finding 10). Jan can open the JCTA
-version in a browser from the Elsevier open archive; no subscription is needed.
+**Status: verified in arXiv v1, and in the JCTA version** (added the same evening, from the copy Jan
+saved from Elsevier's open archive, `literature/ceballos-padrol-sarmiento-2015-dyck-path-triangulations-extendability_JCTA.pdf`).
+The numbering is unchanged. JCTA p. 192, §2.2 *Grid representation*: "Example 2.2 (Staircase
+triangulation of Δᵐ⁻¹ × Δⁿ⁻¹). Consider all monotone paths in G_{m×n} from (1, 1) to (m, n). … Every
+such monotone path, or staircase, defines an (m + n − 2)-simplex of Δᵐ⁻¹ × Δⁿ⁻¹, whose points are
+labelled by the squares in the path. It is easy to see that this collection of simplices forms a
+triangulation of Δᵐ⁻¹ × Δⁿ⁻¹, which is called the staircase triangulation". JCTA pp. 193–194, §2.4
+*Mixed subdivisions and tropical arrangements*: "The Cayley trick states that this correspondence is a
+bijection between triangulations of Δᵐ⁻¹ × Δⁿ⁻¹ and fine mixed subdivisions of mΔⁿ⁻¹". Both claims
+are **supported** in the published version, with the same locators.
 
 ### 10. Chen, Li & Sam (2012) — `ChenLiSam2012`
 
@@ -784,7 +796,7 @@ convention this is a candidate for Jan to submit, never to be submitted on his b
 
 ## B. No primary copy available — registry check instead
 
-### 21. McMullen (1977) — `McMullen1977` — **NOT VERIFIED — source not available**
+### 21. McMullen (1977) — `McMullen1977` — **verified the same evening** (was: not verified, source not available)
 
 **Citation:** P. McMullen, *Valuations and Euler-type relations on certain classes of convex
 polytopes*, Proc. London Math. Soc. (3) **35**(1) (1977), 113–135, DOI `10.1112/plms/s3-35.1.113`.
@@ -794,12 +806,32 @@ Beck–Robins' bibliography lists the same paper with the same data (item 172, d
 **Claim supported:** `.org:2229–2230`, `prop-linear-coeff` "also follows from a theorem of McMullen
 [McMullen1977], found independently by Bernstein".
 
-**Verification:** bibliographic only. Not in `literature/` or `math-library`; Unpaywall says
-`is_oa: false`, closed. **No held source connects the multivariate theorem to this paper** (finding
-8): Haase et al. point to Gruber's book, and Beck–Robins cite this paper for a different result.
-Jan must obtain it (LiU subscription) to confirm the theorem is there and to get its number.
+**Verification (first pass):** bibliographic only. Not in `literature/` or `math-library`;
+Unpaywall says `is_oa: false`, closed. No held source connected the multivariate theorem to this
+paper: Haase et al. point to Gruber's book, and Beck–Robins cite this paper for a different result.
 
-### 22. Savage & Schuster (2012) — `SavageSchuster2012` — **NOT VERIFIED against the text**
+**Verification (the same evening):** Jan supplied the Wiley PDF through the LiU subscription, now
+`literature/subscription/mcmullen-1977-valuations-euler-type-relations-convex-polytopes_PLMS.pdf`.
+The PDF is a scan with an OCR text layer; the passages below are transcribed from it with the
+mathematical symbols restored.
+
+- p. 117 (§2): "For the rest of this section, we restrict our attention to groups Λ which are
+  d-dimensional vector spaces over some subfield of ℝ, or discrete lattices." So ℤᵈ is within the
+  hypotheses of the results that §3 builds on.
+- p. 121 (§3): "THEOREM 6. Let φ be a Λ-valuation, and let P₁, …, P_k ∈ 𝒫(Λ). Then for integers
+  n₁, …, n_k ≥ 0, φ(n₁P₁ + … + n_kP_k) is a polynomial in n₁, …, n_k of total degree at most d.
+  Moreover, the coefficient of n₁^r₁ … n_k^r_k is a homogeneous Λ-valuation of degree rᵢ in Pᵢ."
+- p. 127 (§6, *Examples and applications*): "If G(P) is the number of lattice points in the lattice
+  polytope P, then G is a ℤᵈ-valuation on 𝒫(ℤᵈ)."
+
+Theorem 6 with Λ = ℤᵈ and φ = G gives the polynomiality of `thm-mcmullen` / HJST Theorem 2.3, for
+any lattice polytopes and all nᵢ ≥ 0, with total degree at most d. HJST's finer statement, degree
+dim Pᵢ in nᵢ, is not stated in this form in Theorem 6 and was not derived here; for that, the
+quotation from HJST (entry 11) is the source. **Supported** for what `.org:2230` attributes to
+McMullen, namely the theorem. The paper does not mention Bernstein; that half of `.org:2230` rests on
+HJST, who credit both.
+
+### 22. Savage & Schuster (2012) — `SavageSchuster2012` — **verified the same evening** (was: not verified against the text)
 
 **Citation:** C. D. Savage, M. J. Schuster, *Ehrhart series of lecture hall polytopes and Eulerian
 polynomials for inversion sequences*, J. Combin. Theory Ser. A **119**(4) (2012), 850–870, DOI
@@ -815,6 +847,22 @@ not serve to scripts. **Two independent held sources attribute the formula to th
 5:** HOT, Lemma 1.1, "([13, Theorem 5])", and SV, p. 20, "a special case of Theorem 5 in [30]". The
 definition at `.org:758` is independently verified in HOT (entry 12). The attribution is therefore
 corroborated, and no locator into this paper is used. Jan can open it free in a browser.
+
+**Verification (the same evening):** Jan saved the JCTA PDF from Elsevier's open archive, now
+`literature/savage-schuster-2012-ehrhart-series-lecture-hall-polytopes-eulerian-polynomials_JCTA.pdf`.
+
+- The definition, p. 852, §2.2 *Lecture hall polytopes*: "For a sequence s = {sᵢ}ᵢ≥₁ of positive
+  integers, define the lecture hall polytope Pₙ^(s) by Pₙ^(s) = {λ ∈ ℝⁿ | 0 ≤ λ₁/s₁ ≤ λ₂/s₂ ≤ ⋯ ≤
+  λₙ/sₙ ≤ 1}." This is `eq:lhs` at `.org:762`, with D for n. **Supported.**
+- The h*-formula. Abstract: "We show that for any sequence s of positive integers: (i) the
+  h*-vector of the s-lecture hall polytope is the ascent polynomial for the associated s-inversion
+  sequences". p. 857: "Theorem 5. Let s be any sequence of positive integers. For integer n ≥ 0,
+  Σ_{t≥0} fₙ^(s)(t; u, q, z) xᵗ = Σ_{e∈Iₙ^(s)} x^{asc e} u^{amaj e} q^{lhp e} z^{|e|} /
+  ∏ᵢ₌₀ⁿ (1 − x uⁿ⁻ⁱ q^{sᵢ₊₁+⋯+sₙ})", where (p. 856) fₙ^(s)(t; u, q, z) sums over the lattice
+  points of tPₙ^(s). p. 861, Theorem 8, whose proof begins "The first identity is Theorem 5 with
+  u = q = z = 1". At u = q = z = 1 the left side is the Ehrhart series and the numerator is the
+  ascent polynomial. This is the formula `.org:1871–1872` specialises, and it is the theorem that
+  HOT and Savage–Visontai cite as "Theorem 5". **Supported.**
 
 ### 23. Stanley (1996) — `Stanley1996` — **NOT VERIFIED — source not available**
 
@@ -887,15 +935,15 @@ Each has a section in `literature/README.org`, "Copies fetched for Part III's re
 
 **Through a browser or the LiU subscription:**
 
-1. **McMullen 1977**, `10.1112/plms/s3-35.1.113` (Wiley, closed). This is the only entry whose
-   attribution rests on nothing held (finding 8).
+1. ~~**McMullen 1977**, `10.1112/plms/s3-35.1.113` (Wiley, closed).~~ Supplied by Jan the same
+   evening; verified (entry 21).
 2. **Hibi–Olsen–Tsuchiya 2018, published**, `10.17323/1609-4514-2018-18-4-667-679` (Moscow Math. J.).
    It decides whether `rem-hstar-misprint`'s claim holds for the printed paper, and confirms the
    number of Lemma 1.1 (finding 6).
-3. **Ceballos–Padrol–Sarmiento 2015, JCTA**, `10.1016/j.jcta.2014.10.009`. Elsevier open archive,
-   free in a browser; ScienceDirect blocks scripts. For Example 2.2 and §2 (the open TODO).
-4. **Savage–Schuster 2012**, `10.1016/j.jcta.2011.12.005`. Elsevier open archive, free in a browser.
-   Optional: the attribution is corroborated twice and no locator is used.
+3. ~~**Ceballos–Padrol–Sarmiento 2015, JCTA**, `10.1016/j.jcta.2014.10.009`.~~ Supplied by Jan the
+   same evening; numbering unchanged (entry 9).
+4. ~~**Savage–Schuster 2012**, `10.1016/j.jcta.2011.12.005`.~~ Supplied by Jan the same evening;
+   verified (entry 22).
 5. Optional, numbering checks only: **Liu–Solus 2019, published**, `10.1007/s00026-019-00429-8`
    (Theorem 4.3); **Chen–Li–Sam 2012, TAMS**, `10.1090/S0002-9947-2011-05494-2` (Theorem 1.4); **Santos
    2005, Contemp. Math.**, `10.1090/conm/374/06904` (Theorem 1.4, §1.4; the arXiv v3 read is the
@@ -913,10 +961,10 @@ Each has a section in `literature/README.org`, "Copies fetched for Part III's re
 
 ## Which entries rest on a registry check rather than a quotation
 
-McMullen1977 (Crossref only), Stanley1996 (Crossref only), SavageSchuster2012 (Crossref and OpenAlex,
-plus two held secondary attributions), Kruskal1963 and Katona1968 (MathSciNet, reused), Macaulay2
-and SageMath (installed versions), and OEIS (a database query, which is the claim itself). Every
-other printed key is backed by a passage quoted above from a held copy.
+Stanley1996 (Crossref only), Kruskal1963 and Katona1968 (MathSciNet, reused), Macaulay2 and
+SageMath (installed versions), and OEIS (a database query, which is the claim itself). Every other
+printed key is backed by a passage quoted above from a held copy. (McMullen1977 and
+SavageSchuster2012 were on this list until the same evening.)
 
 ---
 
