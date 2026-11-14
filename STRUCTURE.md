@@ -155,7 +155,18 @@ Part II went to arXiv only. The report was meant to follow, but as of 2026-11-14
 **not** in the series, and `README.md` must not say it is. If it is added later, the report
 cites the arXiv id, and arXiv's Report-no field can be filled in on a replacement.
 
+## Licences
+
+Added 2026-11-14 at the author's choice ("MIT or some CC, same as we used with our Zenodo
+packages"). They follow `lattice-line-covers`, the repository deposited on Zenodo: **MIT** for code
+(`LICENSE`, the same text with the same copyright line) and **CC BY 4.0** for the text
+(`LICENSE-CC-BY-4.0`, the full legal code, copied from `arithmetical-functions-truncations`). That
+also matches Part II's arXiv licence, CC BY 4.0. `README.md`'s *Licence* section says which
+directories fall under which. New code goes under MIT, and new prose under CC BY, without further
+decision.
+
 ## Publishing
 
 This repository is **public** (`gitlab.liu.se/jansn19/exterior-convex`). A commit stays local; a
-push publishes. Push only on the author's go-ahead.
+push publishes. Push only on the author's go-ahead. The first push after the 2026-11-14 sync was
+approved by the author that evening.

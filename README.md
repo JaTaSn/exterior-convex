@@ -254,3 +254,17 @@ Parts I and II carry their certificates on arXiv as ancillary files, and Part II
 - **The cited literature.** The certificates quote from it, but the PDFs are left out for
   copyright reasons.
 - **Work towards later parts that is not yet written up**, such as the fibres of the sum map.
+
+## Licence
+
+Copyright © 2026 Jan Snellman. Two licences, split the usual way:
+
+- **Code**: the Lean formalization (`lean/`) and the verification code (`verification-code/`,
+  including the copies in the arXiv packages' `anc/` directories) are under the **MIT License**;
+  see [`LICENSE`](LICENSE).
+- **Text**: the articles (`articles/`), the reference certificates and the READMEs are under
+  **Creative Commons Attribution 4.0 International (CC BY 4.0)**; see
+  [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0).
+
+The passages that the certificates quote from cited works remain their authors' and publishers'.
+They are quoted only as evidence of what each work says.

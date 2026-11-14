@@ -36,7 +36,7 @@ what registry check was done instead.
   Nothing was supplied from memory or from secondary descriptions. Where a passage is quoted from an
   arXiv version and the `.bib` names the published version, the entry says so.
 - **Sources consulted, in order:** `20-projects/exterior-convex/literature/` (including
-  `subscription/`), then `/home/jan/Repositories/math-library/` (file tree and `math-library.bib`,
+  `subscription/`), then the author's private `math-library` (a local clone) (file tree and `math-library.bib`,
   searched by author, title and key), then Jan's own papers: Parts I and II as the arXiv v1 PDFs in
   `ai-workspace/50-writing/preprints-publications/preprints/` (`2609.23605_…pdf`, 53 pp.;
   `2610.14985_…pdf`, 56 pp.), Parts IV and V as the drafts `article/exterior-convex_article4_draft_1.{org,pdf}`
