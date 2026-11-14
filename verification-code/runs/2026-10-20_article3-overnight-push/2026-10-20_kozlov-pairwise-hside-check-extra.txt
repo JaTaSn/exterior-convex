@@ -1,0 +1,10 @@
+done n=3
+done n=4
+done n=7
+
+=== summary by sigma-class ===
+strictLC {'cfg': 434, 'tuples': 306474, 'T0': 650, 'T1eq': 356150, 'T1imp': 0, 'T1bad': 0, 'T2': 17586, 'T2bad': 0, 'T3': 17586, 'T3bad': 0, 'T4': 306474, 'T4bad': 0, 'T4pair': 306474, 'T4pairbad': 0, 'T5': 5412, 'T5bad': 0, 'red': 32}
+
+=== failure log (first 60 lines) ===
+total log lines: 0
+timeout 5400 sage kozlov_pairwise_hside_check.sage extra  29.94s user 0.20s system 99% cpu 30.200 total

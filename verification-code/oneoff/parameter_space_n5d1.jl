@@ -12,9 +12,9 @@
 """
 Julia/Oscar counterpart to parameter_space_n5d1.py's random-sampling experiment. Reads a shared
 point list (produced by that file's write_random_points), computes f-vectors via Oscar, and
-writes results to ../runs/ as JSON, mirroring the Sage output structure. Run as:
+writes results to ../runs/paramspace/ as JSON, mirroring the Sage output structure. Run as:
 
-    julia parameter_space_n5d1.jl ../runs/paramspace_n5_d1_points_seed3_N500.json
+    julia parameter_space_n5d1.jl ../runs/paramspace/paramspace_n5_d1_points_seed3_N500.json
 
 Note on f-vector comparability: Oscar's `f_vector` omits the trivial empty-face/whole-polytope
 entries that Sage's `Polyhedron.f_vector()` includes (Sage: (1, v0, v1, ..., v_{dim-1}, 1); Oscar:

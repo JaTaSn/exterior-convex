@@ -1,0 +1,50 @@
+total cases 47 from D: 42
+2 (0, 0) D=1 codeg=1 conj=ok lc=True realrooted=True (1/1) pal=True src=D
+2 (0, 1) D=2 codeg=2 conj=ok lc=True realrooted=True (1/1) pal=True src=D
+2 (0, 2) D=2 codeg=2 conj=ok lc=True realrooted=True (1/1) pal=True src=D
+3 (0, 0) D=2 codeg=1 conj=ok lc=True realrooted=True (2/2) pal=False src=D
+3 (0, 1) D=3 codeg=2 conj=ok lc=True realrooted=True (2/2) pal=False src=D
+3 (0, 2) D=4 codeg=2 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+3 (0, 3) D=4 codeg=2 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+4 (0, 0) D=3 codeg=1 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+4 (0, 1) D=4 codeg=2 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+4 (0, 2) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+4 (0, 3) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+4 (0, 4) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+5 (0, 0) D=4 codeg=1 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+5 (0, 1) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+5 (0, 2) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+5 (0, 3) D=7 codeg=2 conj=ok lc=True realrooted=True (6/6) pal=False src=D
+5 (0, 4) D=8 codeg=2 conj=ok lc=True realrooted=True (7/7) pal=False src=D
+5 (0, 5) D=8 codeg=2 conj=ok lc=True realrooted=True (7/7) pal=False src=D
+6 (0, 0) D=5 codeg=1 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+6 (0, 1) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+6 (0, 2) D=7 codeg=2 conj=ok lc=True realrooted=True (6/6) pal=False src=D
+6 (0, 3) D=8 codeg=2 conj=ok lc=True realrooted=True (7/7) pal=False src=D
+6 (0, 4) D=9 codeg=2 conj=ok lc=True realrooted=True (8/8) pal=False src=D
+6 (0, 5) D=10 codeg=2 conj=ok lc=True realrooted=True (9/9) pal=False src=D
+6 (0, 6) D=10 codeg=2 conj=ok lc=True realrooted=True (9/9) pal=False src=D
+7 (0, 1) D=7 codeg=2 conj=ok lc=True realrooted=True (6/6) pal=False src=D
+7 (0, 2) D=8 codeg=2 conj=ok lc=True realrooted=True (7/7) pal=False src=D
+3 (0, 0, 0) D=2 codeg=1 conj=ok lc=True realrooted=True (2/2) pal=False src=review
+3 (0, 0, 1) D=3 codeg=2 conj=ok lc=True realrooted=True (2/2) pal=False src=D
+3 (0, 1, 1) D=3 codeg=1 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+3 (0, 1, 2) D=4 codeg=2 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+3 (0, 1, 3) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+3 (0, 2, 3) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+3 (0, 2, 4) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+4 (0, 0, 0) D=3 codeg=1 conj=ok lc=True realrooted=True (3/3) pal=False src=review
+4 (0, 0, 1) D=4 codeg=2 conj=ok lc=True realrooted=True (3/3) pal=False src=D
+4 (0, 1, 1) D=4 codeg=1 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+4 (0, 1, 2) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+4 (0, 1, 3) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+4 (0, 2, 3) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+4 (0, 2, 4) D=7 codeg=2 conj=ok lc=True realrooted=True (6/6) pal=False src=D
+5 (0, 0, 0) D=4 codeg=1 conj=ok lc=True realrooted=True (4/4) pal=False src=review
+5 (0, 0, 1) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=review
+5 (0, 1, 1) D=5 codeg=1 conj=ok lc=True realrooted=True (5/5) pal=False src=review
+5 (0, 1, 2) D=6 codeg=2 conj=ok lc=True realrooted=True (5/5) pal=False src=D
+5 (0, 2, 4) D=8 codeg=2 conj=ok lc=True realrooted=True (7/7) pal=False src=D
+3 (0, 1, 2, 3) D=5 codeg=2 conj=ok lc=True realrooted=True (4/4) pal=False src=D
+nontrivial conj cases (n>=3, d_r-d_{r-1} in {0,1}): 24
+bad []

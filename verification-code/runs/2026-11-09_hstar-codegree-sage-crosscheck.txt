@@ -1,0 +1,77 @@
+/tmp/sage_3qyhi8xi/hstar_codegree_sage_crosschecko8qqk0lz.sage.py:71: DeprecationWarning: Use sage.version.version instead.
+See https://github.com/sagemath/sage/issues/39015 for details.
+  print('# hstar_codegree_sage_crosscheck.sage, 2026-11-09, Claude-Code (jts-mini) subagent;', version(), flush=True)
+# hstar_codegree_sage_crosscheck.sage, 2026-11-09, Claude-Code (jts-mini) subagent; SageMath version 10.9, Release Date: 2026-05-04
+# reference: 39 INT lines from runs/2026-11-09_hstar-codegree-t2-check.txt
+n=3 d=(0,) D=2 #pts=5 #int(P)=0 #int(2P)=2 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 0) D=2 #pts=12 #int(P)=2 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=3 d=(0, 1) D=3 #pts=22 #int(P)=0 #int(2P)=17 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 2) D=4 #pts=25 #int(P)=0 #int(2P)=4 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 3) D=4 #pts=25 #int(P)=0 #int(2P)=4 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 0, 0) D=2 #pts=22 #int(P)=7 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=3 d=(0, 0, 1) D=3 #pts=45 #int(P)=0 #int(2P)=48 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 0, 2) D=4 #pts=60 #int(P)=0 #int(2P)=30 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 0, 3) D=4 #pts=60 #int(P)=0 #int(2P)=30 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 1, 1) D=3 #pts=51 #int(P)=6 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=3 d=(0, 1, 2) D=4 #pts=95 #int(P)=0 #int(2P)=113 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 1, 3) D=5 #pts=110 #int(P)=0 #int(2P)=34 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 1, 4) D=5 #pts=110 #int(P)=0 #int(2P)=34 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 2, 2) D=4 #pts=60 #int(P)=0 #int(2P)=30 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 2, 3) D=5 #pts=110 #int(P)=0 #int(2P)=34 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 2, 4) D=6 #pts=125 #int(P)=0 #int(2P)=8 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 3, 3) D=4 #pts=60 #int(P)=0 #int(2P)=30 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 3, 4) D=5 #pts=110 #int(P)=0 #int(2P)=34 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=3 d=(0, 0, 0, 0) D=2 #pts=35 #int(P)=15 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 0, 0, 1) D=3 #pts=74 #int(P)=0 #int(2P)=91 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 0, 2) D=4 #pts=110 #int(P)=0 #int(2P)=80 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 0, 3) D=4 #pts=110 #int(P)=0 #int(2P)=80 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 1, 1) D=3 #pts=99 #int(P)=17 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 0, 1, 2) D=4 #pts=189 #int(P)=0 #int(2P)=291 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 1, 3) D=5 #pts=225 #int(P)=0 #int(2P)=96 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 1, 4) D=5 #pts=225 #int(P)=0 #int(2P)=96 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 2, 2) D=4 #pts=144 #int(P)=4 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 0, 2, 3) D=5 #pts=264 #int(P)=0 #int(2P)=255 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 2, 4) D=6 #pts=300 #int(P)=0 #int(2P)=60 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 0, 3, 3) D=4 #pts=144 #int(P)=4 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 0, 3, 4) D=5 #pts=264 #int(P)=0 #int(2P)=255 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 1, 1) D=3 #pts=92 #int(P)=18 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 1, 1, 2) D=4 #pts=189 #int(P)=0 #int(2P)=282 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 1, 3) D=5 #pts=255 #int(P)=0 #int(2P)=192 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 1, 4) D=5 #pts=255 #int(P)=0 #int(2P)=192 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 2, 2) D=4 #pts=219 #int(P)=18 #int(2P)=None codeg=1 predicted=1 OK two constructed points interior: True
+n=3 d=(0, 1, 2, 3) D=5 #pts=409 #int(P)=0 #int(2P)=740 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 2, 4) D=6 #pts=475 #int(P)=0 #int(2P)=226 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 3, 3) D=5 #pts=264 #int(P)=0 #int(2P)=255 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 3, 4) D=6 #pts=484 #int(P)=0 #int(2P)=289 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 1, 4, 4) D=5 #pts=264 #int(P)=0 #int(2P)=255 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 2, 2) D=4 #pts=110 #int(P)=0 #int(2P)=80 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 2, 3) D=5 #pts=225 #int(P)=0 #int(2P)=96 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 2, 4) D=6 #pts=300 #int(P)=0 #int(2P)=60 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 3, 3) D=5 #pts=255 #int(P)=0 #int(2P)=192 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 3, 4) D=6 #pts=475 #int(P)=0 #int(2P)=226 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 2, 4, 4) D=6 #pts=300 #int(P)=0 #int(2P)=60 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 3, 3, 3) D=4 #pts=110 #int(P)=0 #int(2P)=80 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 3, 3, 4) D=5 #pts=225 #int(P)=0 #int(2P)=96 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=3 d=(0, 3, 4, 4) D=5 #pts=255 #int(P)=0 #int(2P)=192 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True
+n=4 d=(0,) D=3 #pts=20 #int(P)=0 #int(2P)=7 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 0) D=3 #pts=81 #int(P)=7 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=4 d=(0, 1) D=4 #pts=214 #int(P)=0 #int(2P)=265 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 2) D=5 #pts=386 #int(P)=0 #int(2P)=391 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 3) D=6 #pts=400 #int(P)=0 #int(2P)=49 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 4) D=6 #pts=400 #int(P)=0 #int(2P)=49 codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 0, 0) D=3 #pts=208 #int(P)=44 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=4 d=(0, 0, 1) D=4 #pts=588 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 0, 2) D=5 #pts=1340 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 0, 3) D=6 #pts=1620 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 0, 4) D=6 #pts=1620 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 1, 1) D=4 #pts=750 #int(P)=78 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=4 d=(0, 1, 2) D=5 #pts=2058 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 1, 3) D=6 #pts=4000 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 1, 4) D=7 #pts=4280 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 2, 2) D=5 #pts=1554 #int(P)=70 #int(2P)=None codeg=1 predicted=1 OK reciprocity counts agree; two constructed points interior: True
+n=4 d=(0, 2, 3) D=6 #pts=4112 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 2, 4) D=7 #pts=7440 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 3, 3) D=6 #pts=1620 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 3, 4) D=7 #pts=4280 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+n=4 d=(0, 4, 4) D=6 #pts=1620 #int(P)=0 #int(2P)=None codeg=2 predicted=2 OK sketch-1 points in relint(2P): True; reciprocity counts agree
+cases 71 failures 0

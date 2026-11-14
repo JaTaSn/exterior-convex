@@ -34,9 +34,9 @@ Workflow (every experiment run in tandem with parameter_space_n5d1.jl):
 
     sage -c "load('parameter_space_n5d1.py'); write_random_points(500, 10**6, seed=3)"
     sage -c "load('parameter_space_n5d1.py'); run_on_points('paramspace_n5_d1_points_seed3_N500.json')"
-    julia parameter_space_n5d1.jl ../runs/paramspace_n5_d1_points_seed3_N500.json
-    python3 compare_n5d1_tandem.py ../runs/paramspace_n5_d1_results_sage_seed3_N500.json \\
-                                    ../runs/paramspace_n5_d1_results_julia_seed3_N500.json
+    julia parameter_space_n5d1.jl ../runs/paramspace/paramspace_n5_d1_points_seed3_N500.json
+    python3 compare_n5d1_tandem.py ../runs/paramspace/paramspace_n5_d1_results_sage_seed3_N500.json \\
+                                    ../runs/paramspace/paramspace_n5_d1_results_julia_seed3_N500.json
 
 Shared point list and both languages' results are all plain JSON (JSON3 is a direct dependency of
 this project's Julia environment as of 2026-08-01).
@@ -49,7 +49,7 @@ import time
 
 load('right_angle_simplex.py')  # noqa -- brings in right_angle_minkowski_sum
 
-OUTDIR = '../runs'
+OUTDIR = '../runs/paramspace'
 D = 1  # fixed throughout this file; n=5 is implicit in every a having 5 entries
 
 
@@ -61,7 +61,7 @@ def _fvector(a):
 def write_random_points(n_points, maxval, seed=None):
     """
     Uniform random a_i in [1, maxval], n_points samples. Writes ONLY the raw point list (JSON, no
-    f-vectors) to ../runs/ -- both this file's run_on_points and the Julia counterpart then
+    f-vectors) to ../runs/paramspace/ -- both this file's run_on_points and the Julia counterpart then
     consume the exact same points.
     """
     if seed is not None:
@@ -104,7 +104,7 @@ def write_spotcheck_points(points_filename, n_spotcheck, seed=None):
 def run_on_points(points_filename):
     """
     Reads a shared point list (from write_random_points, or hand-written -- e.g. for targeted
-    probes) and computes f-vectors via Sage, writing results to ../runs/ as JSON. Labels each
+    probes) and computes f-vectors via Sage, writing results to ../runs/paramspace/ as JSON. Labels each
     point "generic case"/"special case" by comparing against this run's own majority f-vector,
     same data-driven convention as parameter_space_n4d1.py.
     """

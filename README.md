@@ -1,8 +1,9 @@
 # exterior-convex
 
-**Hilbert functions over the exterior algebra and $f$-vectors in higher rank** — a series of three
-articles, the Lean 4 formalization of their combinatorial core, the code behind every computational
-claim, and a reference certificate.
+**Hilbert functions over the exterior algebra and $f$-vectors in higher rank** — a series of
+articles (Parts I–III here; Parts IV and V are in preparation), the Lean 4 formalization of their
+combinatorial core, the code behind every computational claim, and a reference certificate for each
+part.
 
 Let $E=\bigwedge(k^n)$ be the exterior algebra on $n$ generators and $F=\bigoplus_{i=1}^{r}Eg_i$ a
 graded free $E$-module with $\deg g_i=d_i$. The series determines the convex hull of the set of
@@ -18,24 +19,33 @@ it, and Part I gives a self-contained proof including a short proof of Kozlov's 
 Lubell–Yamamoto–Meshalkin inequality and a facet description of $\mathrm{Koz}(n)$ that appears not to
 be recorded in the literature.
 
-## Published version (Part I)
+## Published versions
 
-Part I is published, open access, as a technical report in Linköping University's mathematics
-report series:
+Parts I and II are published, open access, both on arXiv and as technical reports in Linköping
+University's mathematics report series (LiTH-MAT-R, ISSN 0348-2960, Linköping University Electronic
+Press).
 
-> Jan Snellman, *Hilbert functions over the exterior algebra and $f$-vectors in higher rank I:
-> Amata–Crupi monomial modules, Kozlov polytopes, and $r$-vectors of simplicial complexes.*
-> LiTH-MAT-R, ISSN 0348-2960, No. 2026:04. Linköping University Electronic Press, 2026.
-> DOI: [10.3384/LiTH-MAT-R-2026-04](https://doi.org/10.3384/LiTH-MAT-R-2026-04)
+**Part I.** Jan Snellman, *Hilbert functions over the exterior algebra and $f$-vectors in higher
+rank I: Amata–Crupi monomial modules, Kozlov polytopes, and $r$-vectors of simplicial complexes.*
 
-Full text via the DiVA record:
-[urn:nbn:se:liu:diva-227730](https://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-227730)
-(DiVA id `diva2:2102721`;
-[record page](https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721)). An arXiv
-preprint is in preparation — see [`articles/article-1/arxiv-submission/`](articles/article-1/arxiv-submission/).
+- LiTH-MAT-R No. 2026:04, 2026-09-18. DOI:
+  [10.3384/LiTH-MAT-R-2026-04](https://doi.org/10.3384/LiTH-MAT-R-2026-04); full text via the DiVA
+  record [urn:nbn:se:liu:diva-227730](https://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-227730)
+  ([record page](https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721)).
+- arXiv: [2609.23605](https://arxiv.org/abs/2609.23605) (math.CO, cross-listed to math.AC). The
+  submitted package is in [`articles/article-1/arxiv-submission/`](articles/article-1/arxiv-submission/).
 
-**Parts II and III are unpublished drafts** at this stage (`articles/article-2/`,
-`articles/article-3/`); the Lean formalization in `lean/` already covers Part II's counting layer.
+**Part II.** Jan Snellman, *Hilbert functions over the exterior algebra and $f$-vectors in higher
+rank II: Generalizing Linusson's count to sumsets of $f$-vectors.*
+
+- arXiv: [2610.14985](https://arxiv.org/abs/2610.14985) (math.CO), submitted 2026-10-10. The
+  submitted package is in [`articles/article-2/arxiv-submission/`](articles/article-2/arxiv-submission/).
+- LiTH-MAT-R: REPORT-NUMBER-PENDING. Part II went to arXiv first, so the report cites the arXiv
+  version rather than the other way round.
+
+**Part III**, *III: Lattice points of the Kozlov polytope*, is finished in draft and will be released
+the same way shortly; the version here (`articles/article-3/`) is the pre-release one, and its PDF
+still carries the proof-reading labels in the margin.
 
 ## Layout
 
@@ -43,21 +53,24 @@ preprint is in preparation — see [`articles/article-1/arxiv-submission/`](arti
 |---|---|
 | `articles/article-1/` | *I: Amata–Crupi monomial modules, Kozlov polytopes, and $r$-vectors of simplicial complexes.* The Org source, the exported LaTeX, and the built PDF. The `.org` is the source of truth; the `.tex` is generated from it. |
 | `articles/article-2/` | *II: Generalizing Linusson's count to sumsets of $f$-vectors.* `_latest`, the version prepared for arXiv: Org source, LaTeX and PDF; `arxiv-submission/`, the arXiv package (pdfLaTeX, with `anc/` holding the Lean development, the verification code and CSV tables of the counts); and `ARXIV-SUBMISSION-METADATA.md`, the form fields. |
-| `articles/article-3/` | *III: Lattice points of the Kozlov polytope, and a corrected Kruskal–Katona theorem.* Partial draft. |
+| `articles/article-3/` | *III: Lattice points of the Kozlov polytope.* `_latest`, the pre-release version: Org source, LaTeX and PDF, with the figures in `img/`. The `.tex` builds in place (`xelatex`, `biber`, `xelatex` twice). The margin carries two kinds of mark: a disc beside each numbered result says whether it is formalised in Lean (the legend is in §1), and the boxed labels are proof-reading aids that the released version drops. |
 | `lean/` | the Lean 4 + Mathlib formalization — see below |
 | `verification-code/` | every SageMath, Macaulay2 and Python script behind a computational claim, with the recorded output of the runs under `verification-code/runs/` |
-| `references/` | the BibTeX database; **`REFERENCE-CERTIFICATE.md`**, the certificate of existence for every citation in article 1 (see below); and `CITATIONS-TO-VERIFY.md`, the discharged worklist it grew from |
+| `references/` | the BibTeX database; the certificates of existence for every citation, one per part: **`REFERENCE-CERTIFICATE.md`** (Part I), **`REFERENCE-CERTIFICATE-article2.md`** and **`REFERENCE-CERTIFICATE-article3.md`** (see below); and `CITATIONS-TO-VERIFY.md`, the discharged worklist the first grew from |
 
-Article 1's §10, *Methods*, is the index into `verification-code/`: it states, claim by claim, what
-was checked, over what range, and by which script. Read that before reading the scripts.
+Each article's methods section (Part I §10, *Methods*; Part II §10, *Verification, tables, and open
+problems*; Part III §9, *Methods and verification*) is the index
+into `verification-code/`: it states, claim by claim, what was checked, over what range, and by which
+script. Read that before reading the scripts.
 
 ## The Lean formalization
 
-`lean/` is a standalone Lake project: **twenty-five files, about 9,200 lines, no `sorry`, no custom
-axioms.** It is organized thematically — `Spine/`, `Vertices/`, `Counting/` — rather than per
-article, since the spine serves Parts I and II alike; it formalizes three layers of the series, and
+`lean/` is a standalone Lake project: **sixty files, about 25,500 lines, no `sorry`, no custom
+axioms.** It is organized thematically rather than per article, since the spine serves every part;
 `lean/README.md` carries the declaration-by-declaration correspondence to the manuscripts' numbered
-statements. That file, not this one, is the authoritative record of what is and is not proved.
+statements. That file, not this one, is the authoritative record of what is and is not proved. In
+Part III the same record is printed in the margin: each numbered result carries a disc saying whether
+it is formalised fully, under a cited hypothesis, in part, or not at all.
 
 - **The combinatorial spine** (article 1, §§4–6 and §5.1): local LYM; the chain description of the
   Kozlov simplex; **Kozlov's theorem** itself; the sumset identity in its combinatorial form; the
@@ -67,6 +80,12 @@ statements. That file, not this one, is the authoritative record of what is and 
 - **The counting layer** (article 2, §§4–9): the two statistics and their joint-distribution matrix,
   Alexander duality and persymmetry, the chaining/transfer layer, the exact `δ = 0` degrees, the
   proper variant, and the constant-gap recurrence.
+- **Lattice points and symmetry** (article 3; `Lattice/`, `Symmetry/`, `Centroid/`, `Kupreyeva/`):
+  the lattice points of the Kozlov polytope and their dilates, the volume, the involution and the
+  centroids, the dilation limit of the centroid (in part), and the volume side of Kupreyeva's limit
+  (in part).
+- **Vertices and facets at every rank, and the module Kruskal–Katona theorem** (`Vertices/`,
+  `Facets/`, `AllOnes/`, `ModuleKK/`): material of Parts IV and V, which are in preparation.
 
 Two things are worth knowing before reading it.
 
@@ -93,9 +112,9 @@ lake exe cache get     # download Mathlib's prebuilt oleans -- minutes, not hour
 lake build
 ```
 
-A clean build ends with `Build completed successfully` and no `error:`. The only warnings are
-`if_pos`/`if_neg` deprecations under `ExteriorConvex/Vertices/` (`Count.lean`, `Simplex.lean`,
-`ExtremalMatrix.lean`).
+A clean build ends with `Build completed successfully` and no `error:`. The warnings are Mathlib
+deprecations (mostly `if_pos`/`if_neg`) and linter notes (unused `simp` arguments and variables);
+none is an error, and none concerns `sorry`. Last checked 2026-11-14: 8,865 jobs, 0 errors.
 
 To confirm there is nothing hidden in it:
 
@@ -128,11 +147,13 @@ in the articles, with the recorded output of each run under `verification-code/r
 that were run alongside (and often ahead of) the Lean formalization and the paper's proofs; the Lean
 development is the machine-checked core, and this is everything around it.
 
-**The map from claim to script is article 1's §10, *Methods*** — read that first: it states, claim by
-claim, what was checked, over what range, and by which script. `verification-code/oneoff/` holds the
-single-purpose scripts (each named for what it checks, e.g.
+**The map from claim to script is each article's *Methods* section** — read that first: it states,
+claim by claim, what was checked, over what range, and by which script. `verification-code/oneoff/`
+holds the single-purpose scripts (each named for what it checks, e.g.
 `close_gap3_explicit_functional.sage`), and the top level holds the reusable modules
-(`right_angle_simplex.py`, `minkowski_tensor.py`, …).
+(`right_angle_simplex.py`, `minkowski_tensor.py`, …). Since 2026-11-08 `verification-code/runs/` is
+organised into subdirectories, one per series of runs, with single runs left at the top;
+`verification-code/runs/README.md` says what is where.
 
 Each script is standalone and prints its own PASS/FAIL summary; none needs the others. What you need
 to run them:
@@ -153,19 +174,21 @@ The recorded outputs in `verification-code/runs/` let you compare against a know
 re-executing anything; a few of the heavier Sage jobs (face-lattice enumeration) are memory-hungry
 and are best run one at a time.
 
-## Reference certificate
+## Reference certificates
 
-**`references/REFERENCE-CERTIFICATE.md`** (written 2026-09-20) is the certificate itself: for
-every key article 1 cites, the full bibliographic entry, the claim it supports with a line number
+There is one certificate per part: **`references/REFERENCE-CERTIFICATE.md`** for Part I (written
+2026-09-20), **`REFERENCE-CERTIFICATE-article2.md`** for Part II (2026-10-08 to 10) and
+**`REFERENCE-CERTIFICATE-article3.md`** for Part III (2026-11-14). Each is the certificate itself:
+for every key the article cites, the full bibliographic entry, the claim it supports with a line number
 in the source, and either a verbatim quotation with a locator from a held copy or an explicit
 no-copy statement plus the registry verification done instead. The point is not bookkeeping. The
 manuscripts were written with substantial AI assistance, disclosed in their own Acknowledgements,
 and arXiv's policy treats hallucinated or fabricated references as grounds for a submission ban;
 so being able to show, plainly and checkably, that every reference is a real and locatable
-publication is part of the work rather than an afterthought. **The certificate ships with the
-arXiv submission as an ancillary file** — the generator (working home
-`code/make_arxiv_submission.py`) copies it into `articles/article-1/arxiv-submission/anc/` fresh
-each build. See `articles/article-1/arxiv-submission/README.md` for the arXiv-safe submission
+publication is part of the work rather than an afterthought. **Each certificate ships with its
+arXiv submission as an ancillary file**: the generators (working home
+`code/make_arxiv_submission.py`, `code/make_arxiv_submission_article2.py`) copy it into the
+package's `anc/` fresh at each build. See `articles/article-1/arxiv-submission/README.md` for the arXiv-safe submission
 (pdfLaTeX, inlined bibliography, no fonts to upload).
 
 `references/CITATIONS-TO-VERIFY.md` was the worklist the certificate grew from (the works cited
@@ -179,4 +202,5 @@ correspondence — is the `20-projects/exterior-convex/` subtree of a separate, 
 repository holds the publishable artefacts only, and is a copy rather than a move: material flows into
 it, not out of it.
 
-Literature PDFs are deliberately **not** included here, for copyright reasons.
+Literature PDFs are deliberately **not** included here, for copyright reasons. Nor is work towards
+later parts that is not yet written up (the fibres of the sum map, for instance).

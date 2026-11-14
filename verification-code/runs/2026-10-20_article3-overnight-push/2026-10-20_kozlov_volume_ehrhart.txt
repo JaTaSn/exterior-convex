@@ -1,0 +1,553 @@
+# runs/2026-10-20_kozlov_volume_ehrhart.txt -- output of code/oneoff/kozlov_volume_ehrhart.py (all sections), run 2026-10-20 21:59 on jts-pc
+==============================================================================
+A. The Kozlov simplex Koz(n)
+==============================================================================
+n | NV=prod_{k>=2}C(n,k) | Euclid vol | #L_n | |S_n| | |S_n|/#L_n | group Z^{n-1}/Lambda (invariant factors)
+2 | 1 | 1 | 2 | 2 | 1 | []
+3 | 3 | 3/2 | 5 | 5 | 1 | [3]
+4 | 24 | 4 | 20 | 16 | 4/5 | [2, 12]
+5 | 500 | 125/6 | 162 | 70 | 35/81 | [5, 10, 10]
+6 | 27000 | 225 | 1981 | 457 | 457/1981 | [15, 30, 60]
+7 | 3781575 | 84035/16 | 60993 | 4908 | 1636/20331 | [7, 7, 7, 105, 105]
+8 | 1376829440 | 2458624/9 | 3576524 | 95248 | 23812/894131 | [2, 28, 28, 56, 56, 280]
+9 | 1306613597184 | 162030456/5 | - | 3617645 | - | [3, 6, 18, 252, 252, 252, 252]
+
+Check |S_n| by Kruskal-Katona filter of L_n vs Linusson count:
+  n=2  KK-filter 2  Linusson 2
+  n=3  KK-filter 5  Linusson 5
+  n=4  KK-filter 16  Linusson 16
+  n=5  KK-filter 70  Linusson 70
+  n=6  KK-filter 457  Linusson 457
+  n=7  KK-filter 4908  Linusson 4908
+
+h*-vectors of Koz(n): (a) normaliz, (b) parallelepiped ascent DP, (c) s-Eulerian (Savage-Schuster, s=(C(n,2..n)), e0=0)
+n= 2  DP: [1]  sum=1  deg=0  SS(s)=[1] SS(rev s)=[1]  nmz=[1]  IDP(nmz)=True
+       palindromic=True  log-concave=True  h*_1=0 (=#L_n - n)
+n= 3  DP: [1, 2]  sum=3  deg=1  SS(s)=[1, 2] SS(rev s)=[1, 2]  nmz=[1, 2]  IDP(nmz)=True
+       palindromic=False  log-concave=True  h*_1=2 (=#L_n - n)
+n= 4  DP: [1, 16, 7]  sum=24  deg=2  SS(s)=[1, 16, 7] SS(rev s)=[1, 16, 7]  nmz=[1, 16, 7]  IDP(nmz)=True
+       palindromic=False  log-concave=True  h*_1=16 (=#L_n - n)
+n= 5  DP: [1, 157, 308, 34]  sum=500  deg=3  SS(s)=[1, 157, 308, 34] SS(rev s)=[1, 157, 308, 34]  nmz=[1, 157, 308, 34]  IDP(nmz)=True
+       palindromic=False  log-concave=True  h*_1=157 (=#L_n - n)
+n= 6  DP: [1, 1975, 14184, 10253, 587]  sum=27000  deg=4  SS(s)=[1, 1975, 14184, 10253, 587] SS(rev s)=[1, 1975, 14184, 10253, 587]  nmz=[1, 1975, 14184, 10253, 587]  IDP(nmz)=True
+       palindromic=False  log-concave=True  h*_1=1975 (=#L_n - n)
+n= 7  DP: [1, 60986, 1054938, 2043353, 607906, 14391]  sum=3781575  deg=5  nmz=[1, 60986, 1054938, 2043353, 607906, 14391]
+       palindromic=False  log-concave=True  h*_1=60986 (=#L_n - n)
+n= 8  DP: [1, 3576516, 143878949, 624510000, 523655643, 80268620, 939711]  sum=1376829440  deg=6
+       palindromic=False  log-concave=True  h*_1=3576516 (=#L_n - n)
+n= 9  DP: [1, 480854762, 41870765793, 351662335111, 622875997355, 267165344400, 22433202907, 125096855]  sum=1306613597184  deg=7
+       palindromic=False  log-concave=True  h*_1=480854762 (=#L_n - n)
+n=10  DP: [1, 138838264896, 25955418681655, 396284373741898, 1308767714368005, 1196526484479484, 297935194646869, 14957051142090, 44044675102]  sum=3240609120000000  deg=8
+       palindromic=False  log-concave=True  h*_1=138838264896 (=#L_n - n)
+n=11  DP: [1, 107979816509534, 39906270801670870, 1014165537150640835, 5560166952070884345, 9038982450752845069, 4682903792912578636, 700098621310086820, 20702686030708570, 28076706825320]  sum=21057062367552750000  deg=9
+       palindromic=False  log-concave=True  h*_1=107979816509534 (=#L_n - n)
+n=12  DP: [1, 168090910145669755, 131074205133765830522, 5560463482384169129324, 49203458352609541629830, 133327057635208436911082, 125869058827418363933912, 41116738418307749152700, 4007989029552641661713, 75658675536131139187, 55091594087261974]  sum=359291721808655032320000  deg=10
+       palindromic=False  log-concave=True  h*_1=168090910145669755 (=#L_n - n)
+
+Ehrhart polynomials L_{Koz(n)}(t) (transfer-matrix values, interpolated):
+  n=2  L(t) = 1 t^0 + 1 t^1   [L(0..3) = [1, 2, 3, 4]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(1, 1), Fraction(2, 1), Fraction(3, 1)]
+  n=3  L(t) = 1 t^0 + 5/2 t^1 + 3/2 t^2   [L(0..4) = [1, 5, 12, 22, 35]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(2, 1), Fraction(7, 1), Fraction(15, 1)]
+  n=4  L(t) = 1 t^0 + 6 t^1 + 9 t^2 + 4 t^3   [L(0..5) = [1, 20, 81, 208, 425, 756]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(7, 1), Fraction(44, 1), Fraction(135, 1)]
+  n=5  L(t) = 1 t^0 + 37/2 t^1 + 355/6 t^2 + 125/2 t^3 + 125/6 t^4   [L(0..6) = [1, 162, 1108, 3964, 10355, 22406, 42742]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(34, 1), Fraction(478, 1), Fraction(2207, 1)]
+  n=6  L(t) = 1 t^0 + 1/2 t^1 + 1033/4 t^2 + 765 t^3 + 2925/4 t^4 + 225 t^5   [L(0..7) = [1, 1981, 26055, 136888, 470695, 1262241, 2871841, 5812360]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(587, 1), Fraction(13775, 1), Fraction(88029, 1)]
+  n=7  L(t) = 1 t^0 + -594 t^1 + -5397/8 t^2 + 173313/16 t^3 + 414687/16 t^4 + 324135/16 t^5 + 84035/16 t^6   [L(0..8) = [1, 60993, 1481868, 11135611, 49572675, 162905931, 438477193, 1024305318, 2152315881]]
+        interior points of t*Koz(n), t=1..4: [Fraction(0, 1), Fraction(14391, 1), Fraction(708643, 1), Fraction(6701643, 1)]
+
+==============================================================================
+B. Staircase volume formula vs normaliz multiplicity
+==============================================================================
+Rank 2, Koz(n;0,d): D, NV(normaliz), NV(staircase), NV(rank-2 closed form), Euclid vol = NV/D!
+  n=2 d=0  D= 1  NV_nmz=2  NV_stair=2  closed=2  vol=2  OK
+  n=2 d=1  D= 2  NV_nmz=2  NV_stair=2  closed=2  vol=1  OK
+  n=2 d=2  D= 2  NV_nmz=2  NV_stair=2  closed=None  vol=1  OK
+  n=2 d=3  D= 2  NV_nmz=2  NV_stair=2  closed=None  vol=1  OK
+  n=3 d=0  D= 2  NV_nmz=12  NV_stair=12  closed=12  vol=6  OK
+  n=3 d=1  D= 3  NV_nmz=36  NV_stair=36  closed=36  vol=6  OK
+  n=3 d=2  D= 4  NV_nmz=54  NV_stair=54  closed=54  vol=9/4  OK
+  n=3 d=3  D= 4  NV_nmz=54  NV_stair=54  closed=None  vol=9/4  OK
+  n=3 d=4  D= 4  NV_nmz=54  NV_stair=54  closed=None  vol=9/4  OK
+  n=4 d=0  D= 3  NV_nmz=192  NV_stair=192  closed=192  vol=32  OK
+  n=4 d=1  D= 4  NV_nmz=1248  NV_stair=1248  closed=1248  vol=52  OK
+  n=4 d=2  D= 5  NV_nmz=6720  NV_stair=6720  closed=6720  vol=56  OK
+  n=4 d=3  D= 6  NV_nmz=11520  NV_stair=11520  closed=11520  vol=16  OK
+  n=4 d=4  D= 6  NV_nmz=11520  NV_stair=11520  closed=None  vol=16  OK
+  n=4 d=5  D= 6  NV_nmz=11520  NV_stair=11520  closed=None  vol=16  OK
+  n=5 d=0  D= 4  NV_nmz=8000  NV_stair=8000  closed=8000  vol=1000/3  OK
+  n=5 d=1  D= 5  NV_nmz=102500  NV_stair=102500  closed=102500  vol=5125/6  OK
+  n=5 d=2  D= 6  NV_nmz=1287500  NV_stair=1287500  closed=1287500  vol=64375/36  OK
+  n=5 d=3  D= 7  NV_nmz=9625000  NV_stair=9625000  closed=9625000  vol=34375/18  OK
+  n=5 d=4  D= 8  NV_nmz=17500000  NV_stair=17500000  closed=17500000  vol=15625/36  OK
+  n=5 d=5  D= 8  NV_nmz=17500000  NV_stair=17500000  closed=None  vol=15625/36  OK
+  n=5 d=6  D= 8  NV_nmz=17500000  NV_stair=17500000  closed=None  vol=15625/36  OK
+  n=6 d=0  D= 5  NV_nmz=864000  NV_stair=864000  closed=864000  vol=7200  OK
+  n=6 d=1  D= 6  NV_nmz=21222000  NV_stair=21222000  closed=21222000  vol=29475  OK
+  n=6 d=2  D= 7  NV_nmz=542052000  NV_stair=542052000  closed=542052000  vol=107550  OK
+  n=6 d=3  D= 8  NV_nmz=10342080000  NV_stair=10342080000  closed=10342080000  vol=256500  OK
+  n=6 d=4  D= 9  NV_nmz=97977600000  NV_stair=97977600000  closed=97977600000  vol=270000  OK
+  n=6 d=5  D=10  NV_nmz=183708000000  NV_stair=183708000000  closed=183708000000  vol=50625  OK
+  n=6 d=6  D=10  NV_nmz=183708000000  NV_stair=183708000000  closed=None  vol=50625  OK
+  n=6 d=7  D=10  NV_nmz=183708000000  NV_stair=183708000000  closed=None  vol=50625  OK
+  n=7 d=0  D= 6  NV_nmz=242020800  NV_stair=242020800  closed=242020800  vol=336140  OK
+  n=7 d=1  D= 7  NV_nmz=11329598700  NV_stair=11329598700  closed=11329598700  vol=8991745/4  OK
+  n=7 d=2  D= 8  NV_nmz=563674006350  NV_stair=563674006350  closed=563674006350  vol=894720645/64  OK
+  n=7 d=3  D= 9  NV_nmz=22927190057100  NV_stair=22927190057100  closed=22927190057100  vol=2021798065/32  OK
+  n=7 d=4  D=10  NV_nmz=604698800895000  NV_stair=604698800895000  closed=604698800895000  vol=5332440925/32  OK
+  n=7 d=5  D=11  NV_nmz=6921349788622500  NV_stair=6921349788622500  closed=6921349788622500  vol=11097241925/64  OK
+  n=7 d=6  D=12  NV_nmz=13213485960097500  NV_stair=13213485960097500  closed=13213485960097500  vol=7061881225/256  OK
+  n=7 d=7  D=12  NV_nmz=13213485960097500  NV_stair=13213485960097500  closed=None  vol=7061881225/256  OK
+  n=7 d=8  D=12  NV_nmz=13213485960097500  NV_stair=13213485960097500  closed=None  vol=7061881225/256  OK
+
+Rank 3 and 4 samples:
+  n=3 d=[0, 0, 0]  D=2  NV_nmz=27  NV_stair=27  OK
+  n=3 d=[0, 0, 1]  D=3  NV_nmz=90  NV_stair=90  OK
+  n=3 d=[0, 1, 1]  D=3  NV_nmz=126  NV_stair=126  OK
+  n=3 d=[0, 1, 2]  D=4  NV_nmz=522  NV_stair=522  OK
+  n=3 d=[0, 1, 3]  D=5  NV_nmz=1080  NV_stair=1080  OK
+  n=3 d=[0, 2, 3]  D=5  NV_nmz=1080  NV_stair=1080  OK
+  n=3 d=[0, 2, 4]  D=6  NV_nmz=2430  NV_stair=2430  OK
+  n=3 d=[0, 1, 4]  D=5  NV_nmz=1080  NV_stair=1080  OK
+  n=3 d=[0, 3, 4]  D=5  NV_nmz=1080  NV_stair=1080  OK
+  n=3 d=[0, 0, 2]  D=4  NV_nmz=216  NV_stair=216  OK
+  n=3 d=[0, 2, 2]  D=4  NV_nmz=216  NV_stair=216  OK
+  n=4 d=[0, 0, 0]  D=3  NV_nmz=648  NV_stair=648  OK
+  n=4 d=[0, 0, 1]  D=4  NV_nmz=4224  NV_stair=4224  OK
+  n=4 d=[0, 1, 1]  D=4  NV_nmz=7104  NV_stair=7104  OK
+  n=4 d=[0, 1, 2]  D=5  NV_nmz=59040  NV_stair=59040  OK
+  n=4 d=[0, 1, 3]  D=6  NV_nmz=432000  NV_stair=432000  OK
+  n=4 d=[0, 2, 3]  D=6  NV_nmz=489600  NV_stair=489600  OK
+  n=4 d=[0, 2, 4]  D=7  NV_nmz=3790080  NV_stair=3790080  OK
+  n=4 d=[0, 1, 4]  D=7  NV_nmz=1048320  NV_stair=1048320  OK
+  n=4 d=[0, 3, 4]  D=7  NV_nmz=1048320  NV_stair=1048320  OK
+  n=4 d=[0, 0, 2]  D=5  NV_nmz=30720  NV_stair=30720  OK
+  n=4 d=[0, 2, 2]  D=5  NV_nmz=49920  NV_stair=49920  OK
+  n=5 d=[0, 0, 0]  D=4  NV_nmz=40500  NV_stair=40500  OK
+  n=5 d=[0, 0, 1]  D=5  NV_nmz=490000  NV_stair=490000  OK
+  n=5 d=[0, 1, 1]  D=5  NV_nmz=905000  NV_stair=905000  OK
+  n=5 d=[0, 1, 2]  D=6  NV_nmz=13902500  NV_stair=13902500  OK
+  n=5 d=[0, 1, 3]  D=7  NV_nmz=230387500  NV_stair=230387500  OK
+  n=5 d=[0, 2, 3]  D=7  NV_nmz=291200000  NV_stair=291200000  OK
+  n=5 d=[0, 2, 4]  D=8  NV_nmz=5132750000  NV_stair=5132750000  OK
+  n=5 d=[0, 1, 4]  D=8  NV_nmz=2404500000  NV_stair=2404500000  OK
+  n=5 d=[0, 3, 4]  D=8  NV_nmz=3017000000  NV_stair=3017000000  OK
+  n=5 d=[0, 0, 2]  D=6  NV_nmz=7600000  NV_stair=7600000  OK
+  n=5 d=[0, 2, 2]  D=6  NV_nmz=16150000  NV_stair=16150000  OK
+  n=4 d=[0, 1, 2, 3]  D=6  NV_nmz=3159360  NV_stair=3159360  OK
+  n=4 d=[0, 0, 1, 2]  D=5  NV_nmz=167040  NV_stair=167040  OK
+  n=3 d=[0, 1, 2, 3]  D=5  NV_nmz=9360  NV_stair=9360  OK
+  n=4 d=[0, 2, 3, 5]  D=8  NV_nmz=314173440  NV_stair=314173440  OK
+  n=6 d=[0, 1, 2]  D=7  NV_nmz=7880166000  NV_stair=7880166000  OK
+  n=6 d=[0, 2, 3]  D=8  NV_nmz=348691392000  NV_stair=348691392000  OK
+
+General leg vectors c = (1, c_1, c_2..c_n):
+  c=(1, 3, 3, 1) (binomial n=3) d=[0, 1]  NV_nmz=36  NV_stair=36  OK
+  c=(1, 3, 3, 1) (binomial n=3) d=[0, 2]  NV_nmz=54  NV_stair=54  OK
+  c=(1, 3, 3, 1) (binomial n=3) d=[0, 1, 2]  NV_nmz=522  NV_stair=522  OK
+  c=(1, 3, 3, 1) (binomial n=3) d=[0, 0, 1]  NV_nmz=90  NV_stair=90  OK
+  c=(1, 2, 5, 7, 4, 1) (log-concave) d=[0, 1]  NV_nmz=19600  NV_stair=19600  OK
+  c=(1, 2, 5, 7, 4, 1) (log-concave) d=[0, 2]  NV_nmz=160300  NV_stair=160300  OK
+  c=(1, 2, 5, 7, 4, 1) (log-concave) d=[0, 1, 2]  NV_nmz=1743700  NV_stair=1743700  OK
+  c=(1, 2, 5, 7, 4, 1) (log-concave) d=[0, 0, 1]  NV_nmz=102200  NV_stair=102200  OK
+  c=(1, 1, 2, 3, 3, 2) (log-concave) d=[0, 1]  NV_nmz=2880  NV_stair=2880  OK
+  c=(1, 1, 2, 3, 3, 2) (log-concave) d=[0, 2]  NV_nmz=12960  NV_stair=12960  OK
+  c=(1, 1, 2, 3, 3, 2) (log-concave) d=[0, 1, 2]  NV_nmz=145800  NV_stair=145800  OK
+  c=(1, 1, 2, 3, 3, 2) (log-concave) d=[0, 0, 1]  NV_nmz=19440  NV_stair=19440  OK
+  c=(1, 4, 1, 1, 1, 1) (constant (log-concave)) d=[0, 1]  NV_nmz=30  NV_stair=30  OK
+  c=(1, 4, 1, 1, 1, 1) (constant (log-concave)) d=[0, 2]  NV_nmz=50  NV_stair=50  OK
+  c=(1, 4, 1, 1, 1, 1) (constant (log-concave)) d=[0, 1, 2]  NV_nmz=590  NV_stair=590  OK
+  c=(1, 4, 1, 1, 1, 1) (constant (log-concave)) d=[0, 0, 1]  NV_nmz=210  NV_stair=210  OK
+  c=(1, 2, 1, 1, 2) (NOT log-concave: (c2,c3,c4)=(1,1,2)) d=[0, 1]  NV_nmz=48  NV_stair=36  DIFFERS
+  c=(1, 2, 1, 1, 2) (NOT log-concave: (c2,c3,c4)=(1,1,2)) d=[0, 2]  NV_nmz=60  NV_stair=60  OK
+  c=(1, 2, 1, 1, 2) (NOT log-concave: (c2,c3,c4)=(1,1,2)) d=[0, 1, 2]  NV_nmz=880  NV_stair=580  DIFFERS
+  c=(1, 2, 1, 1, 2) (NOT log-concave: (c2,c3,c4)=(1,1,2)) d=[0, 0, 1]  NV_nmz=240  NV_stair=192  DIFFERS
+  c=(1, 2, 1, 3, 1, 3) (NOT log-concave) d=[0, 1]  NV_nmz=1500  NV_stair=540  DIFFERS
+  c=(1, 2, 1, 3, 1, 3) (NOT log-concave) d=[0, 2]  NV_nmz=1350  NV_stair=1350  OK
+  c=(1, 2, 1, 3, 1, 3) (NOT log-concave) d=[0, 1, 2]  NV_nmz=78930  NV_stair=21330  DIFFERS
+  c=(1, 2, 1, 3, 1, 3) (NOT log-concave) d=[0, 0, 1]  NV_nmz=10770  NV_stair=4050  DIFFERS
+  c=(1, 5, 1, 2, 5) (NOT log-concave (log-convex)) d=[0, 1]  NV_nmz=390  NV_stair=360  DIFFERS
+  c=(1, 5, 1, 2, 5) (NOT log-concave (log-convex)) d=[0, 2]  NV_nmz=1200  NV_stair=1200  OK
+  c=(1, 5, 1, 2, 5) (NOT log-concave (log-convex)) d=[0, 1, 2]  NV_nmz=13700  NV_stair=12200  DIFFERS
+  c=(1, 5, 1, 2, 5) (NOT log-concave (log-convex)) d=[0, 0, 1]  NV_nmz=2280  NV_stair=2160  DIFFERS
+
+==============================================================================
+C. Lattice-point additivity and the chained decomposition
+   #lattice pts (normaliz) = |L_n + shift L_n + ...| (sumset) = #chained L_n-tuples
+==============================================================================
+  n=2 d=[0, 0]        #lattice(nmz)=3         sumset=3         chained=3        OK
+  n=2 d=[0, 1]        #lattice(nmz)=4         sumset=4         chained=4        OK
+  n=2 d=[0, 2]        #lattice(nmz)=4         sumset=4         chained=4        OK
+  n=3 d=[0, 0]        #lattice(nmz)=12        sumset=12        chained=12       OK
+  n=3 d=[0, 1]        #lattice(nmz)=22        sumset=22        chained=22       OK
+  n=3 d=[0, 2]        #lattice(nmz)=25        sumset=25        chained=25       OK
+  n=3 d=[0, 3]        #lattice(nmz)=25        sumset=25        chained=25       OK
+  n=4 d=[0, 0]        #lattice(nmz)=81        sumset=81        chained=81       OK
+  n=4 d=[0, 1]        #lattice(nmz)=214       sumset=214       chained=214      OK
+  n=4 d=[0, 2]        #lattice(nmz)=386       sumset=386       chained=386      OK
+  n=4 d=[0, 3]        #lattice(nmz)=400       sumset=400       chained=400      OK
+  n=4 d=[0, 4]        #lattice(nmz)=400       sumset=400       chained=400      OK
+  n=5 d=[0, 0]        #lattice(nmz)=1108      sumset=1108      chained=1108     OK
+  n=5 d=[0, 1]        #lattice(nmz)=4484      sumset=4484      chained=4484     OK
+  n=5 d=[0, 2]        #lattice(nmz)=14214     sumset=14214     chained=14214    OK
+  n=5 d=[0, 3]        #lattice(nmz)=26119     sumset=26119     chained=26119    OK
+  n=5 d=[0, 4]        #lattice(nmz)=26244     sumset=26244     chained=26244    OK
+  n=5 d=[0, 5]        #lattice(nmz)=26244     sumset=26244     chained=26244    OK
+  n=6 d=[0, 0]        #lattice(nmz)=26055     sumset=26055     chained=26055    OK
+  n=6 d=[0, 1]        #lattice(nmz)=154405    sumset=154405    chained=154405   OK
+  n=6 d=[0, 2]        #lattice(nmz)=744575    sumset=744575    chained=744575   OK
+  n=6 d=[0, 3]        #lattice(nmz)=2344455   sumset=2344455   chained=2344455  OK
+  n=6 d=[0, 4]        #lattice(nmz)=3922820   sumset=3922820   chained=3922820  OK
+  n=6 d=[0, 5]        #lattice(nmz)=3924361   sumset=3924361   chained=3924361  OK
+  n=6 d=[0, 6]        #lattice(nmz)=3924361   sumset=3924361   chained=3924361  OK
+  n=3 d=[0, 0, 0]     #lattice(nmz)=22        sumset=22        chained=22       OK
+  n=3 d=[0, 0, 1]     #lattice(nmz)=45        sumset=45        chained=45       OK
+  n=3 d=[0, 1, 1]     #lattice(nmz)=51        sumset=51        chained=51       OK
+  n=3 d=[0, 1, 2]     #lattice(nmz)=95        sumset=95        chained=95       OK
+  n=3 d=[0, 1, 3]     #lattice(nmz)=110       sumset=110       chained=110      OK
+  n=3 d=[0, 2, 3]     #lattice(nmz)=110       sumset=110       chained=110      OK
+  n=3 d=[0, 2, 4]     #lattice(nmz)=125       sumset=125       chained=125      OK
+  n=4 d=[0, 0, 0]     #lattice(nmz)=208       sumset=208       chained=208      OK
+  n=4 d=[0, 0, 1]     #lattice(nmz)=588       sumset=588       chained=588      OK
+  n=4 d=[0, 1, 1]     #lattice(nmz)=750       sumset=750       chained=750      OK
+  n=4 d=[0, 1, 2]     #lattice(nmz)=2058      sumset=2058      chained=2058     OK
+  n=4 d=[0, 1, 3]     #lattice(nmz)=4000      sumset=4000      chained=4000     OK
+  n=4 d=[0, 2, 3]     #lattice(nmz)=4112      sumset=4112      chained=4112     OK
+  n=4 d=[0, 2, 4]     #lattice(nmz)=7440      sumset=7440      chained=7440     OK
+  n=5 d=[0, 0, 0]     #lattice(nmz)=3964      sumset=3964      chained=3964     OK
+  n=5 d=[0, 0, 1]     #lattice(nmz)=16501     sumset=16501     chained=16501    OK
+  n=5 d=[0, 1, 1]     #lattice(nmz)=22591     sumset=22591     chained=22591    OK
+  n=5 d=[0, 1, 2]     #lattice(nmz)=95358     sumset=95358     chained=95358    OK
+  n=5 d=[0, 1, 3]     #lattice(nmz)=339298    sumset=None      chained=339298   OK
+  n=5 d=[0, 2, 3]     #lattice(nmz)=363373    sumset=None      chained=363373   OK
+  n=5 d=[0, 2, 4]     #lattice(nmz)=1196308   sumset=None      chained=1196308  OK
+  n=4 d=[0, 1, 2, 3]  #lattice(nmz)=19332     sumset=19332     chained=19332    OK
+  n=3 d=[0, 0, 1, 2]  #lattice(nmz)=189       sumset=189       chained=189      OK
+  n=4 d=[0, 0, 1, 1]  #lattice(nmz)=1833      sumset=1833      chained=1833     OK
+
+Non-log-concave leg vector: does additivity fail?
+  c=[1, 2, 1, 1, 2] d=[0, 1]  #lattice=21  sumset=21  chained=20
+  c=[1, 2, 1, 1, 2] d=[0, 2]  #lattice=23  sumset=23  chained=23
+  c=[1, 2, 1, 1, 2] d=[0, 0, 1]  #lattice=54  sumset=54  chained=51
+  c=[1, 2, 1, 3, 1, 3] d=[0, 1]  #lattice=101  sumset=70  chained=59
+  c=[1, 2, 1, 3, 1, 3] d=[0, 2]  #lattice=68  sumset=68  chained=68
+  c=[1, 2, 1, 3, 1, 3] d=[0, 0, 1]  #lattice=384  sumset=270  chained=213
+  c=[1, 5, 1, 2, 5] d=[0, 1]  #lattice=85  sumset=85  chained=84
+  c=[1, 5, 1, 2, 5] d=[0, 2]  #lattice=114  sumset=114  chained=114
+  c=[1, 5, 1, 2, 5] d=[0, 0, 1]  #lattice=282  sumset=282  chained=279
+
+==============================================================================
+D. Ehrhart polynomials and h*-vectors of Koz(n;d)
+   (transfer-matrix values; normaliz check when NV <= 30000000)
+==============================================================================
+  n=2 d=[0, 0]     D= 1 NV=2            h*=[1, 1]
+        L(t) coeffs: ['1', '2']
+        deg h*=1 codegree=1 palin=True unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(1, 1), Fraction(3, 1), Fraction(5, 1)] nmz:OK IDP:True
+  n=2 d=[0, 1]     D= 2 NV=2            h*=[1, 1]
+        L(t) coeffs: ['1', '2', '1']
+        deg h*=1 codegree=2 palin=True unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(1, 1), Fraction(4, 1)] nmz:OK IDP:True
+  n=2 d=[0, 2]     D= 2 NV=2            h*=[1, 1]
+        L(t) coeffs: ['1', '2', '1']
+        deg h*=1 codegree=2 palin=True unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(1, 1), Fraction(4, 1)] nmz:OK IDP:True
+  n=3 d=[0, 0]     D= 2 NV=12           h*=[1, 9, 2]
+        L(t) coeffs: ['1', '5', '6']
+        deg h*=2 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(2, 1), Fraction(15, 1), Fraction(40, 1)] nmz:OK IDP:True
+  n=3 d=[0, 1]     D= 3 NV=36           h*=[1, 18, 17]
+        L(t) coeffs: ['1', '5', '10', '6']
+        deg h*=2 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(17, 1), Fraction(86, 1)] nmz:OK IDP:True
+  n=3 d=[0, 2]     D= 4 NV=54           h*=[1, 20, 29, 4]
+        L(t) coeffs: ['1', '5', '37/4', '15/2', '9/4']
+        deg h*=3 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(4, 1), Fraction(49, 1)] nmz:OK IDP:True
+  n=3 d=[0, 3]     D= 4 NV=54           h*=[1, 20, 29, 4]
+        L(t) coeffs: ['1', '5', '37/4', '15/2', '9/4']
+        deg h*=3 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(4, 1), Fraction(49, 1)] nmz:OK IDP:True
+  n=4 d=[0, 0]     D= 3 NV=192          h*=[1, 77, 107, 7]
+        L(t) coeffs: ['1', '12', '36', '32']
+        deg h*=3 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(7, 1), Fraction(135, 1), Fraction(575, 1)] nmz:OK IDP:True
+  n=4 d=[0, 1]     D= 4 NV=1248         h*=[1, 209, 773, 265]
+        L(t) coeffs: ['1', '12', '54', '95', '52']
+        deg h*=3 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(265, 1), Fraction(2098, 1)] nmz:OK IDP:True
+  n=4 d=[0, 2]     D= 5 NV=6720         h*=[1, 380, 2940, 3008, 391]
+        L(t) coeffs: ['1', '12', '54', '125', '138', '56']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(391, 1), Fraction(5354, 1)] nmz:OK IDP:True
+  n=4 d=[0, 3]     D= 6 NV=11520        h*=[1, 393, 3782, 5702, 1593, 49]
+        L(t) coeffs: ['1', '12', '54', '116', '129', '72', '16']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(49, 1), Fraction(1936, 1)] nmz:OK IDP:True
+  n=4 d=[0, 4]     D= 6 NV=11520        h*=[1, 393, 3782, 5702, 1593, 49]
+        L(t) coeffs: ['1', '12', '54', '116', '129', '72', '16']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(49, 1), Fraction(1936, 1)] nmz:OK IDP:True
+  n=5 d=[0, 0]     D= 4 NV=8000         h*=[1, 1103, 4825, 2037, 34]
+        L(t) coeffs: ['1', '37', '710/3', '500', '1000/3']
+        deg h*=4 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(34, 1), Fraction(2207, 1), Fraction(15520, 1)] nmz:OK IDP:True
+  n=5 d=[0, 1]     D= 5 NV=102500       h*=[1, 4478, 42915, 48482, 6624]
+        L(t) coeffs: ['1', '37', '4267/12', '8105/6', '22625/12', '5125/6']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(6624, 1), Fraction(88226, 1)] nmz:OK IDP:True
+  n=5 d=[0, 2]     D= 6 NV=1287500      h*=[1, 14207, 272357, 676477, 306892, 17566]
+        L(t) coeffs: ['1', '37', '14491/36', '12295/6', '88475/18', '30125/6', '64375/36']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(17566, 1), Fraction(429854, 1)] nmz:OK
+  n=5 d=[0, 3]     D= 7 NV=9625000      h*=[1, 26111, 864840, 3921060, 3931655, 858589, 22744]
+        L(t) coeffs: ['1', '37', '15281/36', '38905/18', '213575/36', '161125/18', '120625/18', '34375/18']
+        deg h*=6 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(22744, 1), Fraction(1040541, 1)] nmz:OK
+  n=5 d=[0, 4]     D= 8 NV=17500000     h*=[1, 26235, 991504, 5609020, 7797895, 2856109, 218080, 1156]
+        L(t) coeffs: ['1', '37', '5527/12', '13885/6', '210775/36', '24500/3', '229375/36', '15625/6', '15625/36']
+        deg h*=7 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(1156, 1), Fraction(228484, 1)] nmz:OK
+  n=5 d=[0, 5]     D= 8 NV=17500000     h*=[1, 26235, 991504, 5609020, 7797895, 2856109, 218080, 1156]
+        L(t) coeffs: ['1', '37', '5527/12', '13885/6', '210775/36', '24500/3', '229375/36', '15625/6', '15625/36']
+        deg h*=7 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(1156, 1), Fraction(228484, 1)] nmz:OK
+  n=6 d=[0, 0]     D= 5 NV=864000       h*=[1, 26049, 314380, 438476, 84507, 587]
+        L(t) coeffs: ['1', '1', '1033', '6120', '11700', '7200']
+        deg h*=5 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(587, 1), Fraction(88029, 1), Fraction(957845, 1)] nmz:OK IDP:True
+  n=6 d=[0, 1]     D= 6 NV=21222000     h*=[1, 154398, 3765932, 10987556, 5875995, 438118]
+        L(t) coeffs: ['1', '1', '2531/4', '11089', '188375/4', '132225/2', '29475']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(438118, 1), Fraction(8942821, 1)] nmz:OK
+  n=6 d=[0, 2]     D= 7 NV=542052000    h*=[1, 744567, 35979081, 201419800, 239387079, 62343777, 2177695]
+        L(t) coeffs: ['1', '1', '851/2', '7554', '326819/4', '514365/2', '1160625/4', '107550']
+        deg h*=6 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(2177695, 1), Fraction(79765337, 1)] 
+  n=6 d=[0, 3]     D= 8 NV=10342080000  h*=[1, 2344446, 214267971, 2113485328, 4742749173, 2853832092, 408191947, 7209042]
+        L(t) coeffs: ['1', '1', '1363/4', '13363/2', '246793/4', '1465155/4', '1707375/2', '3197025/4', '256500']
+        deg h*=7 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(7209042, 1), Fraction(473073325, 1)] 
+  n=6 d=[0, 4]     D= 9 NV=97977600000  h*=[1, 3922810, 594670132, 9337336174, 34802809030, 38916405844, 13204264030, 1107736948, 10455031]
+        L(t) coeffs: ['1', '1', '-411/4', '57277/8', '577119/8', '2642045/8', '7212975/8', '5415975/4', '987750', '270000']  NEGATIVE at [2]
+        deg h*=8 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(10455031, 1), Fraction(1212287258, 1)] 
+  n=6 d=[0, 5]     D=10 NV=183708000000 h*=[1, 3924350, 635695109, 11486670959, 52122160181, 76051218269, 37541226935, 5680799261, 185960366, 344569]
+        L(t) coeffs: ['1', '1', '2067/4', '7153/4', '1102729/16', '1585215/4', '7705125/8', '1235025', '14063625/16', '658125/2', '50625']
+        deg h*=9 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(344569, 1), Fraction(189750625, 1)] 
+  n=6 d=[0, 6]     D=10 NV=183708000000 h*=[1, 3924350, 635695109, 11486670959, 52122160181, 76051218269, 37541226935, 5680799261, 185960366, 344569]
+        L(t) coeffs: ['1', '1', '2067/4', '7153/4', '1102729/16', '1585215/4', '7705125/8', '1235025', '14063625/16', '658125/2', '50625']
+        deg h*=9 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(344569, 1), Fraction(189750625, 1)] 
+  n=7 d=[0, 1]     D= 7 NV=11329598700  h*=[1, 14023950, 715179771, 4127502841, 5050730631, 1369546875, 52614631]
+        L(t) coeffs: ['1', '-1188', '-58733/4', '75943/8', '1297275', '38045903/8', '22917545/4', '8991745/4']  NEGATIVE at [1, 2]
+        deg h*=6 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(52614631, 1), Fraction(1790463923, 1)] 
+  n=7 d=[0, 2]     D= 8 NV=563674006350 h*=[1, 113034238, 11124436682, 112953915958, 258225409283, 157832969527, 22997945770, 426294891]
+        L(t) coeffs: ['1', '-1188', '-1171255/48', '-1960469/8', '24935953/64', '234337257/16', '4048501373/96', '673876665/16', '894720645/64']  NEGATIVE at [1, 2, 3]
+        deg h*=7 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(426294891, 1), Fraction(26834599789, 1)] 
+  n=3 d=[0, 0, 1]  D= 3 NV=90           h*=[1, 41, 48]
+        L(t) coeffs: ['1', '15/2', '43/2', '15']
+        deg h*=2 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(48, 1), Fraction(233, 1)] nmz:OK IDP:True
+  n=3 d=[0, 1, 1]  D= 3 NV=126          h*=[1, 47, 72, 6]
+        L(t) coeffs: ['1', '15/2', '43/2', '21']
+        deg h*=3 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(6, 1), Fraction(96, 1), Fraction(395, 1)] nmz:OK IDP:True
+  n=3 d=[0, 1, 2]  D= 4 NV=522          h*=[1, 90, 318, 113]
+        L(t) coeffs: ['1', '15/2', '99/4', '40', '87/4']
+        deg h*=3 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(113, 1), Fraction(883, 1)] nmz:OK IDP:True
+  n=3 d=[0, 1, 3]  D= 5 NV=1080         h*=[1, 104, 543, 398, 34]
+        L(t) coeffs: ['1', '15/2', '24', '77/2', '30', '9']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(34, 1), Fraction(602, 1)] nmz:OK IDP:True
+  n=3 d=[0, 2, 3]  D= 5 NV=1080         h*=[1, 104, 543, 398, 34]
+        L(t) coeffs: ['1', '15/2', '24', '77/2', '30', '9']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(34, 1), Fraction(602, 1)] nmz:OK IDP:True
+  n=3 d=[0, 2, 4]  D= 6 NV=2430         h*=[1, 118, 874, 1142, 287, 8]
+        L(t) coeffs: ['1', '15/2', '93/4', '305/8', '279/8', '135/8', '27/8']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(8, 1), Fraction(343, 1)] nmz:OK IDP:True
+  n=4 d=[0, 0, 1]  D= 4 NV=4224         h*=[1, 583, 2599, 1041]
+        L(t) coeffs: ['1', '18', '117', '276', '176']
+        deg h*=3 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(1041, 1), Fraction(7804, 1)] nmz:OK IDP:True
+  n=4 d=[0, 1, 1]  D= 4 NV=7104         h*=[1, 745, 4045, 2235, 78]
+        L(t) coeffs: ['1', '18', '117', '318', '296']
+        deg h*=4 codegree=1 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(78, 1), Fraction(2625, 1), Fraction(16390, 1)] nmz:OK IDP:True
+  n=4 d=[0, 1, 2]  D= 5 NV=59040        h*=[1, 2052, 22428, 29456, 5103]
+        L(t) coeffs: ['1', '18', '135', '519', '893', '492']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(5103, 1), Fraction(60074, 1)] nmz:OK IDP:True
+  n=4 d=[0, 1, 3]  D= 6 NV=432000       h*=[1, 3993, 81686, 222350, 115305, 8665]
+        L(t) coeffs: ['1', '18', '135', '540', '1264', '1442', '600']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(8665, 1), Fraction(175960, 1)] nmz:OK IDP:True
+  n=4 d=[0, 2, 3]  D= 6 NV=489600       h*=[1, 4105, 87430, 248990, 137465, 11609]
+        L(t) coeffs: ['1', '18', '135', '540', '1240', '1498', '680']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(11609, 1), Fraction(218728, 1)] nmz:OK IDP:True
+  n=4 d=[0, 2, 4]  D= 7 NV=3790080      h*=[1, 7432, 276589, 1415528, 1635227, 437360, 17943]
+        L(t) coeffs: ['1', '18', '135', '570', '1476', '2380', '2108', '752']
+        deg h*=6 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(17943, 1), Fraction(580904, 1)] nmz:OK
+  n=5 d=[0, 1, 2]  D= 6 NV=13902500     h*=[1, 95351, 2356562, 7107418, 4010319, 332849]
+        L(t) coeffs: ['1', '111/2', '33703/36', '7436', '246895/9', '80375/2', '695125/36']
+        deg h*=5 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(332849, 1), Fraction(6340262, 1)] nmz:OK
+  n=5 d=[0, 2, 4]  D= 8 NV=5132750000   h*=[1, 1196299, 103992596, 1023206640, 2330326465, 1448072799, 221213916, 4741284]
+        L(t) coeffs: ['1', '111/2', '39173/36', '252739/24', '4361795/72', '633875/3', '14730625/36', '9030625/24', '9165625/72']
+        deg h*=7 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(4741284, 1), Fraction(263885472, 1)] 
+  n=3 d=[0, 1, 2, 3] D= 5 NV=9360         h*=[1, 403, 3717, 4499, 740]
+        L(t) coeffs: ['1', '10', '183/4', '233/2', '631/4', '78']
+        deg h*=4 codegree=2 palin=False unimodal=True logconc=True  interior(t=1,2,3)=[Fraction(0, 1), Fraction(740, 1), Fraction(8939, 1)] nmz:OK IDP:True
+
+==============================================================================
+E. Discrete volume: |FF| vs #lattice points vs NV/D!
+==============================================================================
+Rank 1: n, |S_n|, #L_n, NV, vol=NV/(n-1)!, fill=|S_n|/#L_n
+  n=2  |S|=2      #L=2        NV=1            vol=1              fill=1.000000
+  n=3  |S|=5      #L=5        NV=3            vol=3/2            fill=1.000000
+  n=4  |S|=16     #L=20       NV=24           vol=4              fill=0.800000
+  n=5  |S|=70     #L=162      NV=500          vol=125/6          fill=0.432099
+  n=6  |S|=457    #L=1981     NV=27000        vol=225            fill=0.230692
+  n=7  |S|=4908   #L=60993    NV=3781575      vol=84035/16       fill=0.080468
+  n=8  |S|=95248  #L=3576524  NV=1376829440   vol=2458624/9      fill=0.026631
+
+Rank 2, Koz(n;0,d): |FF|, #lattice, Euclid vol, fill = |FF|/#lattice
+  n=2 d=0  D= 1  |FF|=3          #lat=3          vol=2                      fill=1.000000
+  n=2 d=1  D= 2  |FF|=4          #lat=4          vol=1                      fill=1.000000
+  n=2 d=2  D= 2  |FF|=4          #lat=4          vol=1                      fill=1.000000
+  n=3 d=0  D= 2  |FF|=12         #lat=12         vol=6                      fill=1.000000
+  n=3 d=1  D= 3  |FF|=22         #lat=22         vol=6                      fill=1.000000
+  n=3 d=2  D= 4  |FF|=25         #lat=25         vol=9/4                    fill=1.000000
+  n=3 d=3  D= 4  |FF|=25         #lat=25         vol=9/4                    fill=1.000000
+  n=4 d=0  D= 3  |FF|=69         #lat=81         vol=32                     fill=0.851852
+  n=4 d=1  D= 4  |FF|=162        #lat=214        vol=52                     fill=0.757009
+  n=4 d=2  D= 5  |FF|=246        #lat=386        vol=56                     fill=0.637306
+  n=4 d=3  D= 6  |FF|=256        #lat=400        vol=16                     fill=0.640000
+  n=4 d=4  D= 6  |FF|=256        #lat=400        vol=16                     fill=0.640000
+  n=5 d=0  D= 4  |FF|=627        #lat=1108       vol=1000/3                 fill=0.565884
+  n=5 d=1  D= 5  |FF|=1858       #lat=4484       vol=5125/6                 fill=0.414362
+  n=5 d=2  D= 6  |FF|=3805       #lat=14214      vol=64375/36               fill=0.267694
+  n=5 d=3  D= 7  |FF|=4857       #lat=26119      vol=34375/18               fill=0.185957
+  n=5 d=4  D= 8  |FF|=4900       #lat=26244      vol=15625/36               fill=0.186709
+  n=5 d=5  D= 8  |FF|=4900       #lat=26244      vol=15625/36               fill=0.186709
+  n=6 d=0  D= 5  |FF|=9904       #lat=26055      vol=7200                   fill=0.380119
+  n=6 d=1  D= 6  |FF|=38232      #lat=154405     vol=29475                  fill=0.247609
+  n=6 d=2  D= 7  |FF|=104870     #lat=744575     vol=107550                 fill=0.140845
+  n=6 d=3  D= 8  |FF|=183337     #lat=2344455    vol=256500                 fill=0.078200
+  n=6 d=4  D= 9  |FF|=208582     #lat=3922820    vol=270000                 fill=0.053171
+  n=6 d=5  D=10  |FF|=208849     #lat=3924361    vol=50625                  fill=0.053219
+  n=6 d=6  D=10  |FF|=208849     #lat=3924361    vol=50625                  fill=0.053219
+  n=7 d=0  D= 6  |FF|=296289     #lat=1481868    vol=336140                 fill=0.199943
+  n=7 d=1  D= 7  |FF|=1571774    #lat=14023958   vol=8991745/4              fill=0.112078
+  n=7 d=2  D= 8  |FF|=6010997    #lat=113034247  vol=894720645/64           fill=0.053179
+  n=7 d=3  D= 9  |FF|=14805480   #lat=644929625  vol=2021798065/32          fill=0.022957
+  n=7 d=4  D=10  |FF|=22617265   #lat=2193708115 vol=5332440925/32          fill=0.010310
+  n=7 d=5  D=11  |FF|=24085802   #lat=3720097147 vol=11097241925/64         fill=0.006475
+  n=7 d=6  D=12  |FF|=24088464   #lat=3720146049 vol=7061881225/256         fill=0.006475
+  n=7 d=7  D=12  |FF|=24088464   #lat=3720146049 vol=7061881225/256         fill=0.006475
+
+Rank 3 samples:
+  n=3 d=[0, 0, 0]      |FF|=22           #lat=22           fill=1.000000
+  n=3 d=[0, 1, 2]      |FF|=95           #lat=95           fill=1.000000
+  n=3 d=[0, 2, 4]      |FF|=125          #lat=125          fill=1.000000
+  n=3 d=[0, 1, 3]      |FF|=110          #lat=110          fill=1.000000
+  n=3 d=[0, 2, 4]      |FF|=125          #lat=125          fill=1.000000
+  n=4 d=[0, 0, 0]      |FF|=184          #lat=208          fill=0.884615
+  n=4 d=[0, 1, 2]      |FF|=1478         #lat=2058         fill=0.718173
+  n=4 d=[0, 2, 4]      |FF|=3776         #lat=7440         fill=0.507527
+  n=4 d=[0, 1, 3]      |FF|=2432         #lat=4000         fill=0.608000
+  n=4 d=[0, 3, 6]      |FF|=4096         #lat=8000         fill=0.512000
+  n=5 d=[0, 0, 0]      |FF|=2592         #lat=3964         fill=0.653885
+  n=5 d=[0, 1, 2]      |FF|=37181        #lat=95358        fill=0.389910
+  n=5 d=[0, 2, 4]      |FF|=199805       #lat=1196308      fill=0.167018
+  n=5 d=[0, 1, 3]      |FF|=87165        #lat=339298       fill=0.256898
+  n=5 d=[0, 4, 8]      |FF|=343000       #lat=4251528      fill=0.080677
+  n=6 d=[0, 0, 0]      |FF|=67448        #lat=136888       fill=0.492724
+  n=6 d=[0, 1, 2]      |FF|=1816426      #lat=7262996      fill=0.250093
+  n=6 d=[0, 2, 4]      |FF|=20596002     #lat=235541220    fill=0.087441
+  n=6 d=[0, 1, 3]      |FF|=6057349      #lat=40552365     fill=0.149371
+  n=6 d=[0, 5, 10]     |FF|=95443993     #lat=7774159141   fill=0.012277
+
+Zero shifts, rank r -> infinity: a(r)=|FF(n;0^r)|, e(r)=#lat(r Koz(n)), ratio
+  n=4  r=1:0.8000  r=2:0.8519  r=3:0.8846  r=5:0.9206  r=10:0.9557  r=20:0.9765  r=40:0.9879  r=80:0.9938
+  n=5  r=1:0.4321  r=2:0.5659  r=3:0.6539  r=5:0.7554  r=10:0.8596  r=20:0.9243  r=40:0.9606  r=80:0.9799
+  n=6  r=1:0.2307  r=2:0.3801  r=3:0.4927  r=5:0.6323  r=10:0.7841  r=20:0.8821  r=40:0.9383  r=80:0.9684
+
+Constant gap delta, rank r -> infinity: Perron roots lambda_FF(delta), lambda_L(delta);
+fill rate ~ C*(lambda_FF/lambda_L)^r
+  n=3 delta=1  lambda_FF=4.302776  lambda_L=4.302776  ratio=1.000000   (|S_n|=5, #L_n=5)
+  n=3 delta=2  lambda_FF=5.000000  lambda_L=5.000000  ratio=1.000000   (|S_n|=5, #L_n=5)
+  n=4 delta=1  lambda_FF=8.756591  lambda_L=9.327477  ratio=0.938795   (|S_n|=16, #L_n=20)
+  n=4 delta=2  lambda_FF=15.348469  lambda_L=19.273618  ratio=0.796346   (|S_n|=16, #L_n=20)
+  n=4 delta=3  lambda_FF=16.000000  lambda_L=20.000000  ratio=0.800000   (|S_n|=16, #L_n=20)
+  n=5 delta=1  lambda_FF=17.125143  lambda_L=19.246818  ratio=0.889765   (|S_n|=70, #L_n=162)
+  n=5 delta=2  lambda_FF=52.180431  lambda_L=83.825544  ratio=0.622488   (|S_n|=70, #L_n=162)
+  n=5 delta=3  lambda_FF=69.380227  lambda_L=161.224684  ratio=0.430333   (|S_n|=70, #L_n=162)
+  n=5 delta=4  lambda_FF=70.000000  lambda_L=162.000000  ratio=0.432099   (|S_n|=70, #L_n=162)
+  n=6 delta=1  lambda_FF=32.960292  lambda_L=36.976129  ratio=0.891394   (|S_n|=457, #L_n=1981)
+  n=6 delta=2  lambda_FF=186.717330  lambda_L=306.366552  ratio=0.609457   (|S_n|=457, #L_n=1981)
+  n=6 delta=3  lambda_FF=396.523367  lambda_L=1153.737891  ratio=0.343686   (|S_n|=457, #L_n=1981)
+  n=6 delta=4  lambda_FF=456.415006  lambda_L=1980.221804  ratio=0.230487   (|S_n|=457, #L_n=1981)
+  n=6 delta=5  lambda_FF=457.000000  lambda_L=1981.000000  ratio=0.230692   (|S_n|=457, #L_n=1981)
+
+==============================================================================
+X. Worked examples
+==============================================================================
+Koz(3; [0]): D=2  NV=3  vol=3/2
+   vertices (3): [(1, 3, 0, 0), (1, 3, 3, 0), (1, 3, 3, 1)]
+   L(t) = (1)t^0 + (5/2)t^1 + (3/2)t^2
+   L(0..3) = [1, 5, 12, 22]   h* = [1, 2]
+   negative Ehrhart coefficients at degrees: []
+   lattice points that are not f-vectors (0): []
+
+Koz(4; [0]): D=3  NV=24  vol=4
+   vertices (4): [(1, 4, 0, 0, 0), (1, 4, 6, 0, 0), (1, 4, 6, 4, 0), (1, 4, 6, 4, 1)]
+   L(t) = (1)t^0 + (6)t^1 + (9)t^2 + (4)t^3
+   L(0..4) = [1, 20, 81, 208, 425]   h* = [1, 16, 7]
+   negative Ehrhart coefficients at degrees: []
+   lattice points that are not f-vectors (4): [(1, 4, 2, 1, 0), (1, 4, 3, 2, 0), (1, 4, 4, 2, 0), (1, 4, 5, 3, 0)]
+
+Koz(3; [0, 1]): D=3  NV=36  vol=6
+   vertices (-1): 
+   L(t) = (1)t^0 + (5)t^1 + (10)t^2 + (6)t^3
+   L(0..4) = [1, 22, 99, 268, 565]   h* = [1, 18, 17]
+   negative Ehrhart coefficients at degrees: []
+   #lattice=22  canonical parts all chained and in L_n: OK
+   classification by (part_i is an f-vector?): {(True, True): 22}
+   |FF| = 22  (=count of (True,..,True): True)
+
+Koz(3; [0, 2]): D=4  NV=54  vol=9/4
+   vertices (-1): 
+   L(t) = (1)t^0 + (5)t^1 + (37/4)t^2 + (15/2)t^3 + (9/4)t^4
+   L(0..5) = [1, 25, 144, 484, 1225, 2601]   h* = [1, 20, 29, 4]
+   negative Ehrhart coefficients at degrees: []
+   #lattice=25  canonical parts all chained and in L_n: OK
+   classification by (part_i is an f-vector?): {(True, True): 25}
+   |FF| = 25  (=count of (True,..,True): True)
+
+Koz(4; [0, 1]): D=4  NV=1248  vol=52
+   vertices (-1): 
+   L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (95)t^3 + (52)t^4
+   L(0..5) = [1, 214, 1833, 7300, 20305, 45786]   h* = [1, 209, 773, 265]
+   negative Ehrhart coefficients at degrees: []
+   #lattice=214  canonical parts all chained and in L_n: OK
+   classification by (part_i is an f-vector?): {(True, True): 162, (True, False): 28, (False, True): 24}
+   |FF| = 162  (=count of (True,..,True): True)
+
+Koz(4; [0, 0]): D=3  NV=192  vol=32
+   vertices (-1): 
+   L(t) = (1)t^0 + (12)t^1 + (36)t^2 + (32)t^3
+   L(0..4) = [1, 81, 425, 1225, 2673]   h* = [1, 77, 107, 7]
+   negative Ehrhart coefficients at degrees: []
+   #lattice=81  canonical parts all chained and in L_n: OK
+   classification by (part_i is an f-vector?): {(True, True): 69, (True, False): 4, (False, True): 8}
+   |FF| = 69  (=count of (True,..,True): True)
+
+Koz(4; [0, 2]): D=5  NV=6720  vol=56
+   vertices (-1): 
+   L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (125)t^3 + (138)t^4 + (56)t^5
+   L(0..6) = [1, 386, 5241, 28684, 101585, 278286, 643321]   h* = [1, 380, 2940, 3008, 391]
+   negative Ehrhart coefficients at degrees: []
+   #lattice=386  canonical parts all chained and in L_n: OK
+   classification by (part_i is an f-vector?): {(True, True): 246, (True, False): 60, (False, True): 64, (False, False): 16}
+   |FF| = 246  (=count of (True,..,True): True)
+
+Koz(3;0,1): all 22 lattice points with canonical decomposition (x = s1 + shift s2):
+   (1, 4, 3, 0, 0) = (1, 3, 0, 0) + shift(1, 3, 0, 0)
+   (1, 4, 3, 1, 0) = (1, 3, 0, 0) + shift(1, 3, 1, 0)
+   (1, 4, 3, 2, 0) = (1, 3, 0, 0) + shift(1, 3, 2, 0)
+   (1, 4, 3, 3, 0) = (1, 3, 0, 0) + shift(1, 3, 3, 0)
+   (1, 4, 3, 3, 1) = (1, 3, 0, 0) + shift(1, 3, 3, 1)
+   (1, 4, 4, 0, 0) = (1, 3, 1, 0) + shift(1, 3, 0, 0)
+   (1, 4, 4, 1, 0) = (1, 3, 1, 0) + shift(1, 3, 1, 0)
+   (1, 4, 4, 2, 0) = (1, 3, 1, 0) + shift(1, 3, 2, 0)
+   (1, 4, 4, 3, 0) = (1, 3, 1, 0) + shift(1, 3, 3, 0)
+   (1, 4, 4, 3, 1) = (1, 3, 1, 0) + shift(1, 3, 3, 1)
+   (1, 4, 5, 0, 0) = (1, 3, 2, 0) + shift(1, 3, 0, 0)
+   (1, 4, 5, 1, 0) = (1, 3, 2, 0) + shift(1, 3, 1, 0)
+   (1, 4, 5, 2, 0) = (1, 3, 2, 0) + shift(1, 3, 2, 0)
+   (1, 4, 5, 3, 0) = (1, 3, 2, 0) + shift(1, 3, 3, 0)
+   (1, 4, 5, 3, 1) = (1, 3, 2, 0) + shift(1, 3, 3, 1)
+   (1, 4, 6, 0, 0) = (1, 3, 3, 0) + shift(1, 3, 0, 0)
+   (1, 4, 6, 1, 0) = (1, 3, 3, 0) + shift(1, 3, 1, 0)
+   (1, 4, 6, 2, 0) = (1, 3, 3, 0) + shift(1, 3, 2, 0)
+   (1, 4, 6, 3, 0) = (1, 3, 3, 0) + shift(1, 3, 3, 0)
+   (1, 4, 6, 3, 1) = (1, 3, 3, 0) + shift(1, 3, 3, 1)
+   (1, 4, 6, 4, 0) = (1, 3, 3, 1) + shift(1, 3, 3, 0)
+   (1, 4, 6, 4, 1) = (1, 3, 3, 1) + shift(1, 3, 3, 1)
+
+Staircase cells of Koz(4;0,1): C_g = conv(F_1..F_{d+g}) + shift conv(F_g..F_n), g = 1..n-d
+   g=1: blocks [2] | [3, 4, 5], NV = C(4,1)*6*24 = 576, vol = 24
+   g=2: blocks [2, 3] | [4, 5], NV = C(4,2)*24*4 = 576, vol = 24
+   g=3: blocks [2, 3, 4] | [5], NV = C(4,3)*24*1 = 96, vol = 4
+

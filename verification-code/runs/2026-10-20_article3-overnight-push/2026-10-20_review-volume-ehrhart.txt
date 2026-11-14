@@ -1,0 +1,405 @@
+# runs/2026-10-20_review-volume-ehrhart.txt -- output of code/oneoff/review_volume_ehrhart_check.py H E S R A (referee, 2026-10-20 22:17)
+== H: lecture hall identification, h*, NV, codegree ==
+n=2 s=(c_n..c_2)=(1,) proj(Koz)=P^(s):True NV normaliz=1 prod C(n,k),k>=2 =1
+   h* normaliz=[1]  asc(e0=0,s)=[1]  asc(e0=0,rev s)=[1]  asc(e0=1,s)=[1]
+   deg h* = 0 (claim n-2 = 0); h*_top=1; group ⊕Z/C(n,k): invariant factors []
+   IDP check: Hilbert basis all degree 1: True
+n=3 s=(c_n..c_2)=(1, 3) proj(Koz)=P^(s):True NV normaliz=3 prod C(n,k),k>=2 =3
+   h* normaliz=[1, 2]  asc(e0=0,s)=[1, 2]  asc(e0=0,rev s)=[1, 2]  asc(e0=1,s)=[1, 2]
+   deg h* = 1 (claim n-2 = 1); h*_top=2; group ⊕Z/C(n,k): invariant factors [3]
+   IDP check: Hilbert basis all degree 1: True
+n=4 s=(c_n..c_2)=(1, 4, 6) proj(Koz)=P^(s):True NV normaliz=24 prod C(n,k),k>=2 =24
+   h* normaliz=[1, 16, 7]  asc(e0=0,s)=[1, 16, 7]  asc(e0=0,rev s)=[1, 16, 7]  asc(e0=1,s)=[1, 16, 7]
+   deg h* = 2 (claim n-2 = 2); h*_top=7; group ⊕Z/C(n,k): invariant factors [2, 12]
+   IDP check: Hilbert basis all degree 1: True
+n=5 s=(c_n..c_2)=(1, 5, 10, 10) proj(Koz)=P^(s):True NV normaliz=500 prod C(n,k),k>=2 =500
+   h* normaliz=[1, 157, 308, 34]  asc(e0=0,s)=[1, 157, 308, 34]  asc(e0=0,rev s)=[1, 157, 308, 34]  asc(e0=1,s)=[1, 157, 308, 34]
+   deg h* = 3 (claim n-2 = 3); h*_top=34; group ⊕Z/C(n,k): invariant factors [5, 10, 10]
+   IDP check: Hilbert basis all degree 1: True
+n=6 s=(c_n..c_2)=(1, 6, 15, 20, 15) proj(Koz)=P^(s):True NV normaliz=27000 prod C(n,k),k>=2 =27000
+   h* normaliz=[1, 1975, 14184, 10253, 587]  asc(e0=0,s)=[1, 1975, 14184, 10253, 587]  asc(e0=0,rev s)=[1, 1975, 14184, 10253, 587]  asc(e0=1,s)=[1, 1975, 14184, 10253, 587]
+   deg h* = 4 (claim n-2 = 4); h*_top=587; group ⊕Z/C(n,k): invariant factors [15, 30, 60]
+   IDP check: Hilbert basis all degree 1: True
+n=7 s=(c_n..c_2)=(1, 7, 21, 35, 35, 21) proj(Koz)=P^(s):True NV normaliz=3781575 prod C(n,k),k>=2 =3781575
+   h* normaliz=[1, 60986, 1054938, 2043353, 607906, 14391]
+   deg h* = 5 (claim n-2 = 5); h*_top=14391; group ⊕Z/C(n,k): invariant factors [7, 7, 7, 105, 105]
+== E: Ehrhart polynomials, NV closed form, linear coefficient ==
+L_Koz(2)(t) by DP count = (1)t^0 + (1)t^1
+   L(-1) = 0  #L_n = 2  leading*(n-1)! = 1
+L_Koz(3)(t) by DP count = (1)t^0 + (5/2)t^1 + (3/2)t^2
+   L(-1) = 0  #L_n = 5  leading*(n-1)! = 3
+L_Koz(4)(t) by DP count = (1)t^0 + (6)t^1 + (9)t^2 + (4)t^3
+   L(-1) = 0  #L_n = 20  leading*(n-1)! = 24
+L_Koz(5)(t) by DP count = (1)t^0 + (37/2)t^1 + (355/6)t^2 + (125/2)t^3 + (125/6)t^4
+   L(-1) = 0  #L_n = 162  leading*(n-1)! = 500
+L_Koz(6)(t) by DP count = (1)t^0 + (1/2)t^1 + (1033/4)t^2 + (765)t^3 + (2925/4)t^4 + (225)t^5
+   L(-1) = 0  #L_n = 1981  leading*(n-1)! = 27000
+L_Koz(7)(t) by DP count = (1)t^0 + (-594)t^1 + (-5397/8)t^2 + (173313/16)t^3 + (414687/16)t^4 + (324135/16)t^5 + (84035/16)t^6
+   L(-1) = 0  #L_n = 60993  leading*(n-1)! = 3781575
+-- rank 2: NV closed form vs normaliz, Ehrhart via normaliz h*, linear coefficient --
+n=2 d=0 D=1 NV normaliz=2 closed form=2 OK; vol=NV/D!=2
+    h*=[1, 1]; #pts=3; [t^1]L = 2 (2*[t]L_Koz(n) = 2) OK; negative coeffs: []
+    L(t) = (1)t^0 + (2)t^1
+n=2 d=1 D=2 NV normaliz=2 closed form=2 OK; vol=NV/D!=1
+    h*=[1, 1]; #pts=4; [t^1]L = 2 (2*[t]L_Koz(n) = 2) OK; negative coeffs: []
+    L(t) = (1)t^0 + (2)t^1 + (1)t^2
+n=2 d=2 D=2 NV normaliz=2 closed form=None OK; vol=NV/D!=1
+    h*=[1, 1]; #pts=4; [t^1]L = 2 (2*[t]L_Koz(n) = 2) OK; negative coeffs: []
+    L(t) = (1)t^0 + (2)t^1 + (1)t^2
+n=3 d=0 D=2 NV normaliz=12 closed form=12 OK; vol=NV/D!=6
+    h*=[1, 9, 2]; #pts=12; [t^1]L = 5 (2*[t]L_Koz(n) = 5) OK; negative coeffs: []
+    L(t) = (1)t^0 + (5)t^1 + (6)t^2
+n=3 d=1 D=3 NV normaliz=36 closed form=36 OK; vol=NV/D!=6
+    h*=[1, 18, 17]; #pts=22; [t^1]L = 5 (2*[t]L_Koz(n) = 5) OK; negative coeffs: []
+    L(t) = (1)t^0 + (5)t^1 + (10)t^2 + (6)t^3
+n=3 d=2 D=4 NV normaliz=54 closed form=54 OK; vol=NV/D!=9/4
+    h*=[1, 20, 29, 4]; #pts=25; [t^1]L = 5 (2*[t]L_Koz(n) = 5) OK; negative coeffs: []
+    L(t) = (1)t^0 + (5)t^1 + (37/4)t^2 + (15/2)t^3 + (9/4)t^4
+n=3 d=3 D=4 NV normaliz=54 closed form=None OK; vol=NV/D!=9/4
+    h*=[1, 20, 29, 4]; #pts=25; [t^1]L = 5 (2*[t]L_Koz(n) = 5) OK; negative coeffs: []
+    L(t) = (1)t^0 + (5)t^1 + (37/4)t^2 + (15/2)t^3 + (9/4)t^4
+n=4 d=0 D=3 NV normaliz=192 closed form=192 OK; vol=NV/D!=32
+    h*=[1, 77, 107, 7]; #pts=81; [t^1]L = 12 (2*[t]L_Koz(n) = 12) OK; negative coeffs: []
+    L(t) = (1)t^0 + (12)t^1 + (36)t^2 + (32)t^3
+n=4 d=1 D=4 NV normaliz=1248 closed form=1248 OK; vol=NV/D!=52
+    h*=[1, 209, 773, 265]; #pts=214; [t^1]L = 12 (2*[t]L_Koz(n) = 12) OK; negative coeffs: []
+    L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (95)t^3 + (52)t^4
+n=4 d=2 D=5 NV normaliz=6720 closed form=6720 OK; vol=NV/D!=56
+    h*=[1, 380, 2940, 3008, 391]; #pts=386; [t^1]L = 12 (2*[t]L_Koz(n) = 12) OK; negative coeffs: []
+    L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (125)t^3 + (138)t^4 + (56)t^5
+n=4 d=3 D=6 NV normaliz=11520 closed form=11520 OK; vol=NV/D!=16
+    h*=[1, 393, 3782, 5702, 1593, 49]; #pts=400; [t^1]L = 12 (2*[t]L_Koz(n) = 12) OK; negative coeffs: []
+    L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (116)t^3 + (129)t^4 + (72)t^5 + (16)t^6
+n=4 d=4 D=6 NV normaliz=11520 closed form=None OK; vol=NV/D!=16
+    h*=[1, 393, 3782, 5702, 1593, 49]; #pts=400; [t^1]L = 12 (2*[t]L_Koz(n) = 12) OK; negative coeffs: []
+    L(t) = (1)t^0 + (12)t^1 + (54)t^2 + (116)t^3 + (129)t^4 + (72)t^5 + (16)t^6
+n=5 d=0 D=4 NV normaliz=8000 closed form=8000 OK; vol=NV/D!=1000/3
+    h*=[1, 1103, 4825, 2037, 34]; #pts=1108; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=5 d=1 D=5 NV normaliz=102500 closed form=102500 OK; vol=NV/D!=5125/6
+    h*=[1, 4478, 42915, 48482, 6624]; #pts=4484; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=5 d=2 D=6 NV normaliz=1287500 closed form=1287500 OK; vol=NV/D!=64375/36
+    h*=[1, 14207, 272357, 676477, 306892, 17566]; #pts=14214; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=5 d=3 D=7 NV normaliz=9625000 closed form=9625000 OK; vol=NV/D!=34375/18
+    h*=[1, 26111, 864840, 3921060, 3931655, 858589, 22744]; #pts=26119; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=5 d=4 D=8 NV normaliz=17500000 closed form=17500000 OK; vol=NV/D!=15625/36
+    h*=[1, 26235, 991504, 5609020, 7797895, 2856109, 218080, 1156]; #pts=26244; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=5 d=5 D=8 NV normaliz=17500000 closed form=None OK; vol=NV/D!=15625/36
+    h*=[1, 26235, 991504, 5609020, 7797895, 2856109, 218080, 1156]; #pts=26244; [t^1]L = 37 (2*[t]L_Koz(n) = 37) OK; negative coeffs: []
+n=6 d=0 D=5 NV normaliz=864000 closed form=864000 OK; vol=NV/D!=7200
+    h*=[1, 26049, 314380, 438476, 84507, 587]; #pts=26055; [t^1]L = 1 (2*[t]L_Koz(n) = 1) OK; negative coeffs: []
+n=6 d=1 D=6 NV normaliz=21222000 closed form=21222000 OK; vol=NV/D!=29475
+    h*=[1, 154398, 3765932, 10987556, 5875995, 438118]; #pts=154405; [t^1]L = 1 (2*[t]L_Koz(n) = 1) OK; negative coeffs: []
+n=6 d=2 D=7 NV normaliz=542052000 closed form=542052000 OK; vol=NV/D!=107550
+    h*=[1, 744567, 35979081, 201419800, 239387079, 62343777, 2177695]; #pts=744575; [t^1]L = 1 (2*[t]L_Koz(n) = 1) OK; negative coeffs: []
+-- rank 3 linear coefficients --
+n=3 d=(0, 0, 1) NV=90 h*=[1, 41, 48] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=3 d=(0, 1, 1) NV=126 h*=[1, 47, 72, 6] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=3 d=(0, 1, 2) NV=522 h*=[1, 90, 318, 113] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=3 d=(0, 1, 3) NV=1080 h*=[1, 104, 543, 398, 34] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=3 d=(0, 2, 4) NV=2430 h*=[1, 118, 874, 1142, 287, 8] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=3 d=(0, 0, 0) NV=27 h*=[1, 19, 7] [t]L=15/2 3*[t]L_Koz=15/2 OK
+n=4 d=(0, 0, 1) NV=4224 h*=[1, 583, 2599, 1041] [t]L=18 3*[t]L_Koz=18 OK
+n=4 d=(0, 1, 1) NV=7104 h*=[1, 745, 4045, 2235, 78] [t]L=18 3*[t]L_Koz=18 OK
+n=4 d=(0, 1, 2) NV=59040 h*=[1, 2052, 22428, 29456, 5103] [t]L=18 3*[t]L_Koz=18 OK
+n=4 d=(0, 1, 3) NV=432000 h*=[1, 3993, 81686, 222350, 115305, 8665] [t]L=18 3*[t]L_Koz=18 OK
+n=4 d=(0, 2, 4) NV=3790080 h*=[1, 7432, 276589, 1415528, 1635227, 437360, 17943] [t]L=18 3*[t]L_Koz=18 OK
+n=4 d=(0, 0, 0) NV=648 h*=[1, 204, 399, 44] [t]L=18 3*[t]L_Koz=18 OK
+n=5 d=(0, 0, 1) NV=490000 h*=[1, 16495, 187429, 245153, 40922] [t]L=111/2 3*[t]L_Koz=111/2 OK
+n=5 d=(0, 1, 1) NV=905000 h*=[1, 22585, 301609, 471863, 107602, 1340] [t]L=111/2 3*[t]L_Koz=111/2 OK
+n=5 d=(0, 1, 2) NV=13902500 h*=[1, 95351, 2356562, 7107418, 4010319, 332849] [t]L=111/2 3*[t]L_Koz=111/2 OK
+n=5 d=(0, 0, 0) NV=40500 h*=[1, 3959, 22932, 13130, 478] [t]L=111/2 3*[t]L_Koz=111/2 OK
+-- general leg vector (1,2,5,7,4,1): linear coeff additivity, rank 2 --
+c=(1, 2, 5, 7, 4, 1) d=(0, 0) [t]L=44/3 2*[t]L1=44/3 OK
+c=(1, 2, 5, 7, 4, 1) d=(0, 1) [t]L=44/3 2*[t]L1=44/3 OK
+c=(1, 2, 5, 7, 4, 1) d=(0, 3) [t]L=44/3 2*[t]L1=44/3 OK
+c=(1, 2, 5, 7, 4, 1) d=(0, 6) [t]L=44/3 2*[t]L1=44/3 OK
+== R: real-point existence via greedy water-fill on random exact points ==
+(1, 2, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 3, 3, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 4, 6, 4, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 5, 10, 10, 5, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 6, 15, 20, 15, 6, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 1, 1, 1, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 2, 3, 2, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 2, 2, 2, 2, 2) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 7, 1, 1, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 2, 5, 7, 4, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 4, 1, 1, 1, 1) LC-tail samples 3000, greedy chained decomposition fails 0
+(1, 1, 2, 3, 3, 2) LC-tail samples 3000, greedy chained decomposition fails 0
+   fail example (1, 2, 1, 3, 1, 3) [0, 1, 7] ['1', '3', '2927/997', '12077/3988', '6179/2991', '20357/11964', '651/997', '1', '2', '1', '2010/997', '504/997', '657/997']
+   fail example (1, 2, 1, 3, 1, 3) [0, 1, 4, 4] ['1', '3', '3', '4', '9/2', '5025/997', '10925/5982', '19/4', '5/6', '1959/997']
+(1, 2, 1, 3, 1, 3) NON-LC samples 3000, greedy chained decomposition fails 269
+   fail example (1, 2, 1, 1, 2) [0, 5, 6, 6] ['1', '2', '2/3', '1/4', '0', '1', '4', '5', '1718/997', '8025/3988', '1209/997']
+   fail example (1, 2, 1, 1, 2) [0, 1] ['1', '3', '3', '3/2', '2005/997', '1/6']
+(1, 2, 1, 1, 2) NON-LC samples 3000, greedy chained decomposition fails 58
+== A: lattice-level chained decomposition / additivity ==
+columns: c | d | LC-tail | #RA∩Z (normaliz) | |sumset| | #chained | #greedy-valid lattice pts (n/a if not enumerated) | verdict
+(1, 2, 1) (0, 0) True 3 3 3 3 OK
+(1, 2, 1) (0, 0, 0) True 4 4 4 4 OK
+(1, 2, 1) (0, 0, 1) True 6 6 6 6 OK
+(1, 2, 1) (0, 1) True 4 4 4 4 OK
+(1, 2, 1) (0, 1, 1) True 6 6 6 6 OK
+(1, 2, 1) (0, 1, 2) True 8 8 8 8 OK
+(1, 2, 1) (0, 1, 3) True 8 8 8 8 OK
+(1, 2, 1) (0, 2) True 4 4 4 4 OK
+(1, 2, 1) (0, 2, 3) True 8 8 8 8 OK
+(1, 3, 3, 1) (0, 0) True 12 12 12 12 OK
+(1, 3, 3, 1) (0, 0, 0) True 22 22 22 22 OK
+(1, 3, 3, 1) (0, 0, 1) True 45 45 45 45 OK
+(1, 3, 3, 1) (0, 1) True 22 22 22 22 OK
+(1, 3, 3, 1) (0, 1, 1) True 51 51 51 51 OK
+(1, 3, 3, 1) (0, 1, 2) True 95 95 95 95 OK
+(1, 3, 3, 1) (0, 1, 3) True 110 110 110 110 OK
+(1, 3, 3, 1) (0, 2) True 25 25 25 25 OK
+(1, 3, 3, 1) (0, 2, 3) True 110 110 110 110 OK
+(1, 4, 6, 4, 1) (0, 0) True 81 81 81 81 OK
+(1, 4, 6, 4, 1) (0, 0, 0) True 208 208 208 208 OK
+(1, 4, 6, 4, 1) (0, 0, 1) True 588 588 588 588 OK
+(1, 4, 6, 4, 1) (0, 1) True 214 214 214 214 OK
+(1, 4, 6, 4, 1) (0, 1, 1) True 750 750 750 750 OK
+(1, 4, 6, 4, 1) (0, 1, 2) True 2058 2058 2058 2058 OK
+(1, 4, 6, 4, 1) (0, 1, 3) True 4000 4000 4000 4000 OK
+(1, 4, 6, 4, 1) (0, 2) True 386 386 386 386 OK
+(1, 4, 6, 4, 1) (0, 2, 3) True 4112 4112 4112 4112 OK
+(1, 4, 6, 4, 1) (0, 3) True 400 400 400 400 OK
+(1, 5, 10, 10, 5, 1) (0, 0) True 1108 1108 1108 1108 OK
+(1, 5, 10, 10, 5, 1) (0, 0, 0) True 3964 3964 3964 3964 OK
+(1, 5, 10, 10, 5, 1) (0, 0, 1) True 16501 16501 16501 16501 OK
+(1, 5, 10, 10, 5, 1) (0, 1) True 4484 4484 4484 4484 OK
+(1, 5, 10, 10, 5, 1) (0, 1, 1) True 22591 22591 22591 22591 OK
+(1, 5, 10, 10, 5, 1) (0, 1, 2) True 95358 95358 95358 n/a OK
+(1, 5, 10, 10, 5, 1) (0, 1, 3) True 339298 339298 339298 n/a OK
+(1, 5, 10, 10, 5, 1) (0, 2) True 14214 14214 14214 14214 OK
+(1, 5, 10, 10, 5, 1) (0, 2, 3) True 363373 363373 363373 n/a OK
+(1, 5, 10, 10, 5, 1) (0, 3) True 26119 26119 26119 26119 OK
+(1, 5, 10, 10, 5, 1) (0, 4) True 26244 26244 26244 26244 OK
+(1, 6, 15, 20, 15, 6, 1) (0, 0) True 26055 26055 26055 26055 OK
+(1, 6, 15, 20, 15, 6, 1) (0, 1) True 154405 154405 154405 n/a OK
+(1, 6, 15, 20, 15, 6, 1) (0, 2) True 744575 744575 744575 n/a OK
+(1, 6, 15, 20, 15, 6, 1) (0, 4) True 3922820 3922820 3922820 n/a OK
+(1, 6, 15, 20, 15, 6, 1) (0, 5) True 3924361 3924361 3924361 n/a OK
+(1, 1, 1, 1) (0, 0) True 6 6 6 6 OK
+(1, 1, 1, 1) (0, 0, 0) True 10 10 10 10 OK
+(1, 1, 1, 1) (0, 0, 1) True 15 15 15 15 OK
+(1, 1, 1, 1) (0, 1) True 8 8 8 8 OK
+(1, 1, 1, 1) (0, 1, 1) True 15 15 15 15 OK
+(1, 1, 1, 1) (0, 1, 2) True 21 21 21 21 OK
+(1, 1, 1, 1) (0, 1, 3) True 24 24 24 24 OK
+(1, 1, 1, 1) (0, 2) True 9 9 9 9 OK
+(1, 1, 1, 1) (0, 2, 3) True 24 24 24 24 OK
+(1, 1, 1, 1, 1) (0, 0) True 10 10 10 10 OK
+(1, 1, 1, 1, 1) (0, 0, 0) True 20 20 20 20 OK
+(1, 1, 1, 1, 1) (0, 0, 1) True 29 29 29 29 OK
+(1, 1, 1, 1, 1) (0, 1) True 13 13 13 13 OK
+(1, 1, 1, 1, 1) (0, 1, 1) True 29 29 29 29 OK
+(1, 1, 1, 1, 1) (0, 1, 2) True 40 40 40 40 OK
+(1, 1, 1, 1, 1) (0, 1, 3) True 48 48 48 48 OK
+(1, 1, 1, 1, 1) (0, 2) True 15 15 15 15 OK
+(1, 1, 1, 1, 1) (0, 2, 3) True 48 48 48 48 OK
+(1, 1, 1, 1, 1) (0, 3) True 16 16 16 16 OK
+(1, 1, 1, 1, 1, 1) (0, 0) True 15 15 15 15 OK
+(1, 1, 1, 1, 1, 1) (0, 0, 0) True 35 35 35 35 OK
+(1, 1, 1, 1, 1, 1) (0, 0, 1) True 49 49 49 49 OK
+(1, 1, 1, 1, 1, 1) (0, 1) True 19 19 19 19 OK
+(1, 1, 1, 1, 1, 1) (0, 1, 1) True 49 49 49 49 OK
+(1, 1, 1, 1, 1, 1) (0, 1, 2) True 66 66 66 66 OK
+(1, 1, 1, 1, 1, 1) (0, 1, 3) True 80 80 80 80 OK
+(1, 1, 1, 1, 1, 1) (0, 2) True 22 22 22 22 OK
+(1, 1, 1, 1, 1, 1) (0, 2, 3) True 80 80 80 80 OK
+(1, 1, 1, 1, 1, 1) (0, 3) True 24 24 24 24 OK
+(1, 1, 1, 1, 1, 1) (0, 4) True 25 25 25 25 OK
+(1, 2, 3, 2, 1) (0, 0) True 27 27 27 27 OK
+(1, 2, 3, 2, 1) (0, 0, 0) True 64 64 64 64 OK
+(1, 2, 3, 2, 1) (0, 0, 1) True 120 120 120 120 OK
+(1, 2, 3, 2, 1) (0, 1) True 46 46 46 46 OK
+(1, 2, 3, 2, 1) (0, 1, 1) True 138 138 138 138 OK
+(1, 2, 3, 2, 1) (0, 1, 2) True 244 244 244 244 OK
+(1, 2, 3, 2, 1) (0, 1, 3) True 336 336 336 336 OK
+(1, 2, 3, 2, 1) (0, 2) True 60 60 60 60 OK
+(1, 2, 3, 2, 1) (0, 2, 3) True 340 340 340 340 OK
+(1, 2, 3, 2, 1) (0, 3) True 64 64 64 64 OK
+(1, 1, 2, 3, 2, 1) (0, 0) True 50 50 50 50 OK
+(1, 1, 2, 3, 2, 1) (0, 0, 0) True 150 150 150 150 OK
+(1, 1, 2, 3, 2, 1) (0, 0, 1) True 269 269 269 269 OK
+(1, 1, 2, 3, 2, 1) (0, 1) True 79 79 79 79 OK
+(1, 1, 2, 3, 2, 1) (0, 1, 1) True 288 288 288 288 OK
+(1, 1, 2, 3, 2, 1) (0, 1, 2) True 493 493 493 493 OK
+(1, 1, 2, 3, 2, 1) (0, 1, 3) True 708 708 708 708 OK
+(1, 1, 2, 3, 2, 1) (0, 2) True 105 105 105 105 OK
+(1, 1, 2, 3, 2, 1) (0, 2, 3) True 718 718 718 718 OK
+(1, 1, 2, 3, 2, 1) (0, 3) True 118 118 118 118 OK
+(1, 1, 2, 3, 2, 1) (0, 4) True 121 121 121 121 OK
+(1, 3, 4, 4, 3, 1) (0, 0) True 145 145 145 145 OK
+(1, 3, 4, 4, 3, 1) (0, 0, 0) True 476 476 476 476 OK
+(1, 3, 4, 4, 3, 1) (0, 0, 1) True 1088 1088 1088 1088 OK
+(1, 3, 4, 4, 3, 1) (0, 1) True 302 302 302 302 OK
+(1, 3, 4, 4, 3, 1) (0, 1, 1) True 1298 1298 1298 1298 OK
+(1, 3, 4, 4, 3, 1) (0, 1, 2) True 2867 2867 2867 2867 OK
+(1, 3, 4, 4, 3, 1) (0, 1, 3) True 5332 5332 5332 5332 OK
+(1, 3, 4, 4, 3, 1) (0, 2) True 515 515 515 515 OK
+(1, 3, 4, 4, 3, 1) (0, 2, 3) True 5619 5619 5619 5619 OK
+(1, 3, 4, 4, 3, 1) (0, 3) True 662 662 662 662 OK
+(1, 3, 4, 4, 3, 1) (0, 4) True 676 676 676 676 OK
+(1, 2, 2, 2, 1) (0, 0) True 22 22 22 22 OK
+(1, 2, 2, 2, 1) (0, 0, 0) True 50 50 50 50 OK
+(1, 2, 2, 2, 1) (0, 0, 1) True 89 89 89 89 OK
+(1, 2, 2, 2, 1) (0, 1) True 35 35 35 35 OK
+(1, 2, 2, 2, 1) (0, 1, 1) True 96 96 96 96 OK
+(1, 2, 2, 2, 1) (0, 1, 2) True 162 162 162 162 OK
+(1, 2, 2, 2, 1) (0, 1, 3) True 224 224 224 224 OK
+(1, 2, 2, 2, 1) (0, 2) True 46 46 46 46 OK
+(1, 2, 2, 2, 1) (0, 2, 3) True 227 227 227 227 OK
+(1, 2, 2, 2, 1) (0, 3) True 49 49 49 49 OK
+(1, 2, 2, 2, 2, 2) (0, 0) True 70 70 70 70 OK
+(1, 2, 2, 2, 2, 2) (0, 0, 0) True 210 210 210 210 OK
+(1, 2, 2, 2, 2, 2) (0, 0, 1) True 400 400 400 400 OK
+(1, 2, 2, 2, 2, 2) (0, 1) True 114 114 114 114 OK
+(1, 2, 2, 2, 2, 2) (0, 1, 1) True 400 400 400 400 OK
+(1, 2, 2, 2, 2, 2) (0, 1, 2) True 721 721 721 721 OK
+(1, 2, 2, 2, 2, 2) (0, 1, 3) True 1099 1099 1099 1099 OK
+(1, 2, 2, 2, 2, 2) (0, 2) True 160 160 160 160 OK
+(1, 2, 2, 2, 2, 2) (0, 2, 3) True 1099 1099 1099 1099 OK
+(1, 2, 2, 2, 2, 2) (0, 3) True 200 200 200 200 OK
+(1, 2, 2, 2, 2, 2) (0, 4) True 225 225 225 225 OK
+(1, 3, 3, 3, 1, 1) (0, 0) False 51 51 51 51 OK
+(1, 3, 3, 3, 1, 1) (0, 0, 0) False 145 145 145 145 OK
+(1, 3, 3, 3, 1, 1) (0, 0, 1) False 325 314 267 267 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 1) False 100 96 89 89 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 1, 1) False 363 348 321 321 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 1, 2) False 709 675 582 582 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 1, 3) False 954 930 888 888 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 2) False 129 129 129 129 OK
+(1, 3, 3, 3, 1, 1) (0, 2, 3) False 1056 1015 936 936 FAIL(expected, non-LC)
+(1, 3, 3, 3, 1, 1) (0, 3) False 138 138 138 138 OK
+(1, 3, 3, 3, 1, 1) (0, 4) False 144 144 144 144 OK
+(1, 7, 1, 1, 1) (0, 0) True 10 10 10 10 OK
+(1, 7, 1, 1, 1) (0, 0, 0) True 20 20 20 20 OK
+(1, 7, 1, 1, 1) (0, 0, 1) True 29 29 29 29 OK
+(1, 7, 1, 1, 1) (0, 1) True 13 13 13 13 OK
+(1, 7, 1, 1, 1) (0, 1, 1) True 29 29 29 29 OK
+(1, 7, 1, 1, 1) (0, 1, 2) True 40 40 40 40 OK
+(1, 7, 1, 1, 1) (0, 1, 3) True 48 48 48 48 OK
+(1, 7, 1, 1, 1) (0, 2) True 15 15 15 15 OK
+(1, 7, 1, 1, 1) (0, 2, 3) True 48 48 48 48 OK
+(1, 7, 1, 1, 1) (0, 3) True 16 16 16 16 OK
+(1, 9, 2, 3, 3, 2) (0, 0) True 99 99 99 99 OK
+(1, 9, 2, 3, 3, 2) (0, 0, 0) True 328 328 328 328 OK
+(1, 9, 2, 3, 3, 2) (0, 0, 1) True 678 678 678 678 OK
+(1, 9, 2, 3, 3, 2) (0, 1) True 171 171 171 171 OK
+(1, 9, 2, 3, 3, 2) (0, 1, 1) True 678 678 678 678 OK
+(1, 9, 2, 3, 3, 2) (0, 1, 2) True 1329 1329 1329 1329 OK
+(1, 9, 2, 3, 3, 2) (0, 1, 3) True 2171 2171 2171 2171 OK
+(1, 9, 2, 3, 3, 2) (0, 2) True 252 252 252 252 OK
+(1, 9, 2, 3, 3, 2) (0, 2, 3) True 2171 2171 2171 2171 OK
+(1, 9, 2, 3, 3, 2) (0, 3) True 308 308 308 308 OK
+(1, 9, 2, 3, 3, 2) (0, 4) True 324 324 324 324 OK
+(1, 1, 5, 4, 2) (0, 0) True 105 105 105 105 OK
+(1, 1, 5, 4, 2) (0, 0, 0) True 287 287 287 287 OK
+(1, 1, 5, 4, 2) (0, 0, 1) True 775 775 775 775 OK
+(1, 1, 5, 4, 2) (0, 1) True 249 249 249 249 OK
+(1, 1, 5, 4, 2) (0, 1, 1) True 915 915 915 915 OK
+(1, 1, 5, 4, 2) (0, 1, 2) True 2309 2309 2309 2309 OK
+(1, 1, 5, 4, 2) (0, 1, 3) True 4383 4383 4383 4383 OK
+(1, 1, 5, 4, 2) (0, 2) True 431 431 431 431 OK
+(1, 1, 5, 4, 2) (0, 2, 3) True 4481 4481 4481 4481 OK
+(1, 1, 5, 4, 2) (0, 3) True 529 529 529 529 OK
+(1, 2, 5, 7, 4, 1) (0, 0) True 323 323 323 323 OK
+(1, 2, 5, 7, 4, 1) (0, 0, 0) True 1136 1136 1136 1136 OK
+(1, 2, 5, 7, 4, 1) (0, 0, 1) True 3390 3390 3390 3390 OK
+(1, 2, 5, 7, 4, 1) (0, 1) True 864 864 864 864 OK
+(1, 2, 5, 7, 4, 1) (0, 1, 1) True 4030 4030 4030 4030 OK
+(1, 2, 5, 7, 4, 1) (0, 1, 2) True 11740 11740 11740 11740 OK
+(1, 2, 5, 7, 4, 1) (0, 1, 3) True 27336 27336 27336 27336 OK
+(1, 2, 5, 7, 4, 1) (0, 2) True 1784 1784 1784 1784 OK
+(1, 2, 5, 7, 4, 1) (0, 2, 3) True 28464 28464 28464 28464 OK
+(1, 2, 5, 7, 4, 1) (0, 3) True 2472 2472 2472 2472 OK
+(1, 2, 5, 7, 4, 1) (0, 4) True 2500 2500 2500 2500 OK
+(1, 2, 1, 3, 1, 3) (0, 0) False 39 39 39 39 OK
+(1, 2, 1, 3, 1, 3) (0, 0, 0) False 115 115 115 115 OK
+(1, 2, 1, 3, 1, 3) (0, 0, 1) False 384 270 213 213 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 1) False 101 70 59 59 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 1, 1) False 369 264 201 201 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 1, 2) False 760 462 344 344 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 1, 3) False 693 502 414 414 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 2) False 68 68 68 68 OK
+(1, 2, 1, 3, 1, 3) (0, 2, 3) False 717 510 420 420 FAIL(expected, non-LC)
+(1, 2, 1, 3, 1, 3) (0, 3) False 78 78 78 78 OK
+(1, 2, 1, 3, 1, 3) (0, 4) False 81 81 81 81 OK
+(1, 2, 1, 1, 2) (0, 0) False 14 14 14 14 OK
+(1, 2, 1, 1, 2) (0, 0, 0) False 30 30 30 30 OK
+(1, 2, 1, 1, 2) (0, 0, 1) False 54 54 51 51 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 1) False 21 21 20 20 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 1, 1) False 51 51 47 47 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 1, 2) False 82 82 75 75 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 1, 3) False 95 95 90 90 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 2) False 23 23 23 23 OK
+(1, 2, 1, 1, 2) (0, 2, 3) False 95 95 90 90 FAIL(expected, non-LC)
+(1, 2, 1, 1, 2) (0, 3) False 25 25 25 25 OK
+(1, 5, 1, 2, 5) (0, 0) False 40 40 40 40 OK
+(1, 5, 1, 2, 5) (0, 0, 0) False 98 98 98 98 OK
+(1, 5, 1, 2, 5) (0, 0, 1) False 282 282 279 279 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 1) False 85 85 84 84 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 1, 1) False 222 222 215 215 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 1, 2) False 608 608 594 594 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 1, 3) False 872 872 861 861 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 2) False 114 114 114 114 OK
+(1, 5, 1, 2, 5) (0, 2, 3) False 858 858 847 847 FAIL(expected, non-LC)
+(1, 5, 1, 2, 5) (0, 3) False 121 121 121 121 OK
+(1, 1, 3, 1, 3) (0, 0) False 30 30 30 30 OK
+(1, 1, 3, 1, 3) (0, 0, 0) False 76 76 76 76 OK
+(1, 1, 3, 1, 3) (0, 0, 1) False 252 193 153 153 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 1) False 76 57 49 49 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 1, 1) False 252 193 153 153 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 1, 2) False 518 352 272 272 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 1, 3) False 500 384 320 320 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 2) False 55 55 55 55 OK
+(1, 1, 3, 1, 3) (0, 2, 3) False 500 384 320 320 FAIL(expected, non-LC)
+(1, 1, 3, 1, 3) (0, 3) False 64 64 64 64 OK
+(1, 2, 1, 2, 1, 2) (0, 0) False 26 26 26 26 OK
+(1, 2, 1, 2, 1, 2) (0, 0, 0) False 70 70 70 70 OK
+(1, 2, 1, 2, 1, 2) (0, 0, 1) False 148 134 113 113 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 1) False 45 41 36 36 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 1, 1) False 145 132 109 109 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 1, 2) False 240 209 166 166 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 1, 3) False 253 233 203 203 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 2) False 42 42 42 42 OK
+(1, 2, 1, 2, 1, 2) (0, 2, 3) False 258 236 205 205 FAIL(expected, non-LC)
+(1, 2, 1, 2, 1, 2) (0, 3) False 47 47 47 47 OK
+(1, 2, 1, 2, 1, 2) (0, 4) False 49 49 49 49 OK
+A: log-concave failures: 0
+-- A': random leg vectors with log-concave tail, random d (r<=3) --
+  non-LC fail (fine): (1, 1, 6, 3, 6, 5) (0, 1) 2810 2528 1760
+  non-LC fail (fine): (1, 5, 4, 1, 6) (0, 1, 4) 3744 1596 1320
+  non-LC fail (fine): (1, 6, 1, 2, 1, 3) (0, 1, 3) 411 357 296
+  non-LC fail (fine): (1, 4, 4, 2, 4, 6) (0, 2, 3) 23723 21520 14961
+  non-LC fail (fine): (1, 1, 1, 2, 6, 5) (0, 1) 437 437 428
+  non-LC fail (fine): (1, 6, 5, 2, 5, 2) (0, 1) 652 411 328
+  non-LC fail (fine): (1, 2, 2, 2, 5) (0, 1, 5) 2250 2175 1935
+  non-LC fail (fine): (1, 5, 2, 1, 2, 2) (0, 0, 2) 275 275 265
+A': LC-tail cases tested 161, failures 0; non-LC cases 99, of which 32 fail additivity or existence
+== S: general staircase NV formula vs normaliz multiplicity ==
+(1, 3, 3, 1) (0, 1, 2) LC normaliz 522 staircase 522 OK
+(1, 4, 6, 4, 1) (0, 1, 2) LC normaliz 59040 staircase 59040 OK
+(1, 4, 6, 4, 1) (0, 1, 3) LC normaliz 432000 staircase 432000 OK
+(1, 4, 6, 4, 1) (0, 2, 4) LC normaliz 3790080 staircase 3790080 OK
+(1, 5, 10, 10, 5, 1) (0, 1, 2) LC normaliz 13902500 staircase 13902500 OK
+(1, 5, 10, 10, 5, 1) (0, 0, 1) LC normaliz 490000 staircase 490000 OK
+(1, 4, 6, 4, 1) (0, 1, 2, 3) LC normaliz 3159360 staircase 3159360 OK
+(1, 2, 5, 7, 4, 1) (0, 1, 3) LC normaliz 19345200 staircase 19345200 OK
+(1, 7, 1, 1, 1) (0, 1, 2) LC normaliz 170 staircase 170 OK
+(1, 2, 2, 2, 2, 2) (0, 2, 3) LC normaliz 179200 staircase 179200 OK
+(1, 2, 1, 3, 1, 3) (0, 1) NON-LC normaliz 1500 staircase 540 differs
+(1, 2, 1, 3, 1, 3) (0, 2) NON-LC normaliz 1350 staircase 1350 OK
+(1, 2, 1, 1, 2) (0, 1) NON-LC normaliz 48 staircase 36 differs
+
+== B: barvinok (iscc 'card') Ehrhart polynomials from H-representations (Sage), independent of normaliz and of the transfer matrix ==
+== Koz(4;0,1) sanity
+[t] -> { (1 + 12 * t + 54 * t^2 + 95 * t^3 + 52 * t^4) : t >= 0 }
+== Koz(6;0,4)
+[t] -> { (1 + t - 411/4 * t^2 + 57277/8 * t^3 + 577119/8 * t^4 + 2642045/8 * t^5 + 7212975/8 * t^6 + 5415975/4 * t^7 + 987750 * t^8 + 270000 * t^9) : t >= 0 }
+== Koz(6;0,3)
+[t] -> { (1 + t + 1363/4 * t^2 + 13363/2 * t^3 + 246793/4 * t^4 + 1465155/4 * t^5 + 1707375/2 * t^6 + 3197025/4 * t^7 + 256500 * t^8) : t >= 0 }
+== Koz(7;0,1)
+[t] -> { (1 - 1188 * t - 58733/4 * t^2 + 75943/8 * t^3 + 1297275 * t^4 + 38045903/8 * t^5 + 22917545/4 * t^6 + 8991745/4 * t^7) : t >= 0 }
+== Koz(7;0,2)
+[t] -> { (1 - 1188 * t - 1171255/48 * t^2 - 1960469/8 * t^3 + 24935953/64 * t^4 + 234337257/16 * t^5 + 4048501373/96 * t^6 + 673876665/16 * t^7 + 894720645/64 * t^8) : t >= 0 }

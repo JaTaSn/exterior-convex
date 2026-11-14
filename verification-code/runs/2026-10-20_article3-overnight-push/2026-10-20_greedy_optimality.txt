@@ -1,0 +1,33 @@
+greedy_optimality_check.py  run 2026-10-20 21:53
+[1] rank-1: recursion = direct lex shadow, shadow(lex) is lex, increment <= n-k, sigma(full)=C(n,k+1), kappa=a^(k): 1078 cases, n<=9, OK (0.0s)
+[2] P and Q hold for all n<=13, all k>=k'>=0 (k<=n+1), all sizes: 26027437 P-instances, 26043820 Q-instances (19.0s)
+[3] proof replay of the induction P(n-1),Q(n-1) => P(n),Q(n), n=1..11: 3311412 instances, every invoked IH instance within its hypotheses; cases exercised: ['P.A1', 'P.A2', 'P.B1', 'P.B2', 'P.C1', 'P.C2a', 'P.C2b', "Q.A'1", "Q.A'2", "Q.A'3", "Q.B'1", "Q.B'2", "Q.B'3(k=k')", "Q.B'3a", "Q.B'3b"] (11.1s)
+    cases never exercised: none
+[4b] B(0,s-1) = r~_0 and B(h_s,s) = n h_s + r~_1 for 1<=h_s<=r~_0: 3630 cases (n<=5, r<=3, d in [-2,3]^r): OK
+[5] module brute force over ALL monomial subsets of Mon_j(F): 100 configurations, 2684 (j,size) cases, 632796 subsets; min shadow = shadow of lex_F segment, shadow(lex_F) is lex_F, dim F_(j+1) - min = B(h,j): OK (0.1s)
+[6a] rank-1 Kruskal-Katona (lex minimises upper shadow) brute-force confirmed, n<=6
+[6b] split optimisation: greedy (largest exterior degree = smallest d first) attains the minimum over ALL splits, n<=9, r<=4, all non-increasing degree vectors in [-1,n]^r: 4338 configurations (1.6s)
+[7a] GF(2), ALL subspaces V of F_j (dim F_j <= 6): dim E_1 V >= |Shad(lex_F)|, 12298 subspaces, 11 configurations: OK
+[7b] GF(3), random subspaces (signs live): 4950 subspaces over 6 configurations: dim E_1 V >= |Shad(lex_F)|: OK (0.8s)
+[8] repaired Theorem 4.2 (h_(j+1) <= B(h_j,j) for j in [d_1-1, d_r+n-1], h_(d_1-1)=0) vs ground-truth sumset of f-vectors: 20 configurations, 0 false positives, 0 false negatives (0.5s)
+    n=1 d=(0, 0) achievable=6 candidates=9 fp=0 fn=0
+    n=1 d=(0, 0, 0) achievable=10 candidates=16 fp=0 fn=0
+    n=1 d=(0, 1) achievable=8 candidates=12 fp=0 fn=0
+    n=2 d=(0, 0) achievable=14 candidates=45 fp=0 fn=0
+    n=2 d=(0, 1) achievable=20 candidates=64 fp=0 fn=0
+    n=2 d=(-2, 1) achievable=25 candidates=144 fp=0 fn=0
+    n=2 d=(0, 0, 0) achievable=30 candidates=112 fp=0 fn=0
+    n=2 d=(0, 0, 1) achievable=49 candidates=180 fp=0 fn=0
+    n=3 d=(0, 0) achievable=43 candidates=441 fp=0 fn=0
+    n=3 d=(1, 1) achievable=43 candidates=441 fp=0 fn=0
+    n=3 d=(0, 1) achievable=69 candidates=700 fp=0 fn=0
+    n=3 d=(0, 2) achievable=91 candidates=1600 fp=0 fn=0
+    n=3 d=(0, 3) achievable=99 candidates=3072 fp=0 fn=0
+    n=3 d=(0, 0, 0) achievable=125 candidates=1600 fp=0 fn=0
+    n=3 d=(0, 0, 1) achievable=236 candidates=2880 fp=0 fn=0
+    n=3 d=(-1, -1, 1) achievable=359 candidates=8064 fp=0 fn=0
+    n=4 d=(0, 0) achievable=194 candidates=9477 fp=0 fn=0
+    n=4 d=(0, 1) achievable=368 candidates=17424 fp=0 fn=0
+    n=4 d=(0, 2) achievable=556 candidates=57600 fp=0 fn=0
+    n=4 d=(-1, 0) achievable=368 candidates=17424 fp=0 fn=0
+ALL CHECKS PASSED

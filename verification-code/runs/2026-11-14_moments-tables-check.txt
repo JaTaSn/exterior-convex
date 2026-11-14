@@ -1,0 +1,54 @@
+# 2026-11-14 jts-pc: cd code/oneoff && sage moments_tables_check.sage   (Sage 10.9)
+== rank one, by enumeration: sd of the middle LYM coordinate mu_{n/2} and Var(J)
+  n=4 S count=16 sd(mu_2)=0.31458 (log 0.31458)  Var(J)=0.771457 (log 0.771457)  True
+  n=4 L count=20 sd(mu_2)=0.29768 (log 0.29768)  Var(J)=0.799149 (log 0.799149)  True
+  n=6 S count=457 sd(mu_3)=0.28962 (log 0.28962)  Var(J)=1.150909 (log 1.150909)  True
+  n=6 L count=1981 sd(mu_3)=0.23253 (log 0.23253)  Var(J)=1.815091 (log 1.815091)  True
+  n=8 S count=95248 sd(mu_4)=0.23436 (log 0.23436)  Var(J)=1.723272 (log 1.723272)  True
+  n=8 L count=3576524 sd(mu_4)=0.19367 (log 0.19367)  Var(J)=3.643545 (log 3.643545)  True
+  ALL OK: True
+== rank r >= 2: total nu-variance (trace of the covariance in the coordinates nu_k = x_k / dim F_k)
+  |S_3| from complexes = 5
+  |S_4| from complexes = 16
+  |S_5| from complexes = 70
+  n=3 d=(0, 0)     dim=2 |FF|=   12  FF 0.2066  indep 0.1556  Koz 0.1111  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 1)     dim=3 |FF|=   22  FF 0.3146  indep 0.2928  Koz 0.1332  [tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 2)     dim=4 |FF|=   25  FF 0.4061  indep 0.4061  Koz 0.1458  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 0)     dim=3 |FF|=   69  FF 0.1967  indep 0.1382  Koz 0.1250  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 1)     dim=4 |FF|=  162  FF 0.2835  indep 0.2273  Koz 0.1596  [tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 2)     dim=5 |FF|=  246  FF 0.3555  indep 0.3538  Koz 0.1806  [tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 3)     dim=6 |FF|=  256  FF 0.4538  indep 0.4538  Koz 0.1960  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=5 d=(0, 0)     dim=4 |FF|=  627  FF 0.1732  indep 0.1153  Koz 0.1333  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=5 d=(0, 1)     dim=5 |FF|= 1858  FF 0.2397  indep 0.1706  Koz 0.1781  [tri]  log-match=True  FF>Koz=True
+  n=5 d=(0, 2)     dim=6 |FF|= 3805  FF 0.2990  indep 0.2812  Koz 0.2079  [tri]  log-match=True  FF>Koz=True
+  n=5 d=(0, 3)     dim=7 |FF|= 4857  FF 0.3778  indep 0.3801  Koz 0.2225  [tri]  log-match=True  FF>Koz=True
+  n=5 d=(0, 4)     dim=8 |FF|= 4900  FF 0.4319  indep 0.4319  Koz 0.2285  [closed]  log-match=True  FF>Koz=True
+  n=3 d=(0, 0, 0)  dim=2 |FF|=   22  FF 0.1739  indep 0.1037  Koz 0.1111  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 0, 1)  dim=3 |FF|=   45  FF 0.3282  indep 0.2608  Koz 0.1506  [tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 1, 1)  dim=3 |FF|=   51  FF 0.2101  indep 0.1556  Koz 0.1209  [tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 1, 2)  dim=4 |FF|=   95  FF 0.3420  indep 0.3138  Koz 0.1524  [tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 2, 4)  dim=6 |FF|=  125  FF 0.5011  indep 0.5011  Koz 0.1806  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=3 d=(0, 1, 3)  dim=5 |FF|=  110  FF 0.4243  indep 0.4197  Koz 0.1646  [tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 0, 0)  dim=3 |FF|=  184  FF 0.1722  indep 0.0921  Koz 0.1250  [tri][closed=tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 1, 2)  dim=5 |FF|= 1478  FF 0.3205  indep 0.2400  Koz 0.1900  [tri]  log-match=True  FF>Koz=True
+  n=4 d=(0, 3, 6)  dim=9 |FF|= 4096  FF 0.6312  indep 0.6312  Koz 0.2670  [closed]  log-match=True  FF>Koz=True
+  ALL OK: True
+== prop-pushforward(2) outside the product regime: does each identity hold? (True = holds)
+  n=3 d=(0, 0)     FF centroid False FF var-diag False Koz centroid True  Koz var-diag False lattice centroid False lattice var-diag False (12 pts)
+  n=3 d=(0, 1)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (22 pts)
+  n=4 d=(0, 0)     FF centroid False FF var-diag False Koz centroid True  Koz var-diag False lattice centroid False lattice var-diag False (81 pts)
+  n=4 d=(0, 1)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (214 pts)
+  n=4 d=(0, 2)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (386 pts)
+  n=5 d=(0, 0)     FF centroid False FF var-diag False Koz centroid True  Koz var-diag False lattice centroid False lattice var-diag False (1108 pts)
+  n=5 d=(0, 1)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (4484 pts)
+  n=5 d=(0, 2)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (14214 pts)
+  n=5 d=(0, 3)     FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice: not computed
+  n=3 d=(0, 0, 0)  FF centroid False FF var-diag False Koz centroid True  Koz var-diag False lattice centroid False lattice var-diag False (22 pts)
+  n=3 d=(0, 0, 1)  FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (45 pts)
+  n=3 d=(0, 1, 1)  FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (51 pts)
+  n=3 d=(0, 1, 2)  FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (95 pts)
+  n=3 d=(0, 1, 3)  FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (110 pts)
+  n=4 d=(0, 0, 0)  FF centroid False FF var-diag False Koz centroid True  Koz var-diag False lattice centroid False lattice var-diag False (208 pts)
+  n=4 d=(0, 1, 2)  FF centroid False FF var-diag False Koz centroid False Koz var-diag False lattice centroid False lattice var-diag False (2058 pts)
+  cases: 16
+sage moments_tables_check.sage  74.87s user 2.62s system 100% cpu 1:17.06 total

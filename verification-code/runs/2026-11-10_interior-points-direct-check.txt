@@ -1,0 +1,1 @@
+lem-interior-points: all 798 cases pass (3 <= n <= 30; part (2) for 2 <= m <= 8, both points)

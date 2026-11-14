@@ -1,0 +1,64 @@
+# runs/2026-10-20_review-pairwise-hside.txt — log of code/oneoff/review_pairwise_hside_check.sage (referee of the H-side pairwise-reduction note), 2026-10-20 22:04
+
+=== review_pairwise_hside_check.sage mode=brute ===
+n=2 r=2 done, cumulative 0s, tuples 80, fails so far 0
+n=2 r=3 done, cumulative 0s, tuples 400, fails so far 0
+n=2 r=4 done, cumulative 0s, tuples 1600, fails so far 0
+n=3 r=2 done, cumulative 0s, tuples 225, fails so far 0
+n=3 r=3 done, cumulative 1s, tuples 2025, fails so far 0
+n=3 r=4 done, cumulative 2s, tuples 14175, fails so far 0
+n=4 r=2 done, cumulative 2s, tuples 480, fails so far 0
+n=4 r=3 done, cumulative 4s, tuples 6720, fails so far 0
+n=4 r=4 done, cumulative 19s, tuples 71680, fails so far 0
+n=5 r=2 done, cumulative 19s, tuples 875, fails so far 0
+n=5 r=3 done, cumulative 25s, tuples 17500, fails so far 0
+n=5 r=4 done, cumulative 82s, tuples 175000, fails so far 0
+n=6 r=2 done, cumulative 83s, tuples 1260, fails so far 0
+n=6 r=3 done, cumulative 99s, tuples 30240, fails so far 0
+n=6 r=4 done, cumulative 181s, tuples 145152, fails so far 0
+
+per (n,r): tuples | B1 c3!=brute | B2 thm2!=brute | B3 c3!=thm2 | B4 c2!=brute | reduced tuples | B5 tight!=closed form | B6 rank-crit!=brute | B7 phi fails
+  (2, 2): [80, 0, 0, 0, 0, 20, 0, 0, 0]
+  (2, 3): [400, 0, 0, 0, 0, 40, 0, 0, 0]
+  (2, 4): [1600, 0, 0, 0, 0, 80, 0, 0, 0]
+  (3, 2): [225, 0, 0, 0, 0, 90, 0, 0, 0]
+  (3, 3): [2025, 0, 0, 0, 0, 540, 0, 0, 0]
+  (3, 4): [14175, 0, 0, 0, 0, 1620, 0, 0, 0]
+  (4, 2): [480, 0, 0, 0, 0, 240, 0, 0, 0]
+  (4, 3): [6720, 0, 0, 0, 0, 2560, 0, 0, 0]
+  (4, 4): [71680, 0, 0, 0, 0, 12800, 0, 0, 0]
+  (5, 2): [875, 0, 0, 0, 0, 500, 0, 0, 0]
+  (5, 3): [17500, 0, 0, 0, 0, 8125, 0, 0, 0]
+  (5, 4): [175000, 0, 0, 0, 0, 31250, 0, 0, 0]
+  (6, 2): [1260, 0, 0, 0, 0, 900, 0, 0, 0]
+  (6, 3): [30240, 0, 0, 0, 0, 16200, 0, 0, 0]
+  (6, 4): [145152, 0, 0, 0, 0, 25920, 0, 0, 0]
+TOTAL: [467412, 0, 0, 0, 0, 100885, 0, 0, 0]
+failures listed (first 30): 0
+
+=== review_pairwise_hside_check.sage mode=control ===
+worked example j=(2,4,3): tight [('L', 0, 1), ('L', 0, 3), ('L', 1, 3), ('L', 1, 4), ('D', 1), ('F',)]
+  phi = [-1/4, 1/6, -5/12, 1, 2, -1] ; per-summand values [[-1, 0, -5/3, -2/3], [2/3, -11/6, 13/6, 25/6], [-5/3, 13/3, 37/3, 34/3]]
+control log-convex i!, n=4 r=3: tuples 1344, c3!=brute 60, c2!=brute 2
+control all-ones, n=4 r=3: tuples 1344, c3!=brute 28, c2!=brute 0
+control geometric 3^i, n=4 r=3: tuples 1344, c3!=brute 28, c2!=brute 0
+
+=== review_pairwise_hside_check.sage mode=weak ===
+weak a=[1, 2, 4, 6, 9]: tuples 3675, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 3, 6, 12, 24]: tuples 3675, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 2, 4, 8, 8]: tuples 3675, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 3, 9, 9, 9]: tuples 3675, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 2, 4, 6, 9, 9]: tuples 6300, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 4, 8, 16, 32, 32]: tuples 6300, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+weak a=[1, 3, 9, 27, 54, 108]: tuples 6300, Prop6 true but not vertex 0, Thm2!=brute 0, Prop6!=Thm2 0
+
+=== review_pairwise_hside_check.sage mode=comb ===
+n=2 done: tuples so far 180, configs 12, failures 0, 0s
+n=3 done: tuples so far 9015, configs 102, failures 0, 1s
+n=4 done: tuples so far 148992, configs 462, failures 0, 11s
+n=5 done: tuples so far 894957, configs 1281, failures 0, 76s
+n=6 done: tuples so far 1920744, configs 2211, failures 0, 199s
+n=7 done: tuples so far 2707686, configs 2940, failures 0, 304s
+n=8 done: tuples so far 3298731, configs 3423, failures 0, 392s
+n=9 done: tuples so far 3635928, configs 3717, failures 0, 444s
+COMB TOTAL tuples 3635928 configs 3717 failures 0

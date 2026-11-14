@@ -1,0 +1,55 @@
+# review_hdesc_check.sage full — run 2026-10-20 22:04 on jts-pc
+== Section A: Theorem A (rank 2) transcribed literally ==
+   section A: 252 configurations
+   [t=22s]
+== Section B: Corollary C / Theorem B, rank r ==
+   section B: 1928 configurations
+   [t=99s]
+== Section B-lambda: Theorem B with random rational weights, distinct shifts ==
+   section B-lambda: 240 configurations
+   [t=116s]
+== Section P: Lemma B2 peel cascade ==
+   section P: 318 configurations, 50866 points
+   [t=183s]
+== Section D: Corollary D, Koz(n;d) in R^{N+1} ==
+   section D: 121 configurations
+   [t=185s]
+== Section X: non-log-concave a ==
+   fact:n=3 [A] a=[1, 2, 6] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=3 [T] a=[1, 2, 6] d=[0, 1]: R subset Q: True; Q subset R: True
+   fact:n=3 [A] a=[1, 2, 6] d=[0, 2]: R subset Q: True; Q subset R: True
+   fact:n=3 [T] a=[1, 2, 6] d=[0, 2]: R subset Q: True; Q subset R: True
+   fact:n=4 [A] a=[1, 2, 6, 24] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=4 [T] a=[1, 2, 6, 24] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=4 [A] a=[1, 2, 6, 24] d=[0, 2]: R subset Q: False; Q subset R: True
+   fact:n=4 [T] a=[1, 2, 6, 24] d=[0, 2]: R subset Q: True; Q subset R: True
+   fact:n=4 [A] a=[1, 2, 6, 24] d=[0, 3]: R subset Q: True; Q subset R: True
+   fact:n=4 [T] a=[1, 2, 6, 24] d=[0, 3]: R subset Q: True; Q subset R: True
+   fact:n=5 [A] a=[1, 2, 6, 24, 120] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=5 [T] a=[1, 2, 6, 24, 120] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=5 [A] a=[1, 2, 6, 24, 120] d=[0, 2]: R subset Q: False; Q subset R: True
+   fact:n=5 [T] a=[1, 2, 6, 24, 120] d=[0, 2]: R subset Q: False; Q subset R: True
+   fact:n=5 [A] a=[1, 2, 6, 24, 120] d=[0, 3]: R subset Q: False; Q subset R: True
+   fact:n=5 [T] a=[1, 2, 6, 24, 120] d=[0, 3]: R subset Q: True; Q subset R: True
+   fact:n=5 [A] a=[1, 2, 6, 24, 120] d=[0, 4]: R subset Q: True; Q subset R: True
+   fact:n=5 [T] a=[1, 2, 6, 24, 120] d=[0, 4]: R subset Q: True; Q subset R: True
+   fact:n=6 [A] a=[1, 2, 6, 24, 120, 720] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=6 [T] a=[1, 2, 6, 24, 120, 720] d=[0, 1]: R subset Q: False; Q subset R: True
+   fact:n=6 [A] a=[1, 2, 6, 24, 120, 720] d=[0, 2]: R subset Q: False; Q subset R: True
+   fact:n=6 [T] a=[1, 2, 6, 24, 120, 720] d=[0, 2]: R subset Q: False; Q subset R: True
+   fact:n=6 [A] a=[1, 2, 6, 24, 120, 720] d=[0, 3]: R subset Q: False; Q subset R: True
+   fact:n=6 [T] a=[1, 2, 6, 24, 120, 720] d=[0, 3]: R subset Q: False; Q subset R: True
+   fact:n=6 [A] a=[1, 2, 6, 24, 120, 720] d=[0, 4]: R subset Q: False; Q subset R: True
+   fact:n=6 [T] a=[1, 2, 6, 24, 120, 720] d=[0, 4]: R subset Q: True; Q subset R: True
+   fact:n=6 [A] a=[1, 2, 6, 24, 120, 720] d=[0, 5]: R subset Q: True; Q subset R: True
+   fact:n=6 [T] a=[1, 2, 6, 24, 120, 720] d=[0, 5]: R subset Q: True; Q subset R: True
+   ('fact', 2, 'A'): configs=14  R not in Q: 10  Q not in R: 0
+   ('fact', 2, 'T'): configs=14  R not in Q: 6  Q not in R: 0
+   ('rpos2', 2, 'A'): configs=200  R not in Q: 92  Q not in R: 0
+   ('rpos2', 2, 'T'): configs=200  R not in Q: 43  Q not in R: 0
+   ('rpos3', 3, 'C'): configs=150  R not in Q: 33  Q not in R: 0
+   ('rpos4', 4, 'C'): configs=60  R not in Q: 8  Q not in R: 0
+   [t=193s]
+== Section Z: mutation sanity (rank 2, Theorem A minus (Ch2;1)) ==
+   section Z: 116/116 mutations detected
+TOTAL FAILURES: 0   time 194s

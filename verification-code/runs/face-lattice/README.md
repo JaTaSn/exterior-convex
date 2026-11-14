@@ -1,4 +1,7 @@
-# runs/ — face-lattice statistics logs
+# runs/face-lattice/ — face-lattice statistics logs
+
+*Moved 2026-11-08 from `runs/` (this file was `runs/description.md`); the scripts that write
+here now point at this directory. "This directory" below means this one.*
 
 Machine-generated JSON logs of Sage face-lattice statistics for R = angle(a) + shift^d(angle(a)),
 for a = all-ones or a = Kozlov vector. Two generations of this directory now coexist (different

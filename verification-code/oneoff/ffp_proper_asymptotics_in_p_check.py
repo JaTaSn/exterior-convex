@@ -36,7 +36,7 @@ Changelog (reverse chronological):
                     |S_n^(p)| = sum_{k=1}^n E^p(n,k).
 
 Run:  python3 code/oneoff/ffp_proper_asymptotics_in_p_check.py
-Output: runs/ffp-proper-asymptotics-in-p-check.txt (via tee in the driver).
+Output: runs/ffp-asymptotics/ffp-proper-asymptotics-in-p-check.txt (via tee in the driver).
 """
 
 import sys

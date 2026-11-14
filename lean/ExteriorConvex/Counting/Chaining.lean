@@ -41,8 +41,28 @@ Component indices are 0-based here (`i : Fin r`), against the note's
 `i = c` in `Q_i`/`y_i`, so `tailC n d c` sums the note's `Σ_{k>c}` and
 `headPhi d s c` is the note's `y_c = Σ_{k≤c}`.
 
+**Theorem A needs only the binomial box.**  The water-filling inverse
+(`Qclamp_phi_box`, `greedySlice_phi_box`, `eq_of_phi_eq_phi_box`,
+`phi_injOn_chained_box`) is proved for any tuple with `s_i(m) ≤ C(n,m)`
+(`InBox`): membership in `𝓕_n` enters its proof only through the two
+single-component facts `shiftAbs_extN_of_lt_indeg_box` (full binomial below
+`indeg`, which for a box-bounded vector is `le_antisymm` with
+`choose_le_of_lt_indeg`) and `shiftAbs_extN_le_Cabs_box`.  The original
+`𝓕_n` statements (`Qclamp_phi`, `greedySlice_phi`, `eq_of_phi_eq_phi`,
+`phi_injOn_chained`) are kept, unchanged, as corollaries via
+`inBox_of_mem_Fn`.  Downward closure is genuinely needed only by the window
+lemma `phi_eq_add_of_mem_window` (Lemma 2(b)), not by Theorem A.  This is
+what lets `Lattice/LatticePoints.lean`'s `chained_unique` apply Theorem A to
+lattice points of `Koz(n)`.
+
 **`native_decide` is banned in this development** (it would add the axiom
 `Lean.ofReduceBool`).
+
+Changelog (newest first):
+2026-10-21 Theorem A (`Qclamp_phi`, `greedySlice_phi`, `eq_of_phi_eq_phi`,
+`phi_injOn_chained`) and its two single-component helpers proved under the
+binomial box `InBox` as `*_box` lemmas; the `𝓕_n` versions are now
+corollaries with unchanged statements (Claude-Code agent, housekeeping)
 -/
 import ExteriorConvex.Counting.Stats
 import ExteriorConvex.Spine.Sumset
@@ -226,18 +246,37 @@ theorem shiftAbs_of_lt {dk : ℕ} (f : ℕ → ℕ) {j : ℕ} (h : j < dk) :
 def Cabs (n dk : ℕ) : ℕ → ℕ :=
   shiftAbs dk fun m => n.choose m
 
+/-- The binomial box `s(m) ≤ C(n,m)`: the only property of `𝓕_n` that
+Theorem A uses. -/
+def InBox (n : ℕ) (s : Fin (n + 1) → ℕ) : Prop :=
+  ∀ m : Fin (n + 1), s m ≤ n.choose m.val
+
+theorem inBox_of_mem_Fn {n : ℕ} {s : Fin (n + 1) → ℕ} (hs : s ∈ Fn n) :
+    InBox n s :=
+  apply_le_choose_of_mem_Fn hs
+
 /-- Below its window a component contributes the full binomial: at
 absolute degree `j < indeg(s⃗) + dk`, the placed entry is `C_k(j)`.
-(The single-component half of Lemma 2(b), from Lemma 1.) -/
-theorem shiftAbs_extN_of_lt_indeg {n : ℕ} {s : Fin (n + 1) → ℕ}
-    (hs : s ∈ Fn n) {dk j : ℕ} (h : (j : ℤ) < (indeg s : ℤ) + dk) :
+Box version: below `indeg` a box-bounded vector is the binomial, by
+`le_antisymm` with `choose_le_of_lt_indeg`. -/
+theorem shiftAbs_extN_of_lt_indeg_box {n : ℕ} {s : Fin (n + 1) → ℕ}
+    (hs : InBox n s) {dk j : ℕ} (h : (j : ℤ) < (indeg s : ℤ) + dk) :
     shiftAbs dk (extN s) j = Cabs n dk j := by
   rcases lt_or_ge j dk with hj | hj
   · rw [shiftAbs_of_lt _ hj, Cabs, shiftAbs_of_lt _ hj]
   · have h1 : j - dk < indeg s := by omega
     have h2 : j - dk ≤ n := by have := indeg_le s; omega
     rw [Cabs, shiftAbs_of_le _ hj, shiftAbs_of_le _ hj, extN_of_le h2]
-    exact apply_eq_choose_of_lt_indeg hs h1
+    exact le_antisymm (hs _)
+      (choose_le_of_lt_indeg (j := ⟨j - dk, Nat.lt_succ_of_le h2⟩) h1)
+
+/-- Below its window a component contributes the full binomial: at
+absolute degree `j < indeg(s⃗) + dk`, the placed entry is `C_k(j)`.
+(The single-component half of Lemma 2(b), from Lemma 1.) -/
+theorem shiftAbs_extN_of_lt_indeg {n : ℕ} {s : Fin (n + 1) → ℕ}
+    (hs : s ∈ Fn n) {dk j : ℕ} (h : (j : ℤ) < (indeg s : ℤ) + dk) :
+    shiftAbs dk (extN s) j = Cabs n dk j :=
+  shiftAbs_extN_of_lt_indeg_box (inBox_of_mem_Fn hs) h
 
 /-- Above its window a component contributes zero: at absolute degree
 `j > tp(s⃗) + dk`, the placed entry vanishes.  (No membership in `𝓕_n`
@@ -253,9 +292,10 @@ theorem shiftAbs_extN_of_top_lt {n : ℕ} {s : Fin (n + 1) → ℕ} {dk j : ℕ}
       exact apply_eq_zero_of_top_lt
         (show top s < ((j - dk : ℕ) : ℤ) by omega)
 
-/-- The componentwise cap: a placed entry never exceeds the binomial. -/
-theorem shiftAbs_extN_le_Cabs {n : ℕ} {s : Fin (n + 1) → ℕ}
-    (hs : s ∈ Fn n) (dk j : ℕ) : shiftAbs dk (extN s) j ≤ Cabs n dk j := by
+/-- The componentwise cap: a placed entry never exceeds the binomial
+(box version). -/
+theorem shiftAbs_extN_le_Cabs_box {n : ℕ} {s : Fin (n + 1) → ℕ}
+    (hs : InBox n s) (dk j : ℕ) : shiftAbs dk (extN s) j ≤ Cabs n dk j := by
   rcases lt_or_ge j dk with hj | hj
   · rw [shiftAbs_of_lt _ hj, Cabs, shiftAbs_of_lt _ hj]
   · rw [Cabs, shiftAbs_of_le _ hj, shiftAbs_of_le _ hj]
@@ -263,7 +303,12 @@ theorem shiftAbs_extN_le_Cabs {n : ℕ} {s : Fin (n + 1) → ℕ}
     · rw [extN_of_gt h2]
       exact Nat.zero_le _
     · rw [extN_of_le h2]
-      exact apply_le_choose_of_mem_Fn hs _
+      exact hs _
+
+/-- The componentwise cap: a placed entry never exceeds the binomial. -/
+theorem shiftAbs_extN_le_Cabs {n : ℕ} {s : Fin (n + 1) → ℕ}
+    (hs : s ∈ Fn n) (dk j : ℕ) : shiftAbs dk (extN s) j ≤ Cabs n dk j :=
+  shiftAbs_extN_le_Cabs_box (inBox_of_mem_Fn hs) dk j
 
 /-! ## The sum map, the clamp and the chaining condition -/
 
@@ -559,9 +604,10 @@ theorem phi_eq_add_of_mem_window {n r : ℕ} {d : Fin r → ℕ}
 `Q_c` recovers the partial sum `y_c` exactly, in every absolute degree.
 ℕ-truncated subtraction absorbs the note's `max(0,·)`: in the alternative
 `j < ρ̂_{c+1}` the subtraction is exact, in the alternative `j > t̂_c` it
-truncates to zero, which is the correct value. -/
-theorem Qclamp_phi {n r : ℕ} {d : Fin r → ℕ}
-    {s : Fin r → Fin (n + 1) → ℕ} (hF : ∀ i, s i ∈ Fn n)
+truncates to zero, which is the correct value.  Only the binomial box is
+used. -/
+theorem Qclamp_phi_box {n r : ℕ} {d : Fin r → ℕ}
+    {s : Fin r → Fin (n + 1) → ℕ} (hF : ∀ i, InBox n (s i))
     (hc : Chained d s) (c j : ℕ) :
     Qclamp n d c (Phi d s) j = headPhi d s c j := by
   have hsplit := phi_split d s c j
@@ -573,7 +619,7 @@ theorem Qclamp_phi {n r : ℕ} {d : Fin r → ℕ}
       simp only [tailC]
       refine sum_congr rfl fun k hk => ?_
       have hk' := (mem_filter.mp hk).2
-      refine shiftAbs_extN_of_lt_indeg (hF k) ?_
+      refine shiftAbs_extN_of_lt_indeg_box (hF k) ?_
       have := hA k hk'
       simp only [hatIndeg] at this
       omega
@@ -591,8 +637,28 @@ theorem Qclamp_phi {n r : ℕ} {d : Fin r → ℕ}
     have hle : Phi d s j ≤ tailC n d c j := by
       rw [hsplit, hhead, Nat.zero_add]
       simp only [tailC]
-      exact sum_le_sum fun k _ => shiftAbs_extN_le_Cabs (hF k) (d k) j
+      exact sum_le_sum fun k _ => shiftAbs_extN_le_Cabs_box (hF k) (d k) j
     omega
+
+/-- `Qclamp_phi_box` for tuples of `f`-vectors. -/
+theorem Qclamp_phi {n r : ℕ} {d : Fin r → ℕ}
+    {s : Fin r → Fin (n + 1) → ℕ} (hF : ∀ i, s i ∈ Fn n)
+    (hc : Chained d s) (c j : ℕ) :
+    Qclamp n d c (Phi d s) j = headPhi d s c j :=
+  Qclamp_phi_box (fun i => inBox_of_mem_Fn (hF i)) hc c j
+
+/-- **Theorem A** (`eq:water-filling` inverts `Φ`), box form: the greedy
+slices of the sum of a box-bounded chained tuple are the tuple itself — the
+closed-form degreewise clamp reconstructs every such tuple from its sum. -/
+theorem greedySlice_phi_box {n r : ℕ} {d : Fin r → ℕ}
+    {s : Fin r → Fin (n + 1) → ℕ} (hF : ∀ i, InBox n (s i))
+    (hc : Chained d s) (i : Fin r) :
+    greedySlice n d (Phi d s) i = s i := by
+  funext m
+  simp only [greedySlice]
+  rw [Qclamp_phi_box hF hc, Qclamp_phi_box hF hc, headPhi_succ,
+    Nat.add_sub_cancel_left, shiftAbs_apply_add]
+  exact extN_val (s i) m
 
 /-- **Theorem A** (`eq:water-filling` inverts `Φ`): the greedy slices of
 the sum of a chained tuple are the tuple itself — the closed-form
@@ -600,12 +666,17 @@ degreewise clamp reconstructs every chained tuple from its sum. -/
 theorem greedySlice_phi {n r : ℕ} {d : Fin r → ℕ}
     {s : Fin r → Fin (n + 1) → ℕ} (hF : ∀ i, s i ∈ Fn n)
     (hc : Chained d s) (i : Fin r) :
-    greedySlice n d (Phi d s) i = s i := by
-  funext m
-  simp only [greedySlice]
-  rw [Qclamp_phi hF hc, Qclamp_phi hF hc, headPhi_succ,
-    Nat.add_sub_cancel_left, shiftAbs_apply_add]
-  exact extN_val (s i) m
+    greedySlice n d (Phi d s) i = s i :=
+  greedySlice_phi_box (fun i => inBox_of_mem_Fn (hF i)) hc i
+
+/-- Injectivity of `Φ` on box-bounded chained tuples. -/
+theorem eq_of_phi_eq_phi_box {n r : ℕ} {d : Fin r → ℕ}
+    {s s' : Fin r → Fin (n + 1) → ℕ}
+    (hF : ∀ i, InBox n (s i)) (hF' : ∀ i, InBox n (s' i))
+    (hc : Chained d s) (hc' : Chained d s') (h : Phi d s = Phi d s') :
+    s = s' := by
+  funext i
+  rw [← greedySlice_phi_box hF hc i, ← greedySlice_phi_box hF' hc' i, h]
 
 /-- **Corollary of Theorem A**: `Φ` is injective on chained tuples — the
 clamp is an explicit left inverse, so two chained tuples with the same sum
@@ -614,15 +685,22 @@ theorem eq_of_phi_eq_phi {n r : ℕ} {d : Fin r → ℕ}
     {s s' : Fin r → Fin (n + 1) → ℕ}
     (hF : ∀ i, s i ∈ Fn n) (hF' : ∀ i, s' i ∈ Fn n)
     (hc : Chained d s) (hc' : Chained d s') (h : Phi d s = Phi d s') :
-    s = s' := by
-  funext i
-  rw [← greedySlice_phi hF hc i, ← greedySlice_phi hF' hc' i, h]
+    s = s' :=
+  eq_of_phi_eq_phi_box (fun i => inBox_of_mem_Fn (hF i))
+    (fun i => inBox_of_mem_Fn (hF' i)) hc hc' h
+
+/-- `Set.InjOn` on the box-bounded chained locus. -/
+theorem phi_injOn_chained_box (n r : ℕ) (d : Fin r → ℕ) :
+    Set.InjOn (Phi d)
+      {s : Fin r → Fin (n + 1) → ℕ | (∀ i, InBox n (s i)) ∧ Chained d s} :=
+  fun _ hs _ hs' h => eq_of_phi_eq_phi_box hs.1 hs'.1 hs.2 hs'.2 h
 
 /-- The same, packaged as `Set.InjOn` on the chained locus. -/
 theorem phi_injOn_chained (n r : ℕ) (d : Fin r → ℕ) :
     Set.InjOn (Phi d)
       {s : Fin r → Fin (n + 1) → ℕ | (∀ i, s i ∈ Fn n) ∧ Chained d s} :=
-  fun _ hs _ hs' h => eq_of_phi_eq_phi hs.1 hs'.1 hs.2 hs'.2 h
+  (phi_injOn_chained_box n r d).mono fun _ hs =>
+    And.intro (fun i => inBox_of_mem_Fn (hs.1 i)) hs.2
 
 /-! ## The bridge to article 1's ℝ-valued `ffvec` -/
 

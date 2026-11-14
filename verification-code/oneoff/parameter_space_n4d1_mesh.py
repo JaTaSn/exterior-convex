@@ -5,14 +5,14 @@
 #   normalized simplex a1+a2+a3+a4=1 (ai>0) embedded as a regular tetrahedron in R^3, plus a
 #   triangulated mesh of the "wall" surface a2*a4=a3^2 (the sole boundary found separating the two
 #   known combinatorial types), plus a point cloud drawn from the already-saved, verified
-#   experiment data in ../runs/ (not freshly generated -- reuses the actual computed/labeled
+#   experiment data in ../runs/paramspace/ (not freshly generated -- reuses the actual computed/labeled
 #   points rather than assuming un-checked ones are generic). Pure geometry, no Sage needed.
 #
 #   The wall surface has a clean explicit parametrization (a2 = a3^2/a4, given a3,a4 free), so no
 #   marching-tetrahedra/isosurface-extraction needed -- just grid the (a3,a4) plane, compute a2,
 #   keep points with a1=1-a2-a3-a4>0, and triangulate the valid grid.
 #
-#   Output: ../runs/paramspace_n4_d1_mesh_geometry.json, embedded directly into the visualization
+#   Output: ../runs/paramspace/paramspace_n4_d1_mesh_geometry.json, embedded directly into the visualization
 #   artifact (self-contained, no fetch at render time).
 
 """
@@ -28,7 +28,7 @@ import json
 import os
 import random
 
-OUTDIR = '../runs'
+OUTDIR = '../runs/paramspace'
 
 # Regular tetrahedron centered at the origin -- vertex i corresponds to the barycentric axis a_i.
 TETRA_VERTICES = [

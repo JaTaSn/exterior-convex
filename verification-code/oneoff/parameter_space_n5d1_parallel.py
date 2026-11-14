@@ -29,7 +29,7 @@ import subprocess
 import sys
 import time
 
-OUTDIR = '../runs'
+OUTDIR = '../runs/paramspace'
 SAGE = '/home/jan/miniforge3/envs/sage/bin/sage'
 
 

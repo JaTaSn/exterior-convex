@@ -1,0 +1,123 @@
+== 1. S_n: brute force vs KK; |S_n|
+n=1 |S_n|(KK)=1  #proper complexes=1  brute f-vectors match KK: True  cx-centroid=(1, 1)
+n=2 |S_n|(KK)=2  #proper complexes=2  brute f-vectors match KK: True  cx-centroid=(1, 2, 1/2)
+n=3 |S_n|(KK)=5  #proper complexes=9  brute f-vectors match KK: True  cx-centroid=(1, 3, 5/3, 1/9)
+n=4 |S_n|(KK)=16  #proper complexes=114  brute f-vectors match KK: True  cx-centroid=(1, 4, 73/19, 2/3, 1/114)
+n=5 |S_n|(KK)=70  #proper complexes=6894  brute f-vectors match KK: True
+n=6 |S_n|(KK)=457
+n=7 |S_n|(KK)=4908
+n=8 |S_n|(KK)=95248
+
+== 2. centroids of S_n (exact), mu-coords, and Table R1 exact values
+n=3 centroid(S_n)=(1, 3, 9/5, 1/5)  mu=(1.0, 1.0, 0.6, 0.2)
+n=4 centroid(S_n)=(1, 4, 17/4, 19/16, 1/16)  mu=(1.0, 1.0, 0.7083333333333334, 0.296875, 0.0625)
+n=5 centroid(S_n)=(1, 5, 561/70, 43/10, 9/14, 1/70)  mu=(1.0, 1.0, 0.8014285714285714, 0.43, 0.12857142857142856, 0.014285714285714285)
+n=6 centroid(S_n)=(1, 6, 5970/457, 5209/457, 1640/457, 141/457, 1/457)  mu=(1.0, 1.0, 0.8708971553610503, 0.5699124726477024, 0.23924142961342085, 0.05142231947483589, 0.002188183807439825)
+n=7 centroid(S_n)=(1, 7, 94609/4908, 59297/2454, 21775/1636, 13321/4908, 347/2454, 1/4908)  mu=(1.0, 1.0, 0.9179279698839601, 0.6903830480847596, 0.38028292001397135, 0.12924477044281446, 0.020200256141576434, 0.00020374898125509371)
+
+== 3. Lemma 3: beta permutes vertices, involution, maps Koz(n) to itself (vertex check)
+n=3 beta: vertex j -> [1, 2, 3]  involution(random pts)=True
+n=4 beta: vertex j -> [2, 1, 3, 4]  involution(random pts)=True
+n=5 beta: vertex j -> [3, 2, 1, 4, 5]  involution(random pts)=True
+n=6 beta: vertex j -> [4, 3, 2, 1, 5, 6]  involution(random pts)=True
+n=7 beta: vertex j -> [5, 4, 3, 2, 1, 6, 7]  involution(random pts)=True
+n=8 beta: vertex j -> [6, 5, 4, 3, 2, 1, 7, 8]  involution(random pts)=True
+n=9 beta: vertex j -> [7, 6, 5, 4, 3, 2, 1, 8, 9]  involution(random pts)=True
+
+== 4. Thm 5: lattice-point set beta-invariant iff n prime; centroid identity
+n=3 prime=True |L_n|=5 beta(L_n)=L_n: True
+n=4 prime=False |L_n|=20 beta(L_n)=L_n: False
+n=5 prime=True |L_n|=162 beta(L_n)=L_n: True
+n=6 prime=False |L_n|=1981 beta(L_n)=L_n: False
+n=7 prime=True |L_n|=60993 beta(L_n)=L_n: True
+n=8 prime=False |L_n|=3576524 beta(L_n)=L_n: False
+n= 3 prime=True  |L_n|=5  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 0.000e+00  identity holds=True
+n= 4 prime=False |L_n|=20  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 2.917e-02  identity holds=False
+n= 5 prime=True  |L_n|=162  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 0.000e+00  identity holds=True
+n= 6 prime=False |L_n|=1981  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 1.203e-02  identity holds=False
+n= 7 prime=True  |L_n|=60993  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 0.000e+00  identity holds=True
+n= 8 prime=False |L_n|=3576524  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 5.577e-03  identity holds=False
+n= 9 prime=False |L_n|=480854771  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 4.517e-04  identity holds=False
+n=10 prime=False |L_n|=138838264906  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 3.639e-03  identity holds=False
+n=11 prime=True  |L_n|=107979816509545  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 0.000e+00  identity holds=True
+n=12 prime=False |L_n|=168090910145669767  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 2.246e-03  identity holds=False
+n=13 prime=True  |L_n|=702200971562336526971  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 0.000e+00  identity holds=True
+n=14 prime=False |L_n|=6866837639161024496400941  max_k|mu_k+mu_(n-k)-1-mu_(n-1)| = 1.592e-03  identity holds=False
+n=4 counterexample point x=(C(n,k)..,1,0): beta(x)_2 = 3/2 (non-integral: True)
+n=6 counterexample point x=(C(n,k)..,1,0): beta(x)_2 = 5/2 (non-integral: True)
+n=8 counterexample point x=(C(n,k)..,1,0): beta(x)_2 = 7/2 (non-integral: True)
+n=9 counterexample point x=(C(n,k)..,1,0): beta(x)_3 = 28/3 (non-integral: True)
+n=10 counterexample point x=(C(n,k)..,1,0): beta(x)_2 = 9/2 (non-integral: True)
+n=12 counterexample point x=(C(n,k)..,1,0): beta(x)_2 = 11/2 (non-integral: True)
+
+== 5. Thm 6: core, link count, bounds
+n=3 |core|=1 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=4 sum_m<n|S_m|=4 link-image==target:True eps=0.8000 maxpair=0.6000 mu_(n-1)=0.6000 idx-(n-1)/2=0.8000 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=4 |core|=7 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=9 sum_m<n|S_m|=9 link-image==target:True eps=0.5625 maxpair=0.4167 mu_(n-1)=0.2969 idx-(n-1)/2=0.5677 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=5 |core|=45 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=25 sum_m<n|S_m|=25 link-image==target:True eps=0.3571 maxpair=0.2314 mu_(n-1)=0.1286 idx-(n-1)/2=0.3743 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=6 |core|=362 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=95 sum_m<n|S_m|=95 link-image==target:True eps=0.2079 maxpair=0.1398 mu_(n-1)=0.0514 idx-(n-1)/2=0.2337 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=7 |core|=4356 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=552 sum_m<n|S_m|=552 link-image==target:True eps=0.1125 maxpair=0.0707 mu_(n-1)=0.0202 idx-(n-1)/2=0.1382 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=8 |core|=89788 D(core)⊂core:True [s(n-1)=0 <=> tp<=n-2]:True |top|=5460 sum_m<n|S_m|=5460 link-image==target:True eps=0.0573 maxpair=0.0372 mu_(n-1)=0.0081 idx-(n-1)/2=0.0774 bounds ok:True core-centroid mu_k+mu_(n-k)=1:True
+n=10 |S_n|=286007155 maxpair=8.102e-03 mu_(n-1)=1.337e-03
+n=12 |S_n|=19039518484735 maxpair=1.558e-03 mu_(n-1)=2.180e-04
+
+== 6. second moments, n=3,4 (S_n, lattice), f-coords
+n=3 S_n: Cov(f_2..f_n) = [['34/25', '6/25'], ['6/25', '4/25']]
+n=3 lattice: Cov(f_2..f_n) = [['34/25', '6/25'], ['6/25', '4/25']]
+n=4 S_n: Cov(f_2..f_n) = [['57/16', '101/64', '7/64'], ['101/64', '487/256', '45/256'], ['7/64', '45/256', '15/256']]
+n=4 lattice: Cov(f_2..f_n) = [['319/100', '263/200', '19/200'], ['263/200', '691/400', '53/400'], ['19/200', '53/400', '19/400']]
+
+== 7. rank >= 2 sumsets FF(n;d): counts and centroids
+n=3 d=(0, 0) |FF|=12 centroid=(2, 6, 15/4, 1/2)  S-indep=(2, 6, 18/5, 2/5)
+n=3 d=(0, 1) |FF|=22 centroid=(1, 4, 51/11, 2, 5/22)  S-indep=(1, 4, 24/5, 2, 1/5)
+n=3 d=(0, 2) |FF|=25 centroid=(1, 3, 14/5, 16/5, 9/5, 1/5)  S-indep=(1, 3, 14/5, 16/5, 9/5, 1/5)
+n=4 d=(0, 0) |FF|=69 centroid=(2, 8, 200/23, 205/69, 17/69)  S-indep=(2, 8, 17/2, 19/8, 1/8)
+n=4 d=(0, 1) |FF|=162 centroid=(1, 5, 23/3, 437/81, 85/54, 8/81)  S-indep=(1, 5, 33/4, 87/16, 5/4, 1/16)
+n=4 d=(0, 2) |FF|=246 centroid=(1, 4, 637/123, 208/41, 177/41, 299/246, 8/123)  S-indep=(1, 4, 21/4, 83/16, 69/16, 19/16, 1/16)
+n=4 d=(0, 3) |FF|=256 centroid=(1, 4, 17/4, 35/16, 65/16, 17/4, 19/16, 1/16)  S-indep=(1, 4, 17/4, 35/16, 65/16, 17/4, 19/16, 1/16)
+n=5 d=(0, 0) |FF|=627 centroid=(2, 10, 3326/209, 568/57, 1405/627, 71/627)  S-indep=(2, 10, 561/35, 43/5, 9/7, 1/35)
+n=5 d=(0, 1) |FF|=1858 centroid=(1, 6, 11036/929, 10784/929, 11659/1858, 2177/1858, 35/929)  S-indep=(1, 6, 911/70, 431/35, 173/35, 23/35, 1/70)
+n=3 d=(0, 0, 0) |FF|=22 centroid=(3, 9, 63/11, 9/11)  S-indep=(3, 9, 27/5, 3/5)
+n=3 d=(0, 1, 2) |FF|=95 centroid=(1, 4, 533/95, 457/95, 193/95, 22/95)  S-indep=(1, 4, 29/5, 5, 2, 1/5)
+n=3 d=(0, 1, 3) |FF|=110 centroid=(1, 4, 51/11, 3, 71/22, 9/5, 1/5)  S-indep=(1, 4, 24/5, 3, 16/5, 9/5, 1/5)
+n=3 d=(0,1) Cov_FF(f2,f3,f4) = [['160/121', '3/11', '9/242'], ['3/11', '18/11', '3/11'], ['9/242', '3/11', '85/484']]
+
+== 8. Thm 8: FF(3;0^r) = r Koz(3) ∩ Z, count and centroid, r<=6
+r=1 |FF|=5 (r+1)(3r+2)/2=5 FF==lattice:True centroid==pred:True
+r=2 |FF|=12 (r+1)(3r+2)/2=12 FF==lattice:True centroid==pred:True
+r=3 |FF|=22 (r+1)(3r+2)/2=22 FF==lattice:True centroid==pred:True
+r=4 |FF|=35 (r+1)(3r+2)/2=35 FF==lattice:True centroid==pred:True
+r=5 |FF|=51 (r+1)(3r+2)/2=51 FF==lattice:True centroid==pred:True
+r=6 |FF|=70 (r+1)(3r+2)/2=70 FF==lattice:True centroid==pred:True
+|FF(4;0^r)| vs L_4(r) - 2r(r+1):
+  r=1 |FF|=16 |L|=20 L4poly=20 L-2r(r+1)=16 match:True
+  r=2 |FF|=69 |L|=81 L4poly=81 L-2r(r+1)=69 match:True
+  r=3 |FF|=184 |L|=208 L4poly=208 L-2r(r+1)=184 match:True
+  r=4 |FF|=385 |L|=425 L4poly=425 L-2r(r+1)=385 match:True
+  r=5 |FF|=696 |L|=756 L4poly=756 L-2r(r+1)=696 match:True
+  r=6 |FF|=1141 |L|=1225 L4poly=1225 L-2r(r+1)=1141 match:True
+
+== 9. Euler-Maclaurin: lattice centroid of t Koz(n), t large, vs c + c1/t
+n=4 t=20 #pts=35721 t^2*(mu - c - c1/t) = [0.065, 0.15, 0.195]
+n=4 t=40 #pts=270641 t^2*(mu - c - c1/t) = [0.066, 0.153, 0.199]
+n=4 t=80 #pts=2106081 t^2*(mu - c - c1/t) = [0.067, 0.155, 0.201]
+  L_4(t) check t=1..8: [True, True, True, True, True, True, True, True]
+n=5 t=20 #pts=3857371 t^2*(mu - c - c1/t) = [0.066, 0.131, 0.197, 0.253]
+n=5 t=40 #pts=57428741 t^2*(mu - c - c1/t) = [0.067, 0.134, 0.2, 0.257]
+n=5 t=80 #pts=885713481 t^2*(mu - c - c1/t) = [0.067, 0.135, 0.202, 0.26]
+
+== 10. Sage: Koz(n) centroid and second moments (symbolic integration over order simplex)
+n=3 centroid mu_k=(n-k+1)/n: True; Cov formula (k-1)(n-l+1)/(n^2(n+1)) all k<=l: True
+n=4 centroid mu_k=(n-k+1)/n: True; Cov formula (k-1)(n-l+1)/(n^2(n+1)) all k<=l: True
+n=5 Polyhedron.centroid mu = [1, 4/5, 3/5, 2/5, 1/5]
+n=6 Polyhedron.centroid mu = [1, 5/6, 2/3, 1/2, 1/3, 1/6]
+
+== 11. Sage: Koz(n;d) lattice points and polytope centroid
+n=3 d=(0, 0) dim=2 |lattice|=12 lattice-centroid=(2, 6, 15/4, 1/2) Koz-centroid=(2, 6, 4, 2/3) FF⊂lattice:True |lattice\FF|=0
+n=3 d=(0, 1) dim=3 |lattice|=22 lattice-centroid=(1, 4, 51/11, 2, 5/22) Koz-centroid=(1, 4, 37/8, 7/3, 3/8) FF⊂lattice:True |lattice\FF|=0
+n=3 d=(0, 2) dim=4 |lattice|=25 lattice-centroid=(1, 3, 14/5, 16/5, 9/5, 1/5) Koz-centroid=(1, 3, 3, 10/3, 2, 1/3) FF⊂lattice:True |lattice\FF|=0
+n=4 d=(0, 0) dim=3 |lattice|=81 lattice-centroid=(2, 8, 230/27, 29/9, 7/27) Koz-centroid=(2, 8, 9, 4, 1/2) FF⊂lattice:True |lattice\FF|=12
+n=4 d=(0, 1) dim=4 |lattice|=214 lattice-centroid=(1, 5, 809/107, 582/107, 367/214, 10/107) Koz-centroid=(1, 5, 197/26, 79/13, 129/52, 4/13) FF⊂lattice:True |lattice\FF|=52
+n=4 d=(0, 2) dim=5 |lattice|=386 lattice-centroid=(1, 4, 971/193, 1014/193, 800/193, 527/386, 10/193) Koz-centroid=(1, 4, 71/14, 38/7, 19/4, 44/21, 11/42) FF⊂lattice:True |lattice\FF|=140
+n=3 d=(0, 1, 2) dim=4 |lattice|=95 lattice-centroid=(1, 4, 533/95, 457/95, 193/95, 22/95) Koz-centroid=(1, 4, 162/29, 428/87, 69/29, 11/29) FF⊂lattice:True |lattice\FF|=0
+n=5 d=(0, 0) dim=4 |lattice|=1108 lattice-centroid=(2, 10, 4225/277, 2910/277, 1595/554, 163/1108) Koz-centroid=(2, 10, 16, 12, 4, 2/5) FF⊂lattice:True |lattice\FF|=481
+n=3 d=(0,1) vertices: [(3, 0, 0), (3, 3, 0), (3, 3, 1), (6, 0, 0), (6, 3, 1), (6, 4, 0), (6, 4, 1)]

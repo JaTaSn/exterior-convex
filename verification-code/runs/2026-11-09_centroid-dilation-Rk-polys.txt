@@ -1,0 +1,9 @@
+n = 4:  L(t) = (4) * (t + 1/4) * (t + 1)^2
+  k=2: S_k(t) = (18) * t * (t + 1) * (t^2 + 10/9*t + 1/6);  R_k(t) = (-5/2) * t * (t + 3/5) * (t + 1);  beta_k = -5/48;  |beta_k| C(n,k) L + R_k = (13/8) * (t + 5/13) * (t + 1);  both non-negative coefficients in t-1: True
+  k=3: S_k(t) = (8) * t * (t + 1) * (t^2 + 3/4*t - 1/16);  R_k(t) = (-4) * t * (t + 5/8) * (t + 1);  beta_k = -1/4;  |beta_k| C(n,k) L + R_k = (5/2) * (t + 2/5) * (t + 1);  both non-negative coefficients in t-1: True
+  k=4: S_k(t) = t * (t + 1) * (t^2 - 1/2);  R_k(t) = (-5/4) * t * (t + 3/5) * (t + 1);  beta_k = -5/16;  |beta_k| C(n,k) L + R_k = (13/16) * (t + 5/13) * (t + 1);  both non-negative coefficients in t-1: True
+n = 5:  L(t) = (125/6) * (t + 1) * (t^3 + 2*t^2 + 21/25*t + 6/125)
+  k=2: S_k(t) = (500/3) * t * (t + 1) * (t^3 + 15/8*t^2 + 27/40*t + 1/20);  R_k(t) = (-125/6) * t * (t + 1) * (t^2 + 33/25*t - 2/125);  beta_k = -1/10;  |beta_k| C(n,k) L + R_k = (85/6) * (t + 1/17) * (t + 1) * (t + 6/5);  both non-negative coefficients in t-1: True
+  k=3: S_k(t) = (125) * t * (t + 1) * (t^3 + 5/3*t^2 + 2/5*t + 4/75);  R_k(t) = (-125/3) * t * (t + 1) * (t^2 + 33/25*t - 2/125);  beta_k = -1/5;  |beta_k| C(n,k) L + R_k = (85/3) * (t + 1/17) * (t + 1) * (t + 6/5);  both non-negative coefficients in t-1: True
+  k=4: S_k(t) = (125/3) * t * (t + 1) * (t^3 + 5/4*t^2 - 3/20*t + 3/50);  R_k(t) = (-125/4) * t * (t + 1) * (t^2 + 33/25*t - 2/125);  beta_k = -3/10;  |beta_k| C(n,k) L + R_k = (85/4) * (t + 1/17) * (t + 1) * (t + 6/5);  both non-negative coefficients in t-1: True
+  k=5: S_k(t) = (25/6) * t * (t + 1) * (t^3 + 1/4*t^2 - 27/20*t + 11/50);  R_k(t) = (-175/24) * t * (t + 1) * (t^2 + 219/175*t - 86/875);  beta_k = -7/20;  |beta_k| C(n,k) L + R_k = (131/24) * (t + 7/131) * (t + 1) * (t + 6/5);  both non-negative coefficients in t-1: True

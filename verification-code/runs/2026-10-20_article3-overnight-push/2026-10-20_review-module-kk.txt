@@ -1,0 +1,48 @@
+review_module_kk_check.py  run 2026-10-20 22:09
+[R1] rank 1 n<=8: F1,F2(R1/R2),F3,F4 and kappa=a^(k) on actual lex segments: 556 (n,k,t) OK
+    (0.0s)
+[R2] P and Q with ACTUAL lex shadows, n<=8, 0<=k'<=k<=n+1: 29446 P-, 29957 Q-instances OK
+    (0.0s)
+[R3] rank-1 Kruskal-Katona (lex-initial minimises upper shadow), all families, n<=6: OK
+    (0.4s)
+[R4] note 3.4 counterexample n=4: one-monomial move costs 8 > 6 (start); greedy 4: confirmed
+    (0.0s)
+[R5] module, ALL monomial subsets: 144 configs (n<=4, r<=3, d_1 in {-1,0}, sorted d in [-1,3]^r, ties), j in [d_1-2, d_r+n+1], 4090 (j,t) cases, 1039529 subsets: min shadow = lex_F shadow, lex_F shadow is lex_F segment, dimF_(j+1)-min = B(h,j): OK
+    (0.4s)
+[R6] ALL subspaces over GF(2) (dim F_j<=6) and GF(3) (dim F_j<=5), genuine exterior signs, 24 configs, 15709 subspaces: min dim E_1V over subspaces = min over monomial subsets: OK
+    (0.2s)
+[R8] Corollary 9 (B(0,s-1)=r0, B(h_s,s)=n h_s + r1), n<=5, r<=3, d in [-2,3]^r, all s: 2535 OK
+    (0.0s)
+[R9] Prop 4: greedy (largest exterior degree first) = min over all splits, actual sigma, n<=7, r<=3, exterior degrees in [-2,n+1]: 21535 (config,T) OK
+    (5.2s)
+    f-vector sets: n=1: 3, n=2: 5, n=3: 10, n=4: 26
+[R7] Theorem 8 (b) <=> achievable by monomial M (f-vector sumset, own enumeration of complexes): 27 configs, 0 fp / 0 fn
+    n=1 d=(0, 0) achievable=6 B-sequences=6 fp=0 fn=0
+    n=1 d=(0, 0, 0) achievable=10 B-sequences=10 fp=0 fn=0
+    n=1 d=(0, 1) achievable=8 B-sequences=8 fp=0 fn=0
+    n=1 d=(-3, 0, 0) achievable=18 B-sequences=18 fp=0 fn=0
+    n=2 d=(0, 0) achievable=14 B-sequences=14 fp=0 fn=0
+    n=2 d=(0, 1) achievable=20 B-sequences=20 fp=0 fn=0
+    n=2 d=(-2, 1) achievable=25 B-sequences=25 fp=0 fn=0
+    n=2 d=(0, 0, 0) achievable=30 B-sequences=30 fp=0 fn=0
+    n=2 d=(0, 0, 1) achievable=49 B-sequences=49 fp=0 fn=0
+    n=2 d=(0, 1, 1) achievable=49 B-sequences=49 fp=0 fn=0
+    n=2 d=(-1, 0, 2) achievable=95 B-sequences=95 fp=0 fn=0
+    n=3 d=(0, 0) achievable=43 B-sequences=43 fp=0 fn=0
+    n=3 d=(0, 1) achievable=69 B-sequences=69 fp=0 fn=0
+    n=3 d=(0, 3) achievable=99 B-sequences=99 fp=0 fn=0
+    n=3 d=(0, 4) achievable=100 B-sequences=100 fp=0 fn=0
+    n=3 d=(0, 0, 0) achievable=125 B-sequences=125 fp=0 fn=0
+    n=3 d=(0, 0, 1) achievable=236 B-sequences=236 fp=0 fn=0
+    n=3 d=(0, 1, 1) achievable=236 B-sequences=236 fp=0 fn=0
+    n=3 d=(-1, -1, 1) achievable=359 B-sequences=359 fp=0 fn=0
+    n=3 d=(0, 2, 2) achievable=359 B-sequences=359 fp=0 fn=0
+    n=4 d=(0, 0) achievable=194 B-sequences=194 fp=0 fn=0
+    n=4 d=(0, 1) achievable=368 B-sequences=368 fp=0 fn=0
+    n=4 d=(-1, 1) achievable=556 B-sequences=556 fp=0 fn=0
+    n=4 d=(0, 3) achievable=657 B-sequences=657 fp=0 fn=0
+    n=4 d=(0, 0, 0) achievable=816 B-sequences=816 fp=0 fn=0
+    n=4 d=(0, 0, 1) achievable=1888 B-sequences=1888 fp=0 fn=0
+    n=4 d=(0, 1, 2) achievable=4200 B-sequences=4200 fp=0 fn=0
+    (0.2s)
+ALL CHECKS PASSED

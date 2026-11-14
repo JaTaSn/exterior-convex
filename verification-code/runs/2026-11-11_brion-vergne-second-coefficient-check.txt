@@ -1,0 +1,31 @@
+(a) lattice polytopes, homogeneous weights
+triangle (0,0),(4,0),(0,2)         h = x            sum = 16*t**3/3 + 6*t**2 + 5*t/3
+                                   t^3: 16/3 vs ∫_P h = 16/3;  t^2: 6 vs ½Σ∫_F h = 6   OK
+triangle (0,0),(4,0),(0,2)         h = x*y          sum = 8*t**4/3 + 4*t**3/3 - 2*t**2/3 - t/3
+                                   t^4: 8/3 vs ∫_P h = 8/3;  t^3: 4/3 vs ½Σ∫_F h = 4/3   OK
+triangle (0,0),(4,0),(0,2)         h = x**2 - 3*y**2 sum = 8*t**4/3 + 8*t**3 + 10*t**2/3
+                                   t^4: 8/3 vs ∫_P h = 8/3;  t^3: 8 vs ½Σ∫_F h = 8   OK
+simplex (0,0,0),(2,0,0),(0,3,0),(1,1,4) h = z            sum = 4*t**4 + 2*t**3 + 4*t**2
+                                   t^4: 4 vs ∫_P h = 4;  t^3: 2 vs ½Σ∫_F h = 2   OK
+simplex (0,0,0),(2,0,0),(0,3,0),(1,1,4) h = x*y + z**2   sum = 9*t**5 + 11*t**4/2 + 77*t**3/6 + 7*t**2/2 + 25*t/6
+                                   t^5: 9 vs ∫_P h = 9;  t^4: 11/2 vs ½Σ∫_F h = 11/2   OK
+square pyramid (apex not simple)   h = z            sum = 3*t**4 + 2*t**3 + 3*t**2/2 - t/2
+                                   t^4: 3 vs ∫_P h = 3;  t^3: 2 vs ½Σ∫_F h = 2   OK
+square pyramid (apex not simple)   h = x*z + y**2   sum = 39*t**5/5 + 22*t**4/3 + 37*t**3/6 + 13*t**2/6 + 8*t/15
+                                   t^5: 39/5 vs ∫_P h = 39/5;  t^4: 22/3 vs ½Σ∫_F h = 22/3   OK
+
+(b) Koz(n): predicted first-order centroid corrections vs prop-dilates
+  n=3 k=2: predicted -1/9, prop-dilates -1/9   OK
+  n=3 k=3: predicted -2/9, prop-dilates -2/9   OK
+  n=4 k=2: predicted -5/48, prop-dilates -5/48   OK
+  n=4 k=3: predicted -1/4, prop-dilates -1/4   OK
+  n=4 k=4: predicted -5/16, prop-dilates -5/16   OK
+  n=5 k=2: predicted -1/10, prop-dilates -1/10   OK
+  n=5 k=3: predicted -1/5, prop-dilates -1/5   OK
+  n=5 k=4: predicted -3/10, prop-dilates -3/10   OK
+  n=5 k=5: predicted -7/20, prop-dilates -7/20   OK
+
+(c) non-homogeneous weight h = 1 + x on [0,1]:
+  sum_{x=0..t} (1+x) = t**2/2 + 3*t/2 + 1 ; ∫_0^1 (1+x) dx = 3/2: leading coefficient is ∫ of the top-degree part only
+
+ALL OK

@@ -33,7 +33,7 @@ import json
 import math
 import os
 
-OUTDIR_RUNS = '../runs'
+OUTDIR_RUNS = '../runs/paramspace'
 OUTDIR_ARTEFACTS = '../artefacts'
 
 BG = '#0f1520'

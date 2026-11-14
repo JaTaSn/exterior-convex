@@ -9,7 +9,7 @@ recreating the file below and running `cd LEAN && lake env lean
 D3dCheck.lean`).
 
 **Entrywise, not totals**, per the standing verification standard.  As
-in the D3a/D3b anchors (`runs/proper-lean-anchors-20260918.md`): the
+in the D3a/D3b anchors (`20-projects/exterior-convex/runs/lean-anchors/proper-lean-anchors-20260918.md`): the
 `n = 3` layer never does matrix arithmetic on the formal `Matrix`
 values (`Amat` recomputes `Fn n` per call) — the formal entries of
 `Bmat 3`/`uTilde 3` are each read exactly once and compared to the

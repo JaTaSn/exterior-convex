@@ -1,0 +1,72 @@
+# runs/2026-10-20_kozlov_hdesc_verify.txt -- output of code/oneoff/kozlov_hdesc_verify.sage (full mode, extended ranges), started 2026-10-20 21:51 on jts-pc
+
+== S0: mutation sanity check -- every Theta row is necessary, every offset is sharp ==
+S0 result: 68 row mutations, 0 failures (a failure = a mutation the comparison did not detect)
+
+== S1: rank 2, conj-kozlov-hrep2 transcribed literally ==
+  n=2 done (4 configs so far, 0 failures)  [2s]
+  n=3 done (12 configs so far, 0 failures)  [2s]
+  n=4 done (24 configs so far, 0 failures)  [2s]
+  n=5 done (40 configs so far, 0 failures)  [3s]
+  n=6 done (60 configs so far, 0 failures)  [4s]
+  n=7 done (84 configs so far, 0 failures)  [6s]
+  n=8 done (112 configs so far, 0 failures)  [9s]
+  n=9 done (144 configs so far, 0 failures)  [14s]
+  n=10 done (180 configs so far, 0 failures)  [21s]
+S1 result: 180 configurations, 0 failures
+
+== S2: rank 2, conj-ones-hrep transcribed literally (all-ones) ==
+S2 result: 45 configurations, 0 failures
+
+== S3: weighted Theta-form, rank r, distinct shifts, gaps <= n-1 ==
+  n=2 r=1 done (8 configs, 0 failures) [23s]
+  n=2 r=2 done (16 configs, 0 failures) [23s]
+  n=2 r=3 done (22 configs, 0 failures) [23s]
+  n=2 r=4 done (28 configs, 0 failures) [23s]
+  n=2 r=5 done (34 configs, 0 failures) [23s]
+  n=3 r=1 done (42 configs, 0 failures) [23s]
+  n=3 r=2 done (58 configs, 0 failures) [23s]
+  n=3 r=3 done (82 configs, 0 failures) [23s]
+  n=3 r=4 done (130 configs, 0 failures) [24s]
+  n=3 r=5 done (226 configs, 0 failures) [30s]
+  n=4 r=1 done (234 configs, 0 failures) [30s]
+  n=4 r=2 done (258 configs, 0 failures) [30s]
+  n=4 r=3 done (312 configs, 0 failures) [31s]
+  n=4 r=4 done (474 configs, 0 failures) [42s]
+  n=5 r=1 done (480 configs, 0 failures) [42s]
+  n=5 r=2 done (504 configs, 0 failures) [42s]
+  n=5 r=3 done (584 configs, 0 failures) [45s]
+  n=5 r=4 done (884 configs, 0 failures) [94s]
+  n=6 r=1 done (890 configs, 0 failures) [94s]
+  n=6 r=2 done (920 configs, 0 failures) [94s]
+  n=6 r=3 done (1040 configs, 0 failures) [102s]
+  n=7 r=1 done (1046 configs, 0 failures) [102s]
+  n=7 r=2 done (1082 configs, 0 failures) [103s]
+  n=7 r=3 done (1212 configs, 0 failures) [116s]
+S3 result: 1212 configurations, 0 failures
+
+== S4: the peel cascade, every level ==
+  n=2 done (24 configs, 1320 points, 0 failures) [116s]
+  n=3 done (204 configs, 26190 points, 0 failures) [127s]
+  n=4 done (438 configs, 62752 points, 0 failures) [141s]
+  n=5 done (558 configs, 76094 points, 0 failures) [145s]
+  n=6 done (732 configs, 103674 points, 0 failures) [155s]
+  n=7 done (924 configs, 141562 points, 0 failures) [171s]
+  n=8 done (1092 configs, 178550 points, 0 failures) [189s]
+S4 result: 1092 configurations, 178550 sample points, 0 failures
+
+== S5: arbitrary shift vectors (ties, gaps >= n): facets == n*s (Kozlov) ==
+S5 result: 455 configurations, 0 failures
+
+== S6: Koz(n;d) in R^{N+1} (degree 0 kept) vs the translated Theta-system ==
+S6 result: 37 configurations, 0 failures
+
+== S7: negative controls ==
+  (a) rank 2, random positive a: 350 configs; Q_Theta subset R fails 0 times (must be 0); R subset Q_Theta fails 104 times (validity needs LC)
+  (b) rank 3, random positive a: 390 configs; Q_Theta subset R fails 0; R subset Q_Theta fails 146; first sub-failure None
+  (c) a=(1,2,6,24), d=1: Q==R False, Q subset R True, R subset Q False
+  (c) a=(1,2,6,24), d=2: Q==R True, Q subset R True, R subset Q True
+  (c) a=(1,2,6,24), d=3: Q==R True, Q subset R True, R subset Q True
+
+SUMMARY: {'S0': True, 'S1': True, 'S2': True, 'S3': True, 'S4': True, 'S5': True, 'S6': True, 'S7': True}   total time 221s
+# finished 2026-10-20 21:55 (exit 0)

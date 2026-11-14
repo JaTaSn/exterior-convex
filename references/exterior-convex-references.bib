@@ -7,8 +7,8 @@
   pages     = {174--211},
   year      = {1997},
   publisher = {Elsevier},
-  doi       = {10.1006/jabr.1996.6908},
-  url       = {https://doi.org/10.1006/jabr.1996.6908},
+  doi       = {10.1006/jabr.1996.6903},
+  url       = {https://doi.org/10.1006/jabr.1996.6903},
   mrnumber  = {1444495}
 }
 
@@ -71,8 +71,20 @@
   volume    = {27},
   pages     = {271--287},
   year      = {2020},
-  doi       = {10.24330/ieja.663116},
-  url       = {https://doi.org/10.24330/ieja.663116}
+  doi       = {10.24330/ieja.663094},
+  url       = {https://doi.org/10.24330/ieja.663094}
+}
+
+@article{AmataCrupi2019,
+  author    = {Amata, Luca and Crupi, Marilena},
+  title     = {Minimal resolutions of graded modules over an exterior algebra},
+  journal   = {Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali},
+  volume    = {97},
+  number    = {1},
+  pages     = {A5-1--A5-15},
+  year      = {2019},
+  doi       = {10.1478/AAPP.971A5},
+  url       = {https://doi.org/10.1478/AAPP.971A5}
 }
 
 @article{Kozlov1997,
@@ -105,11 +117,15 @@
   title     = {Combinatorics and Commutative Algebra},
   series    = {Progress in Mathematics},
   volume    = {41},
-  edition   = {2nd},
+  % 2026-10-09: was `edition = {2nd}', which biblatex prints verbatim, so the bibliography read
+  % "2nd." (the period is the following unit punctuation, not part of the field).  An integer
+  % here is mapped to "2nd ed." by the language file, which is what every other edition-bearing
+  % entry in this file does -- cf. HornJohnson2013's `edition = {2}'.  Review item (optional).
+  edition   = {2},
   year      = {1996},
   publisher = {Birkh{\"a}user Boston},
-  doi       = {10.1007/978-1-4612-0759-7},
-  url       = {https://doi.org/10.1007/978-1-4612-0759-7}
+  doi       = {10.1007/b139094},
+  url       = {https://doi.org/10.1007/b139094}
 }
 
 % Checked against MathSciNet MR0154827(27 #4771) on 2026-09-14: title, pages 251--278, publisher
@@ -160,6 +176,24 @@
   url     = {https://arxiv.org/abs/1603.03585}
 }
 
+% Checked against the published Combinatorica version on 2026-10-09 (obtained through Jan's LiU
+% subscription; PDF in literature/subscription/).  Volume, number, pages and year all match as
+% recorded.  Received 28 February 1996, revised 26 February 1998.
+%
+% THE NUMBERING DIFFERS FROM THE PREPRINT, which is what this paper had been citing until
+% 2026-10-09.  The journal version is much shorter (13 pp. against the preprint's 26) and was
+% reorganised: the f-vector material is Section 3, not Section 5.  The map is
+%     preprint  Section 5        -> published  Section 3
+%     preprint  Theorem 5.1      -> published  Theorem 3.1   (Clements-Lindstrom)
+%     preprint  Theorem 5.2      -> published  Theorem 3.2   (the two recursions, (6) and (7))
+%     preprint  Theorem 5.3      -> published  Theorem 3.3   (polynomiality in p)
+%     preprint  Proposition 5.4  -> published  Proposition 2.8 (the leading coefficient; 3.3 is
+%                                  what carries it over from M^p(n) to F^p(n) and E^p(n,k))
+% The boundary values F^p(-1)=1, F^p(0)=2, F^0(n)=2, E^p(n,-1)=1, E^p(n,n)=1, E^p(n,k)=0 for k>n
+% and the identity F^p(n)=sum_k E^p(n,k) (published equation (5)) are all in Section 3's prose.
+% AND THE APPENDIX IS GONE: the published version has no appendix and prints exactly one table,
+% its own Table 1, of M^p(n).  Tables 5 and 6 -- the ones this paper checks itself against --
+% exist only in the preprint, which is why Linusson1999preprint below is a separate entry.
 @article{Linusson1999,
   author  = {Linusson, Svante},
   title   = {The Number of M-Sequences and f-Vectors},
@@ -171,14 +205,40 @@
   doi     = {10.1007/s004930050055}
 }
 
-@article{Ziegler1995,
+% Separate entry, added 2026-10-09, and NOT a duplicate: the two versions do not contain the same
+% things.  This paper's transcription check ("all 199 printed entries of his Tables 5 and 6") can
+% only be reproduced against the preprint, so a reader sent to Combinatorica alone would find no
+% appendix at all.  The copy used is literature/Linusson - 1999 - The Number of M-Sequences and
+% f-Vectors.pdf, 26 pp., which despite its filename is the preprint and not the journal version.
+% It carries no date, no report number and no arXiv identifier -- only a 1991 MSC classification --
+% so the entry says no more than can be seen on the document.  TODO (Jan): if the provenance of
+% this file is recoverable, add it here.
+%
+% THE DISAMBIGUATION IS IN THE TITLE ON PURPOSE, and this is worth knowing before "tidying" it
+% away.  The obvious place for it is `note', but this paper's preamble clears `note',
+% `annotation' and `addendum' from every bibitem (the \AtEndPreamble\AtEveryBibitem trick that
+% keeps project-internal provenance out of print), and make_arxiv_submission_article2.py strips
+% the same three fields from the .bib before BibTeX ever sees it.  So a note here would be
+% invisible in BOTH builds, leaving two entries, [Lin99a] and [Lin99b], printed identically and
+% distinguishable only by the presence of a journal.  Verified by reading the built bibliography.
+@unpublished{Linusson1999preprint,
+  author = {Linusson, Svante},
+  title  = {The Number of M-Sequences and f-Vectors (preprint version, with the appendix of
+            tables cut from the published paper)},
+  year   = {1999}
+}
+
+% 2026-10-21: entry type corrected from @article to @book (it printed as "In: Graduate Texts in
+% Mathematics 152"); DOI added, checked on Crossref.  Referee report on article 3 draft 4, S8.
+@book{Ziegler1995,
   author    = {Ziegler, G{\"u}nter M.},
   title     = {Lectures on Polytopes},
   series    = {Graduate Texts in Mathematics},
   volume    = {152},
   year      = {1995},
   publisher = {Springer-Verlag},
-  address   = {New York}
+  address   = {New York},
+  doi       = {10.1007/978-1-4613-8431-1}
 }
 
 @article{Stanley1986,
@@ -779,6 +839,13 @@
 % ClementsLindstroem1969, whose theorem specialises to the squarefree Kruskal--Katona statement
 % at k_i = 1 and which MathSciNet does index (MR0246781).
 
+% CHANGED 2026-10-09 from @manual to @misc, and `url' replaced by `howpublished'.  Both entries
+% went uncited until Jan asked (2026-10-09) that SageMath and Macaulay2 be cited explicitly -- "it
+% does not hurt to be generous to these open-source CAS projects" -- and citing them showed that
+% neither project's URL was reaching the page: biblatex's @manual driver prints no `url' here, and
+% classic alpha.bst ignores `url' outright, so the address was invisible in BOTH builds.
+% `howpublished' on a @misc prints in both, which the OEIS entry below had already demonstrated.
+% `label' is unaffected by the type change.
 % Form follows the project's own recommendation at
 % https://wiki.sagemath.org/Publications_using_SageMath, which asks that the version actually
 % used be named in the title and the matching year given. Version 10.9 is what runs/ records and
@@ -790,12 +857,12 @@
 %
 % NB `label' supplies only the NAME part of an alphabetic label; biblatex still appends the year
 % itself. So it must be {Sag}, not {Sag26} -- setting {Sag26} renders "[Sag2626]". Tried both.
-@manual{SageMath,
+@misc{SageMath,
   author = {{The Sage Developers}},
   title  = {{S}age{M}ath, the {S}age {M}athematics {S}oftware {S}ystem ({V}ersion 10.9)},
   year   = {2026},
-  url    = {https://www.sagemath.org},
-  label  = {Sag}
+  label  = {Sag},
+  howpublished = {\url{https://www.sagemath.org}}
 }
 
 % Version and year added 2026-09-14, for the same reason as SageMath above: without a year the
@@ -803,11 +870,11 @@
 % needed here -- the authors are ordinary personal names, so [GS26] is generated correctly once
 % the year is present. Version 1.26.06 is what is installed and used; Macaulay2 numbers releases
 % 1.YY.MM, and the build reports "Jun 20 2026", so both readings agree on 2026.
-@manual{Macaulay2,
+@misc{Macaulay2,
   author = {Grayson, Daniel R. and Stillman, Michael E.},
   title  = {Macaulay2, a software system for research in algebraic geometry (Version 1.26.06)},
   year   = {2026},
-  url    = {https://macaulay2.com}
+  howpublished = {Available at \url{https://macaulay2.com}}
 }
 
 %% ---------------------------------------------------------------------------
@@ -832,11 +899,32 @@
   doi         = {10.3384/LiTH-MAT-R-2026-04},
   url         = {https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721},
   urn         = {urn:nbn:se:liu:diva-227730},
+  eprint      = {2609.23605},
+  eprinttype  = {arxiv},
   note        = {Part I of this series; the companion paper. Published 2026-09-18. Identifiers, all
                  supplied by Jan: URN urn:nbn:se:liu:diva-227730, DOI
                  10.3384/LiTH-MAT-R-2026-04, OAI oai:DiVA.org:liu-227730, DiVA id diva2:2102721.
                  Note that the URN/OAI number (227730) and the DiVA id (2102721) are different
                  identifiers and neither is derivable from the other.}
+}
+
+% Added 2026-10-10.  Jan's suggestion, and a good one: section V.5 "Paths in graphs and automata"
+% is exactly the transfer-matrix setting of section 9 here.  Theorem V.7 (p. 343) and Note V.34
+% (p. 345, "The classical Perron-Frobenius Theorem") are the relevant places; both assume the
+% matrix IRREDUCIBLE, which is why they are not the citation for prop-recurrence's own sentence --
+% T_n(0) is unipotent, hence reducible, and that proposition covers delta = 0.  They are the
+% citation for rem-recurrence-asymptotics, where irreducibility holds.
+% The copy read is math-library's textbooks/combinatorics/analyticcombinatoricsbook.pdf.  NB that
+% catalogue holds the same work twice, as `analyticcombinatoricsbook' and as `flajolet', and its
+% own note says the two should be reconciled.
+@book{FlajoletSedgewick2009,
+  author    = {Flajolet, Philippe and Sedgewick, Robert},
+  title     = {Analytic Combinatorics},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2009},
+  isbn      = {978-0-521-89806-5},
+  doi       = {10.1017/CBO9780511801655}
 }
 
 @misc{OEIS,
@@ -863,4 +951,478 @@
                  working-notes/bijective-chaining-greedy-windows.org; does NOT directly contain the
                  level-monotonicity (M) needed there.  PDF in literature/.},
   url          = {https://cs.uwaterloo.ca/journals/JIS/VOL14/Abrego/abrego2.pdf}
+}
+
+% VERIFIED against the book itself, 2026-10-09 (Jan supplied the PDF; literature/subscription/).
+%
+% The year is right and was nearly changed on worse evidence.  The copyright page reads
+% "First published 1985 / First paperback edition 1990 / SECOND EDITION FIRST PUBLISHED 2013",
+% copyright "1985, 2013".  Crossref's 2012-10-22 and Cambridge's own "20 December 2012" are
+% release dates for this ISBN, not the edition's year; the Library of Congress line on the same
+% page is "QA188.H66 2012".  Keep year = 2013.
+%
+% THE LOCATOR WAS WRONG, AND IN AN INSTRUCTIVE WAY.  The note here used to say "believed Theorem
+% 8.4.5".  The NUMBER is right; what it says is not.  Theorem 8.4.5 is the EQUALITY case:
+% "Let A, B in M_n.  Suppose that A is nonnegative and irreducible, and A >= |B|.  Let
+% lambda = e^{i phi} rho(B) be a given maximum-modulus eigenvalue of B.  If rho(A) = rho(B), then
+% there is a diagonal unitary matrix D in M_n such that B = e^{i phi} A D D^{-1}."  It is not a
+% strict-comparison theorem and does not read like one out of context.
+%
+% Section 8.4 ("Irreducible nonnegative matrices", p. 533) contains ONLY Lemmas 8.4.1-8.4.3,
+% Theorems 8.4.4-8.4.5 and Corollaries 8.4.6-8.4.7; none of them is the strict comparison.  The
+% strict inequality appears in this book only as PROBLEM 8.2.P15(b), and only for B positive.
+%
+% So prop-perron-threshold now cites the pair that really does the work:
+%   Corollary 8.1.19  "Let A, B in M_n be nonnegative.  If 0 <= A <= B, then rho(A) <= rho(B)."
+%   Theorem   8.4.5   rules out equality: for nonnegative M, M' it forces M = M' entrywise,
+%                     since |M[i][j]| = |M'[i][j]| and both are nonnegative.
+% Also on hand if ever wanted: Theorem 8.1.18 (the |A| <= B version), Theorem 8.2.8 (Perron),
+% Theorem 8.3.1 (rho is an eigenvalue, nonnegative case), Theorem 8.4.4 (Perron-Frobenius).
+@book{HornJohnson2013,
+  author    = {Horn, Roger A. and Johnson, Charles R.},
+  title     = {Matrix Analysis},
+  edition   = {2},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2013},
+  isbn      = {978-0-521-83940-2},
+  note      = {Cited in article 2 at prop-perron-threshold, for Corollary 8.1.19 and
+               Theorem 8.4.5; both checked against the book 2026-10-09}
+}
+
+% ---------------------------------------------------------------------------------------------
+% Added 2026-10-20/21 (overnight article-3 push) for article 3.  Journal data of the five
+% articles checked against Crossref by DOI on 2026-10-20; Brändén--Solus against the arXiv
+% listing (1911.12459) and the FPSAC 2020 volume as recorded in the volume/Ehrhart working note.
+@misc{SnellmanArticle2,
+  author        = {Snellman, Jan},
+  title         = {Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank,
+                   {II}: Generalizing {L}inusson's count to sumsets of \(f\)-vectors},
+  year          = {2026},
+  eprint        = {2610.14985},
+  eprinttype    = {arxiv},
+  eprintclass   = {math.CO},
+  note          = {Part II of this series. arXiv v1 2026-10-10.}
+}
+
+@misc{SnellmanArticle4,
+  author        = {Snellman, Jan},
+  title         = {Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank,
+                   {IV}: Vertices and facets of the {K}ozlov polytope at every rank},
+  year          = {2026},
+  pubstate      = {inpreparation},
+  note          = {Part IV of this series. Added 2026-11-07, when it was split off Part III;
+                   update with the report number and arXiv id once it is out.}
+}
+
+@misc{SnellmanArticle3,
+  author        = {Snellman, Jan},
+  title         = {Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank,
+                   {III}: Lattice points of the {K}ozlov polytope},
+  year          = {2026},
+  pubstate      = {inpreparation},
+  note          = {Part III of this series. Added 2026-11-09 for Part V, which cites it; update with
+                   the report number and arXiv id once it is out.}
+}
+
+@misc{SnellmanArticle5,
+  author        = {Snellman, Jan},
+  title         = {Hilbert functions over the exterior algebra and \(f\)-vectors in higher rank,
+                   {V}: Module {K}ruskal--{K}atona},
+  year          = {2026},
+  pubstate      = {inpreparation},
+  note          = {Part V of this series. Added 2026-11-09, when Part III's section on the module
+                   Kruskal--Katona theorem was moved into it (Jan, round-2 review of Part III, item 14);
+                   update with the report number and arXiv id once it is out.}
+}
+
+@article{SavageSchuster2012,
+  author  = {Savage, Carla D. and Schuster, Michael J.},
+  title   = {Ehrhart series of lecture hall polytopes and {E}ulerian polynomials for inversion
+             sequences},
+  journal = {Journal of Combinatorial Theory, Series A},
+  volume  = {119},
+  number  = {4},
+  pages   = {850--870},
+  year    = {2012},
+  doi     = {10.1016/j.jcta.2011.12.005}
+}
+
+@article{SavageVisontai2015,
+  author  = {Savage, Carla D. and Visontai, Mirk{\'o}},
+  title   = {The \(\mathbf{s}\)-{E}ulerian polynomials have only real roots},
+  journal = {Transactions of the American Mathematical Society},
+  volume  = {367},
+  number  = {2},
+  pages   = {1441--1466},
+  year    = {2015},
+  doi     = {10.1090/S0002-9947-2014-06256-9}
+}
+
+@article{HibiOlsenTsuchiya2018,
+  author  = {Hibi, Takayuki and Olsen, McCabe and Tsuchiya, Akiyoshi},
+  title   = {Gorenstein properties and integer decomposition properties of lecture hall polytopes},
+  journal = {Moscow Mathematical Journal},
+  volume  = {18},
+  number  = {4},
+  pages   = {667--679},
+  year    = {2018},
+  doi     = {10.17323/1609-4514-2018-18-4-667-679}
+}
+
+@article{BrandenSolus2020,
+  author     = {Br{\"a}nd{\'e}n, Petter and Solus, Liam},
+  title      = {Some algebraic properties of lecture hall polytopes},
+  journal    = {S{\'e}minaire Lotharingien de Combinatoire},
+  volume     = {84B},
+  eid        = {25},
+  note       = {Proceedings of FPSAC 2020, Article 25},
+  year       = {2020},
+  eprint     = {1911.12459},
+  eprinttype = {arxiv}
+}
+
+@article{Postnikov2009,
+  author  = {Postnikov, Alexander},
+  title   = {Permutohedra, associahedra, and beyond},
+  journal = {International Mathematics Research Notices},
+  volume  = {2009},
+  number  = {6},
+  pages   = {1026--1106},
+  year    = {2009},
+  doi     = {10.1093/imrn/rnn153}
+}
+
+@article{McMullen1977,
+  author  = {McMullen, Peter},
+  title   = {Valuations and {E}uler-type relations on certain classes of convex polytopes},
+  journal = {Proceedings of the London Mathematical Society (3)},
+  volume  = {35},
+  number  = {1},
+  pages   = {113--135},
+  year    = {1977},
+  doi     = {10.1112/plms/s3-35.1.113}
+}
+
+@book{BeckRobins2015,
+  author    = {Beck, Matthias and Robins, Sinai},
+  title     = {Computing the Continuous Discretely: Integer-Point Enumeration in Polyhedra},
+  edition   = {2},
+  series    = {Undergraduate Texts in Mathematics},
+  publisher = {Springer},
+  address   = {New York},
+  year      = {2015}
+}
+
+@misc{CaicedoJuhnkePoullot2025,
+  author      = {Caicedo, Jhon B. and Juhnke, Martina and Poullot, Germain},
+  title       = {Ehrhart non-positivity and unimodular triangulations for classes of
+                 \(s\)-lecture hall simplices},
+  year        = {2025},
+  eprint      = {2508.18890},
+  eprinttype  = {arxiv},
+  eprintclass = {math.CO},
+  note        = {Added 2026-10-21 for article 3; title and authors read from the arXiv v3 PDF in
+                 literature/.}
+}
+
+@article{Liu2011,
+  author  = {Liu, Fu},
+  title   = {Higher integrality conditions, volumes and {E}hrhart polynomials},
+  journal = {Advances in Mathematics},
+  volume  = {226},
+  pages   = {3467--3494},
+  year    = {2011},
+  doi     = {10.1016/j.aim.2010.10.023},
+  note    = {Added 2026-11-11, for later work, not cited: PDF saved by Jan (literature/Liu-2011.pdf,
+             publisher version; how it was obtained is not recorded). Data from the PDF's first page.
+             k-integral polytopes (Def. 1.1); Thm 1.3, Ehrhart coefficients as projection and slice
+             volumes. Koz(n;d) is never 1-integral for n >= 3:
+             working-notes/koz-k-integrality-liu2011-2026-11-11.org.}
+}
+
+@article{LiuSolus2019,
+  author  = {Liu, Fu and Solus, Liam},
+  title   = {On the relationship between {E}hrhart unimodality and {E}hrhart positivity},
+  journal = {Annals of Combinatorics},
+  volume  = {23},
+  number  = {2},
+  pages   = {347--365},
+  year    = {2019},
+  doi     = {10.1007/s00026-019-00429-8},
+  note    = {Added 2026-10-21 for article 3 (referee MUST-FIX 1); data checked on Crossref.
+             Theorem 4.3: first non-Ehrhart-positive lecture hall simplices.}
+}
+
+% ---- Partial orders on compositions (fibre manuscript), added 2026-11-08; see README.org,
+% ---- section "Partial orders on compositions".  Data from the PDFs and the arXiv API.
+
+@article{BrualdiHwang2004,
+  author  = {Brualdi, Richard A. and Hwang, Suk-Geun},
+  title   = {A {B}ruhat order for the class of (0,1)-matrices with row sum vector {$R$} and
+             column sum vector {$S$}},
+  journal = {Electronic Journal of Linear Algebra},
+  volume  = {12},
+  pages   = {6--16},
+  year    = {2004},
+  doi     = {10.13001/1081-3810.1141}
+}
+
+@article{BrualdiDeaett2007,
+  author  = {Brualdi, Richard A. and Deaett, Louis},
+  title   = {More on the {B}ruhat order for (0,1)-matrices},
+  journal = {Linear Algebra and its Applications},
+  volume  = {421},
+  pages   = {219--232},
+  year    = {2007},
+  note    = {Data from the reference list of Zhang and Yu (arXiv:2208.04572); not seen.}
+}
+
+@misc{ZhangYu2022,
+  author      = {Zhang, Tao and Yu, Houyi},
+  title       = {The coincidence of the {B}ruhat order and the secondary {B}ruhat order on
+                 {$\mathcal{A}(n,k)$}},
+  year        = {2022},
+  eprint      = {2208.04572},
+  eprinttype  = {arxiv},
+  eprintclass = {math.CO}
+}
+
+@misc{BariffiEtAl2026,
+  author      = {Bariffi, Jessica and Bhatia, Drisana and Cotardo, Giuseppe and Weger, Violetta},
+  title       = {Weak composition lattices and ring-linear anticodes},
+  year        = {2026},
+  eprint      = {2601.07725},
+  eprinttype  = {arxiv},
+  eprintclass = {cs.IT}
+}
+
+@article{BlassSagan1997,
+  author  = {Blass, Andreas and Sagan, Bruce E.},
+  title   = {M{\"o}bius functions of lattices},
+  journal = {Advances in Mathematics},
+  volume  = {127},
+  pages   = {94--123},
+  year    = {1997},
+  eprint  = {math/9801009},
+  eprinttype = {arxiv}
+}
+
+@article{LatapyPhan2009,
+  author  = {Latapy, Matthieu and Phan, Thi Ha Duong},
+  title   = {The lattice of integer partitions and its infinite extension},
+  journal = {Discrete Mathematics},
+  volume  = {309},
+  number  = {6},
+  year    = {2009},
+  doi     = {10.1016/j.disc.2008.02.002},
+  eprint  = {math/0008020},
+  eprinttype = {arxiv}
+}
+
+@article{Brylawski1973,
+  author  = {Brylawski, Thomas},
+  title   = {The lattice of integer partitions},
+  journal = {Discrete Mathematics},
+  volume  = {6},
+  number  = {3},
+  pages   = {201--219},
+  year    = {1973},
+  doi     = {10.1016/0012-365X(73)90094-0}
+}
+
+@misc{BottaFosterRimanyi2023,
+  author      = {Botta, Tommaso Maria and Foster, Alexander O. and Rim{\'a}nyi, Rich{\'a}rd},
+  title       = {Geometric {B}ruhat order on (0,1)-matrices},
+  year        = {2023},
+  eprint      = {2311.05531},
+  eprinttype  = {arxiv},
+  eprintclass = {math.CO}
+}
+
+@misc{KernerNemethi2014,
+  author      = {Kerner, Dmitry and N{\'e}methi, Andr{\'a}s},
+  title       = {A generalized {FKG}-inequality for compositions},
+  year        = {2014},
+  eprint      = {1412.8200},
+  eprinttype  = {arxiv},
+  eprintclass = {math.AC}
+}
+
+@misc{BjornerStanley2005,
+  author      = {Bj{\"o}rner, Anders and Stanley, Richard P.},
+  title       = {An analogue of {Y}oung's lattice for compositions},
+  year        = {2005},
+  eprint      = {math/0508043},
+  eprinttype  = {arxiv},
+  eprintclass = {math.CO},
+  note        = {v3 of 4 Nov 2005 is the last full version; v4 withdrawn by Bj{\"o}rner.}
+}
+
+@article{SaganVatter2006,
+  author  = {Sagan, Bruce E. and Vatter, Vincent},
+  title   = {The {M}{\"o}bius function of a composition poset},
+  journal = {Journal of Algebraic Combinatorics},
+  volume  = {24},
+  number  = {2},
+  year    = {2006},
+  doi     = {10.1007/s10801-006-0017-4},
+  eprint  = {math/0507485},
+  eprinttype = {arxiv}
+}
+
+@misc{DrakePetersen2005,
+  author      = {Drake, Brian and Petersen, T. Kyle},
+  title       = {The $m$-colored composition poset},
+  year        = {2005},
+  eprint      = {math/0512369},
+  eprinttype  = {arxiv},
+  eprintclass = {math.CO}
+}
+
+@article{BergeronBousquetMelouDulucq1995,
+  author  = {Bergeron, Fran{\c{c}}ois and Bousquet-M{\'e}lou, Mireille and Dulucq, Serge},
+  title   = {Standard paths in the composition poset},
+  journal = {Annales des Sciences Math{\'e}matiques du Qu{\'e}bec},
+  volume  = {19},
+  number  = {2},
+  pages   = {139--151},
+  year    = {1995},
+  note    = {Data from the reference list of Sagan and Vatter; not seen.}
+}
+
+@incollection{Santos2005,
+  author     = {Santos, Francisco},
+  title      = {The {C}ayley trick and triangulations of products of simplices},
+  booktitle  = {Integer Points in Polyhedra---Geometry, Number Theory, Algebra, Optimization},
+  editor     = {Barvinok, Alexander and others},
+  series     = {Contemporary Mathematics},
+  volume     = {374},
+  pages      = {151--177},
+  publisher  = {American Mathematical Society},
+  address    = {Providence, RI},
+  year       = {2005},
+  doi        = {10.1090/conm/374/06904},
+  eprint     = {math/0312069},
+  eprinttype = {arxiv},
+  note       = {Added 2026-11-09 for Part III, staircase tiling at d = 0. Crossref-checked (DOI,
+                pages). Statement numbers (Theorem 1.4, Section 1.4, Proposition 2.3) read in
+                arXiv v3, which the arXiv comment says is the accepted version. Does NOT contain
+                the staircase triangulation; for that see CeballosPadrolSarmiento2015.}
+}
+
+@article{CeballosPadrolSarmiento2015,
+  author     = {Ceballos, Cesar and Padrol, Arnau and Sarmiento, Camilo},
+  title      = {Dyck path triangulations and extendability},
+  journal    = {Journal of Combinatorial Theory, Series A},
+  volume     = {131},
+  pages      = {187--208},
+  year       = {2015},
+  doi        = {10.1016/j.jcta.2014.10.009},
+  eprint     = {1402.5111},
+  eprinttype = {arxiv},
+  note       = {Added 2026-11-09 for Part III, staircase tiling at d = 0. Crossref-checked.
+                Example 2.2 (the staircase triangulation) and the Cayley-trick paragraph of
+                Section 2 read in arXiv v1 (the only arXiv version); the numbering in the JCTA
+                version was NOT checked (scripted access to ScienceDirect not attempted further).}
+}
+
+@article{ChenLiSam2012,
+  author     = {Chen, Sheng and Li, Nan and Sam, Steven V.},
+  title      = {Generalized {E}hrhart polynomials},
+  journal    = {Transactions of the American Mathematical Society},
+  volume     = {364},
+  number     = {1},
+  pages      = {551--569},
+  year       = {2012},
+  doi        = {10.1090/S0002-9947-2011-05494-2},
+  eprint     = {1002.3658},
+  archivePrefix = {arXiv},
+  note       = {Theorem 1.4: the lattice-point count of a polytope whose vertices are rational functions of n is a quasi-polynomial for n large. Added 2026-11-09 (Part III, Kupreyeva's limit); metadata checked against Crossref.}
+}
+
+%% ---------------------------------------------------------------------------
+%% Added 2026-11-10 for Part III, round 4 (Fable style review, Part 2, Style 33 and 38: cite the
+%% Euler--Maclaurin claim and the software). Bibliographic data checked on Crossref by DOI.
+%% ---------------------------------------------------------------------------
+
+@article{BrionVergne1997,
+  author  = {Brion, Michel and Vergne, Mich{\`e}le},
+  title   = {Lattice points in simple polytopes},
+  journal = {Journal of the American Mathematical Society},
+  volume  = {10},
+  number  = {2},
+  pages   = {371--392},
+  year    = {1997},
+  doi     = {10.1090/S0894-0347-97-00229-4},
+  note    = {Added 2026-11-10 for article 3 (Lattice points of dilates): Euler--Maclaurin formula for
+             polynomial weights on simple lattice polytopes (Thm 2.15). PDF saved by Jan from a browser
+             (literature/, 2026-11-11) and read by Jan and Claude 2026-11-11: the top two coefficients
+             of the dilate sums are extracted there only for weight 1 (Lemmas 4.2, 4.3, 4.7, Prop 4.6);
+             the weighted version follows by the same argument -- see the round-4 report, item 4.}
+}
+
+@article{BrunsIchim2010,
+  author  = {Bruns, Winfried and Ichim, Bogdan},
+  title   = {Normaliz: algorithms for affine monoids and rational cones},
+  journal = {Journal of Algebra},
+  volume  = {324},
+  number  = {5},
+  pages   = {1098--1113},
+  year    = {2010},
+  doi     = {10.1016/j.jalgebra.2010.01.031},
+  note    = {Added 2026-11-10 for article 3: the citation for Normaliz (version 3.11.1 used).}
+}
+
+@article{Verdoolaege2007,
+  author  = {Verdoolaege, Sven and Seghir, Rachid and Beyls, Kristof and Loechner, Vincent and
+             Bruynooghe, Maurice},
+  title   = {Counting integer points in parametric polytopes using {B}arvinok's rational functions},
+  journal = {Algorithmica},
+  volume  = {48},
+  number  = {1},
+  pages   = {37--66},
+  year    = {2007},
+  doi     = {10.1007/s00453-006-1231-0},
+  note    = {Added 2026-11-10 for article 3: the citation for the barvinok library (iscc), used in
+             code/oneoff/review_volume_ehrhart_barvinok.sage.}
+}
+
+@inproceedings{deMouraUllrich2021,
+  author    = {de Moura, Leonardo and Ullrich, Sebastian},
+  title     = {The {L}ean 4 theorem prover and programming language},
+  booktitle = {Automated Deduction -- {CADE} 28},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {12699},
+  pages     = {625--635},
+  publisher = {Springer},
+  year      = {2021},
+  doi       = {10.1007/978-3-030-79876-5_37},
+  note      = {Added 2026-11-10 for article 3: the citation for Lean 4.}
+}
+
+@inproceedings{Mathlib2020,
+  author    = {{The mathlib Community}},
+  title     = {The {L}ean mathematical library},
+  booktitle = {Proceedings of the 9th {ACM} {SIGPLAN} International Conference on Certified Programs
+               and Proofs ({CPP} 2020)},
+  pages     = {367--381},
+  publisher = {ACM},
+  year      = {2020},
+  doi       = {10.1145/3372885.3373824},
+  note      = {Added 2026-11-10 for article 3: the citation for Mathlib.}
+}
+
+@article{HaaseJuhnkeSanyalTheobald2017,
+  author  = {Haase, Christian and Juhnke-Kubitzke, Martina and Sanyal, Raman and Theobald, Thorsten},
+  title   = {Mixed {E}hrhart polynomials},
+  journal = {The Electronic Journal of Combinatorics},
+  volume  = {24},
+  number  = {1},
+  pages   = {Paper P1.10},
+  year    = {2017},
+  doi     = {10.37236/5815},
+  note    = {Added 2026-11-14 for article 3: McMullen's multivariate lattice-point theorem is
+             quoted from its Theorem 2.3 (numbering the same in arXiv:1509.02254v2 and the EJC
+             version, both read). Bibliographic data from OpenAlex and the EJC landing page.}
 }

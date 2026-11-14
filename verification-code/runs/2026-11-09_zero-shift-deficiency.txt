@@ -1,0 +1,16 @@
+# python3 code/oneoff/zero_shift_deficiency.py n 5, for n = 4, 5; run 2026-11-09 on jts-mini (Claude-Code), to give
+# Corollary cor-deficiency of Part III a run log (until now the values were only in the script's docstring).
+## n = 4
+|S_n| 16
+1 16 20 4
+2 69 81 12
+3 184 208 24
+4 385 425 40
+5 696 756 60
+## n = 5
+|S_n| 70
+1 70 162 92
+2 627 1108 481
+3 2592 3964 1372
+4 7385 10355 2970
+5 16926 22406 5480

@@ -1,0 +1,36 @@
+done n=2 r=2 D<=3  configs so far 44  fails 0  (0s)
+done n=2 r=3 D<=3  configs so far 154  fails 0  (0s)
+done n=2 r=4 D<=3  configs so far 374  fails 0  (0s)
+done n=3 r=2 D<=4  configs so far 429  fails 0  (1s)
+done n=3 r=3 D<=4  configs so far 594  fails 0  (1s)
+done n=3 r=4 D<=4  configs so far 979  fails 0  (3s)
+done n=4 r=2 D<=5  configs so far 1045  fails 0  (4s)
+done n=4 r=3 D<=5  configs so far 1276  fails 0  (6s)
+done n=4 r=4 D<=5  configs so far 1892  fails 0  (19s)
+done n=5 r=2 D<=6  configs so far 1969  fails 0  (20s)
+done n=5 r=3 D<=6  configs so far 2277  fails 0  (25s)
+done n=5 r=4 D<=4  configs so far 2662  fails 0  (41s)
+done n=6 r=2 D<=7  configs so far 2750  fails 0  (42s)
+done n=6 r=3 D<=6  configs so far 3058  fails 0  (52s)
+done n=6 r=4 D<=3  configs so far 3158  fails 0  (59s)
+done n=5 r=5 D<=3  configs so far 3298  fails 0  (71s)
+negative control a=(1,2,6,24) r=3 D<=4: T!=CONS in 1 of 15
+TOTAL weakly-log-concave configurations 3298, failures 0
+=== mutant ===
+mutant n=4 r=3 plat-2-1  : no-(iii) differs in 10/15, unit-step-form differs in 0/15
+mutant n=4 r=3 flat-drop : no-(iii) differs in 10/15, unit-step-form differs in 0/15
+mutant n=4 r=3 ones      : no-(iii) differs in 10/15, unit-step-form differs in 7/15
+mutant n=4 r=3 kozlov    : no-(iii) differs in 10/15, unit-step-form differs in 0/15
+mutant n=5 r=3 plat-2-1  : no-(iii) differs in 16/21, unit-step-form differs in 9/21
+mutant n=5 r=3 flat-drop : no-(iii) differs in 16/21, unit-step-form differs in 9/21
+mutant n=5 r=3 ones      : no-(iii) differs in 16/21, unit-step-form differs in 14/21
+mutant n=5 r=3 kozlov    : no-(iii) differs in 16/21, unit-step-form differs in 0/21
+=== extend ===
+done n=7 r=2 D<=8  configs so far 99  fails 0  (2s)
+done n=8 r=2 D<=9  configs so far 209  fails 0  (6s)
+done n=7 r=3 D<=8  configs so far 704  fails 0  (44s)
+done n=6 r=4 D<=6  configs so far 1628  fails 0  (194s)
+done n=4 r=5 D<=5  configs so far 3014  fails 0  (281s)
+done n=4 r=6 D<=4  configs so far 3518  fails 0  (343s)
+negative control a=(1,2,6,24) r=3 D<=4: T!=CONS in 1 of 15
+TOTAL weakly-log-concave configurations 3518, failures 0

@@ -10,7 +10,7 @@ reproduce by recreating the files below and running
 `cd LEAN && lake env lean <file>`).
 
 Two independent computations were compared, as in the D2 anchors
-(`runs/delta0-lean-anchors-20260917.md`):
+(`20-projects/exterior-convex/runs/lean-anchors/delta0-lean-anchors-20260917.md`):
 
 1. a **list-side re-implementation** of the matrix algebra over
    `List ℤ`, touching the formal development only through the raw

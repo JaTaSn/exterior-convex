@@ -1,4 +1,4 @@
-# LEAN/ — formalisation of the exterior-convex series
+# lean/ — formalisation of the exterior-convex series
 
 Lean 4 / Mathlib formalisation of the mathematics of this project. Started 2026-09-10 on article 1's
 vertex-structure section; it now covers two layers of article 1 and is being extended to article 2.
@@ -226,7 +226,7 @@ totally is what lets the counting identities hold for arbitrary, unsorted `d⃗`
 | `thm-delta0-degrees`, proper | `uTilde_zero` (`u′[1] = 1`), `cpBracket_top`, `delta0PolyPr_natDegree`, `delta0PolyPr_leadingCoeff`, `thm_delta0_degrees_proper` | verified against the *printed* polynomials of `tab-delta0-polys`: leading coefficients `1, 1, 3/2, 4, 125/6` for `n = 1..5` and degrees `n−1`. Here `n ≥ 1` is real — though note `natDegree = n − 1` is *degenerately true* at `n = 0` (zero polynomial, and ℕ-subtraction gives `0 − 1 = 0`); the leading-coefficient clause is what honestly carries the boundary |
 | `prop-proper-threshold` | `properChainedTuples_eq_piFinset_iff`, `card_properChainedTuples_eq_pow_iff`, `ncard_ffSetPrN_eq_pow_iff` (with `hsurj`), `Tpmat_eq_vecMulVec_of_le`, `Tpmat_ne_vecMulVec_at_sub_two`, `filter_not_properChained_at_sub_two`, `vecMul_Tpprod_dot_of_saturated` | the printed `n ≥ 1` is **genuinely load-bearing in the iff** (at `n = 0` the proper chained locus is empty while `S_0^{r+1}` is not), unlike D1's threshold which carries no hypothesis. **Finding: the sharpness set is a product, not D1's singleton** — at `δ = n−2` the violating pairs are exactly `{fullVec} ×ˢ {t ∈ S_n : indeg t = 2}` (3 elements at `n = 3`, a singleton only at `n = 1`); the void family being improper is what widens D1's single pair to a class. Thresholds stated over ℤ, so the printed `n − 1` never ℕ-truncates; at `n = 1` it honestly reads `δ ≥ 0` and is still sharp (gap `−1` fails) |
 | `prop-perron-threshold`, proper | `Tpmat_eq_vecMulVec_of_le` (rank one), `Tpmat_mulVec_onesCol_of_le` (`1⃗` an eigenvector, `n ≥ 1`), `eigenvalue_pr_eq_zero_or_card` (over ℚ) | same deliberate scope as the improper half: **the word "Perron" is not certified** (no Perron–Frobenius/spectral radius in Mathlib). **Finding:** the eigenvalue dichotomy needs no `n ≥ 1` — a non-zero eigenvalue counts the `indeg ≥ 2` class, whose non-emptiness certifies `n ≥ 1` by itself |
-| `prop-recurrence`, recurrence half | `sandwich_charpoly_recurrence` (generic Cayley–Hamilton sandwich), `aSeq_recurrence`/`apSeq_recurrence`, with `TQ_charpoly_natDegree` (order `n+2`), `TQ_charpoly_coeff_top` (monic, so the recurrence *determines* the next term: `aSeq_solved`/`apSeq_solved`) and the bridge to the counts at constant gap (`Tprod_const_gaps`, `cast_card_chainedTuples_of_gaps_const`, `card_chainedTuples_constGap_recurrence`/`…_solved`, proper analogues; `|FF|`/`|FF_pr|` forms with the standing `hsurj` quantified over the rank window) | the recurrence is **unconditional on both sides** — the proper half needs no `n ≥ 1`, Cayley–Hamilton being universal. **Cross-checks:** `TQ_zero_charpoly` (`charpoly T(0) = (X−1)^{n+2}`, so at `δ = 0` the recurrence is `prop-delta0`'s vanishing `(n+2)`-th finite difference, `aSeq_zero_finite_difference`) and `TpQ_zero_charpoly` (`charpoly T′(0) = X²(X−1)^n` — *not* unipotent, rung D3b's two vanishing columns; the recurrence becomes the vanishing `n`-th difference of the twice-shifted sequence, `apSeq_zero_finite_difference`, matching D3d's degree `n−1`). Anchors: `runs/recurrence-lean-anchors-20260918.md` |
+| `prop-recurrence`, recurrence half | `sandwich_charpoly_recurrence` (generic Cayley–Hamilton sandwich), `aSeq_recurrence`/`apSeq_recurrence`, with `TQ_charpoly_natDegree` (order `n+2`), `TQ_charpoly_coeff_top` (monic, so the recurrence *determines* the next term: `aSeq_solved`/`apSeq_solved`) and the bridge to the counts at constant gap (`Tprod_const_gaps`, `cast_card_chainedTuples_of_gaps_const`, `card_chainedTuples_constGap_recurrence`/`…_solved`, proper analogues; `|FF|`/`|FF_pr|` forms with the standing `hsurj` quantified over the rank window) | the recurrence is **unconditional on both sides** — the proper half needs no `n ≥ 1`, Cayley–Hamilton being universal. **Cross-checks:** `TQ_zero_charpoly` (`charpoly T(0) = (X−1)^{n+2}`, so at `δ = 0` the recurrence is `prop-delta0`'s vanishing `(n+2)`-th finite difference, `aSeq_zero_finite_difference`) and `TpQ_zero_charpoly` (`charpoly T′(0) = X²(X−1)^n` — *not* unipotent, rung D3b's two vanishing columns; the recurrence becomes the vanishing `n`-th difference of the twice-shifted sequence, `apSeq_zero_finite_difference`, matching D3d's degree `n−1`). Anchors: `verification-code/runs/lean-anchors/recurrence-lean-anchors-20260918.md` |
 | `prop-recurrence`, growth half (`a_r ∼ Cλ^r`) | — | **deliberately not formalised**: needs the Perron root to be the dominant eigenvalue (Perron–Frobenius, absent from Mathlib), and unlike D4 there is no rank-one degeneracy below the threshold, so no honest cheap restatement exists. §10.1 records the boundary |
 | `thm-poly-p`, `thm-asymptotics-p`, `thm-asymptotics-p-proper` | — | rest on Linusson's Theorem 5.3, cited not reproved; outside the development |
 
@@ -238,6 +238,97 @@ than `3/2` — a **wrong leading coefficient that still typechecks and still bui
 harmless here (`x / 0 = 0` by `div_zero`, and every denominator is a factorial), but the flooring is
 not, and it is invisible. Cast early.
 
+### Rank-r pairwise reduction (article 3, added 2026-10-20)
+
+Formalises `working-notes/kozlov-pairwise-reduction-direct-2026-10-20.org` (reviewed: ACCEPT WITH
+FIXES). Window-system form in `Vertices/PairwiseReduction.lean` (no polytopes; namespace
+`ExteriorConvex.Pairwise`), the polytope form in `Vertices/RankR.lean`. Hypotheses throughout:
+`a` positive on `[1,n]` (`Pos`; the polytope theorems take `∀ s, 0 < a s`, as `ExtremalMatrix.lean`
+does), weakly log-concave cross-multiplied `a i · a (i+2) ≤ a (i+1)²` (`WLC`), shifts `Monotone d`
+(ties allowed), choices `1 ≤ j p ≤ n` for `p < r`, windows `d p + n ≤ N`.
+
+| file | contents | state |
+|---|---|---|
+| `lean/ExteriorConvex/Vertices/PairwiseReduction.lean` | `Expose`, `Feasible`, `RCond`/`LCond`, Lemmas 1–6, Theorems 1 and 2 (window form), the strict-LC/Kozlov form | **proved** |
+| `lean/ExteriorConvex/Vertices/RankR.lean` | `mem_extremePoints_sum_iff` (`lem-vertexdecomp` for `r` summands), functional ↔ coefficient-sequence bridge, Theorems 1, 2 and the Kozlov corollary for extreme points of `∑ₚ conv(vsetA a N (d p) n)` | **proved** |
+
+| note | Lean | note |
+|---|---|---|
+| §1 vertex criterion, (L_p)/(R_p) | `expose_iff` | needs `j ≤ n` |
+| Lemma 1 (ratios) | `lc_cross`, `lc_glob`; strict: `slc_cross`, `lc_glob_strict` | division-free |
+| Lemma 2(a), 2(b) | `abel_prefix_neg`, `abel_suffix_pos` | by induction, no `abel_sum` needed |
+| Lemma 5 (domination), (E) and (Λ) | `transfer_prefix`, `transfer_suffix` | weak shift inequalities suffice |
+| Lemma 3 (m non-decreasing), tie clause | `chosen_mono`, `chosen_eq_of_tie` | |
+| Lemma 6 (gluing) | `glue_step`, `glued` | **different route**: induction on `r`, cutting at `m q`; **no tie reduction** needed (the reviewer's reindexing worry disappears) |
+| Theorem 1 (1 ⟺ 2 ⟺ 3) | `pairwise_reduction`, `feasible_iff_consecutive`; polytope: `vertex_iff_consecutive` | |
+| Lemma 4 (locked ⟹ 0) | `locked_infeasible` (`Locked`) | positivity only |
+| Theorem 2 (i)–(iii) | `feasible_iff_CF` (`CF`); polytope: `vertex_iff_CF` | **finding:** (i) follows from (ii)+(iii), `tie_of_not_locked` |
+| Theorem 2 Cases A/B/C | `gadget_caseA`, `gadget_caseB`, `gadget_caseC`, `gadget_glue`, `pair_feasible_of_CF` | sufficiency is purely rank two, then Theorem 1 |
+| Corollary (Kozlov at every rank) | `locked_iff_unit`, `CF_iff_KozCond` (`KozCond`), `kozLeg_slc`, `vertex_iff_kozlov` | for `RA(κ⃗(n); d⃗)`; the `eq:koz-as-ra` projection seam to `Koz(n; d⃗)` stays open, as elsewhere |
+| Corollary (rank two, σ-form) | — | **not formalised** (would follow from `vertex_iff_CF` at `r = 2` plus an unwinding of `Locked` into σ-plateaus) |
+| `lem-vertexdecomp`(2) for `r` summands (distinct 𝐣 give distinct vertices) | — | **not formalised**; needed only for counting |
+
+## Rank-two facet description (article 3), added 2026-10-20
+
+Theorem A(1) of `working-notes/kozlov-hdescription-proof-2026-10-20.org` (independently reviewed,
+`review-hdescription-2026-10-20.org`). Set equalities only; the facet counts are **not** formalised.
+Axioms of every main theorem: `propext`, `Classical.choice`, `Quot.sound`.
+
+| file | rung | contents | state |
+|---|---|---|---|
+| `lean/ExteriorConvex/Facets/Chain.lean` | H1 | `co` (manuscript coordinates), `chainSet`, `angle`; Fact 1 for a general positive leg vector and shift: `chain_hull_eq` | **proved** |
+| `lean/ExteriorConvex/Facets/RankTwo.lean` | H1 | `completeness` (Q_Θ ⊆ RA, positivity only), `validity` (RA ⊆ Q, log-concavity), `theoremA`, `theoremA_theta` | **proved** |
+| `lean/ExteriorConvex/Facets/Specialise.lean` | H1 | `theoremA_lit` (article division form), `conj_kozlov_hrep2`, `kozlov_hrep2_theta`, `conj_ones_hrep` — article 1's two H-description conjectures, as printed | **proved**; facet counts not formalised |
+| `lean/ExteriorConvex/Facets/ThetaForm.lean` | H2 | Theorem B (rank-r weighted Θ-form, Q_Θ = R): `validityB` (B1), `peel` (B2), `completenessB`, `theoremB`, `theoremB_theta` | **proved**; general real weights; facet count r·n (B3) and Corollaries C, D not formalised |
+| `lean/ExteriorConvex/Facets/ThetaForm.lean` | H2 | Kozlov at every rank: `theoremB_kozlov` (distinct shifts from 0, gaps ≤ n−1, unit weights); rank-2 consistency check `QZ_rank_two` | **proved** |
+
+Also: `lean/ExteriorConvex/ModuleKK/GreedyPQ.lean` (standalone until 2026-10-21, when it was moved into the library and imported; no namespace, so `sig` etc. are top level) proves
+Proposition 3 (P and Q) of `working-notes/module-kruskal-katona-greedy-proof-2026-10-20.org` for the
+recursively defined lex-shadow function `sig`. The link from `sig` to actual lex shadows was at first
+on paper only (verified n ≤ 8); since the third batch it is `lexInit_upShadow` in
+`ModuleKK/LexShadow.lean` (table below).
+
+**Since 2026-11-09 the `ModuleKK/` results belong to Part V**, `article/exterior-convex_article5_draft_1.org`
+("Module Kruskal–Katona"), not to Part III: Part III's section `sec-module-kk` and its appendix moved
+there, labels unchanged (`thm-kk-rank1`, `lem-lex-rank1`, `prop-PQ`, `prop-greedy`, `thm-module-kk`, …).
+The files and declarations are unchanged.
+
+## Article 3: symmetry, lattice points, volume, the Koz bridge, the all-ones polytope (added 2026-10-21)
+
+Five agent-written files, wired in and rebuilt by the coordinator 2026-10-21. Axioms of every main
+theorem: `propext`, `Classical.choice`, `Quot.sound` (checked on the full library build).
+
+| file | contents | state |
+|---|---|---|
+| `lean/ExteriorConvex/Symmetry/Beta.lean` | the affine involution β (`beta`, `betaEquiv`, `beta_involutive`), `beta_skel_low`/`_high` (F̃_j ↔ F̃_{n−1−j}), `beta_image_koz` (β(Koz(n)) = Koz(n)); Theorem 5: `beta_bijOn_latticePts_of_prime`, `beta_not_mapsTo_latticePts_of_not_prime` (explicit witness, via Lucas); `lattice_centroid_identity_of_prime` | **proved**; covariance clause, the continuous Theorem 4 and "β = Alexander duality on Φ" not formalised |
+| `lean/ExteriorConvex/Lattice/LatticePoints.lean` | `latticePts_eq_intLYM` (Koz(n) ∩ ℤ = integer LYM chains), `latticeFinset`, counts 1, 2, 5, 20 for n = 1..4 by kernel `decide`; `chained_unique` (uniqueness of chained integer decompositions, every shift vector); `idp_two` (witness min(x, C(n,·)), Brändén–Solus), `lattice_sum_eq`, `idp` (IDP at every level r, d⃗ = 0) | **proved**; existence and additivity for d⃗ ≠ 0: see `ChainedExistence.lean` below; (housekeeping 2026-10-21: the duplicated box lemmas are gone; `Counting/Chaining.lean` now has `InBox` and `*_box` forms of Theorem A — the binomial box is all it needs — with the 𝓕_n versions as corollaries) |
+| `lean/ExteriorConvex/Lattice/BetaBridge.lean` | `beta_latticePts_eq_image`: the two lattice-point sets agree | **proved** |
+| `lean/ExteriorConvex/Lattice/Volume.lean` | `vdiff_det`: det of vertex differences on f₂..fₙ = ∏_{k=2}^n C(n,k); `freeProj_bijOn` (dropping f₀, f₁ is a lattice bijection of the plane); `affineIndependent_skel` (the simplex clause of `lem-mu`); `volume_kozProj` (Lebesgue volume = ∏C(n,k) · vol(corner simplex)) | **proved**; vol(corner simplex) = 1/m! and lattice-normalised volume as a notion are not in Mathlib, so NV = ∏C(n,k) is certified up to the definition |
+| `lean/ExteriorConvex/Facets/KozBridge.lean` | `kozMap` (injective affine RA → Koz), `koz_eq_image`, `mem_koz_iff`, `proj_koz` (= `eq:koz-as-ra`); `extremePoints_koz_eq`, `vertex_iff_kozlov_koz` (V-description of Koz(n; d⃗) itself, every rank); `koz_hdesc` (H-description of Koz(n; d⃗), distinct shifts from 0, gaps ≤ n−1) | **proved**; general d⃗ of `cor-koz-hdesc`: see `EveryD.lean` below; vertex distinctness not formalised |
+| `lean/ExteriorConvex/AllOnes/Hall.lean` | Corollary C of the all-ones note via Hall: `exists_choice_of_le_cover`, `le_cover_iff_exists_choice` (arbitrary finite windows), `lattice_points_eq_sumset` (lattice points of RA(𝟙; d⃗) = sumset); Theorem A validity inequality `dot_le_sum_sup'` | **proved**; the separation step and Lemma 1's set equality: see `TheoremA.lean` below. First independent check of the (unreviewed) all-ones note: nothing wrong found |
+| `lean/ExteriorConvex/Lattice/ChainedExistence.lean` (added later 2026-10-21) | `thm-chained` for the Kozlov vector, every sorted d⃗: `exists_chained` (existence, by maximising the single functional ∑ᵢ i·‖shift^{dᵢ} pᵢ‖₁ instead of the paper's lexicographic minimiser), `chainedR_formula`/`waterFill_eq_Q` (water-filling), `chainedR_unique`, `chainedR_integral`; `cor_additivity`, `existsUnique_chained_lattice` (lattice points of Koz(n; d⃗) ↔ chained tuples of 𝓛_n); `cor_idp` (IDP of Koz(n; d⃗), every d⃗) | **proved**; general log-concave leg vector c not formalised; `ChainedR` (real) not yet linked to the integer `Chained` of `Counting/Chaining.lean` |
+| `lean/ExteriorConvex/Facets/EveryD.lean` (added later 2026-10-21) | `cor_facets_every_d` (set-equality half: merge equal shifts into weights, cut into runs, Θ-form per run, zeros off the windows), `koz_hdesc_every_d` / `_local` / `'` (`cor-koz-hdesc` for every d⃗, as printed) | **proved**, under weaker hypotheses than printed (weak log-concavity, n ≥ 1, unsorted shifts); facet count n·s not formalised |
+| `lean/ExteriorConvex/Vertices/RankTwoCorollary.lean` (third batch, 2026-10-21) | `rank2_lc` (`cor-rank2-lc`, both directions, no n ≥ 2 or g ≤ n−1 needed; σ renamed `legSlope` to avoid Mathlib's `slope`), `rank2_all_ones`, `rank2_g_zero`, `CF_rank2_iff`; `vertex_tuple_unique` (decomposition at a vertex is unique, r summands, no log-concavity), `extremePoints_eq_image`, `vertex_injOn_admissible`, `ncard_extremePoints` (#vertices = #admissible tuples) | **proved**; no closed vertex count |
+| `lean/ExteriorConvex/Lattice/SimplexVolume.lean` (third batch) | `volume_lowerSimplex`, `volume_cornerSimplex` (= 1/m!, by induction + Tonelli; not in Mathlib), `volume_kozProj_eq` (vol = ∏C(n,k)/(n−1)!), `sum_sq_sub_freeProj` (the free-coordinate projection is an isometry of the plane) | **proved**; Hausdorff-measure form on the plane not formalised |
+| `lean/ExteriorConvex/Symmetry/BetaMeasure.lean` (third batch) | `thm-beta-continuous`: `kozMeasure` (Lebesgue pushforward via the free chart), `abs_det_betaFree_linear` (= 1, from involutivity), `kozMeasure_map_beta`, `integral_kozMeasure_comp_beta`, `integral_mu_add_mu_reflect`, `centroid_identity` | **proved**; no covariance matrix defined (every integral is β-invariant) |
+| `lean/ExteriorConvex/Lattice/ChainedGeneral.lean` (third batch) | `thm-chained` for any positive integer leg vector with (c₂..cₙ) log-concave: `exists_chainedC`, `chainedC_unique`, `chainedC_integral`, `cor_additivityC`, `cor_idpC`; the Kozlov statements re-derived (`*_of_general`); necessity: `no_chained_cBad` for c = (1,2,1,3,1,3), d⃗ = (0,1) | **proved**; the 101/70 counts not checked |
+| `lean/ExteriorConvex/Lattice/ChainedBridge.lean` (third batch) | `chained_iff_chainedR` (real vs article 2's integer chaining agree on lattice points), `chained_unique_of_chainedR`, `existsUnique_Chained_lattice`, `cor_membership` | **proved**; `cor_membership`'s "only if" takes `thm-chaining` surjectivity as hypothesis `hPartII` |
+| `lean/ExteriorConvex/ModuleKK/Greedy.lean` (third batch) | `prop_greedy` (`prop-greedy`), `greedy_admissible`, abstract `greedy_le_of_exchange` | **proved** (by direct induction, not the note's descent) |
+| `lean/ExteriorConvex/ModuleKK/LexShadow.lean` (third batch) | `lexInit_upShadow` (Lemma 2 (F2)+(F4): `sig` = upper shadow of a lex-initial segment, again lex-initial), `exists_isLexInit`, `isLexInit_unique`, `kk_lex`, `thm_kk_rank1` (from Mathlib's colex `kruskal_katona` via φ s = {a : rev a ∉ s}), `module_shadow_ge_greedy`, `exists_lexInit_components` | **proved**; subspaces → monomial families and the module algebra not formalised |
+| `lean/ExteriorConvex/Lattice/TransferEhrhart.lean` (third batch) | `unitriangular_poly`; `ncard_kozLattice` (lattice points of Koz(n; d⃗) = u·∏T(δ)·𝟙, every sorted d⃗), `ncard_dilateLattice`; `TL0_lower`/`_diag`/`_sup` (T₀ unitriangular, superdiagonal C(n,τ+1)); `ehrhart_koz`, `ehrhart_koz_exact` (Ehrhart polynomial of Koz(n), degree n−1, leading coefficient ∏C(n,k)/(n−1)! = det/(n−1)!) | **proved** for t ≥ 1; P(0) = 1, the rank-r display, and the f-vector analogue (needs `thm-chaining` surjectivity) not formalised |
+| `lean/ExteriorConvex/Lattice/LectureHall.lean` (fourth batch, 2026-10-21) | `prop_lecture_hall` (any positive leg vector: ∠(c) ≅ the s-lecture hall simplex, s = (c_n,…,c₂), λ_i = p_{n+1−i}), `koz_lecture_hall`, `koz_lattice_bijOn`, counts 1, 2, 5, 20, 162 (n ≤ 5, kernel `decide`, finite raised `maxHeartbeats`), reversal `lhRev_bijOn`, converse `lectureHall_eq_image` | **proved**; "unimodular" formalised by its ingredients |
+| `lean/ExteriorConvex/Lattice/SmallN.lean` (fourth batch) | `cor_small_n` (n ≤ 3, every shift vector, sorted or not), `ffSet_eq_lattice`, `ff3_equal_shifts` (`thm-n3-equal-shifts`), `two_mul_ncard_ff3`, `centroid_ff3`, `koz4_lattice_not_ff` | **proved**; three of the four non-ff points of Koz(4) not formalised |
+| `lean/ExteriorConvex/Vertices/WorkedCounts.lean` (fourth batch) | `ex_plateau_vertices` (15), `ex_plateau_kozlov_vertices` (16), `ex_plateau_ones_vertices` (13), the three matrices of `ex-plateau` entry by entry; `cf_cast_iff` (decidable CF in ℕ, proved equivalent) | **proved** |
+| `lean/ExteriorConvex/Lattice/EhrhartRankR.lean` (fourth batch) | `ehrhart_display` (rank-r display), `ehrhart_rankR` / `_all` (polynomial), `ehrhart_rankR_eval_zero`, `ehrhart_koz_eval_zero`, `ehrhart_koz'` (P(0) = 1), `prop_linear_coeff` (McMullen-free, via the row-shift identity `TL_row_shift`) | **proved**; degree/leading coefficient at rank ≥ 2 not formalised |
+| `lean/ExteriorConvex/Symmetry/Covariance.lean` (fourth batch) | generic `cov_fixed`, `covF_fixed`; `cov_kozMeasure_beta`, `covF_latticePts_beta_of_prime` (covariance clauses, as LΣLᵀ = Σ) | **proved** |
+| `lean/ExteriorConvex/Symmetry/AlexanderCore.lean` (fourth batch) | `thm-alexander-core` (1)–(3): `Dvec_bijOn_coreF`, `coreF_centroid`, `beta_eq_DvecR` (β = Dₙ on f_{n−1} = 0), `card_topF`, `centroid_reflect_bounds`, `centroid_top_bounds`, `centroid_index_bounds` | **proved** |
+| `lean/ExteriorConvex/AllOnes/TheoremA.lean` (fifth batch, 2026-10-21) | the all-ones note's Theorem A in full: `polyP_eq_polyQ` (∑ₚ Δ_{W_p} = {y([N]) = r, y(J) ≤ f(J)}, any nonempty windows), `polyP_eq_polyQ'` (lower-bound form, `lowerCover`), `polyP_subset_polyQ`; Lemma 1 as a set equality `image_ra_eq_polyP` (D(RA(𝟙; d⃗)) + τ = P(d⃗), any d with dₚ + n ≤ N — unsorted, ties allowed); `mem_ra_iff` / `mem_ra_iff'`, `ra_eq_image_tailSum` (H-description of RA(𝟙; d⃗) in x-coordinates) | **proved**; Q ⊆ P via `dot_le_sum_sup'` + `geometric_hahn_banach_point_closed` (no general support-function lemma); Theorem B (facets) not formalised |
+| `lean/ExteriorConvex/Lattice/ProductRegime.lean` (fifth batch) | `prop_product_regime` (all clauses, under `ProdGaps`: every pairwise shift difference ≥ n−1; `prodGaps_of_gaps` from the paper's gap form): `projAff` an affine bijection Koz(n; d⃗) → Koz(n)^r with inverse `glue`, compatible with ℤ → ℝ, `bijOn_projZ` on lattice points of every dilate; lattice count |𝓛ₙ|^r; Ehrhart polynomial L^r for all t ≥ 0 (`ehrhart_product`); volume vol(Koz(n))^r (`volume_uProj_eq`); `ncard_ffSet_prod` (|FF| = |Sₙ|^r **without** Part II's Prop. 42 — injectivity of `glue` suffices) | **proved**; "lattice-isomorphic" formalised as affine bijection + lattice bijection; volume measured in the curried free coordinates (the relabelling's measure preservation is not stated) |
+| `lean/ExteriorConvex/Symmetry/Centroids.lean` (fifth batch) | `prop-centroid-simplex`: `mean_kozMeasure` (vertex average), `muOf_mean_kozMeasure` (μ_k = (n−k+1)/n, 1 ≤ k ≤ n), `bary_mean_kozMeasure` (λ_j = 1/n), `sum_index_bary`, `baryIndex_mean_kozMeasure` ((n+1)/2); `prop-pushforward` (1) `mean_indepShiftSum`, `cov_indepShiftSum` (product measure, independence), finite `meanF_covF_indepSum`; (2) against explicit hypotheses: `meanF_covF_ff`, `meanF_covF_lattice`, `mean_cov_uniform_productRegime` (via `IsUniformOn`, `chart_rigidity`); (3) `koz_zero_shifts`, `mean_cov_dilate` (r·c, r²Σ), `mean_cov_indepSum_zero` (r·c, rΣ) | **proved**; (2) is discharged in the product regime by the bridge file below; in (3) the uniform measure on r·Koz(n) is taken as the dilation push-forward |
+| `lean/ExteriorConvex/Symmetry/PushforwardBridge.lean` (fifth batch) | `prop-pushforward` (2) unconditional in the product regime (`ProdGaps`): `pushforward_ff_productRegime`, `pushforward_lattice_productRegime` (n ≥ 3, inherited), `pushforward_koz_productRegime`; `sumShift_eq_glue`, `sumShift_injOn_koz`, `sumShift_bijOn_lattice`, `hull_Sset_eq_hull_skel` | **proved**; needs no Part II Prop. 42 |
+| `lean/ExteriorConvex/Centroid/Dilation.lean` (2026-11-09) | `thm-centroid-dilation` (was `cor-centroid-dilation`, renamed 2026-11-10; before that `conj-centroid-dilation`): the mixing lemma for averages, centroids, second moments and covariances (`abs_avg_sub_avg_le`, `abs_centroid_sub_centroid_le`, `abs_secondMoment_sub_le`, `abs_cov_sub_cov_le`, constant 3); the abstract limit `tendsto_centroid_div`; the per-r rate `abs_centroid_div_sub_le`; `centroid_dilation_rate` and `centroid_dilation_tendsto` (∃K, eventually |c(Aᵣ)ₖ/r − cₖ| ≤ K/r, and the limit) | **partial**: the inclusion FF ⊆ Λᵣ and the box, the polynomiality of a(r) and L(r) with deg(L − a) < deg L (cor-zero-shift, Part II), and of Sₖ with leading coefficient vol·cₖ (Ehrhart) enter as hypotheses; the covariance limit only as the finite inequality; part (3) not formalised. Axioms: propext, Classical.choice, Quot.sound. Built in the library on jts-mini 2026-11-09 |
+| `lean/ExteriorConvex/Kupreyeva/VolumeRatio.lean` (2026-11-09) | Kupreyeva's limit, the volume side: `area_R3`, `area_Delta3`, `q3_area_ratio` (q₃ = 4/5 as a ratio of Lebesgue measures); `integral_step` (one step of the iterated integral of `lem-rho`, general k); `rho_closed` (closed form of ρ(a,b)); `qn_closed` ((n−1)!·ρ(2,n) = (n+1)!/(2(2n−1)!!)) | **partial** (`lem-rho`): the volume of Rₙ as a measure is formalised at n = 3 only; the pseudo-power estimate, the counting lemma and the limit theorems are not formalised. Axioms: propext, Classical.choice, Quot.sound |
+
 ## What is *not* here
 
 `lean/ExteriorConvex/Vertices/ExtremalMatrix.lean` builds the general-leg-vector layer and uses it for `prop-adjacent`, which needs no
@@ -245,9 +336,10 @@ sums at all: consecutive vertices differ by one basis vector, so *both* summands
 coordinate `⟨d+t⟩` and the proposition is the observation that they need its coefficient to have
 opposite signs.
 
-Only `conj-ones-hrep` and `conj-kozlov-hrep2` remain unformalised, and those are conjectures — not
-targets. They are also the two genuinely polyhedral statements in §8 (halfspace descriptions), so
-they would need Minkowski–Weyl, which Mathlib does not have.
+(Superseded 2026-10-21: this paragraph used to say that `conj-ones-hrep` and `conj-kozlov-hrep2`
+remained unformalised as conjectures needing Minkowski–Weyl. Both are now theorems, formalised in
+`Facets/Specialise.lean` as set equalities — no Minkowski–Weyl needed, since the proofs are direct
+inclusions both ways.)
 
 `cor-vdesc` needed one thing nothing before it did: `eq_of_add_eq_of_mem_extremePoints`, the
 *uniqueness* half of `lem-vertexdecomp`. A vertex of a Minkowski sum decomposes in exactly one way —
@@ -282,7 +374,7 @@ Same toolchain and Mathlib revision as `~/Repositories/commutator-varieties/LEAN
 Mathlib makes `lake exe cache get` cheap here.
 
 ```
-cd LEAN && lake exe cache get && lake build
+cd lean && lake exe cache get && lake build
 ```
 
 `.lake/` is gitignored.

@@ -1,0 +1,387 @@
+# Produced by code/oneoff/centroid_worked_n5.py (R = 10), 2026-11-09 11:13, on jts-mini.
+# Written for working-notes/centroid-section-worked-n5-2026-11-09.org (Part III, sec-centroid and sec-moments at n = 5).
+==========================================================================================
+VALIDATION: numbers printed in the paper at n = 3 (ex-centroid-n3, ex-centroid-rank2,
+ex-moments-n3, thm-n3-equal-shifts) and Kupreyeva's c(S_4)
+==========================================================================================
+c(S_3) (x2,x3) = (9/5, 1/5)  expect (9/5, 1/5)
+Cov(S_3) (x2,x3) = [34/25 6/25; 6/25 4/25]  expect [[34/25,6/25],[6/25,4/25]]
+c(Koz3) = (2, 1/3)  Cov(Koz3) = [1/2 1/12; 1/12 1/18]  expect (2,1/3), [[1/2,1/12],[1/12,1/18]]
+c(S_4) (x2,x3,x4) = (17/4, 19/16, 1/16)  expect (17/4, 19/16, 1/16)
+FF(3;0,0): 12 points, centroid (x2,x3) = (15/4, 1/2), expect 12, (15/4, 1/2)
+FF(3;0,1): 22 points, centroid (x2,x3,x4) = (51/11, 2, 5/22), expect 22, (51/11, 2, 5/22)
+  Cov FF(3;0,1) = [160/121 3/11 9/242; 3/11 18/11 3/11; 9/242 3/11 85/484]
+  expect [[160/121,3/11,9/242],[3/11,18/11,3/11],[9/242,3/11,85/484]]
+Koz(3;0,1) by staircase: NV = 36 (expect 36), centroid (37/8, 7/3, 3/8) (expect (37/8, 7/3, 3/8))
+  Cov = [47/64 7/48 1/64; 7/48 13/18 5/48; 1/64 5/48 13/192]
+  expect [[47/64,7/48,1/64],[7/48,13/18,5/48],[1/64,5/48,13/192]]
+Koz(3;0,2) by staircase: centroid (1, 3, 3, 10/3, 2, 1/3) (expect (1,3,3,10/3,2,1/3))
+thm-n3-equal-shifts count and centroid formula, r = 1..6: True
+staircase moments at d = 0 equal those of 2 Koz(n), n = 3, 4, 5: True
+
+==========================================================================================
+RANK ONE, n = 5
+==========================================================================================
+|S_5| = 70 (KK listing); 70 distinct f-vectors among 6894 proper complexes on [5] (enumerated); sets equal: True
+|L_5| = 162; S_5 subset of L_5: True
+vertices F~_j (x_0..x_5):
+   F~_1 = (1, 5, 0, 0, 0, 0)
+   F~_2 = (1, 5, 10, 0, 0, 0)
+   F~_3 = (1, 5, 10, 10, 0, 0)
+   F~_4 = (1, 5, 10, 10, 5, 0)
+   F~_5 = (1, 5, 10, 10, 5, 1)
+vol (x_2..x_5, |det|/4!) = 125/6;  prop-simplex-volume: prod_{k>=1} C(5,k)/5! = 125/6;  NV = 4! vol = 500 = prod_{k>=2} C(5,k) = 500
+
+centroids (x_0..x_5), LYM mu_1..mu_5, barycentric lambda_1..lambda_5, mean vertex index sum mu_k:
+  S5    x   = (1, 5, 561/70, 43/10, 9/14, 1/70)
+        x   ~ (1.0000, 5.0000, 8.0143, 4.3000, 0.6429, 0.0143)
+        mu  = (1, 561/700, 43/100, 9/70, 1/70)  ~ (1.0000, 0.8014, 0.4300, 0.1286, 0.0143)
+        lam = (139/700, 13/35, 211/700, 4/35, 1/70)  ~ (0.1986, 0.3714, 0.3014, 0.1143, 0.0143)
+        mean index = 831/350 ~ 2.3743;  index variance = 115839/122500 ~ 0.9456 (/n^2: 0.0378)
+        beta residual mu_2 + mu_3 - 1 - mu_4 = 18/175 ~ 0.1029
+  L5    x   = (1, 5, 200/27, 130/27, 10/9, 1/162)
+        x   ~ (1.0000, 5.0000, 7.4074, 4.8148, 1.1111, 0.0062)
+        mu  = (1, 20/27, 13/27, 2/9, 1/162)  ~ (1.0000, 0.7407, 0.4815, 0.2222, 0.0062)
+        lam = (7/27, 7/27, 7/27, 35/162, 1/162)  ~ (0.2593, 0.2593, 0.2593, 0.2160, 0.0062)
+        mean index = 397/162 ~ 2.4506;  index variance = 32417/26244 ~ 1.2352 (/n^2: 0.0494)
+        beta residual mu_2 + mu_3 - 1 - mu_4 = 0 ~ 0.0000
+  Koz5  x   = (1, 5, 8, 6, 2, 1/5)
+        x   ~ (1.0000, 5.0000, 8.0000, 6.0000, 2.0000, 0.2000)
+        mu  = (1, 4/5, 3/5, 2/5, 1/5)  ~ (1.0000, 0.8000, 0.6000, 0.4000, 0.2000)
+        lam = (1/5, 1/5, 1/5, 1/5, 1/5)  ~ (0.2000, 0.2000, 0.2000, 0.2000, 0.2000)
+        mean index = 3 ~ 3.0000;  index variance = 2 ~ 2.0000 (/n^2: 0.0800)
+        beta residual mu_2 + mu_3 - 1 - mu_4 = 0 ~ 0.0000
+
+beta on vertices: F~_1 -> F~_3, F~_2 -> F~_2, F~_3 -> F~_1, F~_4 -> F~_4, F~_5 -> F~_5
+beta(L_5) = L_5 (bijection, n prime): True
+beta(S_5): 50 of 70 images are in S_5; all images integral and in L_5: True
+
+covariance matrices in LYM coordinates (mu_2..mu_5), and beta-invariance  B Sigma B^T - Sigma:
+  S5  (trace 56509/245000 ~ 0.23065; sd of mu_k: 0.2417 0.3266 0.2269 0.1187)
+    mu2  28629/490000    3667/70000    1013/49000     139/49000
+    mu3    3667/70000    7467/70000      347/7000       57/7000
+    mu4    1013/49000      347/7000    1261/24500       61/4900
+    mu5     139/49000       57/7000       61/4900       69/4900
+   decimal:
+    mu2    0.05843    0.05239    0.02067    0.00284
+    mu3    0.05239    0.10667    0.04957    0.00814
+    mu4    0.02067    0.04957    0.05147    0.01245
+    mu5    0.00284    0.00814    0.01245    0.01408
+   B Sg B^T - Sg = 0: False;  max |entry| = 0.03812
+  L5  (trace 25879/131220 ~ 0.19722; sd of mu_k: 0.2374 0.2756 0.2424 0.0783)
+    mu2   4109/72900  5537/145800     119/6075       7/4374
+    mu3  5537/145800   5537/72900     238/6075       7/2187
+    mu4     119/6075     238/6075     119/2025       7/1458
+    mu5       7/4374       7/2187       7/1458    161/26244
+   decimal:
+    mu2    0.05636    0.03798    0.01959    0.00160
+    mu3    0.03798    0.07595    0.03918    0.00320
+    mu4    0.01959    0.03918    0.05877    0.00480
+    mu5    0.00160    0.00320    0.00480    0.00613
+   B Sg B^T - Sg = 0: True;  max |entry| = 0.00000
+  Koz5  (trace 2/15 ~ 0.13333; sd of mu_k: 0.1633 0.2000 0.2000 0.1633)
+    mu2   2/75   1/50   1/75  1/150
+    mu3   1/50   1/25   2/75   1/75
+    mu4   1/75   2/75   1/25   1/50
+    mu5  1/150   1/75   1/50   2/75
+   decimal:
+    mu2    0.02667    0.02000    0.01333    0.00667
+    mu3    0.02000    0.04000    0.02667    0.01333
+    mu4    0.01333    0.02667    0.04000    0.02000
+    mu5    0.00667    0.01333    0.02000    0.02667
+   B Sg B^T - Sg = 0: True;  max |entry| = 0.00000
+prop-second-moments(2): Cov(mu_k, mu_l) = (k-1)(n-l+1)/(n^2(n+1)) for k <= l, n = 5: True
+
+Alexander core: |S_5 core| = 45, |S_5 top| = 25, sum_{m<5} |S_m| = 1+1+2+5+16 = 25; eps_5 = 5/14 ~ 0.3571
+  Alexander duality D_5 maps the core onto itself: True
+  c(core) x = (1, 5, 109/15, 41/15, 0, 0), mu_1..5 = (1, 109/150, 41/150, 0, 0); mu_k + mu_{5-k} - 1 (k=1..4) = (0, 0, 0, 0)
+  c(top)  x = (1, 5, 234/25, 178/25, 9/5, 1/25), mu_1..5 = (1, 117/125, 89/125, 9/25, 1/25)
+  thm-alexander-core(3) for S_5: mu_k + mu_{5-k} - 1 = (9/70, 81/350, 81/350, 9/70), all in [0, eps]: True
+    0 <= mu_5 = 1/70 <= mu_4 = 9/70 <= eps = 5/14: True
+    mean index 831/350 ~ 2.3743 in [2, 43/14] = [2, 3.0714]: True
+    mixture check c(S_5) = (1-eps) c(core) + eps c(top): True
+
+h* by thm-hstar (asc over 500 residue vectors) = [1, 157, 308, 34, 0], sum 500
+h* from L(t), t = 0..4 (lattice listing)        = [1, 157, 308, 34, 0]
+L_Koz(5)(t), t = 0..8 = [1, 162, 1108, 3964, 10355, 22406, 42742, 74488, 121269]
+Ehrhart polynomial (fit t = 0..4) = (125/6)t^4 + (125/2)t^3 + (355/6)t^2 + (37/2)t + (1)
+  equals paper's (t+1)(125t^3+250t^2+105t+6)/6 at t = -1..8, and fit predicts t = 5..8: True
+
+obs-dilates, n = 5: sum of x_k over t Koz(5) cap Z^6 is a polynomial of degree 5 in t;
+  k=2: fit on t=0..5 reproduces t=0..10: True;  nu_k = 4/5 -1/10/t + O(1/t^2)
+  k=3: fit on t=0..5 reproduces t=0..10: True;  nu_k = 3/5 -1/5/t + O(1/t^2)
+  k=4: fit on t=0..5 reproduces t=0..10: True;  nu_k = 2/5 -3/10/t + O(1/t^2)
+  k=5: fit on t=0..5 reproduces t=0..10: True;  nu_k = 1/5 -7/20/t + O(1/t^2)
+  paper obs-dilates n = 5: (4/5 - 1/(10t), 3/5 - 1/(5t), 2/5 - 3/(10t), 1/5 - 7/(20t))
+
+==========================================================================================
+RANK r, d = 0^r, n = 5, r = 1..10
+==========================================================================================
+
+r = 1   (0.0s)
+  |FF(5;0^r)| = a(r) = 70 (paper formula 70);  ordered tuples 70^r = 70
+  lattice points L(r) = 162 (paper formula 162);  fill = 35/81 ~ 0.4321
+  deficiency L - a = 92 (paper r(r+1)(205r+71)/6 = 92)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (1, 5, 561/70, 43/10, 9/14, 1/70)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  r c(S5)     x = (1, 5, 561/70, 43/10, 9/14, 1/70)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (1, 5, 200/27, 130/27, 10/9, 1/162)
+              nu_2..5 = (0.7407, 0.4815, 0.2222, 0.0062);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (1, 5, 8, 6, 2, 1/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.23065  push-fwd 0.23065  lattice 0.19722  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.05843 0.10667 0.05147 0.01408
+    push-fwd  0.05843 0.10667 0.05147 0.01408
+    lattice   0.05636 0.07595 0.05877 0.00613
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 2   (0.0s)
+  |FF(5;0^r)| = a(r) = 627 (paper formula 627);  ordered tuples 70^r = 4900
+  lattice points L(r) = 1108 (paper formula 1108);  fill = 627/1108 ~ 0.5659
+  deficiency L - a = 481 (paper r(r+1)(205r+71)/6 = 481)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (2, 10, 3326/209, 568/57, 1405/627, 71/627)
+              nu_2..5 = (0.7957, 0.4982, 0.2241, 0.0566);  beta residual nu2+nu3-1-nu4 = 0.06986
+  r c(S5)     x = (2, 10, 561/35, 43/5, 9/7, 1/35)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (2, 10, 4225/277, 2910/277, 1595/554, 163/1108)
+              nu_2..5 = (0.7626, 0.5253, 0.2879, 0.0736);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (2, 10, 16, 12, 4, 2/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.17320  push-fwd 0.11532  lattice 0.19976  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.03828 0.06040 0.04862 0.02590
+    push-fwd  0.02921 0.05334 0.02573 0.00704
+    lattice   0.04408 0.06402 0.05984 0.03182
+    polytope  0.02667 0.04000 0.04000 0.02667
+  Cov in nu coordinates, FF(5;0^2), exact:
+    nu2   334447/8736200      4783/158840  224153/13104300    31583/5241720
+    nu3      4783/158840     53962/893475   255377/7147800    17869/1429560
+    nu4  224153/13104300   255377/7147800  955747/19656450      7709/393129
+    nu5    31583/5241720    17869/1429560      7709/393129     20365/786258
+
+r = 3   (0.1s)
+  |FF(5;0^r)| = a(r) = 2592 (paper formula 2592);  ordered tuples 70^r = 343000
+  lattice points L(r) = 3964 (paper formula 3964);  fill = 648/991 ~ 0.6539
+  deficiency L - a = 1372 (paper r(r+1)(205r+71)/6 = 1372)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (3, 15, 2579/108, 10259/648, 5275/1296, 349/1296)
+              nu_2..5 = (0.7960, 0.5277, 0.2713, 0.0898);  beta residual nu2+nu3-1-nu4 = 0.05237
+  r c(S5)     x = (3, 15, 1683/70, 129/10, 27/14, 3/70)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (3, 15, 22975/991, 16220/991, 9465/1982, 1271/3964)
+              nu_2..5 = (0.7728, 0.5456, 0.3184, 0.1069);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (3, 15, 24, 18, 6, 3/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.15930  push-fwd 0.07688  lattice 0.18505  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.03353 0.05121 0.04652 0.02804
+    push-fwd  0.01948 0.03556 0.01716 0.00469
+    lattice   0.03885 0.05734 0.05548 0.03340
+    polytope  0.02667 0.04000 0.04000 0.02667
+  Cov in nu coordinates, FF(5;0^3), exact:
+    nu2     352019/10497600     804661/31492800     995647/62985600       16967/2519424
+    nu3     804661/31492800  19352951/377913600  12197503/377913600     207257/15116544
+    nu4     995647/62985600  12197503/377913600  17582327/377913600     318685/15116544
+    nu5       16967/2519424     207257/15116544     318685/15116544     423815/15116544
+
+r = 4   (0.3s)
+  |FF(5;0^r)| = a(r) = 7385 (paper formula 7385);  ordered tuples 70^r = 24010000
+  lattice points L(r) = 10355 (paper formula 10355);  fill = 1477/2071 ~ 0.7132
+  deficiency L - a = 2970 (paper r(r+1)(205r+71)/6 = 2970)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (4, 20, 47062/1477, 32142/1477, 8830/1477, 94/211)
+              nu_2..5 = (0.7966, 0.5440, 0.2989, 0.1114);  beta residual nu2+nu3-1-nu4 = 0.04171
+  r c(S5)     x = (4, 20, 1122/35, 86/5, 18/7, 2/35)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (4, 20, 64500/2071, 46160/2071, 13910/2071, 1047/2071)
+              nu_2..5 = (0.7786, 0.5572, 0.3358, 0.1264);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (4, 20, 32, 24, 8, 4/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.15297  push-fwd 0.05766  lattice 0.17491  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.03155 0.04771 0.04524 0.02847
+    push-fwd  0.01461 0.02667 0.01287 0.00352
+    lattice   0.03602 0.05350 0.05245 0.03295
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 5   (0.8s)
+  |FF(5;0^r)| = a(r) = 16926 (paper formula 16926);  ordered tuples 70^r = 1680700000
+  lattice points L(r) = 22406 (paper formula 22406);  fill = 8463/11203 ~ 0.7554
+  deficiency L - a = 5480 (paper r(r+1)(205r+71)/6 = 5480)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (5, 25, 224855/5642, 469165/16926, 4325/546, 1525/2418)
+              nu_2..5 = (0.7971, 0.5544, 0.3168, 0.1261);  beta residual nu2+nu3-1-nu4 = 0.03460
+  r c(S5)     x = (5, 25, 561/14, 43/2, 45/14, 1/14)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (5, 25, 438250/11203, 316350/11203, 97225/11203, 7795/11203)
+              nu_2..5 = (0.7824, 0.5648, 0.3471, 0.1392);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (5, 25, 40, 30, 10, 1)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14926  push-fwd 0.04613  lattice 0.16793  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.03047 0.04589 0.04439 0.02851
+    push-fwd  0.01169 0.02133 0.01029 0.00282
+    lattice   0.03425 0.05104 0.05036 0.03228
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 6   (1.7s)
+  |FF(5;0^r)| = a(r) = 33635 (paper formula 33635);  ordered tuples 70^r = 117649000000
+  lattice points L(r) = 42742 (paper formula 42742);  fill = 4805/6106 ~ 0.7869
+  deficiency L - a = 9107 (paper r(r+1)(205r+71)/6 = 9107)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (6, 30, 229908/4805, 161878/4805, 9497/961, 3943/4805)
+              nu_2..5 = (0.7975, 0.5615, 0.3294, 0.1368);  beta residual nu2+nu3-1-nu4 = 0.02954
+  r c(S5)     x = (6, 30, 1683/35, 129/5, 27/7, 3/35)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (6, 30, 143800/3053, 104420/3053, 32520/3053, 2714/3053)
+              nu_2..5 = (0.7850, 0.5700, 0.3551, 0.1482);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (6, 30, 48, 36, 12, 6/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14677  push-fwd 0.03844  lattice 0.16291  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.02979 0.04479 0.04377 0.02843
+    push-fwd  0.00974 0.01778 0.00858 0.00235
+    lattice   0.03304 0.04933 0.04886 0.03168
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 7   (3.5s)
+  |FF(5;0^r)| = a(r) = 60432 (paper formula 60432);  ordered tuples 70^r = 8235430000000
+  lattice points L(r) = 74488 (paper formula 74488);  fill = 7554/9311 ~ 0.8113
+  deficiency L - a = 14056 (paper r(r+1)(205r+71)/6 = 14056)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (7, 35, 421841/7554, 149828/3777, 179095/15108, 5103/5036)
+              nu_2..5 = (0.7978, 0.5667, 0.3387, 0.1448);  beta residual nu2+nu3-1-nu4 = 0.02576
+  r c(S5)     x = (7, 35, 561/10, 301/10, 9/2, 1/10)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (7, 35, 512925/9311, 374080/9311, 235235/18622, 40369/37244)
+              nu_2..5 = (0.7870, 0.5739, 0.3609, 0.1548);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (7, 35, 56, 42, 14, 7/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14498  push-fwd 0.03295  lattice 0.15914  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.02932 0.04404 0.04331 0.02832
+    push-fwd  0.00835 0.01524 0.00735 0.00201
+    lattice   0.03217 0.04808 0.04774 0.03116
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 8   (6.4s)
+  |FF(5;0^r)| = a(r) = 100737 (paper formula 100737);  ordered tuples 70^r = 576480100000000
+  lattice points L(r) = 121269 (paper formula 121269);  fill = 33579/40423 ~ 0.8307
+  deficiency L - a = 20532 (paper r(r+1)(205r+71)/6 = 20532)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (8, 40, 238188/3731, 218996/4797, 464500/33579, 40556/33579)
+              nu_2..5 = (0.7980, 0.5707, 0.3458, 0.1510);  beta residual nu2+nu3-1-nu4 = 0.02284
+  r c(S5)     x = (8, 40, 2244/35, 172/5, 36/7, 4/35)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (8, 40, 2549800/40423, 1865760/40423, 590860/40423, 51742/40423)
+              nu_2..5 = (0.7885, 0.5769, 0.3654, 0.1600);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (8, 40, 64, 48, 16, 8/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14363  push-fwd 0.02883  lattice 0.15622  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.02897 0.04350 0.04295 0.02821
+    push-fwd  0.00730 0.01333 0.00643 0.00176
+    lattice   0.03150 0.04712 0.04686 0.03073
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 9   (10.9s)
+  |FF(5;0^r)| = a(r) = 158470 (paper formula 158470);  ordered tuples 70^r = 40353607000000000
+  lattice points L(r) = 187210 (paper formula 187210);  fill = 15847/18721 ~ 0.8465
+  deficiency L - a = 28740 (paper r(r+1)(205r+71)/6 = 28740)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (9, 45, 2276829/31694, 1636689/31694, 21795/1378, 44481/31694)
+              nu_2..5 = (0.7982, 0.5738, 0.3515, 0.1559);  beta residual nu2+nu3-1-nu4 = 0.02050
+  r c(S5)     x = (9, 45, 5049/70, 387/10, 81/14, 9/70)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (9, 45, 1330500/18721, 976110/18721, 310860/18721, 55299/37442)
+              nu_2..5 = (0.7897, 0.5793, 0.3690, 0.1641);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (9, 45, 72, 54, 18, 9/5)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14256  push-fwd 0.02563  lattice 0.15388  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.02871 0.04309 0.04266 0.02810
+    push-fwd  0.00649 0.01185 0.00572 0.00156
+    lattice   0.03098 0.04637 0.04616 0.03037
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+r = 10   (17.7s)
+  |FF(5;0^r)| = a(r) = 238051 (paper formula 238051);  ordered tuples 70^r = 2824752490000000000
+  lattice points L(r) = 276936 (paper formula 276936);  fill = 21641/25176 ~ 0.8596
+  deficiency L - a = 38885 (paper r(r+1)(205r+71)/6 = 38885)
+  push-forward (multiplicity-weighted FF): centroid = r c(S_5) and Cov = r Cov(S_5) exactly: True
+  c(FF)       x = (10, 50, 1727730/21641, 1247180/21641, 385275/21641, 34625/21641)
+              nu_2..5 = (0.7984, 0.5763, 0.3561, 0.1600);  beta residual nu2+nu3-1-nu4 = 0.01860
+  r c(S5)     x = (10, 50, 561/7, 43, 45/7, 1/7)
+              nu_2..5 = (0.8014, 0.4300, 0.1286, 0.0143);  beta residual nu2+nu3-1-nu4 = 0.10286
+  c(lattice)  x = (10, 50, 165875/2098, 60975/1049, 78025/4196, 42155/25176)
+              nu_2..5 = (0.7906, 0.5813, 0.3719, 0.1674);  beta residual nu2+nu3-1-nu4 = 0.00000
+  r c(Koz5)   x = (10, 50, 80, 60, 20, 2)
+              nu_2..5 = (0.8000, 0.6000, 0.4000, 0.2000);  beta residual nu2+nu3-1-nu4 = 0.00000
+  total nu-variance (trace, nu_2..nu_5): FF 0.14169  push-fwd 0.02306  lattice 0.15198  polytope 0.13333
+  nu-variances (diagonal):
+    FF        0.02850 0.04276 0.04242 0.02801
+    push-fwd  0.00584 0.01067 0.00515 0.00141
+    lattice   0.03056 0.04576 0.04559 0.03007
+    polytope  0.02667 0.04000 0.04000 0.02667
+
+conj-centroid-dilation data: c(FF(5;0^r))/r in nu, minus c(Koz5) = (4/5,3/5,2/5,1/5):
+  r=1  nu = (0.8014, 0.4300, 0.1286, 0.0143)   nu - c(Koz5) = (0.0014, -0.1700, -0.2714, -0.1857)
+  r=2  nu = (0.7957, 0.4982, 0.2241, 0.0566)   nu - c(Koz5) = (-0.0043, -0.1018, -0.1759, -0.1434)
+  r=3  nu = (0.7960, 0.5277, 0.2713, 0.0898)   nu - c(Koz5) = (-0.0040, -0.0723, -0.1287, -0.1102)
+  r=4  nu = (0.7966, 0.5440, 0.2989, 0.1114)   nu - c(Koz5) = (-0.0034, -0.0560, -0.1011, -0.0886)
+  r=5  nu = (0.7971, 0.5544, 0.3168, 0.1261)   nu - c(Koz5) = (-0.0029, -0.0456, -0.0832, -0.0739)
+  r=6  nu = (0.7975, 0.5615, 0.3294, 0.1368)   nu - c(Koz5) = (-0.0025, -0.0385, -0.0706, -0.0632)
+  r=7  nu = (0.7978, 0.5667, 0.3387, 0.1448)   nu - c(Koz5) = (-0.0022, -0.0333, -0.0613, -0.0552)
+  r=8  nu = (0.7980, 0.5707, 0.3458, 0.1510)   nu - c(Koz5) = (-0.0020, -0.0293, -0.0542, -0.0490)
+  r=9  nu = (0.7982, 0.5738, 0.3515, 0.1559)   nu - c(Koz5) = (-0.0018, -0.0262, -0.0485, -0.0441)
+  r=10  nu = (0.7984, 0.5763, 0.3561, 0.1600)   nu - c(Koz5) = (-0.0016, -0.0237, -0.0439, -0.0400)
+
+Is sum_{FF(5;0^r)} x_k a polynomial of degree <= 5 in r?  (fit on r = 1..6, test r = 7..10)
+  a(r) fit on r=1..5: (125/6)r^4 + (85/3)r^3 + (79/6)r^2 + (20/3)r + (1); reproduces r <= 10: True
+  k=2: fit reproduces r = 7..10: True;  sum = (500/3)r^5 + (2675/12)r^4 + (310/3)r^3 + (691/12)r^2 + (21/2)r
+       => nu_k(FF) = 4/5 -9/500/r + O(1/r^2)   [lattice: 4/5 -1/10/r]
+  k=3: fit reproduces r = 7..10: True;  sum = (125)r^5 + (475/4)r^4 + (85/3)r^3 + (127/4)r^2 + (-17/6)r
+       => nu_k(FF) = 3/5 -123/500/r + O(1/r^2)   [lattice: 3/5 -1/5/r]
+  k=4: fit reproduces r = 7..10: True;  sum = (125/3)r^5 + (25/3)r^4 + (-40/3)r^3 + (85/6)r^2 + (-35/6)r
+       => nu_k(FF) = 2/5 -58/125/r + O(1/r^2)   [lattice: 2/5 -3/10/r]
+  k=5: fit reproduces r = 7..10: True;  sum = (25/6)r^5 + (-10/3)r^4 + (-17/6)r^3 + (23/6)r^2 + (-5/6)r
+       => nu_k(FF) = 1/5 -54/125/r + O(1/r^2)   [lattice: 1/5 -7/20/r]
+
+==========================================================================================
+POSITIVE GAP: d = (0,1), n = 5 (N = 6); and the product regime d = (0,4)
+==========================================================================================
+dim F_k = H_k = [1, 6, 15, 20, 15, 6, 1]
+|FF(5;0,1)| = 1858 of 4900 pairs
+lattice points: L_5 + shift L_5 = 4484;  Fourier-Motzkin over a 51744-point box = 4484 (2.0s); sets equal: True
+FF subset of lattice: True;  fill = 929/2242 ~ 0.4144
+Koz(5;0,1): NV = 102500 (tab:volumes 102500), vol = NV/5! = 5125/6 (tab:volumes 5125/6)
+push-forward centroid = c(S5) + shift c(S5): True
+  c(FF)              x = (1, 6, 11036/929, 10784/929, 11659/1858, 2177/1858, 35/929)
+                     nu_2..6 = (0.7920, 0.5804, 0.4183, 0.1953, 0.0377)
+  indep sum c(S5)    x = (1, 6, 911/70, 431/35, 173/35, 23/35, 1/70)
+                     nu_2..6 = (0.8676, 0.6157, 0.3295, 0.1095, 0.0143)
+  c(lattice)         x = (1, 6, 50845/4484, 26115/2242, 7490/1121, 1798/1121, 81/2242)
+                     nu_2..6 = (0.7559, 0.5824, 0.4454, 0.2673, 0.0361)
+  c(Koz(5;0,1))      x = (1, 6, 1414/123, 1538/123, 669/82, 1628/615, 65/246)
+                     nu_2..6 = (0.7664, 0.6252, 0.5439, 0.4412, 0.2642)
+  indep sum c(Koz5)  x = (1, 6, 13, 14, 8, 11/5, 1/5)
+                     nu_2..6 = (0.8667, 0.7000, 0.5333, 0.3667, 0.2000)
+  total nu-variance (nu_2..nu_6): FF 0.23969  push-fwd 0.17059  lattice 0.23884  polytope 0.17813  indep-Koz 0.10593
+
+d = (0,4) (product regime): |FF| = 4900, lattice = 26244; c(FF) = c(S5)+shift^4 c(S5): True; c(lattice) = sum of shifted c(L5): True
+
+n = 5 rows of tab:fill and tab:volumes, Koz(5;0,d):
+   d  |FF|  lattice  fill     NV (staircase)  vol = NV/D!
+   0   627    1108   0.56588            8000  1000/3
+   1  1858    4484   0.41436          102500  5125/6
+   2  3805   14214   0.26769         1287500  64375/36
+   3  4857   26119   0.18596         9625000  34375/18
+   4  4900   26244   0.18671        17500000  15625/36
+  paper: |FF| 627 1858 3805 4857 4900; lattice 1108 4484 14214 26119 26244; fill 0.566 0.414 0.268 0.186(0.18596) 0.187(0.18671)
+         NV 8000 102500 1287500 9625000 17500000; vol 1000/3 5125/6 64375/36 34375/18 15625/36
+
+total time 44.3s

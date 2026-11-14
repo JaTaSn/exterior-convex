@@ -22,7 +22,7 @@ Exploration of the a=(a1,a2,a3,a4) parameter space for n=4, d=1 (the smallest (n
 combinatorial type can depend on a -- see ../artefacts/extremal-matrix-general.tex). Not part of
 the main proof pipeline; a "fun, not important" side investigation per Jan's framing.
 
-Three sampling functions, each meant to write ONE brief results file to ../runs/ per experiment
+Three sampling functions, each meant to write ONE brief results file to ../runs/paramspace/ per experiment
 (point + f-vector + a generic/special label, not the full per-job schema used by
 ../code/face_lattice_pipeline.py -- this is cheap to recompute, so the log stays brief):
 
@@ -38,7 +38,7 @@ import time
 
 load('right_angle_simplex.py')  # noqa -- brings in right_angle_minkowski_sum
 
-OUTDIR = '../runs'
+OUTDIR = '../runs/paramspace'
 D = 1  # fixed throughout this file; n=4 is implicit in every a having 4 entries
 
 
@@ -85,7 +85,7 @@ def _save_experiment(filename, description, points):
 
 
 def run_random_experiment(n_points, maxval, seed=None):
-    """Uniform random a_i in [1, maxval], n_points samples. Saves one file to ../runs/."""
+    """Uniform random a_i in [1, maxval], n_points samples. Saves one file to ../runs/paramspace/."""
     if seed is not None:
         random.seed(int(seed))
     t0 = time.time()
@@ -101,7 +101,7 @@ def run_random_experiment(n_points, maxval, seed=None):
 
 
 def run_grid_experiment(K):
-    """Exhaustive grid a_i in {1,...,K}^4 (K^4 points). Saves one file to ../runs/."""
+    """Exhaustive grid a_i in {1,...,K}^4 (K^4 points). Saves one file to ../runs/paramspace/."""
     t0 = time.time()
     points = []
     for a1 in range(1, K + 1):
@@ -122,7 +122,7 @@ def run_targeted_probes():
     Hand-picked a's testing several natural coincidence conditions beyond the known wall
     (a2*a4=a3^2), to check for additional combinatorial types: a1=a2, a1=a3, a3=a4, a1=a4,
     a1*a3=a2^2 (an analogous condition shifted by one index), a1=a2=a3, a1*a4=a2*a3. None found a
-    third type as of 2026-07-31 (see changelog above). Saves one file to ../runs/.
+    third type as of 2026-07-31 (see changelog above). Saves one file to ../runs/paramspace/.
     """
     cases = {
         'a1=a2': [(7, 7, 3, 11), (7, 7, 5, 2), (100, 100, 37, 63)],

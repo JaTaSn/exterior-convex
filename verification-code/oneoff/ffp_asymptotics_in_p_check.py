@@ -29,7 +29,7 @@ Changelog (reverse chronological):
                     polynomials).
 
 Run:  python3 code/oneoff/ffp_asymptotics_in_p_check.py
-Output: runs/ffp-asymptotics-in-p-check.txt (via tee in the driver command).
+Output: runs/ffp-asymptotics/ffp-asymptotics-in-p-check.txt (via tee in the driver command).
 """
 
 import sys

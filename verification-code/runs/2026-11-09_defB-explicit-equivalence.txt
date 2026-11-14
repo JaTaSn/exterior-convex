@@ -1,0 +1,1 @@
+agree on 32001 cases (n<=6, r<=3, degrees in [-2,3], ties included)

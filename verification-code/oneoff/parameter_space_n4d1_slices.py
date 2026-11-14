@@ -9,7 +9,7 @@
 #   quadratic formula, not numerically extracted) and the nearest-in-a1 sample points (from the
 #   already-saved, verified grid-scan data) as blue dots. Pure Python, hand-written SVG (no
 #   plotting library needed for exact vector curves); no Sage needed either (reads the already
-#   -verified runs/paramspace_n4_d1_grid_K10.json rather than recomputing anything).
+#   -verified runs/paramspace/paramspace_n4_d1_grid_K10.json rather than recomputing anything).
 
 """
 Slices the n=4, d=1 parameter simplex (a1+a2+a3+a4=1) by planes of constant a1 into 5 triangular
@@ -24,7 +24,7 @@ import json
 import math
 import os
 
-OUTDIR_RUNS = '../runs'
+OUTDIR_RUNS = '../runs/paramspace'
 OUTDIR_ARTEFACTS = '../artefacts'
 
 BG = '#0f1520'

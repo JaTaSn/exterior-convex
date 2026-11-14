@@ -103,7 +103,7 @@ import sys
 import time
 
 CODE_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTDIR = '../runs'  # relative to CODE_DIR, matching face_lattice_pipeline.py's
+OUTDIR = '../runs/face-lattice'  # relative to CODE_DIR, matching face_lattice_pipeline.py's
                      # own convention -- all subprocesses are launched with
                      # cwd=CODE_DIR so this resolves the same way for them.
 

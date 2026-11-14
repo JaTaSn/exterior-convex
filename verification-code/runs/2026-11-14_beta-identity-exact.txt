@@ -1,0 +1,13 @@
+# 2026-11-14 jts-pc: cd code/oneoff && python3 beta_identity_exact.py 9 15 21 25
+n=9  count=480854771  identity holds exactly: False
+   largest deviation at k=3: 4.517e-04  (= 27366475/60587701146)
+   time 0.0 s
+n=15  count=164361609739942749769011538946  identity holds exactly: False
+   largest deviation at k=6: 5.120e-05  (= 63182992763528704275247633201/1233944785122620193890854128637095)
+   time 0.0 s
+n=21  count=5899430536404263256868757786775491062834488827524557773526627458  identity holds exactly: False
+   largest deviation at k=3: 1.233e-05  (= a fraction of 130 digits)
+   time 2.1 s
+n=25  count=69833595344071989761317836748042437512518458916637586119933975257321115343757885267260500029382  identity holds exactly: False
+   largest deviation at k=5: -1.492e-11  (= a fraction of 189 digits)
+   time 35.3 s

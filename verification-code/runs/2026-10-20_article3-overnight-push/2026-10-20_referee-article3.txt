@@ -1,0 +1,105 @@
+=== V1 ex-plateau ===
+plateau g= 1 nvertices 15 sum M 15
+[1 1 1 1 1]
+[1 0 1 1 1]
+[0 1 0 0 1]
+[0 0 1 0 1]
+[0 0 0 1 1]
+plateau g= 2 nvertices 20 sum M 20
+kozlov5 g= 1 nvertices 16 sum M 16
+[1 1 1 1 1]
+[1 0 1 1 1]
+[0 1 0 1 1]
+[0 0 1 0 1]
+[0 0 0 1 1]
+kozlov5 g= 2 nvertices 20 sum M 20
+ones5 g= 1 nvertices 13 sum M 13
+[1 1 1 1 1]
+[1 0 0 0 1]
+[0 1 0 0 1]
+[0 0 1 0 1]
+[0 0 0 1 1]
+ones5 g= 2 nvertices 19 sum M 19
+g=2 plateau == kozlov: True
+phi prefix summand1 [1, 3, 1, 1, 5/2] summand2 [1, 0, 0, 3/2, -5/2]
+=== V2 cor-rank2-lc and thm-vdesc vs brute force ===
+rank-two entries checked 2880 mismatches 0
+rank-three tuples checked 5920 mismatches 0
+=== V3 ex-rank3-vertices n=4 d=(0,1,2) ===
+n vertices 28 from tensor 28 dim 5 facets 12
+m-triples [(1, 2, 3), (1, 2, 4), (1, 2, 5), (1, 2, 6), (1, 3, 3), (1, 3, 5), (1, 3, 6), (1, 4, 4), (1, 4, 6), (1, 5, 5), (1, 5, 6), (2, 2, 3), (2, 2, 4), (2, 2, 5), (2, 2, 6), (2, 4, 4), (2, 4, 6), (2, 5, 5), (2, 5, 6), (3, 3, 3), (3, 3, 5), (3, 3, 6), (3, 5, 5), (3, 5, 6), (4, 4, 4), (4, 4, 6), (4, 5, 5), (4, 5, 6)]
+j=(2,4,3): 1  j=(2,2,3): 0  j=(1,1,1): 1  j=(4,4,4): 1  j=(3,2,1): 1  j=(2,1,1): 1
+paper list equals computed: True missing [] extra []
+=== V4 rem-logconvex ===
+M[4,1,1] 0 pair12 1 pair23 1 pair13 0
+=== V5 vertex counts of examples ===
+RA(koz(3);[0, 1]): dim 3, vertices 7, facets 6
+RA(koz(3);[0, 2]): dim 4, vertices 9, facets 6
+RA(koz(4);[0, 1]): dim 4, vertices 11, facets 8
+RA(koz(4);[0, 0]): dim 3, vertices 4, facets 4
+RA(koz(4);[0, 2]): dim 5, vertices 14, facets 8
+Koz(3;0,1) vertex list (x2,x3,x4) with x1=3 (f_k=x_k, f1=x1+1): [(3, 0, 0), (3, 3, 0), (3, 3, 1), (6, 0, 0), (6, 3, 1), (6, 4, 0), (6, 4, 1)]
+=== V6 facets ===
+RA(koz(4);0,1) H-rep:
+   An inequality (0, -1, 0, 0, 0) x + 10 >= 0
+   An inequality (0, 2, -3, 0, 0) x + 10 >= 0
+   An inequality (0, 0, 1, -4, 0) x + 10 >= 0
+   An inequality (0, 0, 0, 1, -4) x + 0 >= 0
+   An inequality (0, 0, 2, -3, 0) x + 0 >= 0
+   An inequality (0, 1, 0, 0, 0) x - 4 >= 0
+   An inequality (0, 0, 0, 0, 1) x + 0 >= 0
+   An inequality (0, 0, 0, 0, -1) x + 1 >= 0
+   An equation (1, 0, 0, 0, 0) x - 4 == 0
+RA(koz(3);0,1) H-rep:
+   An inequality (0, -1, 0, 0) x + 6 >= 0
+   An inequality (0, 1, -3, 0) x + 6 >= 0
+   An inequality (0, 0, 1, -3) x + 0 >= 0
+   An inequality (0, 1, 0, 0) x - 3 >= 0
+   An inequality (0, 0, 0, 1) x + 0 >= 0
+   An inequality (0, 0, 0, -1) x + 1 >= 0
+   An equation (1, 0, 0, 0) x - 3 == 0
+ex-hrep2-n4 list == RA(koz4;0,1): True  facets 8
+ex-hrep2 n=3 list == RA(koz3;0,1): True
+ex-hrep-r3 list == RA: True  dim 4  vertices 16  facets 9
+Theta-form tests 70 failures 0
+--- cor-facets-every-d (ties, wide gaps) and cor-ones-hrep counts ---
+koz n=3 d=[0, 0]: facets 3, ns=3
+koz n=3 d=[0, 0, 1]: facets 6, ns=6
+koz n=3 d=[0, 1, 1]: facets 6, ns=6
+koz n=3 d=[0, 3]: facets 6, ns=6
+koz n=3 d=[0, 4]: facets 6, ns=6
+koz n=3 d=[0, 1, 5]: facets 9, ns=9
+koz n=3 d=[0, 0, 2, 2]: facets 6, ns=6
+koz n=3 d=[0, 2, 2, 5]: facets 9, ns=9
+koz n=4 d=[0, 0]: facets 4, ns=4
+koz n=4 d=[0, 0, 1]: facets 8, ns=8
+koz n=4 d=[0, 1, 1]: facets 8, ns=8
+koz n=4 d=[0, 4]: facets 8, ns=8
+koz n=4 d=[0, 5]: facets 8, ns=8
+koz n=4 d=[0, 1, 6]: facets 12, ns=12
+koz n=4 d=[0, 0, 2, 2]: facets 8, ns=8
+koz n=4 d=[0, 2, 2, 6]: facets 12, ns=12
+cor-ones-hrep counts checked n<=6
+--- rem-hdesc-hypotheses: a=(1,2,6,24) ---
+d=1: hrep2 rows violated by RA vertices: [('Ch2', 1), ('Ch2', 2), ('Ch1', 3)]; Theta rows violated: 2
+d=2: hrep2 rows violated by RA vertices: [('Ch2', 1)]; Theta rows violated: 0
+--- n=3 d=(0,1): which summand-inequality directions are facets ---
+['An inequality (0, -1, 0, 0) x + 6 >= 0', 'An inequality (0, 1, -3, 0) x + 6 >= 0', 'An inequality (0, 0, 1, -3) x + 0 >= 0', 'An inequality (0, 1, 0, 0) x - 3 >= 0', 'An inequality (0, 0, 0, 1) x + 0 >= 0', 'An inequality (0, 0, 0, -1) x + 1 >= 0']
+=== V7 rem-permutohedron: 2-faces of RA(koz4;0,1) ===
+max number of pairwise non-parallel edge directions on a 2-face: 4
+all-ones RA(1;0,1,2) max 2-face directions: 3
+=== V9 module Kruskal-Katona ===
+lex shadow recursion vs actual, n<=7, mismatches: 0
+thm-kk-rank1(b) identity n<=8 mismatches: 0
+2^(2),3^(2),4^(2),5^(2) = [0, 1, 1, 2]
+rem-blocks: w4(2,1)=2 w4(1,3)=6 w4(1,4)=6 w4(2,4)=4
+Prop PQ n<=9 violations: 0
+thm-ac42 (monomial achievable sets vs B-condition), sequences tested 17879 mismatches 0
+n=1,d=(0,0) achievable: [(0, 0), (1, 0), (1, 1), (2, 0), (2, 1), (2, 2)] count 6
+B(4,2) n3 d01: 3  B(3,3): 1  B(6,2) n4 d01: 6
+printed clause n*r0+r1 at (1,2): allows h1<= 2 ; corrected n*h0+r1 = 1
+cor-initial checks mismatches: 0
+done
+=== V8b thm-theta weak LC: facets vs distinct normal classes ===
+weak-LC facet-class checks mismatches: 0
+beta(1,4,6,1,0)_2 = 3/2
