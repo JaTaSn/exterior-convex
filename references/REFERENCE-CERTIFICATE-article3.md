@@ -56,6 +56,12 @@ what registry check was done instead.
 
 ## Findings worth reading first
 
+*Findings 3–7 were applied to the manuscript on 2026-11-14 evening, at Jan's instruction ("apply
+all five"); the line numbers below are those of commit `405899e2`, before the edits. The suggested
+wordings were used, except that the Kupreyeva citation (finding 4) now follows the computation of
+S₃'s centroid and names the row's value, and the qualification in finding 7 is made at both places.
+Finding 6(a), the printed Moscow Math. J. text, is still unchecked.*
+
 1. **Every DOI is right this time.** All twenty DOIs in the 32 entries resolve in Crossref to the
    work the `.bib` describes, with matching authors, title, volume and pages. (Article 2 found three
    that did not.) Two small notes: Crossref has no page range for `HibiOlsenTsuchiya2018`; the `.bib`'s

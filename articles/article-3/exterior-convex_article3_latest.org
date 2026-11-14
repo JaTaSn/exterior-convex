@@ -23,6 +23,12 @@
 # filename without "draft" in it, so its PDFs of this file lacked the labels Jan's own export showed.
 # The script now follows this file, prints showkeys=on/off, and `--ship' refuses to build while the
 # line is here. The Lean discs (\leanmark, via marginnote) are content, with a legend in sec. 1; they stay.
+# 2026-11-14 evening (Jan: "apply all five"): the five manuscript findings of the reference
+# certificate (exterior-convex repo, references/REFERENCE-CERTIFICATE-article3.md, findings 3-7)
+# applied: "(Linusson's N)" deleted (Linusson writes binom(n+1,2)); Kupreyeva's Table 4.2 row p=3 (and "the f-vectors in her T^3_3 are S_3")
+# attached to S_3's centroid, not the triangle's; Brion-Vergne restricted to simple lattice
+# polytopes; rem-hstar-misprint given s=(6,4,1); Part II's T'_n(0) and u'_n qualified to the
+# principal block tau in [1,n].
 # Jan's 23-point review of draft 5 (LOGBOOK session 56, entry of 2026-11-09). Edits made here, the rest answered in the
 # session and awaiting his decision:
 #   2  vectors bold (\vek), as in Part II; \vec gone. All-ones vector \vek 1 in def-ra and as the
@@ -1894,7 +1900,8 @@ residues determine the point: \(\lambda_k=\mu_k-\mu_{k+1}\in[0,1)\) with \(\mu_{
 [cite:@HibiOlsenTsuchiya2018 Lemma 1.1], count ascents of the residue vector after an auxiliary
 entry \(e_0\) with \(s_0=1\), whose ratio \(e_0/s_0\) plays the part of our \(\rho_1\). They print the
 convention \(e_0=1\) where \(e_0=0\), that is \(\rho_1=0\), is meant; with \(e_0=1\) one gets
-\((14,10)\) instead of \((1,16,7)\) at \(n=4\).
+\((14,10)\) instead of \((1,16,7)\) at \(n=4\), with \(\vek s=(6,4,1)\). (In the order \((1,4,6)\) of
+Proposition [[prop-lecture-hall]] the two conventions agree.)
 #+end_remark
 
 #+NAME: ex-hstar
@@ -2043,7 +2050,7 @@ Corollary [[cor-idp]].
 \(T_0\) is upper unitriangular: a non-zero entry needs \(\tau'\ge\tau\), because
 \(\indeg\le\tp+1\); the diagonal entry counts only the vertex \(\tilde F_\tau\); and the superdiagonal
 entry is \(T_0[\tau][\tau+1]=c_{\tau+1}\), the choices of \(x_{\tau+1}\in[1,c_{\tau+1}]\). The same holds
-for Part II's \(T'_n(0)\), since a full \(\tau\)-skeleton plus any \(m\le\binom n{\tau+1}\) faces of the
+for Part II's \(T'_n(0)\) on its principal block \(\tau\in[1,n]\) (Part II, Lemma 44), since a full \(\tau\)-skeleton plus any \(m\le\binom n{\tau+1}\) faces of the
 next size is a complex. We write
 #+begin_export latex
 \begin{equation}\label{eq:T0}
@@ -2071,7 +2078,7 @@ By [cite:@SnellmanArticle2 Theorem 41], \(a(r)=\vek u'_n\,T'_n(0)^{r-1}\vek 1\),
 Corollary [[cor-transfer]], \(L_{\Koz(n)}(t)=\vek u^{\mathcal L}T_0^{\,t-1}\vek 1\).
 By \eqref{eq:T0}, \(T_0^{t-1}=\sum_k\binom{t-1}k\mathcal N^k\), and \(\mathcal N^{n-1}\) has the single entry
 \(\prod_\tau\mathcal N[\tau][\tau+1]=\prod_{k\ge2}c_k\) at \((1,n)\). Both \(\vek u^{\mathcal L}\) and
-Part II's \(\vek u'_n\) have first entry \(1\), the only point with \(\tp=1\) being \((1,n,0,\dots,0)\),
+Part II's \(\vek u'_n\), restricted to that block, have first entry \(1\), the only point with \(\tp=1\) being \((1,n,0,\dots,0)\),
 and both superdiagonals are \((c_2,\dots,c_n)\).
 #+end_proof
 
@@ -2696,10 +2703,10 @@ At \(n=3\), where \(\Koz(3)\) is a triangle, \(S_3=\mathcal L_3\) in \((x_2,x_3)
 centroid is \((9/5,1/5)\), that is \(\mu=(3/5,1/5)\), with barycentric coordinates
 \((2/5,2/5,1/5)\): by hand, in \((x_2,x_3)\), \((1,0)=\tfrac23\tilde F_1+\tfrac13\tilde F_2\) and
 \((2,0)=\tfrac13\tilde F_1+\tfrac23\tilde F_2\), so, listing the points in order,
-\(\lambda_1=(1+\tfrac23+\tfrac13+0+0)/5=\tfrac25\). The
-centroid of the triangle \(\Koz(3)\) is \((2,1/3)\), \(\mu=(2/3,1/3)\), barycentric
-\((\tfrac13,\tfrac13,\tfrac13)\). This is Kupreyeva's row \(p=3\) of [cite:@Kupreyeva2019 Table 4.2],
-since her \(T^3_3\) is \(S_3\); her row \(p=4\) of Table 5.1 is the centroid
+\(\lambda_1=(1+\tfrac23+\tfrac13+0+0)/5=\tfrac25\). Kupreyeva's row \(p=3\) of
+[cite:@Kupreyeva2019 Table 4.2], \((1.80,0.20)\), is this centroid \((9/5,1/5)\) of \(S_3\), since the
+\(f\)-vectors in her \(T^3_3\) are \(S_3\). The centroid of the triangle \(\Koz(3)\) is \((2,1/3)\), \(\mu=(2/3,1/3)\),
+barycentric \((\tfrac13,\tfrac13,\tfrac13)\). Her row \(p=4\) of Table 5.1 is the centroid
 \((x_2,x_3,x_4)=(17/4,19/16,1/16)\) of \(S_4\).
 #+end_mexample
 
@@ -3091,8 +3098,8 @@ over \(P\), of the same relative volume; and, over each facet \(F\) of \(P\), th
   \sum_{x\in tP\cap\mathbb Z^{N+1}}\ell(x)=L_Q(t)-L_P(t)
   =t^{D+1}\int_P\ell+\frac{t^D}2\sum_F\int_F\ell+O(t^{D-1}),
 \]
-all integrals with the lattice-normalised measures. For polynomial weights in general, the
-corresponding statement follows from the Euler--Maclaurin formula of Brion and Vergne
+all integrals with the lattice-normalised measures. For polynomial weights on a simple lattice
+polytope, such as \(\Koz(n)\), the corresponding statement follows from the Euler--Maclaurin formula of Brion and Vergne
 [cite:@BrionVergne1997 Theorem 2.15]. For \(\Koz(n)\), with \(\ell=x_k\), this predicts the lattice
 centroid of \(t\Koz(n)\) to be \(t\,c(\Koz(n))+b+O(1/t)\) for a constant vector \(b\).
 
@@ -3746,7 +3753,7 @@ This proof takes over from the first only the count of lattice points,
 \(\lvert\mathcal L_n^{(p)}\rvert\sim\prod_{k=2}^n\binom pk/(n-1)!\), and counts the \(f\)-vectors with
 Linusson's formula instead of by volume. In his
 notation \(\lvert S_n^{(p)}\rvert=F^p(n)-F^{p-1}(n)=\sum_{k=1}^nE^p(n,k)\), and \(E^p(n,k)\) is a
-polynomial in \(p\) of degree \(M-\binom{k+1}2\), where \(M=\binom{n+1}2\) (Linusson's \(N\)). So
+polynomial in \(p\) of degree \(M-\binom{k+1}2\), where \(M=\binom{n+1}2\). So
 the term \(k=1\) dominates, and its leading coefficient is
 #+begin_export latex
 \begin{equation}\label{eq:linusson}
