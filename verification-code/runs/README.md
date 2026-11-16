@@ -22,7 +22,11 @@ is usually in `code/oneoff/`; the pipelines are in `code/`.
   LOGBOOK session 46.
 - **`2026-10-20_article3-overnight-push/`** — the Part III overnight push: checks, agent reviews
   and referee runs (`code/oneoff/*review*`, `referee_article3_checks*`,
-  `kozlov_volume_ehrhart.py` and others); LOGBOOK session 53.
+  `kozlov_volume_ehrhart.py` and others); LOGBOOK session 53. **It also holds the logs of Parts
+  IV and V**, which were split out of Part III after this run (2026-11-07 and 11-09): for IV,
+  `pairwise-gap-gluing-*`, `kozlov-pairwise-hside-check*`, `kozlov_hdesc_verify`,
+  `allones_hdesc_verify`, `review-hdesc`, `review-pairwise-*`; for V, `greedy_optimality` and
+  `review-module-kk`. The name is kept because scripts read from it.
 - **`2026-11-16_part5-checks/`** — the two Part V scripts that had no recorded run until then:
   `code/oneoff/lean_check_module_kk.py` (lex shadows, rank-one Kruskal–Katona and the greedy
   split against brute force, the statements formalised in `ModuleKK/`; 0 bad in all three) and
