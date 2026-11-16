@@ -46,6 +46,11 @@ home and copy them over. There are two exceptions:
   - `arxiv-submission/`: the package, from `code/make_arxiv_submission_article2.py`. Its `anc/`
     also holds CSV tables of the counts.
   - `ARXIV-SUBMISSION-METADATA.md`: as for Part I.
+  - `lith-report/`: the LiTH-MAT-R version (2026-11-16), from
+    `code/make_lith_report_article2.py` in the working home. It is the arXiv paper built by the
+    same pipeline, except that section 10.2 names this repository first and adds that Part I's
+    scripts and Lean are here too, and the title page says "Also available as arXiv:2610.14985".
+    The series adds its own cover with the report number.
 - **`article-3/`**: Part III, pre-release.
   - `exterior-convex_article3_latest.{org,tex,pdf}`, copied from the working home's `article/`.
   - `img/`: the ten figure PDFs, copied from the working home's `artefacts/ff-pictures/`.
