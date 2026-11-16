@@ -38,7 +38,9 @@ home and copy them over. There are two exceptions:
     inlined, because the first attempt with XeLaTeX and Biber bounced. `anc/` holds the
     certificate (copied fresh at each build), the Lean development and the verification code.
     Only the `.tex`, `img/`, `anc/REFERENCE-CERTIFICATE.md` and the README are tracked; the
-    built PDFs and the tarball are regenerated on demand (`.gitignore`).
+    built PDFs and the tarball are regenerated on demand (`.gitignore`). Exception: the two
+    Amata–Crupi packages in its `anc/verification-code/` were removed on 2026-11-16 (see "What is
+    held back").
   - `arxivcopy.pdf`: the PDF arXiv generated from that package.
   - `ARXIV-SUBMISSION-METADATA.md`: the arXiv form fields and the pre-submission checklist.
 - **`article-2/`**: Part II (arXiv 2610.14985; **not** in the LiTH-MAT-R series, see below).
@@ -105,6 +107,12 @@ machine. Three that did not were fixed on 2026-11-14. In a `.sage` script use `s
 - **The fibres of the sum map**: `code/fibres/`, `code/oneoff/small_n_fibre_counts.py`,
   `code/oneoff/koz3_fibre_pictures.py` and `runs/fibres/`. This is work towards a later part,
   not yet written up.
+- **Amata and Crupi's Macaulay2 packages** (`code/amata-crupi_Exterior{Ideals,Modules}.m2` in the
+  working home): theirs, not ours, and they ship with every Macaulay2, where the scripts load them
+  with `needsPackage`. Removed from this repository on 2026-11-16 at the author's request, from
+  `verification-code/` and from Part I's `arxiv-submission/anc/verification-code/`. The latter
+  means that folder no longer matches the package exactly: arXiv's ancillary files for
+  2609.23605v1 still include the two packages. Both remain in this repository's git history.
 - **Everything else in the working home**: the logbook, the working notes, the review rounds and
   the correspondence.
 
@@ -124,7 +132,7 @@ rsync -a --delete --exclude '.lake/' --exclude '*.olean' $W/LEAN/ $X/lean/
 # Verification code. The '/runs/' exclusion stops --delete from removing the runs.
 rsync -a --delete --exclude '__pycache__/' --exclude '/runs/' \
   --exclude '/build_article.sh' --exclude '/make_arxiv_submission*.py' \
-  --exclude '/leanmarks_article3.py' --exclude '/CODE.pm' \
+  --exclude '/leanmarks_article3.py' --exclude '/CODE.pm' --exclude '/amata-crupi_*.m2' \
   --exclude '/fibres/' --exclude '/oneoff/small_n_fibre_counts.py' \
   --exclude '/oneoff/koz3_fibre_pictures.py' \
   $W/code/ $X/verification-code/

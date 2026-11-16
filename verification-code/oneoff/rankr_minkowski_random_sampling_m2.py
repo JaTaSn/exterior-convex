@@ -18,8 +18,7 @@ PROPER monomial ideals I_1, ..., I_r of E = wedge(V_n) (proper: every
 generator has degree >= 2, so f_1 = n automatically, matching section 3's
 definition -- no filtering needed after the fact), forms F = E^{-d_1,...,-d_r}
 and M = createModule({I_1,...,I_r}, F) via Amata-Crupi's ExteriorModules.m2
-(already installed system-wide and copied into
-../code/amata-crupi_ExteriorModules.m2), and computes hilbertSequence(M) --
+(it ships with Macaulay2 and is loaded with needsPackage), and computes hilbertSequence(M) --
 the REAL Hilbert function of F/M, computed by Macaulay2 itself, not assumed
 from any formula.
 
