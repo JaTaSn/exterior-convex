@@ -1,0 +1,6 @@
+# 2026-11-16 16:03 jts-office  python3 lean_check_module_kk.py  (Python 3.14.7)
+F2/F4 bad 0
+KK bad 0
+greedy bad 0
+# wall 0.23s
+# exit 0

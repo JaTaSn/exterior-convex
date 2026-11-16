@@ -23,6 +23,12 @@ is usually in `code/oneoff/`; the pipelines are in `code/`.
 - **`2026-10-20_article3-overnight-push/`** — the Part III overnight push: checks, agent reviews
   and referee runs (`code/oneoff/*review*`, `referee_article3_checks*`,
   `kozlov_volume_ehrhart.py` and others); LOGBOOK session 53.
+- **`2026-11-16_part5-checks/`** — the two Part V scripts that had no recorded run until then:
+  `code/oneoff/lean_check_module_kk.py` (lex shadows, rank-one Kruskal–Katona and the greedy
+  split against brute force, the statements formalised in `ModuleKK/`; 0 bad in all three) and
+  `code/oneoff/ff_koz_intersection_check.sage` (FF(n;d) ∩ Koz(n;d) = FF_pr(n;d), Part V's open
+  problem 2; 68 cases, 0 failures). Run on jts-office, Python 3.14.7 and SageMath 10.9; LOGBOOK
+  session 58.
 - **`fibres/`** — fibre counts of the sum map, from 2026-11-08, with its own README
   (`code/fibres/`, `code/oneoff/small_n_fibre_counts.py`); LOGBOOK session 56 onwards.
 

@@ -238,7 +238,46 @@ than `3/2` — a **wrong leading coefficient that still typechecks and still bui
 harmless here (`x / 0 = 0` by `div_zero`, and every denominator is a factorial), but the flooring is
 not, and it is invisible. Cast early.
 
-### Rank-r pairwise reduction (article 3, added 2026-10-20)
+## Part IV: vertices and facets of the Kozlov polytope at every rank (added 2026-11-16)
+
+Part IV is not yet released. It was split out of article 3 draft 4 on
+2026-11-07 with its labels unchanged, so the two sections below, written for article 3, are its
+Lean; they name the statements by the working notes' numbering. This table pairs **Part IV's own
+labels** with the declarations, as the paper's §Formal verification promises. Built from the
+itemised list that stood in article 3's formal-verification section until 2026-10-29; every
+declaration named below was checked to exist on 2026-11-16.
+
+| Part IV | Lean | file(s) | state |
+|---|---|---|---|
+| `prop-rank-one-H` | `chain_hull_eq` | `Facets/Chain.lean` | **proved**, general positive leg vector |
+| `lem-ratio` | `lc_cross`, `lc_glob`; strict: `slc_cross`, `lc_glob_strict` | `Vertices/PairwiseReduction.lean` | **proved** |
+| `lem-criterion` | `expose_iff` (window form); `mem_extremePoints_sum_iff` (vertex decomposition of a sum of r polytopes) | `Vertices/PairwiseReduction.lean`, `Vertices/RankR.lean` | **proved** |
+| `lem-abel` | `abel_prefix_neg`, `abel_suffix_pos` | `Vertices/PairwiseReduction.lean` | **proved** |
+| `lem-monotone` | `chosen_mono`, `chosen_eq_of_tie` | same | **proved** |
+| `lem-locked` | `locked_infeasible` | same | **proved**, positivity only |
+| `lem-domination` | `transfer_prefix`, `transfer_suffix` | same | **proved** |
+| `lem-gluing` | `glue_step`, `glued` | same | **proved**, by a different route (induction on r, no tie reduction) |
+| `thm-pairwise` | `pairwise_reduction`, `feasible_iff_consecutive`; polytope form `vertex_iff_consecutive` | `Vertices/PairwiseReduction.lean`, `Vertices/RankR.lean` | **proved**, ties allowed |
+| `thm-vdesc` | `feasible_iff_CF`, the gadgets `gadget_caseA`/`B`/`C`, `gadget_glue`, `pair_feasible_of_CF`; polytope form `vertex_iff_CF` | same | **proved**, both directions |
+| `cor-rank2-lc` | `rank2_lc` | `Vertices/RankTwoCorollary.lean` | **proved**, without n ≥ 2 and d ≤ n−1 |
+| (distinct tuples give distinct vertices) | `vertex_tuple_unique`, `ncard_extremePoints` | `Vertices/RankTwoCorollary.lean` | **proved** |
+| `ex-plateau` | vertex counts and matrices | `Vertices/WorkedCounts.lean` | **checked by the kernel** |
+| `cor-kozlov-vertices` | `vertex_iff_kozlov` (for RA(κ⃗(n); d⃗)); `koz_eq_image`, `extremePoints_koz_eq`, `vertex_iff_kozlov_koz` (for Koz(n; d⃗) itself) | `Vertices/RankR.lean`, `Facets/KozBridge.lean` | **proved** |
+| `lem-certificate`, `lem-path-rank`, `lem-tight`, `lem-tight-edge`, `prop-certified-span` (the second vertex proof) | — | — | **not formalised** |
+| `lem-value-table`, `lem-theta-facets` | — | — | **not formalised** (facets as faces need dimension arguments the development avoids) |
+| `thm-hrep2` (1) | `completeness`, `validity`, `theoremA`, `theoremA_theta`; article form `theoremA_lit` | `Facets/RankTwo.lean`, `Facets/Specialise.lean` | **partial**: the set equality; (2) and (3) not formalised |
+| `lem-truncation` | `completeness` (Q_Θ ⊆ RA) | `Facets/RankTwo.lean` | **proved**, positivity only |
+| `cor-ones-hrep` | `conj_ones_hrep` | `Facets/Specialise.lean` | **partial**: the set equality (Part I's Conjecture 52 as printed); facet count not formalised |
+| `thm-theta` | `validityB`, `completenessB`, `theoremB`, `theoremB_theta` | `Facets/ThetaForm.lean` | **partial**: Q_Θ = R for general positive real weights; tightness, facet count r·n not formalised |
+| `lem-peel` | `peel` (namespace of `ThetaForm.lean`; not the `peel` of `Lattice/LatticePoints.lean`) | `Facets/ThetaForm.lean` | **proved** |
+| `cor-facets-every-d` | `cor_facets_every_d` | `Facets/EveryD.lean` | **partial**: the set equality, for weakly log-concave a⃗, n ≥ 1 and unsorted shifts; the facet count not formalised |
+| `cor-koz-hdesc` | `theoremB_kozlov`, `koz_hdesc` (distinct shifts from 0, gaps ≤ n−1), `koz_hdesc_every_d` (every d⃗) | `Facets/ThetaForm.lean`, `Facets/KozBridge.lean`, `Facets/EveryD.lean` | **partial**: the set equality; the facet count ns not formalised |
+| `rem-partI-changes`: Part I's Conjecture 55 | `conj_kozlov_hrep2`, `kozlov_hrep2_theta` | `Facets/Specialise.lean` | **partial**, as `cor-ones-hrep` |
+| `rem-permutohedron` (the all-ones polytope) | `image_ra_eq_polyP`, `polyP_eq_polyQ`, `polyP_eq_polyQ'`, `mem_ra_iff`; Hall's theorem for the lattice points | `AllOnes/TheoremA.lean`, `AllOnes/Hall.lean` | **proved**, apart from the facet description |
+
+Axioms of every main theorem: `propext`, `Classical.choice`, `Quot.sound`.
+
+### Rank-r pairwise reduction (Part IV; written as article 3, added 2026-10-20)
 
 Formalises `working-notes/kozlov-pairwise-reduction-direct-2026-10-20.org` (reviewed: ACCEPT WITH
 FIXES). Window-system form in `Vertices/PairwiseReduction.lean` (no polytopes; namespace
@@ -268,7 +307,7 @@ does), weakly log-concave cross-multiplied `a i · a (i+2) ≤ a (i+1)²` (`WLC`
 | Corollary (rank two, σ-form) | — | **not formalised** (would follow from `vertex_iff_CF` at `r = 2` plus an unwinding of `Locked` into σ-plateaus) |
 | `lem-vertexdecomp`(2) for `r` summands (distinct 𝐣 give distinct vertices) | — | **not formalised**; needed only for counting |
 
-## Rank-two facet description (article 3), added 2026-10-20
+## Rank-two facet description (Part IV; written as article 3), added 2026-10-20
 
 Theorem A(1) of `working-notes/kozlov-hdescription-proof-2026-10-20.org` (independently reviewed,
 `review-hdescription-2026-10-20.org`). Set equalities only; the facet counts are **not** formalised.
