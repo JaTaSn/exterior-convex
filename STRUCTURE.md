@@ -50,7 +50,11 @@ home and copy them over. There are two exceptions:
     `code/make_lith_report_article2.py` in the working home. It is the arXiv paper built by the
     same pipeline, except that section 10.2 names this repository first and adds that Part I's
     scripts and Lean are here too, and the title page says "Also available as arXiv:2610.14985".
-    The series adds its own cover with the report number.
+    The series adds its own cover with the report number. `abstract.txt` is the abstract in
+    plain text, with no TeX, for the report form and the covering email. The `.org` is a record
+    of the derived source and does **not** export here: its `#+SETUPFILE:` paths are relative to
+    the working home's `article/`, where the generator exports it. The same holds for
+    `arxiv-submission/*.org`.
 - **`article-3/`**: Part III, pre-release.
   - `exterior-convex_article3_latest.{org,tex,pdf}`, copied from the working home's `article/`.
   - `img/`: the ten figure PDFs, copied from the working home's `artefacts/ff-pictures/`.

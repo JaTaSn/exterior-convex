@@ -1,0 +1,41 @@
+Hilbert functions over the exterior algebra and f-vectors in higher rank
+II: Generalizing Linusson's count to sumsets of f-vectors
+
+Jan Snellman
+
+Also available as arXiv:2610.14985.
+
+Abstract
+
+Let V be an n-dimensional vector space over a field k, let E be its exterior
+algebra, and let F be a graded free E-module of rank r, with generators in
+degrees d_1, ..., d_r. Let M range over the monomial submodules of F in the
+sense of Amata and Crupi. The Hilbert function of F/M is a sum of shifted
+f-vectors of simplicial complexes, and the companion paper (Part I,
+LiTH-MAT-R-2026/04, arXiv:2609.23605) determines the convex hull of the set of
+such sums. Here we count them.
+
+For r = 1 the count is Linusson's (1999), obtained from a recursion through
+compressed complexes; we show that no new recursion is needed for general r.
+We introduce two statistics of an f-vector, its top nonvanishing degree and
+the initial degree of the corresponding ideal, and prove that the number of
+achievable Hilbert functions is a product of r - 1 transfer matrices, one for
+each gap between consecutive generator degrees, whose entries are differences
+of Linusson's own refined counts. The rank therefore enters only as the length
+of a matrix product. The bridge is a reformulation of the counting problem,
+proved from Amata and Crupi's lex submodules, that replaces the cardinality of
+a sumset by a count of tuples subject to a nearest-neighbour constraint.
+
+We give the same theorem for the proper variant, from which the polytope of
+the companion paper is built, and prove the lemma that makes this restriction
+legitimate: lexification preserves properness. We also derive consequences:
+for constant gaps, a linear recurrence in r, with exact exponential
+asymptotics when the gap is positive and polynomiality in r when all gaps
+vanish; an exact threshold beyond which the count degenerates to a plain
+power; and polynomiality in the number of vertices.
+
+Keywords: exterior algebra; Hilbert function; f-vector; simplicial complex;
+enumeration; transfer matrix; lex submodule; Kruskal-Katona theorem.
+
+2020 Mathematics Subject Classification: Primary 05A15, 13F55; Secondary
+05E40, 13D40, 06A07.
