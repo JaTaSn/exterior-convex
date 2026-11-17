@@ -182,6 +182,17 @@ also matches Part II's arXiv licence, CC BY 4.0. `README.md`'s *Licence* section
 directories fall under which. New code goes under MIT, and new prose under CC BY, without further
 decision.
 
+## The Zenodo archive
+
+One Zenodo record holds a frozen snapshot of this repository's `lean/`, `verification-code/`
+(with `runs/`), `references/`, the README and both licence files; not the article texts, which
+live on arXiv and DiVA. Concept DOI `10.5281/zenodo.24288404`, which the articles cite; version 1,
+`10.5281/zenodo.24288405`, was published 2026-11-17 in the `linkopinguniversity` community.
+Later snapshots become new **versions** of that record ("New version" on Zenodo), never a new
+record, so the concept DOI stays valid. Zenodo's automatic GitHub versioning does not work with
+GitLab, so each version is uploaded by hand. Metadata can be edited without a new version; files
+cannot.
+
 ## Publishing
 
 This repository is **public** (`gitlab.liu.se/jansn19/exterior-convex`). A commit stays local; a

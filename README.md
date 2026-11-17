@@ -92,7 +92,24 @@ submitted to arXiv is in `articles/article-N/arxiv-submission/`, and it builds w
   eprinttype  = {arxiv},
   eprintclass = {math.CO}
 }
+
+@misc{Snellman2026ExtZenodo,
+  author       = {Snellman, Jan},
+  title        = {exterior-convex: {Lean}/{Mathlib} formalization and verification code for the
+                  series ``{H}ilbert functions over the exterior algebra and $f$-vectors in
+                  higher rank'', {P}arts {I}--{V}},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.24288404}
+}
 ```
+
+**Archived snapshot.** The Lean library, the verification code with its recorded output, and the
+reference certificates, as of 2026-11-16, are archived on Zenodo in the Linköping University
+community: DOI [10.5281/zenodo.24288404](https://doi.org/10.5281/zenodo.24288404). That DOI always
+resolves to the latest version; version 1 is
+[10.5281/zenodo.24288405](https://doi.org/10.5281/zenodo.24288405). Cite the archive for the code
+and the formalization; this repository may move or change, the archive will not.
 
 ## What is in this repository
 
