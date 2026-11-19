@@ -972,6 +972,17 @@ SageMath (installed versions), and OEIS (a database query, which is the claim it
 printed key is backed by a passage quoted above from a held copy. (McMullen1977 and
 SavageSchuster2012 were on this list until the same evening.)
 
+## Addendum, 2026-11-19: one key added after this certificate was prepared
+
+`SnellmanZenodoSeries` was added to the manuscript on 2026-11-17 (in *Methods and verification*, and
+on 2026-11-19 in *Formal verification*). It is the author's own deposit of this repository's
+`lean/`, `verification-code/` and `references/`: Zenodo, concept DOI `10.5281/zenodo.24288404`,
+version 1 `10.5281/zenodo.24288405`, published 2026-11-17 in the Linköping University community.
+The record was read back from the Zenodo API on 2026-11-17, and the checksum of the stored zip
+equalled that of the file built here. The paper cites it for one claim only, that the code, the run
+logs and the Lean files are archived there. The other 33 keys the manuscript cites are unchanged
+since 2026-11-14.
+
 ---
 
 *Prepared 2026-11-14 by Claude (Claude Code, on jts-pc). Read-only with respect to the manuscript and

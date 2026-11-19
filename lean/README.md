@@ -262,13 +262,18 @@ declaration named below was checked to exist on 2026-11-16.
 | `cor-rank2-lc` | `rank2_lc` | `Vertices/RankTwoCorollary.lean` | **proved**, without n ≥ 2 and d ≤ n−1 |
 | (distinct tuples give distinct vertices) | `vertex_tuple_unique`, `ncard_extremePoints` | `Vertices/RankTwoCorollary.lean` | **proved** |
 | `ex-plateau` | vertex counts and matrices | `Vertices/WorkedCounts.lean` | **checked by the kernel** |
+| `cor-vertex-count` (new 2026-11-17) | `cor_vertex_count`, `cor_vertex_count_koz`, `Mext_eq_one_iff`, `Mext_zero`, `Mext_all_ones`; anchors 11 and 28 by kernel `decide` | `Vertices/CountTransfer.lean` | **proved** (2026-11-17) |
+| `prop-gap-one` (new 2026-11-17) | `Mext_one_eq_one_iff` (the matrix at gap one), `xvec_pos`, `Mext_one_mulVec_xvec` (positive eigenvector), `eigenvalue_norm_le_lam` (every complex eigenvalue has modulus ≤ ρ), `gapOne_power_bounds`, `gapOne_vertex_bounds`, `gapOne_vertex_bounds_koz`, `exists_gapOne_vertex_bounds` | `Vertices/GapOne.lean` | **proved** (2026-11-18) |
 | `cor-kozlov-vertices` | `vertex_iff_kozlov` (for RA(κ⃗(n); d⃗)); `koz_eq_image`, `extremePoints_koz_eq`, `vertex_iff_kozlov_koz` (for Koz(n; d⃗) itself) | `Vertices/RankR.lean`, `Facets/KozBridge.lean` | **proved** |
-| `lem-certificate`, `lem-path-rank`, `lem-tight`, `lem-tight-edge`, `prop-certified-span` (the second vertex proof) | — | — | **not formalised** |
-| `lem-value-table`, `lem-theta-facets` | — | — | **not formalised** (facets as faces need dimension arguments the development avoids) |
-| `thm-hrep2` (1) | `completeness`, `validity`, `theoremA`, `theoremA_theta`; article form `theoremA_lit` | `Facets/RankTwo.lean`, `Facets/Specialise.lean` | **partial**: the set equality; (2) and (3) not formalised |
+| `lem-certificate`, `lem-path-rank` | `lem_certificate` (any sets, any `e` constant on R), `lem_certificate_e1`, `lem_path_rank` | `Vertices/SecondProof.lean` | **proved** (2026-11-17) |
+| `lem-tight`, `lem-tight-edge`, `prop-certified-span` | `lem_tight_link`, `lem_tight_C`, `lem_tight_D`, `lem_tight_F` (needs n ≥ 2: the printed (4) was false at n = 1, paper corrected), `lem_tight_edge_one`, `lem_tight_edge_two`, `prop_certified_span`; assembled as `second_proof_vertex` (distinct shifts, gaps ≤ n−1; the tie and big-gap reduction not formalised on this route) | `Vertices/SecondProof.lean` | **proved** (2026-11-17) |
+| `lem-value-table` | `value_table`, `Vt_nonpos`, `Vt_self`, `Vt_nonneg` | `Facets/Tight.lean` | **proved** (2026-11-17) |
+| `lem-theta-facets` | — | — | **not formalised** (facets as faces need dimension arguments the development avoids) |
+| `thm-hrep2` (1) | `completeness`, `validity`, `theoremA`, `theoremA_theta`; article form `theoremA_lit`; tightness `thm_hrep2_tight`, `support_*` | `Facets/RankTwo.lean`, `Facets/Specialise.lean`, `Facets/Tight.lean` | **proved** (tightness added 2026-11-17) |
+| `thm-hrep2` (2), (3) | `thm_hrep2_ch2_one_implied`; `thm_hrep2_irredundant` (a witness per row, strictly log-concave a) | `Facets/Tight.lean`, `Facets/Irredundant.lean` | **partial**: the implied row and the irredundancy; facets and the count 2n not formalised |
 | `lem-truncation` | `completeness` (Q_Θ ⊆ RA) | `Facets/RankTwo.lean` | **proved**, positivity only |
 | `cor-ones-hrep` | `conj_ones_hrep` | `Facets/Specialise.lean` | **partial**: the set equality (Part I's Conjecture 52 as printed); facet count not formalised |
-| `thm-theta` | `validityB`, `completenessB`, `theoremB`, `theoremB_theta` | `Facets/ThetaForm.lean` | **partial**: Q_Θ = R for general positive real weights; tightness, facet count r·n not formalised |
+| `thm-theta` | `validityB`, `completenessB`, `theoremB`, `theoremB_theta` | `Facets/ThetaForm.lean` | **partial**: Q_Θ = R for general positive real weights, and every row tight (`thm_theta_tight`, `supportB_*`, `Facets/Tight.lean`, 2026-11-17); facets, the count r·n and irredundancy at rank ≥ 3 not formalised |
 | `lem-peel` | `peel` (namespace of `ThetaForm.lean`; not the `peel` of `Lattice/LatticePoints.lean`) | `Facets/ThetaForm.lean` | **proved** |
 | `cor-facets-every-d` | `cor_facets_every_d` | `Facets/EveryD.lean` | **partial**: the set equality, for weakly log-concave a⃗, n ≥ 1 and unsorted shifts; the facet count not formalised |
 | `cor-koz-hdesc` | `theoremB_kozlov`, `koz_hdesc` (distinct shifts from 0, gaps ≤ n−1), `koz_hdesc_every_d` (every d⃗) | `Facets/ThetaForm.lean`, `Facets/KozBridge.lean`, `Facets/EveryD.lean` | **partial**: the set equality; the facet count ns not formalised |
@@ -331,6 +336,23 @@ on paper only (verified n ≤ 8); since the third batch it is `lexInit_upShadow`
 ("Module Kruskal–Katona"), not to Part III: Part III's section `sec-module-kk` and its appendix moved
 there, labels unchanged (`thm-kk-rank1`, `lem-lex-rank1`, `prop-PQ`, `prop-greedy`, `thm-module-kk`, …).
 The files and declarations are unchanged.
+
+### Part V in full (added 2026-11-17)
+
+Every numbered result of Part V is now in Lean. Four new files; status files with all signatures in
+`verification-code/runs/2026-11-17_lean-parts-4-5/`. **The model:** `F` is the space of `K`-valued functions on the
+monomials `Fin r × Finset (Fin n)`, with `e_x` acting by the exterior sign rule (`Subspace.lean`);
+it is not identified with Mathlib's `ExteriorAlgebra`. Axioms: `propext`, `Classical.choice`, `Quot.sound`.
+
+| Part V | Lean | file |
+|---|---|---|
+| `thm-kk-rank1`, "Moreover" | `thm_kk_rank1_moreover`, `macaulayUp`, `IsMacaulayRep`, `exists_macaulayRep`, `macaulayRep_unique`, `macaulayUp_eq_sum`, `macaulayPrinted_eq` | `ModuleKK/Macaulay.lean` |
+| `lem-lexF-shadow`; `def-B` | `IsLexFSeg`, `isLexFInitial_iff`, `lem_lexF_shadow`, `growthB`, `Bω`, `thm_module_kk_formula`, monomial-family forms `*_mon` | `ModuleKK/LexF.lean` |
+| `lem-monomial` | `card_inn`, `shad_inn_subset`, `lem_monomial`, `E1_monoSpan`, `thm_module_kk_ineq` | `ModuleKK/Subspace.lean` |
+| `thm-module-kk` | `thm_module_kk` (with `defB`, the printed B) | `ModuleKK/Main.lean` |
+| `cor-prop41` | `cor_prop41_B`, `cor_prop41_full` (equality clause) | `ModuleKK/Main.lean` |
+| `thm-ac42` | `thm_ac42` (TFAE, any field), `thm_ac42_lex_unique`, `thm_ac42_existsUnique`, `thm_ac42_ungraded` | `ModuleKK/Main.lean` |
+| `cor-initial` | `cor_initial_B`, `cor_initial_instances_B` | `ModuleKK/Main.lean` |
 
 ## Article 3: symmetry, lattice points, volume, the Koz bridge, the all-ones polytope (added 2026-10-21)
 

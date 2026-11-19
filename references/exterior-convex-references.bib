@@ -55,7 +55,7 @@
 
 @article{AmataCrupi2021,
   author    = {Amata, Luca and Crupi, Marilena},
-  title     = {ExteriorModules: a package for computing monomial modules over an exterior algebra},
+  title     = {{ExteriorModules}: a package for computing monomial modules over an exterior algebra},
   journal   = {Journal of Software for Algebra and Geometry},
   volume    = {11},
   pages     = {71--81},
@@ -271,7 +271,7 @@
 
 @article{AmataCrupi2020KK,
   author  = {Amata, Luca and Crupi, Marilena},
-  title   = {A generalization of Kruskal--Katona's theorem},
+  title   = {A generalization of {K}ruskal--{K}atona's theorem},
   journal = {Analele \c{S}tiin\c{t}ifice ale Universit\u{a}\c{t}ii Ovidius Constan\c{t}a},
   volume  = {28},
   number  = {2},
@@ -521,7 +521,7 @@
   title  = {Simplices of f-vectors},
   school = {Link{\"o}pings universitet},
   year   = {2019},
-  type   = {Bachelor's thesis, LiTH-MAT-EX--2019/05--SE},
+  type   = {Bachelor's thesis, {LiTH-MAT-EX--2019/05--SE}},
   note   = {Advised by Jan Snellman, examined by Axel Hultman. DiVA:
             urn:nbn:se:liu:diva-159826. Studies $\mathrm{conv}(F_p^n)$, $n=3,4$ (the
             Kozlov simplex, $r=1$ case) -- lattice point counts, Ehrhart polynomials/series
@@ -580,7 +580,7 @@
 
 @article{Frohmader2010,
   author  = {Frohmader, Andrew},
-  title   = {Approximations to the Kruskal--Katona theorem},
+  title   = {Approximations to the {K}ruskal--{K}atona theorem},
   journal = {arXiv:1010.2288},
   year    = {2010},
   note    = {Open access (arXiv). Weaker but numerically tractable bounds approximating
@@ -1036,6 +1036,24 @@
                    update with the report number and arXiv id once it is out.}
 }
 
+% Added 2026-11-17: the series' Zenodo deposit, published 2026-11-16 in the LiU community.
+% The builds run biblatex with doi=false and print no notes, so the DOI is repeated in
+% `howpublished'.
+% Cite the CONCEPT DOI (24288404), which resolves to the latest version; version 1 is record
+% 24288405, DOI 10.5281/zenodo.24288405. Read back from the Zenodo API 2026-11-17; the stored
+% zip's md5 4b4e4af0413c8fb60bf8511300e3fec6 equals the build's.
+@misc{SnellmanZenodoSeries,
+  author       = {Snellman, Jan},
+  title        = {exterior-convex: {Lean}/{Mathlib} formalization and verification code for the
+                  series ``{H}ilbert functions over the exterior algebra and \(f\)-vectors in higher
+                  rank'', {P}arts {I}--{V}},
+  year         = {2026},
+  publisher    = {Zenodo},
+  howpublished = {Zenodo, DOI \href{https://doi.org/10.5281/zenodo.24288404}{10.5281/zenodo.24288404}},
+  doi          = {10.5281/zenodo.24288404},
+  note         = {Concept DOI; version 1 is 10.5281/zenodo.24288405}
+}
+
 @article{SavageSchuster2012,
   author  = {Savage, Carla D. and Schuster, Michael J.},
   title   = {Ehrhart series of lecture hall polytopes and {E}ulerian polynomials for inversion
@@ -1425,4 +1443,14 @@
   note    = {Added 2026-11-14 for article 3: McMullen's multivariate lattice-point theorem is
              quoted from its Theorem 2.3 (numbering the same in arXiv:1509.02254v2 and the EJC
              version, both read). Bibliographic data from OpenAlex and the EJC landing page.}
+}
+
+@book{CvetkovicDoobSachs1980,
+  author    = {Cvetkovi{\'c}, Drago{\v{s}} M. and Doob, Michael and Sachs, Horst},
+  title     = {Spectra of Graphs: Theory and Application},
+  series    = {Pure and Applied Mathematics},
+  volume    = {87},
+  year      = {1980},
+  publisher = {Academic Press},
+  address   = {New York}
 }

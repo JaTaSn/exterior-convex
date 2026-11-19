@@ -1,0 +1,33 @@
+== (a) gap one: eigenvector identity, 200 bits
+  2 <= n <= 60: x > 0 always; largest relative residual |Mx - lambda x|/|x| = 1.4562894e-59
+  2 <= n <= 14: 1 + 2cos(2pi/(n+4)) is the largest root of the exact characteristic polynomial
+== (b) gap n-2: x^2 - n x + 2
+  4 <= n <= 30: divides, and (n + sqrt(n^2-8))/2 is the spectral radius
+== (c) spectral radii of M(n; delta), 2 <= n <= 7, 1 <= delta <= n-1
+  n = 2 : 2.0000
+     delta = 1  charpoly: (x - 2) * x
+  n = 3 : 2.2470  3.0000
+     delta = 1  charpoly: x^3 - 2*x^2 - x + 1
+     delta = 2  charpoly: (x - 3) * x^2
+  n = 4 : 2.4142  3.4142  4.0000
+     delta = 1  charpoly: (x - 1) * (x + 1) * (x^2 - 2*x - 1)
+     delta = 2  charpoly: x^2 * (x^2 - 4*x + 2)
+     delta = 3  charpoly: (x - 4) * x^3
+  n = 5 : 2.5321  3.7321  4.5616  5.0000
+     delta = 1  charpoly: x * (x + 1) * (x^3 - 3*x^2 + 3)
+     delta = 2  charpoly: (x - 1) * x^2 * (x^2 - 4*x + 1)
+     delta = 3  charpoly: x^3 * (x^2 - 5*x + 2)
+     delta = 4  charpoly: (x - 5) * x^4
+  n = 6 : 2.6180  3.9715  5.0000  5.6458  6.0000
+     delta = 1  charpoly: (x + 1)^2 * (x^2 - 3*x + 1) * (x^2 - x - 1)
+     delta = 2  charpoly: x^2 * (x^4 - 6*x^3 + 9*x^2 - 4*x + 1)
+     delta = 3  charpoly: (x - 5) * (x - 1) * x^4
+     delta = 4  charpoly: x^4 * (x^2 - 6*x + 2)
+     delta = 5  charpoly: (x - 6) * x^5
+  n = 7 : 2.6825  4.1606  5.3539  6.1926  6.7016  7.0000
+     delta = 1  charpoly: (x + 1)^2 * (x^5 - 4*x^4 + 2*x^3 + 5*x^2 - 2*x - 1)
+     delta = 2  charpoly: x^2 * (x^5 - 7*x^4 + 14*x^3 - 10*x^2 + 4*x - 1)
+     delta = 3  charpoly: x^4 * (x^3 - 7*x^2 + 9*x - 1)
+     delta = 4  charpoly: x^5 * (x^2 - 7*x + 5)
+     delta = 5  charpoly: x^5 * (x^2 - 7*x + 2)
+     delta = 6  charpoly: (x - 7) * x^6

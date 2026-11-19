@@ -1,0 +1,47 @@
+== Pass 1: polytope vertex count  vs  1^T prod M_brute 1  (both by exact polyhedral computation)
+  family kozlov done; cumulative cases 373 failures 0
+  family ones done; cumulative cases 746 failures 0
+  family geometric2 done; cumulative cases 1119 failures 0
+  family plateau done; cumulative cases 1492 failures 0
+  family linear done; cumulative cases 1865 failures 0
+  family concave-bump done; cumulative cases 2238 failures 0
+Pass 1: 2238 configurations, 0 failures
+== Pass 2: M_brute  vs  closed form of cor-rank2-lc
+Pass 2: 252 matrices, 0 failures
+== Pass 3: values quoted in the paper
+M(kozlov(4); 1) = [(1, 1, 1, 1), (1, 0, 1, 1), (0, 1, 0, 1), (0, 0, 1, 1)]
+count n=4 d=(0,1): 11  d=(0,1,2): 28
+Part I rank-two count n^2 - (m-1)(m+2)/2, m = n - d, against 1^T M 1 (Kozlov):
+  holds for 2 <= n <= 7, 1 <= d <= n-1
+Vertex counts of Koz(n; 0, delta, 2 delta, ..., (r-1) delta), r = 1..8, and the Perron root of M(kozlov(n); delta):
+  n = 2 delta = 1  counts: [2, 4, 8, 16, 32, 64, 128, 256]  charpoly: (x - 2) * x  rho ~ 2.000000
+  n = 3 delta = 1  counts: [3, 7, 16, 36, 81, 182, 409, 919]  charpoly: x^3 - 2*x^2 - x + 1  rho ~ 2.246980
+  n = 3 delta = 2  counts: [3, 9, 27, 81, 243, 729, 2187, 6561]  charpoly: (x - 3) * x^2  rho ~ 3.000000
+  n = 4 delta = 1  counts: [4, 11, 28, 69, 168, 407, 984, 2377]  charpoly: (x - 1) * (x + 1) * (x^2 - 2*x - 1)  rho ~ 2.414214
+  n = 4 delta = 2  counts: [4, 14, 48, 164, 560, 1912, 6528, 22288]  charpoly: x^2 * (x^2 - 4*x + 2)  rho ~ 3.414214
+  n = 4 delta = 3  counts: [4, 16, 64, 256, 1024, 4096, 16384, 65536]  charpoly: (x - 4) * x^3  rho ~ 4.000000
+  n = 5 delta = 1  counts: [5, 16, 45, 120, 312, 801, 2043, 5193]  charpoly: x * (x + 1) * (x^3 - 3*x^2 + 3)  rho ~ 2.532089
+  n = 5 delta = 2  counts: [5, 20, 76, 285, 1065, 3976, 14840, 55385]  charpoly: (x - 1) * x^2 * (x^2 - 4*x + 1)  rho ~ 3.732051
+  n = 5 delta = 3  counts: [5, 23, 105, 479, 2185, 9967, 45465, 207391]  charpoly: x^3 * (x^2 - 5*x + 2)  rho ~ 4.561553
+  n = 5 delta = 4  counts: [5, 25, 125, 625, 3125, 15625, 78125, 390625]  charpoly: (x - 5) * x^4  rho ~ 5.000000
+  n = 6 delta = 1  counts: [6, 22, 68, 195, 538, 1453, 3876, 10264]  charpoly: (x + 1)^2 * (x^2 - 3*x + 1) * (x^2 - x - 1)  rho ~ 2.618034
+  n = 6 delta = 2  counts: [6, 27, 112, 452, 1806, 7189, 28576, 113527]  charpoly: x^2 * (x^4 - 6*x^3 + 9*x^2 - 4*x + 1)  rho ~ 3.971483
+  n = 6 delta = 3  counts: [6, 31, 156, 781, 3906, 19531, 97656, 488281]  charpoly: (x - 5) * (x - 1) * x^4  rho ~ 5.000000
+  n = 6 delta = 4  counts: [6, 34, 192, 1084, 6120, 34552, 195072, 1101328]  charpoly: x^4 * (x^2 - 6*x + 2)  rho ~ 5.645751
+  n = 6 delta = 5  counts: [6, 36, 216, 1296, 7776, 46656, 279936, 1679616]  charpoly: (x - 6) * x^5  rho ~ 6.000000
+Same for the all-ones vector:
+  n = 2 delta = 1  counts: [2, 4, 8, 16, 32, 64, 128, 256]  charpoly: (x - 2) * x  rho ~ 2.000000
+  n = 3 delta = 1  counts: [3, 7, 16, 36, 81, 182, 409, 919]  charpoly: x^3 - 2*x^2 - x + 1  rho ~ 2.246980
+  n = 3 delta = 2  counts: [3, 9, 27, 81, 243, 729, 2187, 6561]  charpoly: (x - 3) * x^2  rho ~ 3.000000
+  n = 4 delta = 1  counts: [4, 10, 24, 56, 128, 292, 664, 1508]  charpoly: (x - 1) * (x^3 - x^2 - 2*x - 2)  rho ~ 2.269531
+  n = 4 delta = 2  counts: [4, 14, 48, 164, 560, 1912, 6528, 22288]  charpoly: x^2 * (x^2 - 4*x + 2)  rho ~ 3.414214
+  n = 4 delta = 3  counts: [4, 16, 64, 256, 1024, 4096, 16384, 65536]  charpoly: (x - 4) * x^3  rho ~ 4.000000
+  n = 5 delta = 1  counts: [5, 13, 32, 76, 176, 400, 905, 2038]  charpoly: (x + 1) * (x^4 - 3*x^3 + 2*x^2 - 2*x + 3)  rho ~ 2.238035
+  n = 5 delta = 2  counts: [5, 19, 69, 247, 881, 3139, 11181, 39823]  charpoly: (x - 1) * x^2 * (x^2 - 3*x - 2)  rho ~ 3.561553
+  n = 5 delta = 3  counts: [5, 23, 105, 479, 2185, 9967, 45465, 207391]  charpoly: x^3 * (x^2 - 5*x + 2)  rho ~ 4.561553
+  n = 5 delta = 4  counts: [5, 25, 125, 625, 3125, 15625, 78125, 390625]  charpoly: (x - 5) * x^4  rho ~ 5.000000
+  n = 6 delta = 1  counts: [6, 16, 40, 96, 224, 512, 1152, 2576]  charpoly: x^6 - 2*x^5 - x^4 + x^2 + 2*x + 4  rho ~ 2.196833
+  n = 6 delta = 2  counts: [6, 24, 90, 324, 1152, 4068, 14328, 50400]  charpoly: x^3 * (x^3 - 4*x^2 + 6)  rho ~ 3.514137
+  n = 6 delta = 3  counts: [6, 30, 144, 684, 3240, 15336, 72576, 343440]  charpoly: x^4 * (x^2 - 6*x + 6)  rho ~ 4.732051
+  n = 6 delta = 4  counts: [6, 34, 192, 1084, 6120, 34552, 195072, 1101328]  charpoly: x^4 * (x^2 - 6*x + 2)  rho ~ 5.645751
+  n = 6 delta = 5  counts: [6, 36, 216, 1296, 7776, 46656, 279936, 1679616]  charpoly: (x - 6) * x^5  rho ~ 6.000000

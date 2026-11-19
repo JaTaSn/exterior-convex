@@ -1,0 +1,66 @@
+2 ok; strictly dominant: True  primitive: True
+3 ok; strictly dominant: True  primitive: True
+4 ok; strictly dominant: True  primitive: True
+5 ok; strictly dominant: True  primitive: True
+6 ok; strictly dominant: True  primitive: True
+7 ok; strictly dominant: True  primitive: True
+8 ok; strictly dominant: True  primitive: True
+9 ok; strictly dominant: True  primitive: True
+10 ok; strictly dominant: True  primitive: True
+11 ok; strictly dominant: True  primitive: True
+12 ok; strictly dominant: True  primitive: True
+13 ok; strictly dominant: True  primitive: True
+14 ok; strictly dominant: True  primitive: True
+15 ok; strictly dominant: True  primitive: True
+16 ok; strictly dominant: True  primitive: True
+17 ok; strictly dominant: True  primitive: True
+18 ok; strictly dominant: True  primitive: True
+19 ok; strictly dominant: True  primitive: True
+20 ok; strictly dominant: True  primitive: True
+21 ok; strictly dominant: True  primitive: True
+22 ok; strictly dominant: True  primitive: True
+23 ok; strictly dominant: True  primitive: True
+24 ok; strictly dominant: True  primitive: True
+25 ok; strictly dominant: True  primitive: True
+26 ok; strictly dominant: True  primitive: True
+27 ok; strictly dominant: True  primitive: True
+28 ok; strictly dominant: True  primitive: True
+29 ok; strictly dominant: True  primitive: True
+30 ok; strictly dominant: True  primitive: True
+31 ok; strictly dominant: True  primitive: True
+32 ok; strictly dominant: True  primitive: True
+33 ok; strictly dominant: True  primitive: True
+34 ok; strictly dominant: True  primitive: True
+35 ok; strictly dominant: True  primitive: True
+36 ok; strictly dominant: True  primitive: True
+37 ok; strictly dominant: True  primitive: True
+38 ok; strictly dominant: True  primitive: True
+39 ok; strictly dominant: True  primitive: True
+40 ok; strictly dominant: True  primitive: True
+41 ok; strictly dominant: True  primitive: True
+42 ok; strictly dominant: True  primitive: True
+43 ok; strictly dominant: True  primitive: True
+44 ok; strictly dominant: True  primitive: True
+45 ok; strictly dominant: True  primitive: True
+46 ok; strictly dominant: True  primitive: True
+47 ok; strictly dominant: True  primitive: True
+48 ok; strictly dominant: True  primitive: True
+49 ok; strictly dominant: True  primitive: True
+50 ok; strictly dominant: True  primitive: True
+51 ok; strictly dominant: True  primitive: True
+52 ok; strictly dominant: True  primitive: True
+53 ok; strictly dominant: True  primitive: True
+54 ok; strictly dominant: True  primitive: True
+55 ok; strictly dominant: True  primitive: True
+56 ok; strictly dominant: True  primitive: True
+57 ok; strictly dominant: True  primitive: True
+58 ok; strictly dominant: True  primitive: True
+59 ok; strictly dominant: True  primitive: True
+60 ok; strictly dominant: True  primitive: True
+geometric n=2: equals strict M: True, rho=2.0000000 vs 2.0000000
+geometric n=3: equals strict M: True, rho=2.2469796 vs 2.2469796
+geometric n=4: equals strict M: False, rho=2.2695308 vs 2.4142136
+geometric n=5: equals strict M: False, rho=2.2380347 vs 2.5320889
+geometric n=6: equals strict M: False, rho=2.1968334 vs 2.6180340
+geometric n=7: equals strict M: False, rho=2.1580965 vs 2.6825071
+geometric n=8: equals strict M: False, rho=2.1249012 vs 2.7320508

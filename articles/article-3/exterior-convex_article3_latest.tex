@@ -1,4 +1,4 @@
-% Created 2026-11-14 Sat 19:52
+% Created 2026-11-19 Thu 14:23
 % Intended LaTeX compiler: xelatex
 \documentclass[11pt, a4paper, abstract=yes]{scrartcl}
 
@@ -40,25 +40,6 @@
 \newcommand{\QQ}{{\mathbb{Q}}}
 \newcommand{\seqnum}[1]{\href{https://oeis.org/#1}{\textrm \underline{#1}}}
 \author{Jan Snellman\thanks{Department of Mathematics, Linköping University, 581 83 Linköping, Sweden. \texttt{jan.snellman@liu.se}. ORCID: \href{https://orcid.org/0009-0002-6676-5068}{0009-0002-6676-5068}}}
-\usepackage[notcite]{showkeys}
-\makeatletter
-\def\sk@colon{:}\def\sk@dash{-}
-\def\sk@pen#1{\ifx#1\sk@colon\allowbreak\else
-\ifx#1\sk@dash\allowbreak\else\penalty400\relax\fi\fi}
-\def\sk@brk#1{\ifx\relax#1\else#1\sk@pen{#1}\expandafter\sk@brk\fi}
-\newlength\sk@wd
-\AtBeginDocument{%
-\setlength\sk@wd{\dimexpr\paperwidth-1in-\oddsidemargin
--\textwidth-\marginparsep-8pt\relax}%
-\ifdim\sk@wd<40pt\setlength\sk@wd{40pt}\fi}
-\providecommand*\showkeyslabelformat[1]{}
-\renewcommand*\showkeyslabelformat[1]{%
-\begingroup\setlength{\fboxsep}{1.5pt}%
-\fbox{\parbox{\sk@wd}{%
-\raggedright\normalfont\fontsize{8}{9}\selectfont\ttfamily
-\hbadness=10000 \sk@brk#1\relax}}%
-\endgroup}
-\makeatother
 \usepackage{iftex}
 \ifPDFTeX\usepackage[T1]{fontenc}\else\usepackage{fontspec}\fi
 \usepackage{orcidlink}
@@ -157,7 +138,7 @@ Secondary 13F55, 05A15, 13D40.
 \section{Introduction}
 \label{sec-intro}
 \subsection{Where Parts I and II leave things}
-\label{sec:org4544831}
+\label{sec:org8fc39a7}
 
 Let \(k\) be a field, \(E\) the exterior algebra on \(e_1,\dots,e_n\), and \(F\) the graded free
 \(E\)-module
@@ -199,7 +180,7 @@ A hull is coarse. Already for \(n=4\) the simplex \(\Koz(4)\) contains twenty la
 which only sixteen are \(f\)-vectors, and the proportion falls quickly with \(n\). Which lattice
 points are Hilbert functions, and how are they distributed?
 \subsection{What this paper does}
-\label{sec:orgb75e225}
+\label{sec:org9497ac6}
 
 The answers, in the order of the paper. Section \ref{sec-lattice} is about the lattice points
 themselves; Sections \ref{sec-volume} to \ref{sec-moments} compare discrete and continuous invariants,
@@ -239,7 +220,7 @@ the module version of the Kruskal--Katona theorem due to Amata and Crupi
 the free generators of largest degree are filled first, is the subject of a separate paper
 \autocite{SnellmanArticle5}.
 \subsection{What is proved, and what is only observed}
-\label{sec:orgb0b6756}
+\label{sec:org779dbe1}
 
 The distinction is kept explicit throughout, as in Parts I and II. \textbf{Proved} means proved in this
 paper, or proved modulo a precise citation. \textbf{Verified} means checked by exact computation, along
@@ -274,7 +255,7 @@ Conj.~\ref{conj-nv-monotone} & conjectured\\
 \section{Setup}
 \label{sec-setup}
 \subsection{Notation}
-\label{sec:org232ee10}
+\label{sec:orgfcc2815}
 
 \begin{center}\footnotesize
 \begin{tabular}{@{}lll@{}}
@@ -324,7 +305,7 @@ A few letters are reused locally with a different meaning (for instance \(u\) an
 Appendix \ref{sec-app-chained}); each such use is introduced where it occurs and does not leave its
 section.
 \subsection{Hilbert functions and ff-vectors}
-\label{sec:orgc41dd48}
+\label{sec:orgc7d803a}
 
 We use the notation of Parts I and II. \(E=\bigwedge(k^n)\) is graded with
 \(\dim_kE_j=\binom nj\). A simplicial complex \(\Delta\) on \([n]\) (an order ideal of the Boolean
@@ -362,7 +343,7 @@ A vector \((1,n,f_2,\dots,f_n)\) of non-negative integers lies in \(S_n\) if and
 That is, \(f_k\) faces of cardinality \(k\) have at most \(f_k^{(k)}\) faces of cardinality \(k+1\)
 above them, and this bound is attained.
 \subsection{Right-angle simplices and the two coordinate systems}
-\label{sec:orga0f2ebc}
+\label{sec:orgb963779}
 
 \begin{definition}
 Let \(\vek c=(c_0,c_1,\dots,c_n)\) be a vector of positive reals with \(c_0=1\), the \textbf{leg vector}. The
@@ -487,7 +468,7 @@ From here on the leg vector \(\vek c\) of Definition \ref{def-ra} is integral: \
 \(c_1,\dots,c_n\) are positive integers. For \(\vek p\in\rasimp(\vek c)\) we use the LYM coordinates
 \(\mu_k=p_k/c_k\) of \eqref{eq:mu} and the statistics \(\fl(\vek p)\) and \(\tp(\vek p)\) of Section \ref{sec-setup}.
 \subsection{The Kozlov simplex is a lecture hall simplex}
-\label{sec:orgf216210}
+\label{sec:orgac3ca6c}
 
 For positive integers \(\vek s=(s_1,\dots,s_D)\) the \textbf{\(\vek s\)-lecture hall simplex} is
 \autocite{SavageSchuster2012,HibiOlsenTsuchiya2018}
@@ -553,7 +534,7 @@ particular Kupreyeva's Ehrhart computations for the simplices of \(f\)-vectors w
 three or four elements \autocite{Kupreyeva2019}, which are the simplices \(\rasimp(\vek c)\) with
 \(c_k=\binom pk\) of Section \ref{sec-kupreyeva}, are computations for lecture hall simplices.
 \subsection{Chained tuples}
-\label{sec:orge61d3f7}
+\label{sec:org12704f5}
 
 \begin{definition}
 A tuple \((\vek p_1,\dots,\vek p_r)\in\bigl(\rasimp(\vek c)\bigr)^r\) is \textbf{chained} for
@@ -612,7 +593,7 @@ The proof is in Appendix \ref{sec-app-chained}, followed by a comparison with th
 theorem of Brändén and Solus for lecture hall polytopes, to which Theorem \ref{thm-chained} reduces at
 \(\vek d=\vek 0\) (Remark \ref{rem-chained-credit}).
 \subsection{Consequences}
-\label{sec:orge685bd3}
+\label{sec:org9af5fd0}
 
 \begin{corollary}
 \leanmark{\leanfull}(\emph{Lattice points add.}) If \((c_2,\dots,c_n)\) is log-concave, then
@@ -813,7 +794,7 @@ Hilbert functions, counted in Part II; the number of lattice points; and the vol
 Corollary \ref{cor-additivity} the first two are cardinalities of sumsets of the nested sets
 \(S_n\subseteq\mathcal L_n\).
 \subsection{Normalisation}
-\label{sec:orgceab444}
+\label{sec:org5fee90b}
 
 Let \(U=\bigcup_i[d_i+2,d_i+n]\), so that \(D=\lvert U\rvert=\dim\Koz(n;\vek d)\) by \eqref{eq:dim}. Every coordinate outside
 \(U\) is constant on \(\Koz(n;\vek d)\), so its affine hull is parallel to the coordinate subspace
@@ -843,7 +824,7 @@ simplex is unimodular: its edge vectors \(e_2,e_2+e_3,\dots\) from \(0\) form a 
 The Euclidean form is Kupreyeva's \autocite[Section 6.1]{Kupreyeva2019}, proved there by the same
 triangular determinant.
 \subsection{The staircase tiling}
-\label{sec:orgd25cfe6}
+\label{sec:org08ff84c}
 
 Assume every gap \(\delta_i\) \eqref{eq:gaps} is at most \(n-1\), so that \(U=[2,N]\) and \(D=N-1\). A
 \textbf{staircase index} is \(\vek t=(t_0,\dots,t_r)\) with
@@ -1154,7 +1135,7 @@ volume, although it too depends on the dimension, is monotone in every computed 
 \label{conj-nv-monotone}
 \end{conjecture}
 \subsection{Hilbert functions, lattice points and volume}
-\label{sec:org765a105}
+\label{sec:orgbaf6233}
 
 Volume compares the polytope with itself across \(n\) and \(\vek d\); to compare it with the set of
 Hilbert functions, a dimension-free size is needed. Lattice-point counts are dimension-free, and
@@ -1455,7 +1436,7 @@ interior lattice points of that dilate is the top coefficient \(h^*_s\). For all
 \textbf{Gorenstein} if \(h^*_P\) is palindromic, \(h^*_i=h^*_{s-i}\); by a theorem of Stanley this is
 equivalent to the Ehrhart ring of \(P\) being a Gorenstein ring \autocite{Stanley1996}.
 \subsection{The Kozlov simplex}
-\label{sec:org26468d6}
+\label{sec:org0ae091c}
 
 \begin{theorem}
 \leanmark{\leannone}Write \(c_k=\binom nk\) (or take any integral leg vector). For residue vectors \(\vek z=(z_2,\dots,z_n)\) with
@@ -1591,7 +1572,7 @@ Proposition \ref{prop-linear-coeff} below, no \(\Koz(7;\vek d)\) is Ehrhart posi
 \label{obs-positivity}
 \end{observation}
 \subsection{Lattice points and Ehrhart polynomials by transfer matrix}
-\label{sec:orgd28e4e7}
+\label{sec:org3124a23}
 
 Let \(A^{\mathcal L}[\tau][\iota]=\#\lbrace x\in\mathcal L_n:\tp(x)=\tau,\ \indeg(x)=\iota\rbrace\), and
 build from it \(T^{\mathcal L}(\delta)\) and \(\vek u^{\mathcal L}\) exactly as Part II builds
@@ -1695,7 +1676,7 @@ Section \ref{sec-methods}.
 At \(n=5\) the cubic through the differences at \(r=1,\dots,4\) predicts the fifth, \(5480\), as the
 degree bound says it must.
 \subsection{Rank two and higher: examples}
-\label{sec:orgd0217cc}
+\label{sec:orgffcd4f2}
 
 \begin{mexample}
 Three Ehrhart polynomials at rank two, with the dimension \(D\) of each polytope from \eqref{eq:dim}:
@@ -1731,7 +1712,7 @@ polytope:
 \label{ex-ehrhart-rank2}
 \end{mexample}
 \subsection{Linear and quadratic coefficients}
-\label{sec:orgbca98da}
+\label{sec:orgf3225be}
 
 The proofs of the next two propositions stay inside the transfer matrix. They rest on one identity
 between the matrices of Corollary \ref{cor-transfer}, indexed by \(\tau\in[1,n]\) (Lemma
@@ -1876,7 +1857,7 @@ distance \(4\) outweighs two rank-one terms: the \(t^2\)-coefficient of \(L_{\Ko
 \label{rem-quadratic-coeff}
 \end{remark}
 \subsection{Codegree and the Gorenstein property}
-\label{sec:orgafaa55d}
+\label{sec:orge4d9112}
 
 \begin{lemma}
 \leanmark{\leannone}Let \(A,B\subseteq\mathbb R^M\) be polytopes, \(V_A\) the linear space parallel to the affine hull of
@@ -2086,7 +2067,7 @@ polytope & centroid & spread\\
 \label{tab:centroid-summary}
 \end{table}
 \subsection{Rank one: exact symmetries}
-\label{sec:orgf4b5bb6}
+\label{sec:orgc8aebf0}
 
 \begin{proposition}
 \leanmark{\leanfull}The centroid of \(\Koz(n)\) has \(\mu_k=(n-k+1)/n\); all its barycentric coordinates equal \(1/n\),
@@ -2280,7 +2261,7 @@ $\Koz(n)$ ($\diamond$).}
 \label{fig:mu}
 \end{figure}
 \subsection{Rank two and higher: five centroids}
-\label{sec:org5635eee}
+\label{sec:orga9db033}
 
 At rank \(r\) there are five natural centroids, of three uniform measures and two push-forwards:
 the centroid of \(\FF(n;\vek d)\); the
@@ -2562,7 +2543,7 @@ measure on \(\Koz(n)\). Parts (1) and (2) of the theorem are its first two momen
 \label{rem-weak-convergence}
 \end{remark}
 \subsection{Lattice points of dilates}
-\label{sec:org636254e}
+\label{sec:org4739b5f}
 
 For a lattice polytope \(P\) of dimension \(D\), the Ehrhart polynomial \(L_P\) of
 Section \ref{sec-ehrhart} has leading coefficient the relative volume of \(P\), and next coefficient
@@ -2810,8 +2791,11 @@ written for that review, without access to the code used for the paper. The late
 (Theorem \ref{thm-centroid-dilation}, Kupreyeva's limit, and Theorem \ref{thm-codegree} with its
 companions) were each reviewed in the same way, line by line, and checked by computation as listed
 below. None of these reviews was by a human colleague; the author's own check is described in the
-disclosure section. The code, the run logs and the Lean library are available from the author on
-request; below, file names refer to the directory \texttt{code/oneoff/} of the project repository.
+disclosure section. The code, the run logs and the Lean library are in the public repository
+\url{https://gitlab.liu.se/jansn19/exterior-convex}; below, file names refer to its directory
+\texttt{verification-code/oneoff/}, and the run logs are under \texttt{verification-code/runs/}. A frozen snapshot of the code, the run logs and the Lean library is archived on Zenodo
+\autocite{SnellmanZenodoSeries} under the DOI
+\href{https://doi.org/10.5281/zenodo.24288404}{10.5281/zenodo.24288404}, which resolves to its latest version.
 
 \begingroup\sloppy
 
@@ -2865,9 +2849,11 @@ sums of pseudo-powers; lattice points by floor sums; both checked against brute-
 \subsection{Formal verification}
 \label{sec-lean}
 Much of this paper is also proved in the proof assistant Lean 4, on top of its mathematical
-library Mathlib \autocite{deMouraUllrich2021,Mathlib2020}, in the project's library \texttt{ExteriorConvex},
-which is available from the author on request. A mark in the margin beside a result, or beside one
-of its parts, records how far that goes:
+library Mathlib \autocite{deMouraUllrich2021,Mathlib2020}. The Lean files are in the directory
+\texttt{lean/} of the public repository \url{https://gitlab.liu.se/jansn19/exterior-convex} and of its
+snapshot on Zenodo \autocite{SnellmanZenodoSeries}, with the code and the run logs described above. A
+mark in the margin beside a result, or beside one of its parts, records how far the formal proof
+goes:
 \begin{itemize}
 \item \leanfull{} proved in Lean, with no \texttt{sorry}, from the three axioms that Mathlib uses throughout
 (propositional extensionality, choice and the soundness of quotients) and nothing else;
@@ -2878,7 +2864,7 @@ explicit hypothesis of the formal statement, not as an axiom;
 combinatorial core;
 \item \leannone{} not formalised.
 \end{itemize}
-The file \texttt{LEAN/README.md} of that library
+The file \texttt{lean/README.md}, in the repository and in the snapshot,
 pairs each result with its formal statement, says what a partial mark covers, and records where a
 formal definition differs in form from the printed one (the normalised volume, the uniform measure
 on a dilate).
@@ -3319,7 +3305,7 @@ of \(\prod_iR^\circ_{s_{i-1}+1,s_i}\). Inside a block the condition reads
 \end{itemize}
 \end{proof}
 \section*{Acknowledgements}
-\label{sec:org06b5b5a}
+\label{sec:org244db32}
 This paper owes its lattice-point question to Aliaksandra Kupreyeva's Bachelor's thesis
 \autocite{Kupreyeva2019}, written under the author's supervision at Linköping University, where the fraction of
 lattice points of the Kozlov simplex that are \(f\)-vectors, its volume and its centroid were first
@@ -3333,7 +3319,7 @@ The computations used SageMath \autocite{SageMath}, Normaliz \autocite{BrunsIchi
 \autocite{Macaulay2} and the \texttt{barvinok} library \autocite{Verdoolaege2007}; the formal verification used
 Lean 4 \autocite{deMouraUllrich2021} and Mathlib \autocite{Mathlib2020}.
 \section*{Disclosure of AI assistance}
-\label{sec:orga0fff8d}
+\label{sec:org2d7d463}
 This manuscript was produced with substantial assistance from a large language model, Claude
 (Anthropic), and the extent of it is set out here rather than left to be inferred. All of it was
 done at the author's request and under his direction. Where a result is said below to have been
@@ -3383,15 +3369,15 @@ cited in the form quoted by two other sources. The author has verified the resul
 ability, made the final edits, and assumes full responsibility for any errors, mistakes or gaps that
 remain.
 \section*{Funding}
-\label{sec:org13944b7}
+\label{sec:orgd684e80}
 This research received no external funding. It was carried out as part of the author's regular duties
 at Linköping University, within the fraction of that employment allocated to research.
 \section*{Conflicts of interest}
-\label{sec:orgaad3ac7}
+\label{sec:orgbd1fb0a}
 The author declares no financial or non-financial conflicts of interest. The nature and extent of
 large-language-model assistance in producing this manuscript is disclosed in full in the section
 above.
 \section*{References}
-\label{sec:orgd4f5130}
+\label{sec:orgd064365}
 \printbibliography[heading=none]
 \end{document}

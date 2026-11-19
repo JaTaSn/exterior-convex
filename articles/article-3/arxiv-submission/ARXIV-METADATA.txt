@@ -1,0 +1,90 @@
+arXiv submission metadata -- Part III
+=====================================
+Prepared 2026-11-19 against exterior-convex_article3_arxiv.tex (63 pages, pdfLaTeX).
+Copy-paste source for the arXiv form. Fields marked [Jan] are the author's choice.
+
+TITLE
+-----
+Hilbert functions over the exterior algebra and f-vectors in higher rank III: Lattice points of the Kozlov polytope
+
+AUTHORS
+-------
+Jan Snellman
+
+ORCID 0009-0002-6676-5068 (attached through the arXiv account).
+Affiliation: Department of Mathematics, Linkoping University, 581 83 Linkoping, Sweden.
+
+ABSTRACT (self-contained TeX; 1522 characters, arXiv's limit is 1920)
+--------
+Let $E$ be the exterior algebra on $n$ generators and $F=\bigoplus_{i=1}^r Eg_i$ a graded free $E$-module with $\deg g_i=d_i$. Part I of this series identified the convex hull of the Hilbert functions of the quotients $F/M$, $M$ a proper monomial submodule, as the Kozlov polytope $\mathrm{Koz}(n;\mathbf{d})$, a Minkowski sum of shifted Kozlov simplices, and described its vertices at rank two, conjecturing its facets there; Part II counted the Hilbert functions. Here we study the lattice points of the polytope. We show that the Kozlov simplex $\mathrm{Koz}(n)$ is a lecture hall simplex and that every point of $\mathrm{Koz}(n;\mathbf{d})$ has a unique chained decomposition into points of $\mathrm{Koz}(n)$. Hence the lattice points of $\mathrm{Koz}(n;\mathbf{d})$ are exactly the sums of shifted lattice points of $\mathrm{Koz}(n)$, the polytope has the integer decomposition property, every lattice point is a Hilbert function when $n\le 3$, and lattice-point counts and Ehrhart polynomials are products of transfer matrices of the kind used in Part II. We determine the codegree of every Kozlov polytope and show that none is Gorenstein for $n\ge 3$. Finally we compare discrete and continuous invariants: the number of Hilbert functions against the volume and the lattice-point count, where we prove Kupreyeva's observed limit for the fraction of lattice points that are $f$-vectors and extend it to every rank. We also compare the centroid and second moments of the Hilbert functions with those of the polytope.
+
+It is the manuscript's abstract in one paragraph, with the macros written out: \Koz is
+\mathrm{Koz}, the bold vector d is \mathbf{d}; "the Kozlov simplex" is added before the first
+Koz(n). Nothing else is changed.
+
+ABSTRACT (plain text, no TeX; for the LiTH report form and covering emails)
+--------
+Let E be the exterior algebra on n generators and F = Eg_1 + ... + Eg_r (a direct sum) a graded free E-module with deg g_i = d_i. Part I of this series identified the convex hull of the Hilbert functions of the quotients F/M, M a proper monomial submodule, as the Kozlov polytope Koz(n; d), a Minkowski sum of shifted Kozlov simplices, and described its vertices at rank two, conjecturing its facets there; Part II counted the Hilbert functions. Here we study the lattice points of the polytope. We show that the Kozlov simplex Koz(n) is a lecture hall simplex and that every point of Koz(n; d) has a unique chained decomposition into points of Koz(n). Hence the lattice points of Koz(n; d) are exactly the sums of shifted lattice points of Koz(n), the polytope has the integer decomposition property, every lattice point is a Hilbert function when n <= 3, and lattice-point counts and Ehrhart polynomials are products of transfer matrices of the kind used in Part II. We determine the codegree of every Kozlov polytope and show that none is Gorenstein for n >= 3. Finally we compare discrete and continuous invariants: the number of Hilbert functions against the volume and the lattice-point count, where we prove Kupreyeva's observed limit for the fraction of lattice points that are f-vectors and extend it to every rank. We also compare the centroid and second moments of the Hilbert functions with those of the polytope.
+
+CATEGORIES [Jan]
+----------
+math.CO (Primary), math.AC (cross-list)
+
+As for Part II. The manuscript's primary MSC classes are 05E40 and 52B20.
+
+MSC CLASS (2020)
+---------
+05E40, 52B20 (Primary) 13F55, 05A15, 13D40 (Secondary)
+
+As printed on the manuscript's first page.
+05E40 Combinatorial aspects of commutative algebra
+52B20 Lattice polytopes in convex geometry (including relations with commutative algebra and algebraic geometry)
+13F55 Commutative rings defined by monomial ideals; Stanley-Reisner face rings; simplicial complexes
+05A15 Exact enumeration problems, generating functions
+13D40 Hilbert-Samuel and Hilbert-Kunz functions; Poincare series
+
+KEYWORDS (no arXiv field; for the report series and DiVA)
+--------
+exterior algebra; Hilbert function; f-vector; Kozlov polytope; Minkowski sum; log-concavity; lecture hall polytope; Ehrhart polynomial; Gorenstein polytope; Kruskal-Katona theorem
+
+COMMENTS (311 characters, arXiv's limit is 400; plain ASCII)
+--------
+63 pages, 11 figures. Parts I and II are arXiv:2609.23605 and arXiv:2610.14985. Much of the paper is formalised in Lean 4 with Mathlib (no sorry, no extra axioms; marks in the margin say which results). Lean files, code and run logs: https://gitlab.liu.se/jansn19/exterior-convex and DOI 10.5281/zenodo.24288404
+
+REPORT NUMBER
+-------------
+(leave empty)
+
+The LiTH-MAT-R report is planned for the week after the arXiv submission. Its number can be
+entered in this field on a replacement; the report should carry the arXiv id.
+
+DOI and JOURNAL REFERENCE
+-------------------------
+(leave empty; these are for a journal version)
+
+LICENSE [Jan]
+-------
+Part II went out under CC BY 4.0, which is also this repository's licence for the article texts.
+
+RELATED IDENTIFIERS
+-------------------
+Part I:   arXiv:2609.23605, report LiTH-MAT-R-2026/04, DOI 10.3384/LiTH-MAT-R-2026-04
+Part II:  arXiv:2610.14985
+Code, run logs, Lean files: https://gitlab.liu.se/jansn19/exterior-convex
+Zenodo archive (concept DOI): 10.5281/zenodo.24288404
+Parts IV and V are cited as "in preparation".
+
+FILES TO UPLOAD
+---------------
+../arxiv-submission.tar.gz, made by ./make-tarball.sh: the .tex and img/ (ten PDFs). No ancillary
+files. Processor: pdfLaTeX.
+
+BEFORE SUBMITTING
+-----------------
+[ ] Read the arXiv policy on generative AI again on the live page.
+[ ] Check the submission counter on the arXiv account page (two new submissions per calendar
+    month, three active at once). Our own record shows none in November 2026.
+[ ] The printed date is "November 19, 2026". To change it, rerun the generator with
+    ARXIV_DATE="November 20, 2026" (or whichever day).
+[ ] After announcement: record the arXiv id in the repository README, in Parts IV and V's
+    bibliography, and on the Zenodo record (related identifier; a metadata edit, no new version).

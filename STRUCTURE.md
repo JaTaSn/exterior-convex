@@ -57,7 +57,8 @@ home and copy them over. There are two exceptions:
     of the derived source and does **not** export here: its `#+SETUPFILE:` paths are relative to
     the working home's `article/`, where the generator exports it. The same holds for
     `arxiv-submission/*.org`.
-- **`article-3/`**: Part III, pre-release.
+- **`article-3/`**: Part III, the version prepared for arXiv (2026-11-19; not yet submitted when
+  this was written).
   - `exterior-convex_article3_latest.{org,tex,pdf}`, copied from the working home's `article/`.
   - `img/`: the ten figure PDFs, copied from the working home's `artefacts/ff-pictures/`.
   - On copying, two paths in both the `.org` and the `.tex` are rewritten:
@@ -66,6 +67,12 @@ home and copy them over. There are two exceptions:
   - The `.tex` builds in place: `xelatex`, `biber`, `xelatex`, `xelatex`. The `.org` does
     **not** export here, because its `#+SETUPFILE:` lines point at shared templates in the
     workspace (`50-writing/article-templates/`), which are not copied.
+  - `arxiv-submission/`: the arXiv package, from `code/make_arxiv_submission_article3.py` in the
+    working home; pdfLaTeX, bibliography inlined, comment-only lines removed from the `.tex`.
+    **No `anc/`**: since the Zenodo archive exists, the paper cites it and this repository instead
+    of shipping ancillary files. `ARXIV-METADATA.txt` there holds the form fields (title, abstract
+    in self-contained TeX and in plain text, MSC, comments). The preview PDF and the tarball are
+    not tracked.
 - **`img/`**: figures used by Part I, which refers to them as `../img/`.
 
 ### `lean/`
@@ -104,6 +111,8 @@ machine. Three that did not were fixed on 2026-11-14. In a `.sage` script use `s
 - **Build and packaging scripts**: `build_article.sh`, `make_arxiv_submission*.py`,
   `leanmarks_article3.py` and `CODE.pm`. They depend on the workspace's templates and layout and
   would not run here.
+- **Bigraded f-vectors**: `code/oneoff/bigraded_*` and `runs/2026-11-16_bigraded-fvectors/`, idea
+  stage, in no written part. The mirrored `runs/README.md` has its entry removed by hand.
 - **The fibres of the sum map**: `code/fibres/`, `code/oneoff/small_n_fibre_counts.py`,
   `code/oneoff/koz3_fibre_pictures.py` and `runs/fibres/`. This is work towards a later part,
   not yet written up.
@@ -118,7 +127,9 @@ machine. Three that did not were fixed on 2026-11-14. In a `.sage` script use `s
 
 ## The copy recipe
 
-As used on 2026-11-14. Run each `rsync` with `--dry-run --itemize-changes` first and read the
+As used on 2026-11-14, and again on 2026-11-19 with two more exclusions (the report generator and
+the bigraded f-vector scripts, which belong to no written part). In a fresh clone every file has
+the clone's time stamp, so add `-c` (compare by checksum) to the dry run or it lists everything. Run each `rsync` with `--dry-run --itemize-changes` first and read the
 `deleting` lines before running it for real.
 
 ```sh
@@ -135,8 +146,10 @@ rsync -a --delete --exclude '__pycache__/' --exclude '/runs/' \
   --exclude '/leanmarks_article3.py' --exclude '/CODE.pm' --exclude '/amata-crupi_*.m2' \
   --exclude '/fibres/' --exclude '/oneoff/small_n_fibre_counts.py' \
   --exclude '/oneoff/koz3_fibre_pictures.py' \
+  --exclude '/make_lith_report*.py' --exclude '/oneoff/bigraded_*' \
   $W/code/ $X/verification-code/
-rsync -a --delete --exclude '/fibres/' $W/runs/ $X/verification-code/runs/
+rsync -a --delete --exclude '/fibres/' --exclude '/2026-11-16_bigraded-fvectors/' \
+  $W/runs/ $X/verification-code/runs/
 
 # Bibliography.
 cp $W/literature/exterior-convex-references.bib $X/references/
@@ -151,6 +164,10 @@ Then, by hand:
    lean/README.md` should print nothing.
 2. **The article being released**: copy its `_latest.{org,tex,pdf}` and its figures, and rewrite
    the two paths as described under `article-3/` above. Check that the `.tex` builds in place.
+   Also `runs/2026-…/` named in the README's newer sections becomes `verification-code/runs/2026-…/`,
+   and three hand-rewritten passages must be kept: "Part IV is not yet released", the sentence on
+   article 3's formal-verification section, and `cd lean` in the build block. Diff against the
+   previous commit to see them.
 3. **`README.md`**: update the article list, the Lean figures (file count, line count, the date of
    the last clean build) and the list of certificates.
 

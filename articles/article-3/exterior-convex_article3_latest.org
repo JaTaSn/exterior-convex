@@ -5,7 +5,6 @@
 
 #+SETUPFILE: ../../../50-writing/article-templates/latex-common.setup
 #+SETUPFILE: ../../../50-writing/article-templates/latex-variant-koma.setup
-#+SETUPFILE: ../../../50-writing/article-templates/latex-draft-showkeys.setup
 #+OPTIONS: toc:nil H:3 num:t tags:nil email:nil author:nil
 # author:nil -- the author block (name, \orcidlink, affiliation in \thanks) is the \author LATEX_HEADER
 # below; org's own \author would override it and cannot carry the affiliation.
@@ -23,6 +22,12 @@
 # filename without "draft" in it, so its PDFs of this file lacked the labels Jan's own export showed.
 # The script now follows this file, prints showkeys=on/off, and `--ship' refuses to build while the
 # line is here. The Lean discs (\leanmark, via marginnote) are content, with a legend in sec. 1; they stay.
+# 2026-11-19 (Jan: "sufficiently polished, it can be submitted to arXiv, LITH report next week ... Remove
+# the marginalia/citekeys"): the showkeys SETUPFILE line is DELETED. To proof-read by label again, put
+#   #+SETUPFILE: ../../../50-writing/article-templates/latex-draft-showkeys.setup
+# back after the latex-variant-koma line. sec-lean no longer names "the project's library
+# ExteriorConvex"; it points at the public repository and the Zenodo archive, as sec-methods does.
+# The arXiv package is derived from this file by ../code/make_arxiv_submission_article3.py.
 # 2026-11-14 evening (Jan: "apply all five"): the five manuscript findings of the reference
 # certificate (exterior-convex repo, references/REFERENCE-CERTIFICATE-article3.md, findings 3-7)
 # applied: "(Linusson's N)" deleted (Linusson writes binom(n+1,2)); Kupreyeva's Table 4.2 row p=3 (and "the f-vectors in her T^3_3 are S_3")
@@ -3356,8 +3361,11 @@ written for that review, without access to the code used for the paper. The late
 (Theorem [[thm-centroid-dilation]], Kupreyeva's limit, and Theorem [[thm-codegree]] with its
 companions) were each reviewed in the same way, line by line, and checked by computation as listed
 below. None of these reviews was by a human colleague; the author's own check is described in the
-disclosure section. The code, the run logs and the Lean library are available from the author on
-request; below, file names refer to the directory =code/oneoff/= of the project repository.
+disclosure section. The code, the run logs and the Lean library are in the public repository
+[[https://gitlab.liu.se/jansn19/exterior-convex]]; below, file names refer to its directory
+=verification-code/oneoff/=, and the run logs are under =verification-code/runs/=. A frozen snapshot of the code, the run logs and the Lean library is archived on Zenodo
+[cite:@SnellmanZenodoSeries] under the DOI
+[[https://doi.org/10.5281/zenodo.24288404][10.5281/zenodo.24288404]], which resolves to its latest version.
 
 #+LATEX: \begingroup\sloppy
 
@@ -3422,9 +3430,11 @@ request; below, file names refer to the directory =code/oneoff/= of the project 
 # declarations that stood here (2026-10-21) is kept verbatim in
 # ../working-notes/formalisation-campaign.org, section "Article III".
 Much of this paper is also proved in the proof assistant Lean 4, on top of its mathematical
-library Mathlib [cite:@deMouraUllrich2021;@Mathlib2020], in the project's library =ExteriorConvex=,
-which is available from the author on request. A mark in the margin beside a result, or beside one
-of its parts, records how far that goes:
+library Mathlib [cite:@deMouraUllrich2021;@Mathlib2020]. The Lean files are in the directory
+=lean/= of the public repository [[https://gitlab.liu.se/jansn19/exterior-convex]] and of its
+snapshot on Zenodo [cite:@SnellmanZenodoSeries], with the code and the run logs described above. A
+mark in the margin beside a result, or beside one of its parts, records how far the formal proof
+goes:
 - \leanfull{} proved in Lean, with no =sorry=, from the three axioms that Mathlib uses throughout
   (propositional extensionality, choice and the soundness of quotients) and nothing else;
 - \leancond{} proved in the same way, assuming the surjectivity half of Part II's chaining
@@ -3433,7 +3443,7 @@ of its parts, records how far that goes:
 - \leanpartial{} part of the statement proved as for \leanfull{}: a special case or the
   combinatorial core;
 - \leannone{} not formalised.
-The file =LEAN/README.md= of that library
+The file =lean/README.md=, in the repository and in the snapshot,
 pairs each result with its formal statement, says what a partial mark covers, and records where a
 formal definition differs in form from the printed one (the normalised volume, the uniform measure
 on a dilate).
@@ -3956,6 +3966,9 @@ Lean 4 [cite:@deMouraUllrich2021] and Mathlib [cite:@Mathlib2020].
 # have read and checked it yourself.  The responsibility paragraph at the end of this section ("The
 # author has verified the results ... made the final edits") is the house-style sentence and is
 # kept, but it is FALSE until you have done so (referee report 2026-10-20, MUST-FIX 5).
+# 2026-11-19: Jan's instruction of this day, verbatim: "I believe that article3 is sufficiently
+# polished, it can be submitted to arXiv, LITH report next week." Recorded as said; the release
+# decision is his.
 # NOTE FOR JAN: this section was drafted by the model.  The responsibility paragraph's second
 # sentence is the house invariant and is TRUE only once you have read and checked the paper; the
 # itemised account below records what the model did, from the working notes, and should be

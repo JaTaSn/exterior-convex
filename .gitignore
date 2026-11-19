@@ -20,3 +20,5 @@ articles/article-1/arxiv-submission/*.pdf
 articles/article-2/arxiv-submission.tar.gz
 articles/article-2/arxiv-submission/*.pdf
 __pycache__/
+articles/article-3/arxiv-submission.tar.gz
+articles/article-3/arxiv-submission/*.pdf

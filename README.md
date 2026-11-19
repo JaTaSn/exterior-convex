@@ -56,15 +56,17 @@ Generalizing Linusson's count to sumsets of f-vectors.*
 **Part III.** *Hilbert functions over the exterior algebra and f-vectors in higher rank, III:
 Lattice points of the Kozlov polytope.*
 
-- Not yet released. It will appear on arXiv and in the LiTH-MAT-R series shortly.
-- [`articles/article-3/`](articles/article-3/) holds the pre-release version. Its PDF still
-  carries proof-reading labels in the margin, which the released version will not have.
+- Being submitted to arXiv in November 2026; a report in the LiTH-MAT-R series is to follow. The
+  arXiv number will be added here.
+- [`articles/article-3/`](articles/article-3/) holds the version prepared for submission (63
+  pages), and [`articles/article-3/arxiv-submission/`](articles/article-3/arxiv-submission/) the
+  arXiv package made from it.
 
 **Parts IV and V** are in preparation. Part IV treats the vertices and facets of the Kozlov
 polytope at every rank.
 
-The arXiv versions are the ones to read and cite. For Parts I and II, the package exactly as
-submitted to arXiv is in `articles/article-N/arxiv-submission/`, and it builds with pdfLaTeX.
+The arXiv versions are the ones to read and cite. The arXiv package of each part is in
+`articles/article-N/arxiv-submission/`, and it builds with pdfLaTeX.
 
 ### How to cite
 
@@ -126,7 +128,7 @@ and the formalization; this repository may move or change, the archive will not.
 
 ## The Lean formalization
 
-[`lean/`](lean/) is a standalone Lake project: **sixty files, about 25,500 lines, no `sorry`, no
+[`lean/`](lean/) is a standalone Lake project: **69 files, about 31,900 lines, no `sorry`, no
 custom axioms.** It is organized by theme rather than by article, because the same core serves
 every part. **[`lean/README.md`](lean/README.md) is the authoritative record** of what is and is
 not proved: it maps each numbered statement in the articles to its Lean declaration. Part III
@@ -147,7 +149,8 @@ What it covers:
   its dilates, the volume, the involution and the centroids. Two results are formalized in part:
   the limit of the centroid under dilation, and the volume side of Kupreyeva's limit.
 - **Vertices and facets at every rank, and a Kruskal–Katona theorem for modules**: material for
-  Parts IV and V.
+  Parts IV and V, among it the number of vertices as a product of transfer matrices and every
+  numbered result of Part V.
 
 **The printed proofs and the formal ones are the same proofs**, deliberately. Where the
 formalization found a shorter route, the article was rewritten to take it. Remark
@@ -180,7 +183,7 @@ lake build
 
 A clean build ends with `Build completed successfully` and no `error:`. The warnings are Mathlib
 deprecations (mostly `if_pos`/`if_neg`) and linter notes (unused `simp` arguments and variables).
-None is an error, and none concerns `sorry`. Last checked 2026-11-14: 8,865 jobs, 0 errors.
+None is an error, and none concerns `sorry`. Last checked 2026-11-18: 8,874 jobs, 0 errors.
 
 To confirm that nothing is hidden:
 
@@ -264,7 +267,8 @@ against the DOI and the bibliographic databases.
 The articles were written with substantial AI assistance, disclosed in their acknowledgements.
 arXiv treats fabricated references as grounds for banning a submitter. So it is part of the work
 to show, checkably, that every reference is a real publication that says what it is cited for.
-Parts I and II carry their certificates on arXiv as ancillary files, and Part III will too.
+Parts I and II carry their certificates on arXiv as ancillary files. Part III has no ancillary
+files: its certificate is here and in the Zenodo archive, which the paper cites.
 
 ## What is not here
 
