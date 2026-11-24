@@ -26,10 +26,11 @@ from the first version", which lists the changes:
 - Example 53 said `x_1 = 5` where `x_1 = 1` is meant, and a mistaken remark at the end of
   Section 9.4 is removed;
 - "the companion paper" and "Part III" are replaced by references to Parts III, IV and V;
-- Section 10 is rewritten in the form used in Part III: a list of the computations, a mark in the
-  margin for the Lean status of each result, and a pointer to
+- Section 10 is rewritten in the form used in Part III: a list of the computations, marks in the
+  margin (a disc for the Lean status of each result, a square for a result checked by exact
+  computation; a result can carry both), and a pointer to
   [`lean/CORRESPONDENCE-PART-I.md`](../../../../lean/CORRESPONDENCE-PART-I.md), which pairs each
-  statement with the Lean declarations that prove it;
+  statement with the Lean declarations that prove it and with the scripts that check it;
 - the Availability section points to this repository, its GitHub mirror and the Zenodo archive
   instead of to ancillary files.
 

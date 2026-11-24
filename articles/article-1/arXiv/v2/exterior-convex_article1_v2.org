@@ -67,6 +67,10 @@
 #+LATEX_HEADER: \newcommand{\leanfull}{\leandiscof{leanfull}}
 #+LATEX_HEADER: \newcommand{\leanpartial}{\tikz[baseline=-0.6ex]{\fill[leanfull] (0,-0.6ex) arc (-90:90:0.6ex) -- cycle;\draw[leanfull,line width=0.5pt] (0,0) circle (0.6ex);}}
 #+LATEX_HEADER: \newcommand{\leannone}{\tikz[baseline=-0.6ex]\draw[leannone,line width=0.6pt] (0,0) circle (0.55ex);}
+# 2026-11-24 (Jan): a second mark for "checked by exact computation", a square, so that it differs from
+# the Lean discs in shape as well as in colour; a result may carry both.
+#+LATEX_HEADER: \definecolor{compmark}{HTML}{1565C0}
+#+LATEX_HEADER: \newcommand{\compmark}{\tikz[baseline=-0.6ex]\fill[compmark] (-0.55ex,-0.55ex) rectangle (0.55ex,0.55ex);}
 #+LATEX_HEADER: \newcommand{\leanmark}[1]{\leavevmode{\reversemarginpar\marginnote{\raggedleft#1}}}
 #+LATEX_HEADER: \newcommand{\regionbox}[1]{\marginnote{\centering\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
 #+LATEX_HEADER:   \fill[black!5] (0,0) rectangle (1,1);
@@ -333,7 +337,8 @@ new, so the one after it has moved by one.
 - References to "the companion paper" and to "Part III" have been replaced by references to Parts
   III, IV and V, which did not exist under those names when the first version was written.
 - Section [[#sec-methods]] is rewritten in the form used in Part III: the two tables are replaced
-  by a list of the computations, by marks in the margin for the Lean status of each result, and by
+  by a list of the computations, by marks in the margin for the Lean status of each result and for
+  results checked by computation, and by
   a document in the repository that pairs statements with Lean declarations. Section
   [[#sec-methods-anc]] now points to the repository of the series, its mirror, and the Zenodo archive.
   The scripts and the Lean development are unchanged.
@@ -854,7 +859,7 @@ one is always written with \(\proj\).**
 
 #+NAME: cor-facets
 #+begin_corollary
-\leanmark{\leanpartial}The Kozlov simplex has the description
+\leanmark{\leanpartial\,\compmark}The Kozlov simplex has the description
 #+begin_export latex
 \begin{equation}\label{eq:facets}
   \proj\bigl(\Koz(n)\bigr)\;=\;\Bigl\lbrace x\in\mathbb R^{n}\;:\;x_1=n,\quad
@@ -1355,7 +1360,7 @@ For \(r=1\), \(d_1=0\) this is Sköldberg's indicator algebra \(k\lbrace\Delta\r
 
 #+NAME: prop-splitting
 #+begin_proposition
-\leanmark{\leannone}Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module, with \(\Delta_i\) the downward-closed
+\leanmark{\leannone\,\compmark}Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module, with \(\Delta_i\) the downward-closed
 family attached to \(\inn(I_i)\). Then
 #+begin_export latex
 \begin{equation}\label{eq:splitting}
@@ -1524,7 +1529,7 @@ once.
 
 #+NAME: thm-main
 #+begin_theorem
-\leanmark{\leanpartial}Let \(n\ge1\), \(r\ge1\), and \(0=d_1\le d_2\le\cdots\le d_r\), and let
+\leanmark{\leanpartial\,\compmark}Let \(n\ge1\), \(r\ge1\), and \(0=d_1\le d_2\le\cdots\le d_r\), and let
 \(F=\bigoplus_{i=1}^rEg_i\), \(\deg g_i=d_i\). Then, in the degree-\(0\)-inclusive coordinates of
 Definition [[def-shift]],
 #+begin_export latex
@@ -1717,7 +1722,7 @@ The drop in dimension is structural, and the general statement is easy.
 
 #+NAME: prop-dimension
 #+begin_proposition
-\leanmark{\leannone}Let \(n\ge1\), \(r\ge1\) and \(0\le d_1\le\cdots\le d_r\). Then
+\leanmark{\leannone\,\compmark}Let \(n\ge1\), \(r\ge1\) and \(0\le d_1\le\cdots\le d_r\). Then
 #+begin_export latex
 \begin{equation}\label{eq:dimension}
   \dim\Koz(n;d_1,\dots,d_r)\;=\;\Bigl|\;\bigcup_{i=1}^{r}\lbrace d_i+2,\;d_i+3,\;\dots,\;d_i+n\rbrace\;\Bigr| .
@@ -1843,7 +1848,7 @@ the third depends on \(\vec a\) at all. We take them one at a time.
 
 #+NAME: prop-regimes-tie
 #+begin_proposition
-\leanmark{\leannone}(/Tied shifts./) Let \(n\ge1\) and \(\vec a\) be a positive leg vector. Then
+\leanmark{\leannone\,\compmark}(/Tied shifts./) Let \(n\ge1\) and \(\vec a\) be a positive leg vector. Then
 \(\RA(\vec a;0,0)=2\rasimp(\vec a)\), a dilation of the right-angle simplex, and
 \(\extten(\vec a;0)\) is the \(n\times n\) identity matrix.
 @@latex:\label{prop:regimes-tie}@@
@@ -1851,7 +1856,7 @@ the third depends on \(\vec a\) at all. We take them one at a time.
 
 #+NAME: prop-regimes-disjoint
 #+begin_proposition
-\leanmark{\leannone}(/Disjoint windows./) Let \(n\ge1\), \(d\ge n\) and \(\vec a\) be a positive leg vector. Then the
+\leanmark{\leannone\,\compmark}(/Disjoint windows./) Let \(n\ge1\), \(d\ge n\) and \(\vec a\) be a positive leg vector. Then the
 two summands are supported on disjoint sets of coordinates,
 \(\RA(\vec a;0,d)=\rasimp(\vec a)\times\shift^d(\rasimp(\vec a))\) is their Cartesian (prism)
 product, and \(\extten(\vec a;d)\) is the all-ones matrix: all \(n^2\) vertex sums are vertices.
@@ -1860,7 +1865,7 @@ product, and \(\extten(\vec a;d)\) is the all-ones matrix: all \(n^2\) vertex su
 
 #+NAME: prop-regimes-boundary
 #+begin_proposition
-\leanmark{\leannone}(/One shared coordinate./) Let \(n\ge2\), \(d=n-1\) and \(\vec a\) be a positive leg vector. Then
+\leanmark{\leannone\,\compmark}(/One shared coordinate./) Let \(n\ge2\), \(d=n-1\) and \(\vec a\) be a positive leg vector. Then
 \(\extten(\vec a;d)\) is the all-ones matrix, \(\RA(\vec a;0,n-1)\) has \(n^2\) vertices, and it is
 the image of \(\rasimp(\vec a)\times\rasimp(\vec a)\) under an affine isomorphism.
 @@latex:\label{prop:regimes-boundary}@@
@@ -1949,7 +1954,7 @@ give identical sections for both.}
 
 #+NAME: thm-ones
 #+begin_theorem
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}@@Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
 \(1\le d\le n-1\); put \(m=n-d\), and for indices \(1\le i,j\le n\) write \(t=i-d\). Then
 #+begin_export latex
 \begin{equation}\label{eq:ones}
@@ -2008,7 +2013,7 @@ paper. It is now a theorem; the proof is in Part IV, not here.
 
 #+NAME: conj-ones-hrep
 #+begin_theorem
-\leanmark{\leanpartial}\relax [cite:@SnellmanArticle4]
+\leanmark{\leanpartial\,\compmark}\relax [cite:@SnellmanArticle4]
 Let \(n\ge2\), \(1\le d\le n-1\) and \(N=n+d\). For \(\vec a=\onesvec(n)\), the
 polytope \(\RA(\vec a;0,d)\)
 is cut out in \(\mathbb R^N\) by a single equation together with one capped, weakly decreasing chain
@@ -2080,7 +2085,7 @@ We write \(v_i\) for the \(i\)-th vertex of the first (unshifted) summand and
 
 #+NAME: thm-kozlov-matrix
 #+begin_theorem
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}@@Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
 let \(r=2\) and \(\vec d=(0,d)\) with \(1\le d\le n-1\), and put \(m=n-d\). Then for indices
 \(1\le i,j\le n\), writing \(t=i-d\),
 #+begin_export latex
@@ -2150,7 +2155,7 @@ candidate directions are few: each summand contributes the \(n\) inequalities of
 
 #+NAME: conj-kozlov-hrep2
 #+begin_theorem
-\leanmark{\leanpartial}\relax [cite:@SnellmanArticle4]
+\leanmark{\leanpartial\,\compmark}\relax [cite:@SnellmanArticle4]
 Let \(\vec a=\kozvec(n)\) be the Kozlov vector, \(r=2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\),
 \(N=n+d\) and \(m=n-d\), and put \(t=j-d\). Then \(\RA(\vec a;0,d)\) is cut out in \(\mathbb R^N\) by
 the equation \(x_1=n\), the first chain with its offsets,
@@ -2252,7 +2257,8 @@ Every theorem of this paper has a written proof, except Theorems [[conj-ones-hre
 [[conj-kozlov-hrep2]], which are proved in Part IV. Many statements were in addition checked by
 exact computation, some of them before they were proved, and a substantial part of the paper is
 proved in Lean. This section says what was computed and how, and what the marks in the margin
-mean. Two systems were used for the computations: *SageMath* 10.9 for exact rational polyhedral
+mean: a disc for the Lean status of a result, and a square, \compmark{}, for a result checked by
+exact computation. Two systems were used for the computations: *SageMath* 10.9 for exact rational polyhedral
 computation (vertex and facet enumeration, Minkowski sums, equality of polytopes) and *Macaulay2*
 for the module-theoretic statements, there with Amata and Crupi's ~ExteriorIdeals~ and
 ~ExteriorModules~ packages [cite:@SageMath;@Macaulay2;@AmataCrupi2018ExteriorIdeals;@AmataCrupi2021].
@@ -2315,11 +2321,13 @@ rewritten to take it. A mark in the margin beside a result records how far the f
   inequalities without the clause that these are the facets, or the combinatorial form of a
   statement without its module-theoretic form;
 - \leannone{} not formalised.
-Definitions, remarks and examples carry no mark.
+A second mark, \compmark{}, beside a result says that it was also checked by exact computation, as
+described in the list above; it can stand beside any of the three. Definitions, remarks and
+examples carry no mark.
 
 The file =lean/CORRESPONDENCE-PART-I.md= of the repository pairs each marked result with the Lean
-declarations that prove it, gives the file and line of each, and says what a partial mark leaves
-out; =lean/README.md= there has the fuller account, with the definitions. Two general points
+declarations that prove it, gives the file and line of each, says what a partial mark leaves
+out, and names the scripts behind each square; =lean/README.md= there has the fuller account, with the definitions. Two general points
 belong here. The development works throughout in the coordinates that keep the degree-\(0\) entry,
 so the \(\proj\) forms of the statements, and the translation \eqref{eq:koz-as-ra}, are not
 formalised. And Theorem [[thm-main]] is formalised as the combinatorial identity: the dictionary
@@ -2767,7 +2775,7 @@ room to spare.
 #+ATTR_LATEX: :options []
 #+NAME: prop-row-below
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@(/Rows that stop inside the first private block./) Let \(\vec a\) be any positive leg vector and let
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regones{(0,0.7) rectangle (1,1)}}@@(/Rows that stop inside the first private block./) Let \(\vec a\) be any positive leg vector and let
 \(1\le i\le d\), so that \(t\le0\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le j\le n\).
 @@latex:\label{prop:row-below}@@
 #+end_proposition
@@ -2814,7 +2822,7 @@ pushes all of them below zero, while \(-Ma_1\) appears in every \(\langle\varphi
 #+ATTR_LATEX: :options []
 #+NAME: prop-col-beyond
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@(/Columns that reach the second private block./) Let \(\vec a\) be any positive leg vector and let
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regones{(0.7,0) rectangle (1,1)}}@@(/Columns that reach the second private block./) Let \(\vec a\) be any positive leg vector and let
 \(m<j\le n\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le i\le n\).
 @@latex:\label{prop:col-beyond}@@
 #+end_proposition
@@ -2843,7 +2851,7 @@ maximizer, and Lemma [[lem-vertexdecomp]](1) applies.
 #+ATTR_LATEX: :options []
 #+NAME: prop-diagonal
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@(/The diagonal./) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}@@(/The diagonal./) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
 \(\extten(\vec a;d)[d+t][t]=1\); that is, \(\extten(\vec a;d)[i][j]=1\) for \(i=d+t\) and
 \(j=t\).
 @@latex:\label{prop:diagonal}@@
@@ -2870,7 +2878,7 @@ exposes \(v_{d+t}\) and \(u_t\) simultaneously. Apply Lemma [[lem-vertexdecomp]]
 #+ATTR_LATEX: :options []
 #+NAME: prop-adjacent
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@(/The two adjacent diagonals./) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}@@(/The two adjacent diagonals./) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
 and \(1\le j\le m\) with \(j=t+1\) or \(j=t-1\). Then \(\extten(\vec a;d)[i][j]=0\) for
 \(i=d+t\).
 @@latex:\label{prop:adjacent}@@
@@ -2902,7 +2910,7 @@ duly show as a one. Without the hypothesis the two propositions would contradict
 #+ATTR_LATEX: :options []
 #+NAME: prop-below-diagonal
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@(/Below the diagonal./) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}@@(/Below the diagonal./) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
 \(\rho_1>\rho_2>\cdots>\rho_t\), which by Lemma [[lem-binomial-ratio]] holds for the Kozlov vector.
 Then \(\extten(\vec a;d)[i][j]=0\) for \(i=d+t\); note \(i>d+j\), so this is the region strictly
 below the diagonal of the overlap block.
@@ -2931,7 +2939,7 @@ the substantive case, and we give it in full.
 #+ATTR_LATEX: :options []
 #+NAME: prop-gapK
 #+begin_proposition
-\leanmark{\leanfull}@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@(/Gap at least two./) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
+\leanmark{\leanfull\,\compmark}@@latex:\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}@@(/Gap at least two./) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
 \(\vec a\) be a positive leg vector. Let \(1\le t\le m\) and \(1\le j\le m\) with \(K:=j-t\ge2\),
 and suppose
 #+begin_export latex
