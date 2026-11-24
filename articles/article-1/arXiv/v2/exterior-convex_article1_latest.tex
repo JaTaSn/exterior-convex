@@ -1,4 +1,4 @@
-% Created 2026-11-24 Tue 16:00
+% Created 2026-11-24 Tue 16:50
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt, a4paper, abstract=yes]{scrartcl}
 
@@ -56,6 +56,13 @@
 \newcommand{\proj}{\pi}
 \newcommand{\onesvec}{\vec{\mathbf 1}}
 \usepackage{marginnote}
+\definecolor{leanfull}{HTML}{2E7D32}
+\definecolor{leannone}{HTML}{8A8A8A}
+\newcommand{\leandiscof}[1]{\tikz[baseline=-0.6ex]\fill[#1] (0,0) circle (0.6ex);}
+\newcommand{\leanfull}{\leandiscof{leanfull}}
+\newcommand{\leanpartial}{\tikz[baseline=-0.6ex]{\fill[leanfull] (0,-0.6ex) arc (-90:90:0.6ex) -- cycle;\draw[leanfull,line width=0.5pt] (0,0) circle (0.6ex);}}
+\newcommand{\leannone}{\tikz[baseline=-0.6ex]\draw[leannone,line width=0.6pt] (0,0) circle (0.55ex);}
+\newcommand{\leanmark}[1]{\leavevmode{\reversemarginpar\marginnote{\raggedleft#1}}}
 \newcommand{\regionbox}[1]{\marginnote{\centering\footnotesize\begin{tikzpicture}[x=1.35cm,y=1.35cm,line width=0.35pt]
 \fill[black!5] (0,0) rectangle (1,1);
 #1
@@ -131,10 +138,10 @@ Secondary 05E40, 13D40, 15A75.
 \setcounter{tocdepth}{2}
 \tableofcontents
 \section{Introduction}
-\label{sec:orga247f45}
+\label{sec:org3ff8fe8}
 
 \subsection{The rank-one picture}
-\label{sec:orgdb7966d}
+\label{sec:org3418e44}
 
 The Hilbert function of a graded quotient of the exterior algebra is a \textbf{simpler} combinatorial
 object than its symmetric-algebra counterpart. Let \(k\) be a field, \(V=k^n\), and
@@ -162,7 +169,7 @@ normalization \(f_1(\Delta)=n\), meaning that every vertex is present, which we 
 \emph{properness}; the
 theorem is false without it, not merely less sharp (Section \ref{sec-permissive}).
 \subsection{The rank-\(r\) question}
-\label{sec:orgc2d73d7}
+\label{sec:org795513b}
 
 Amata and Crupi \autocite{AmataCrupi2020KK,AmataCrupi2020} generalized the Kruskal--Katona theorem from ideals of \(E\) to graded
 submodules of a graded free module \(F=\bigoplus_{i=1}^rEg_i\) with \(\deg g_i=d_i\in\mathbb Z\).
@@ -241,11 +248,14 @@ vector the equation is \(x_1=1\). A remark at the end of Section \ref{sec-hrep2}
 rank-two facet description could not be proved, was mistaken and has been removed.
 \item References to ``the companion paper'' and to ``Part III'' have been replaced by references to Parts
 III, IV and V, which did not exist under those names when the first version was written.
-\item Section \ref{sec-methods-anc} now points to the repository of the series, its mirror, and the Zenodo
-archive. The scripts and the Lean development are unchanged.
+\item Section \ref{sec-methods} is rewritten in the form used in Part III: the two tables are replaced
+by a list of the computations, by marks in the margin for the Lean status of each result, and by
+a document in the repository that pairs statements with Lean declarations. Section
+\ref{sec-methods-anc} now points to the repository of the series, its mirror, and the Zenodo archive.
+The scripts and the Lean development are unchanged.
 \end{itemize}
 \subsection{What is new here, and what is not}
-\label{sec:orgd7af5e5}
+\label{sec:orgf4f29cd}
 
 To be explicit about provenance, since much of the material below is classical.
 
@@ -426,7 +436,7 @@ the generators \(g_i\) fixed; \(g\cdot M\) is the image of \(M\) under that acti
 submodule.
 
 \begin{theorem}
-\cite{AramovaHerzog2000,AramovaHerzogHibi1997,Eisenbud1995,HerzogHibi2011}
+\leanmark{\leannone}\relax \cite{AramovaHerzog2000,AramovaHerzogHibi1997,Eisenbud1995,HerzogHibi2011}
 Let \(k\) be a field, let \(F\) be as in Definition \ref{def-free-module}, let \(M\subseteq F\) be a
 graded submodule and let \(>\) be a monomial order on \(F\).
 \begin{enumerate}
@@ -499,9 +509,9 @@ algebra} \(k\lbrace\Delta\rbrace\).
 Non-faces are upward closed, so \(I_\Delta\) is a graded ideal.
 
 \begin{proposition}
+\leanmark{\leannone}1. The surviving monomials of \(E/I_\Delta\) are exactly the \(e_\sigma\) with \(\sigma\in\Delta\),
+   so \(H_{E/I_\Delta}=(f_0(\Delta),f_1(\Delta),\dots,f_n(\Delta))\) with no correction term.
 \begin{enumerate}
-\item The surviving monomials of \(E/I_\Delta\) are exactly the \(e_\sigma\) with \(\sigma\in\Delta\),
-so \(H_{E/I_\Delta}=(f_0(\Delta),f_1(\Delta),\dots,f_n(\Delta))\) with no correction term.
 \item The assignment \(\Delta\mapsto I_\Delta\) is a bijection from \(\mathcal D_n\) to the monomial
 ideals of \(E\), the empty order ideal corresponding to the unit ideal \(I_\emptyset=E\).
 \item As sets of integer sequences,
@@ -548,7 +558,7 @@ and one sets
 with the convention \(0^{(j)}=0\).
 
 \begin{theorem}
-\autocite{ClementsLindstroem1969,Katona1968,Kruskal1963}, in this form
+\leanmark{\leannone}\relax \autocite{ClementsLindstroem1969,Katona1968,Kruskal1963}, in this form
 Aramova, Herzog and Hibi~\cite[Theorem 4.1]{AramovaHerzogHibi1997}. A sequence \((1,h_1,\dots,h_n)\) of non-negative integers is the Hilbert function of
 \(E/I\) for some graded ideal \(I\subseteq E\) if and only if\footnote{The lower bound is \(0\le h_{j+1}\), not \(0<h_{j+1}\). This matters: the printed statement of Amata--Crupi's Theorem 3.1, which quotes Aramova--Herzog--Hibi, has \(<\) where the source has \(\le\), and as a result formally denies that \((1,3,3,0)\), the Hilbert function of \(E_3/(e_1e_2e_3)\), is a Hilbert function at all.}
 \begin{equation}\label{eq:kk}
@@ -592,7 +602,7 @@ facet description apparently unrecorded; the inequalities are in Kozlov's paper,
 there as a description of the facets.
 
 \begin{lemma}
-Let \(\Delta\in\mathcal D_n\) be an order ideal and \(1\le j\le n-1\). Then
+\leanmark{\leanfull}Let \(\Delta\in\mathcal D_n\) be an order ideal and \(1\le j\le n-1\). Then
 \((n-j)f_j(\Delta)\ge(j+1)f_{j+1}(\Delta)\), equivalently
 \begin{equation}\label{eq:lym}
   \frac{f_j(\Delta)}{\binom nj}\;\ge\;\frac{f_{j+1}(\Delta)}{\binom n{j+1}}.
@@ -652,7 +662,7 @@ nothing between coordinates.
 \end{definition}
 
 \begin{lemma}
-(\emph{The LYM chain.}) With the LYM ratios \(\mu_j\) of Definition \ref{def-lym-ratios},
+\leanmark{\leanpartial}(\emph{The LYM chain.}) With the LYM ratios \(\mu_j\) of Definition \ref{def-lym-ratios},
 \begin{equation}\label{eq:mu}
   \conv\lbrace\tilde F_1,\dots,\tilde F_n\rbrace
   \;=\;\lbrace x\in\mathbb R^n:\ \mu_1=1\ge\mu_2\ge\cdots\ge\mu_n\ge0\rbrace .
@@ -680,7 +690,7 @@ barycentric coordinate does, namely \(\mu_j\ge\mu_{j+1}\) on \(\lambda_j=0\) and
 \end{proof}
 
 \begin{theorem}
-Kozlov~\cite[Theorem 4.1]{Kozlov1997} For \(n\ge1\),
+\leanmark{\leanpartial}\relax Kozlov~\cite[Theorem 4.1]{Kozlov1997} For \(n\ge1\),
 \begin{equation}\label{eq:kozlov}
   \conv\bigl\lbrace(f_1(\Delta),\dots,f_n(\Delta)):\Delta\in\mathcal S_n\bigr\rbrace
   \;=\;\conv\lbrace\tilde F_1,\dots,\tilde F_n\rbrace,
@@ -715,7 +725,7 @@ one is always written with \(\proj\).}}
 \end{definition}
 
 \begin{corollary}
-The Kozlov simplex has the description
+\leanmark{\leanpartial}The Kozlov simplex has the description
 \begin{equation}\label{eq:facets}
   \proj\bigl(\Koz(n)\bigr)\;=\;\Bigl\lbrace x\in\mathbb R^{n}\;:\;x_1=n,\quad
      \frac{x_1}{\binom n1}\ge\frac{x_2}{\binom n2}\ge\cdots\ge\frac{x_n}{\binom nn}\ge0\Bigr\rbrace ,
@@ -775,7 +785,7 @@ definitions \(\mu_1=1\) identically and both of his proofs are complete as print
 here because the statement depends on it, not because anything is missing from the original.
 
 \begin{lemma}
-(\emph{The permissive LYM chain.}) For \(n\ge1\), with the LYM ratios of Definition \ref{def-lym-ratios},
+\leanmark{\leanpartial}(\emph{The permissive LYM chain.}) For \(n\ge1\), with the LYM ratios of Definition \ref{def-lym-ratios},
 \begin{equation}\label{eq:mu-permissive}
   \conv\lbrace0,\tilde F_1,\dots,\tilde F_n\rbrace
   \;=\;\lbrace x\in\mathbb R^n:\ 1\ge\mu_1\ge\mu_2\ge\cdots\ge\mu_n\ge0\rbrace ,
@@ -803,7 +813,7 @@ Lemma \ref{lem-mu} and their affine hull lies in \(\lbrace\mu_1=1\rbrace\), whic
 \end{proof}
 
 \begin{proposition}
-(\emph{Kozlov's theorem, permissive form.}) For \(n\ge1\),
+\leanmark{\leanfull}(\emph{Kozlov's theorem, permissive form.}) For \(n\ge1\),
 \begin{equation}\label{eq:permissive-hull}
   \proj\bigl(\conv(S_n^{+})\bigr)\;=\;\conv\lbrace0,\tilde F_1,\dots,\tilde F_n\rbrace ,
 \end{equation}
@@ -834,7 +844,7 @@ The next proposition is the sharper way to put all of this: it locates propernes
 noting its effect.
 
 \begin{proposition}
-(\emph{Properness is a facet.}) Let \(n\ge1\) and \(\vec b=\bigl(\tbinom n0,\dots,\tbinom nn\bigr)\), and
+\leanmark{\leanpartial}(\emph{Properness is a facet.}) Let \(n\ge1\) and \(\vec b=\bigl(\tbinom n0,\dots,\tbinom nn\bigr)\), and
 form \(\rasimp(\vec b)\subseteq\mathbb R^{n+1}\) by Definition \ref{def-rasimp}, read with legs and
 coordinates indexed \(0,1,\dots,n\) since \(\vec b\) has length \(n+1\). Then
 \begin{equation}\label{eq:permissive-simplex}
@@ -871,7 +881,7 @@ Finally, \(S_n^{+}\) is not merely bigger than \(S_n\) but built from smaller co
 \(0\le k\le n\) let \(\iota_k:\mathbb R^{k+1}\to\mathbb R^{n+1}\) append \(n-k\) zeros.
 
 \begin{proposition}
-(\emph{The permissive set is fibred by \(f_1\).}) For \(n\ge0\),
+\leanmark{\leanfull}(\emph{The permissive set is fibred by \(f_1\).}) For \(n\ge0\),
 \begin{equation}\label{eq:permissive-fibres}
   S_n^{+}\;=\;\bigsqcup_{k=0}^{n}\iota_k\bigl(S_k\bigr),
 \end{equation}
@@ -966,7 +976,7 @@ equivalently, each associated complex \(\Delta_i\) satisfies \(f_1(\Delta_i)=n\)
 \end{definition}
 
 \begin{proposition}
-Let \(n\ge1\), \(r\ge1\) and \(F=\bigoplus_{i=1}^rEg_i\). Then
+\leanmark{\leannone}Let \(n\ge1\), \(r\ge1\) and \(F=\bigoplus_{i=1}^rEg_i\). Then
 \begin{enumerate}
 \item every monomial submodule of \(F\) is an ids-module, and each of its ideals \(I_i\) is monomial;
 \item every ids-module of \(F\) is a graded submodule.
@@ -988,7 +998,7 @@ two conditions have nothing to do with each other: the first is about the field 
 non-monomial ideal, the second about there being two generators to couple.
 
 \begin{proposition}
-Let \(n\ge1\), \(r\ge1\) and \(F=\bigoplus_{i=1}^rEg_i\) with \(\deg g_i=d_i\).
+\leanmark{\leannone}Let \(n\ge1\), \(r\ge1\) and \(F=\bigoplus_{i=1}^rEg_i\) with \(\deg g_i=d_i\).
 \begin{enumerate}
 \item The monomial submodules of \(F\) are a \textbf{proper} subclass of the ids-modules if and only if
 \(n\ge2\). For \(n=1\) the two classes coincide, for every \(r\) and every \(\vec d\).
@@ -1077,7 +1087,7 @@ cannot be recovered by choosing a cleverer term order.
 Inside the ids class, by contrast, nothing goes wrong.
 
 \begin{proposition}
-Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module and let \(>\) be \emph{any} monomial order on
+\leanmark{\leannone}Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module and let \(>\) be \emph{any} monomial order on
 \(F\). Then
 \begin{enumerate}
 \item The initial submodule splits along the same decomposition,
@@ -1172,7 +1182,7 @@ which is an Amata--Crupi monomial submodule of \(F\), and call the quotient
 For \(r=1\), \(d_1=0\) this is Sköldberg's indicator algebra \(k\lbrace\Delta\rbrace\) exactly.
 
 \begin{proposition}
-Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module, with \(\Delta_i\) the downward-closed
+\leanmark{\leannone}Let \(M=I_1g_1\oplus\cdots\oplus I_rg_r\) be an ids-module, with \(\Delta_i\) the downward-closed
 family attached to \(\inn(I_i)\). Then
 \begin{equation}\label{eq:splitting}
   F/M\;\cong\;\bigoplus_{i=1}^{r}(E/I_i)(-d_i),
@@ -1206,7 +1216,7 @@ than the affine ``translation'' one might reach for first, is what makes Lemma \
 applicable and what makes Theorem \ref{thm-main} come out with no leftover translation vector.
 
 \begin{proposition}
-With \(S_n\) as in Definition \ref{def-proper} and \(d_1=0\le d_2\le\cdots\le d_r\),
+\leanmark{\leanpartial}With \(S_n\) as in Definition \ref{def-proper} and \(d_1=0\le d_2\le\cdots\le d_r\),
 \begin{equation}\label{eq:sumset}
   \bigl\lbrace H_{F/M}: M\ \text{a proper monomial submodule of }F\bigr\rbrace
   \;=\;\bigl\lbrace\ff(\vec\Delta):\vec\Delta\ \text{an }r\text{-vector on }[n]\bigr\rbrace,
@@ -1297,7 +1307,7 @@ empty, which is the first equality. Taking instead the \textbf{all-ones leg vect
 combinatorially simpler comparison object, used throughout Section \ref{sec-vertices}.
 
 \begin{lemma}
-(A) For \(U,V\subseteq\mathbb R^N\), \(\conv(U+V)=\conv(U)+\conv(V)\); by induction and
+\leanmark{\leannone}(A) For \(U,V\subseteq\mathbb R^N\), \(\conv(U+V)=\conv(U)+\conv(V)\); by induction and
 associativity of Minkowski addition the same holds for any finite number of summands.
 (B) For linear \(L:\mathbb R^N\to\mathbb R^{N'}\) and \(U\subseteq\mathbb R^N\),
 \(\conv(L(U))=L(\conv(U))\).
@@ -1319,7 +1329,7 @@ once.
 \end{proof}
 
 \begin{theorem}
-Let \(n\ge1\), \(r\ge1\), and \(0=d_1\le d_2\le\cdots\le d_r\), and let
+\leanmark{\leanpartial}Let \(n\ge1\), \(r\ge1\), and \(0=d_1\le d_2\le\cdots\le d_r\), and let
 \(F=\bigoplus_{i=1}^rEg_i\), \(\deg g_i=d_i\). Then, in the degree-\(0\)-inclusive coordinates of
 Definition \ref{def-shift},
 \begin{equation}\label{eq:main}
@@ -1364,7 +1374,7 @@ Section \ref{sec-vertices} exists at all.
 \end{remark}
 
 \begin{corollary}
-Let \(c\ge0\) and \(d_1\ge0\). Writing \(\mathcal H(d_1,\dots,d_r)\) for the set of proper Hilbert
+\leanmark{\leannone}Let \(c\ge0\) and \(d_1\ge0\). Writing \(\mathcal H(d_1,\dots,d_r)\) for the set of proper Hilbert
 functions,
 \begin{equation}\label{eq:normalization}
   \mathcal H(d_1+c,\dots,d_r+c)=\shift^c\bigl(\mathcal H(d_1,\dots,d_r)\bigr),
@@ -1396,7 +1406,7 @@ term to compare with.
 \end{remark}
 
 \begin{proposition}
-(\emph{Edge cases.}) Theorem \ref{thm-main} behaves as follows at its boundary.
+\leanmark{\leanpartial}(\emph{Edge cases.}) Theorem \ref{thm-main} behaves as follows at its boundary.
 \begin{enumerate}
 \item For \(r=1\): then \(d_1=0\), \(F=E\), \(M=I_1\), and the statement is
 \(\conv(S_n)=\Koz(n)\), which is Kozlov's theorem, with no index shift and no leftover
@@ -1498,7 +1508,7 @@ viewpoint and one scale.}
 The drop in dimension is structural, and the general statement is easy.
 
 \begin{proposition}
-Let \(n\ge1\), \(r\ge1\) and \(0\le d_1\le\cdots\le d_r\). Then
+\leanmark{\leannone}Let \(n\ge1\), \(r\ge1\) and \(0\le d_1\le\cdots\le d_r\). Then
 \begin{equation}\label{eq:dimension}
   \dim\Koz(n;d_1,\dots,d_r)\;=\;\Bigl|\;\bigcup_{i=1}^{r}\lbrace d_i+2,\;d_i+3,\;\dots,\;d_i+n\rbrace\;\Bigr| .
 \end{equation}
@@ -1603,7 +1613,7 @@ those lemmas use, none of which is needed to read what follows. What is left her
 definitions, the statements, and the examples and comparisons that can be read without the case
 analysis.
 \subsection{The three regimes}
-\label{sec:org1676e2f}
+\label{sec:org9d34ee5}
 
 Fix \(r=2\) and \(\vec d=(0,d)\), so that \(\RA(\vec a;0,d)\subseteq\mathbb R^N\) with
 \(N=n+d\), and let \(m=n-d\) be the number of coordinates the two summands share, so that
@@ -1614,7 +1624,7 @@ The three regimes are separated because they need genuinely different hypotheses
 the third depends on \(\vec a\) at all. We take them one at a time.
 
 \begin{proposition}
-(\emph{Tied shifts.}) Let \(n\ge1\) and \(\vec a\) be a positive leg vector. Then
+\leanmark{\leannone}(\emph{Tied shifts.}) Let \(n\ge1\) and \(\vec a\) be a positive leg vector. Then
 \(\RA(\vec a;0,0)=2\rasimp(\vec a)\), a dilation of the right-angle simplex, and
 \(\extten(\vec a;0)\) is the \(n\times n\) identity matrix.
 \label{prop:regimes-tie}
@@ -1622,7 +1632,7 @@ the third depends on \(\vec a\) at all. We take them one at a time.
 \end{proposition}
 
 \begin{proposition}
-(\emph{Disjoint windows.}) Let \(n\ge1\), \(d\ge n\) and \(\vec a\) be a positive leg vector. Then the
+\leanmark{\leannone}(\emph{Disjoint windows.}) Let \(n\ge1\), \(d\ge n\) and \(\vec a\) be a positive leg vector. Then the
 two summands are supported on disjoint sets of coordinates,
 \(\RA(\vec a;0,d)=\rasimp(\vec a)\times\shift^d(\rasimp(\vec a))\) is their Cartesian (prism)
 product, and \(\extten(\vec a;d)\) is the all-ones matrix: all \(n^2\) vertex sums are vertices.
@@ -1631,7 +1641,7 @@ product, and \(\extten(\vec a;d)\) is the all-ones matrix: all \(n^2\) vertex su
 \end{proposition}
 
 \begin{proposition}
-(\emph{One shared coordinate.}) Let \(n\ge2\), \(d=n-1\) and \(\vec a\) be a positive leg vector. Then
+\leanmark{\leannone}(\emph{One shared coordinate.}) Let \(n\ge2\), \(d=n-1\) and \(\vec a\) be a positive leg vector. Then
 \(\extten(\vec a;d)\) is the all-ones matrix, \(\RA(\vec a;0,n-1)\) has \(n^2\) vertices, and it is
 the image of \(\rasimp(\vec a)\times\rasimp(\vec a)\) under an affine isomorphism.
 \label{prop:regimes-boundary}
@@ -1710,10 +1720,10 @@ give identical sections for both.}
 
 \clearpage
 \subsection{The all-ones case at rank two}
-\label{sec:org021650c}
+\label{sec:org998a08c}
 
 \begin{theorem}
-\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
+\leanmark{\leanfull}\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \node[font=\tiny] at (0.35,0.35) {$I_m$};}Let \(n\ge2\), \(\vec a=\onesvec(n)\), \(r=2\) and \(\vec d=(0,d)\) with
 \(1\le d\le n-1\); put \(m=n-d\), and for indices \(1\le i,j\le n\) write \(t=i-d\). Then
 \begin{equation}\label{eq:ones}
   \extten(\vec a;d)[i][j]=0 \iff 1\le t\le m,\quad 1\le j\le m,\quad t\ne j .
@@ -1768,7 +1778,7 @@ The corresponding facet description was Conjecture \ref{conj:ones-hrep} of the f
 paper. It is now a theorem; the proof is in Part IV, not here.
 
 \begin{theorem}
-\autocite{SnellmanArticle4}
+\leanmark{\leanpartial}\relax \autocite{SnellmanArticle4}
 Let \(n\ge2\), \(1\le d\le n-1\) and \(N=n+d\). For \(\vec a=\onesvec(n)\), the
 polytope \(\RA(\vec a;0,d)\)
 is cut out in \(\mathbb R^N\) by a single equation together with one capped, weakly decreasing chain
@@ -1815,7 +1825,7 @@ exactly what makes one of the two windows' chain inequalities redundant here.
 \label{ex-ones-facets}
 \end{mexample}
 \subsection{The Kozlov-vector case at rank two}
-\label{sec:org999995c}
+\label{sec:orga07d5ff}
 
 \textbf{Standing hypotheses and notation for this subsection.} Recall that the leg vector is
 \(\vec a=(a_1,\dots,a_n)\), of length \(n\). Throughout, \(n\ge2\), \(r=2\),
@@ -1834,7 +1844,7 @@ We write \(v_i\) for the \(i\)-th vertex of the first (unshifted) summand and
 \(1\le t\le m\) says exactly that \(v_i\) reaches into the shared block without leaving it.
 
 \begin{theorem}
-\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
+\leanmark{\leanfull}\regionbox{\regdiag \regones{(0,0.7) rectangle (1,1)} \regones{(0.7,0) rectangle (1,1)} \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle} \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle} \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle} \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle}}Let \(n\ge2\), let \(\vec a=\kozvec(n)=\bigl(\binom n1,\dots,\binom nn\bigr)\) be the Kozlov vector,
 let \(r=2\) and \(\vec d=(0,d)\) with \(1\le d\le n-1\), and put \(m=n-d\). Then for indices
 \(1\le i,j\le n\), writing \(t=i-d\),
 \begin{equation}\label{eq:kozlov-matrix}
@@ -1894,7 +1904,7 @@ candidate directions are few: each summand contributes the \(n\) inequalities of
 \ref{cor-facets}, to which exactly two more must be added.
 
 \begin{theorem}
-\autocite{SnellmanArticle4}
+\leanmark{\leanpartial}\relax \autocite{SnellmanArticle4}
 Let \(\vec a=\kozvec(n)\) be the Kozlov vector, \(r=2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\),
 \(N=n+d\) and \(m=n-d\), and put \(t=j-d\). Then \(\RA(\vec a;0,d)\) is cut out in \(\mathbb R^N\) by
 the equation \(x_1=n\), the first chain with its offsets,
@@ -1979,183 +1989,94 @@ summand and cannot be, since they are exactly where the naive expectation that a
 facets come from its summands' facets breaks down --- and it breaks down already at \(n=3\). The
 first version of this paper added that a decomposition cannot be produced by truncating \(x\)
 against the second summand's maximum profile; that remark was mistaken and has been removed.
-\section{Methods: what was checked by computer, and how}
+\section{Methods and verification}
 \label{sec-methods}
-Several statements below were \emph{verified} before they were \emph{proved}, and several proved ones were
-additionally checked by machine before being trusted. This section says which, so that the claims
-are auditable rather than atmospheric. Two systems were used: \textbf{\textbf{SageMath}} 10.9 for exact rational
-polyhedral computation --- vertex and facet enumeration, Minkowski sums, and equality of polytopes
---- and \textbf{\textbf{Macaulay2}} for the module-theoretic statements, there using Amata and Crupi's own
-\texttt{ExteriorIdeals} and \texttt{ExteriorModules} packages
-\autocite{AmataCrupi2018ExteriorIdeals,AmataCrupi2021,Macaulay2,SageMath}.
+Every theorem of this paper has a written proof, except Theorems \ref{conj-ones-hrep} and
+\ref{conj-kozlov-hrep2}, which are proved in Part IV. Many statements were in addition checked by
+exact computation, some of them before they were proved, and a substantial part of the paper is
+proved in Lean. This section says what was computed and how, and what the marks in the margin
+mean. Two systems were used for the computations: \textbf{SageMath} 10.9 for exact rational polyhedral
+computation (vertex and facet enumeration, Minkowski sums, equality of polytopes) and \textbf{Macaulay2}
+for the module-theoretic statements, there with Amata and Crupi's \texttt{ExteriorIdeals} and
+\texttt{ExteriorModules} packages \autocite{AmataCrupi2018ExteriorIdeals,AmataCrupi2021,Macaulay2,SageMath}.
 
 Throughout, \emph{checked} means checked along a route independent of the formula being tested: a vertex
 description against a facet description, a Minkowski sum against direct enumeration of the
 achievable set, a closed form against brute-force construction. A check that merely re-evaluates
-the same expression is not recorded here.
+the same expression is not recorded here. File names below refer to the directory
+\texttt{verification-code/} of the repository named in Section \ref{sec-methods-anc}.
 
-\begingroup\small
-\begin{longtable}{@{}p{0.27\linewidth}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}@{}}
-  \toprule
-  \emph{Statement} & \emph{What was checked, and over what range} & \emph{Script} \\
-  \midrule\endfirsthead
-  \toprule
-  \emph{Statement} & \emph{What was checked, and over what range} & \emph{Script} \\
-  \midrule\endhead
-  Corollary~\ref{cor:facets}, the facet description of $\Koz(n)$
-    & the polytope built from the $n$ vertices and the polytope cut out by the equation and the
-      $n$ inequalities, checked equal as polyhedra, $n = 1,\dots,9$, each with $n$ vertices and
-      $n$ facets in dimension $n-1$; the degenerate $n = 1$ is the point $\lbrace x_1=1\rbrace$,
-      with no facets
-    & \texttt{\footnotesize kozlov\_\allowbreak facets\_\allowbreak verification.sage} \\
-  \addlinespace
-  Theorem~\ref{thm:ones}, the all-ones extremal matrix
-    & every entry against direct polyhedral computation of the vertex set, $n = 3,\dots,9$ and
-      $d = 0,\dots,n$; $2296$ entries, no discrepancy. The transposed reading disagrees on $15$ of
-      the $(n,d)$ pairs, which is what forces the orientation
-    & \texttt{\footnotesize allones\_\allowbreak rank2\_\allowbreak closed\_\allowbreak form\_\allowbreak proof\_\allowbreak check.sage} \\
-  \addlinespace
-  Theorem~\ref{thm:ones} and Theorem~\ref{thm:kozlov-matrix}, both extremal matrices as restated
-    & every entry against direct polyhedral computation of the vertex set, for both leg vectors,
-      $n = 2,\dots,7$ and $1 \le d \le n-1$; no discrepancy
-    & \texttt{\footnotesize verify\_\allowbreak section8\_\allowbreak restated.sage} \\
-  \addlinespace
-  The \emph{proofs} of Propositions~\ref{prop:regimes-tie}--\ref{prop:gapK}
-    & a different and stronger check: the functional each proof \emph{specifies} is built and
-      tested to expose the intended pair, rather than the statement being tested. $2604$ checks,
-      all passing
-    & \texttt{\footnotesize verify\_\allowbreak section8\_\allowbreak proofs.py} \\
-  \addlinespace
-  Theorem~\ref{thm:kozlov-matrix}, the vertex count \eqref{eq:vertex-count-kozlov}
-    & against direct polyhedral computation, every $n = 3,\dots,8$ and $1 \le d \le n-1$:
-      $27$ cases, no discrepancy
-    & \texttt{\footnotesize verify\_\allowbreak section8\_\allowbreak restated.sage} \\
-  \addlinespace
-    Theorem~\ref{conj:ones-hrep}
-    & exact polyhedral equality against the Minkowski sum, every $n = 2,\dots,10$ and
-      $1 \le d \le n-1$: $45$ cases, no exceptions
-    & \texttt{\footnotesize rank2\_\allowbreak hrep\_\allowbreak direct\_\allowbreak candidate.sage} \\
-  \addlinespace
-    Theorem~\ref{conj:kozlov-hrep2}, including the closed-form offsets $c_j$
-    & exact polyhedral equality against the Minkowski sum, every $n = 2,\dots,9$ and
-      $1 \le d \le n-1$: $36$ cases, no exceptions, exactly one member redundant in each; each
-      $c_j$ also checked against the support value measured directly over the vertex sums. The
-      redundant member is the second chain at $j = 1$ in every case, checked separately for
-      $n = 3,\dots,7$
-    & \texttt{\footnotesize kozlov\_\allowbreak hrep\_\allowbreak offsets\_\allowbreak closed\_\allowbreak form.sage},
-      \texttt{\footnotesize rank2\_\allowbreak hrep\_\allowbreak direct\_\allowbreak candidate.sage} \\
-  \addlinespace
-  Proposition~\ref{prop:dimension}, the dimension formula
-    & against exact polyhedral computation, $40$ configurations, $r = 2,3,4$ and $n = 2,\dots,5$
-    & \texttt{\footnotesize kozlov\_\allowbreak facets\_\allowbreak verification.sage} \\
-  \addlinespace
-  Proposition~\ref{prop:splitting}, both parts
-    & componentwise identity and least-generator-degree agreement, in Macaulay2, at $n = 4$,
-      $r = 2$, $\vec d = (0,1)$, with non-monomial components in both the proper and the
-      non-proper case
-    & \texttt{\footnotesize ids\_\allowbreak initial\_\allowbreak submodule\_\allowbreak check.m2} \\
-  \addlinespace
-  Theorem~\ref{thm:main}, and the scope of Definition~\ref{def:ids}
-    & random monomial submodules sampled and their Hilbert functions located inside the predicted
-      polytope; and a negative control, deliberately non-monomial submodules landing outside it
-    & \texttt{\footnotesize rankr\_\allowbreak minkowski\_\allowbreak random\_\allowbreak sampling\_\allowbreak m2.py},
-      \texttt{\footnotesize rankr\_\allowbreak nonmonomial\_\allowbreak negative\_\allowbreak control\_\allowbreak m2.py} \\
-  \bottomrule
-\end{longtable}
+\begingroup\sloppy
+\begin{itemize}
+\item \textbf{The Kozlov simplex.} Corollary \ref{cor-facets}: the polytope built from the \(n\) vertices and the
+polytope cut out by the equation and the \(n\) inequalities, checked equal as polyhedra for
+\(n=1,\dots,9\), each with \(n\) vertices and \(n\) facets in dimension \(n-1\); the degenerate
+\(n=1\) is a point (\texttt{kozlov\_facets\_verification.sage}). The same script checks the dimension
+formula of Proposition \ref{prop-dimension} in \(40\) configurations, \(r=2,3,4\) and \(n=2,\dots,5\).
+\item \textbf{The extremal matrices.} Theorem \ref{thm-ones}: every entry against direct polyhedral computation
+of the vertex set, \(n=3,\dots,9\) and \(d=0,\dots,n\), \(2296\) entries; the transposed reading
+disagrees on \(15\) of the pairs \((n,d)\), which is what fixes the orientation
+(\texttt{allones\_rank2\_closed\_form\_proof\_check.sage}). Theorems \ref{thm-ones} and \ref{thm-kozlov-matrix}
+as restated, for both leg vectors, \(n=2,\dots,7\) and \(1\le d\le n-1\), and the vertex count
+\eqref{eq:vertex-count-kozlov} for \(n=3,\dots,8\), \(27\) cases
+(\texttt{verify\_section8\_restated.sage}).
+\item \textbf{The proofs of the six case propositions.} For Propositions \ref{prop-row-below}--\ref{prop-gapK} and
+the three regime propositions, a different and stronger check: the functional that each proof
+\emph{specifies} is built and tested to expose the intended pair, \(2604\) checks
+(\texttt{verify\_section8\_proofs.py}). The check of the statements cannot see a proof that is wrong
+while its statement is right; this one caught such a proof.
+\item \textbf{The facet descriptions at rank two.} Theorem \ref{conj-ones-hrep}: exact polyhedral equality against
+the Minkowski sum for every \(n=2,\dots,10\) and \(1\le d\le n-1\), \(45\) cases
+(\texttt{rank2\_hrep\_direct\_candidate.sage}). Theorem \ref{conj-kozlov-hrep2}, with the closed-form offsets
+\(c_j\): the same for \(n=2,\dots,9\), \(36\) cases, exactly one inequality redundant in each;
+every \(c_j\) also against the support value measured over the vertex sums; the redundant
+inequality is the second chain at \(j=1\), checked separately for \(n=3,\dots,7\)
+(\texttt{kozlov\_hrep\_offsets\_closed\_form.sage}, \texttt{rank2\_hrep\_direct\_candidate.sage}). These checks were
+made when the two statements were conjectures.
+\item \textbf{Modules.} Proposition \ref{prop-splitting}, both parts: componentwise identity and agreement of the
+least generator degree, in Macaulay2, at \(n=4\), \(r=2\), \(\vec d=(0,1)\), with non-monomial
+components in the proper and in the non-proper case (\texttt{ids\_initial\_submodule\_check.m2}).
+Theorem \ref{thm-main} and the scope of Definition \ref{def-ids}: random monomial submodules sampled
+and their Hilbert functions located inside the predicted polytope, and, as a negative control,
+deliberately non-monomial submodules landing outside it
+(\texttt{rankr\_minkowski\_random\_sampling\_m2.py}, \texttt{rankr\_nonmonomial\_negative\_control\_m2.py}).
+\end{itemize}
 \endgroup
 \subsection{Formal verification}
 \label{sec-methods-lean}
-The computations above \emph{check} statements against independent computation; they do not prove
-anything. Separately, \textbf{\textbf{a substantial part of this paper has been formalised and machine-checked in
-Lean 4 with Mathlib}}, in two layers:
-
+Much of this paper is also proved in the proof assistant Lean 4, on top of its mathematical
+library Mathlib: the combinatorial spine of Sections \ref{sec-rank1}--\ref{sec-main}, with the
+permissive variant of Section \ref{sec-permissive}, and the vertex structure of Section
+\ref{sec-vertices} and Appendix \ref{sec-app}. The printed proofs and the formal ones are
+deliberately the same proofs: where the formalisation found a shorter route, the text was
+rewritten to take it. A mark in the margin beside a result records how far the formal proof goes:
 \begin{itemize}
-\item the \textbf{combinatorial spine}, Sections \ref{sec-rank1}--\ref{sec-main}: local LYM, the chain description
-of the Kozlov simplex, Kozlov's theorem itself, the sumset identity in its combinatorial form, the
-main theorem at every rank, and Section \ref{sec-permissive}'s permissive variant in full ---
-including Proposition \ref{prop-permissive-fibres}, whose proof is short but was not written down at
-all before being formalised;
-\item the \textbf{vertex structure}, Section \ref{sec-vertices} and Appendix \ref{sec-app}: the vertex criterion,
-the extremal matrix for both leg vectors, and the vertex count.
+\item \leanfull{} proved in Lean, with no \texttt{sorry}, from the three axioms that Mathlib uses throughout
+(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}) and nothing else;
+\item \leanpartial{} part of the statement proved as for \leanfull{}: typically the description by
+inequalities without the clause that these are the facets, or the combinatorial form of a
+statement without its module-theoretic form;
+\item \leannone{} not formalised.
 \end{itemize}
+Definitions, remarks and examples carry no mark.
 
-The printed proofs and the formal ones are deliberately the same proofs rather than two proofs of the
-same statements: where the formalisation found a shorter route, the text was rewritten to take it.
-
-\textbf{\textbf{What is \emph{not} formalised is worth stating precisely, since the table below is otherwise easy to
-over-read.}} The three degenerate-regime propositions
-\ref{prop-regimes-tie}--\ref{prop-regimes-boundary} are checked computationally, as the previous table
-records, but are not formalised. Neither, in the part of the development that belongs to this paper,
-are the two facet descriptions of Section \ref{sec-hrep2}; they are proved in Part IV, which records
-how much of its own argument is formalised. Within what \emph{is} formalised, three clauses are
-deliberately omitted: the affine-independence half of Lemma \ref{lem-mu} and of
-Lemma \ref{lem-mu-permissive}, hence the ``these are exactly the facets'' half of
-Corollary \ref{cor-facets} and the codimension half of Proposition \ref{prop-properness-facet} --- in
-each case the halfspace description is proved and its \emph{facet status} is not. Finally, the formal
-development works throughout in the degree-\(0\)-inclusive coordinates, so the \(\proj\) forms of
-these statements, and with them the translation of \eqref{eq:koz-as-ra}, are not formalised; and
-Proposition \ref{prop-sumset}'s first equality, the algebraic dictionary between Hilbert functions and
-\emph{ff}-vectors, is outside the formalised part, which takes the combinatorial side as its definition.
-So Theorem \ref{thm-main}'s formal statement is the combinatorial identity, not the module-theoretic
-one.
-
-The development compiles with no \texttt{sorry}, and depends only on the three standard Mathlib axioms
-(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}), on Lean \texttt{v4.34.0-rc2}. Where to find it is said in
-Section \ref{sec-methods-anc}.
-
-\begingroup\small
-\begin{longtable}{@{}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.60\linewidth}@{}}
-  \toprule
-  \emph{Statement} & \emph{Lean declaration} \\
-  \midrule\endfirsthead
-  \toprule
-  \emph{Statement} & \emph{Lean declaration} \\
-  \midrule\endhead
-  \multicolumn{2}{@{}l}{\emph{The combinatorial spine: rank one through the main theorem}}\\
-  Lemma~\ref{lem:lym} & \texttt{\footnotesize lym} \\
-  Lemma~\ref{lem:mu} & \texttt{\footnotesize hull\_\allowbreak skel\_\allowbreak eq}, \texttt{\footnotesize convex\_\allowbreak lymChain} \\
-  Theorem~\ref{thm:kozlov} & \texttt{\footnotesize kozlov} \\
-  Corollary~\ref{cor:facets} & \texttt{\footnotesize hull\_\allowbreak Sset\_\allowbreak eq} \\
-  Definition~\ref{def:ffvector} & \texttt{\footnotesize ffvec}, \texttt{\footnotesize ffSet} \\
-  Proposition~\ref{prop:sumset} & \texttt{\footnotesize ff\_\allowbreak eq\_\allowbreak sumset} \\
-  Theorem~\ref{thm:main} & \texttt{\footnotesize main}, \texttt{\footnotesize main\_\allowbreak chain} \\
-  Proposition~\ref{prop:edge-cases}(1), (3) & \texttt{\footnotesize edge\_\allowbreak case\_\allowbreak r\_\allowbreak one}, \texttt{\footnotesize edge\_\allowbreak case\_\allowbreak n\_\allowbreak one} \\
-  \addlinespace
-  \multicolumn{2}{@{}l}{\emph{The permissive convention}}\\
-  Lemma~\ref{lem:mu-permissive} & \texttt{\footnotesize hull\_\allowbreak skel\_\allowbreak perm\_\allowbreak eq} \\
-  Proposition~\ref{prop:permissive-hull} & \texttt{\footnotesize permissive\_\allowbreak hull}, \texttt{\footnotesize hull\_\allowbreak SsetPerm\_\allowbreak eq} \\
-  Proposition~\ref{prop:properness-facet} & \texttt{\footnotesize rasimpB\_\allowbreak eq\_\allowbreak insert\_\allowbreak hull}, \texttt{\footnotesize properness\_\allowbreak tight\_\allowbreak face} \\
-  Proposition~\ref{prop:permissive-fibres} & \texttt{\footnotesize permissive\_\allowbreak fibres}, \texttt{\footnotesize fibre\_\allowbreak eq}, \texttt{\footnotesize fibres\_\allowbreak disjoint}, \texttt{\footnotesize exists\_\allowbreak relabel} \\
-  \addlinespace
-  \multicolumn{2}{@{}l}{\emph{The vertex structure at rank two, with Appendix~\ref{sec:app}}}\\
-  Lemma~\ref{lem:exposed-vertex} & \texttt{\footnotesize mem\_\allowbreak extremePoints\_\allowbreak convexHull\_\allowbreak iff} \\
-  Lemma~\ref{lem:vertexdecomp}(1) & \texttt{\footnotesize mem\_\allowbreak extremePoints\_\allowbreak add\_\allowbreak iff} \\
-  Lemma~\ref{lem:vertexdecomp}(2) & \texttt{\footnotesize eq\_\allowbreak of\_\allowbreak add\_\allowbreak eq\_\allowbreak of\_\allowbreak mem\_\allowbreak extremePoints} \\
-  Theorem~\ref{thm:ones} & \texttt{\footnotesize thm\_\allowbreak ones}, \texttt{\footnotesize thm\_\allowbreak ones\_\allowbreak windows} \\
-  Remark~\ref{rem:digraph-collapses} & \texttt{\footnotesize exists\_\allowbreak strictMax\_\allowbreak two\_\allowbreak iff} \\
-  Lemma~\ref{lem:binomial-ratio} & \texttt{\footnotesize choose\_\allowbreak ratio\_\allowbreak lt}, \texttt{\footnotesize choose\_\allowbreak ratio\_\allowbreak pos\_\allowbreak iff}, \texttt{\footnotesize choose\_\allowbreak ratio\_\allowbreak eq\_\allowbreak zero} \\
-  Proposition~\ref{prop:row-below} & \texttt{\footnotesize prop\_\allowbreak row\_\allowbreak below\_\allowbreak geom} \\
-  Proposition~\ref{prop:col-beyond} & \texttt{\footnotesize prop\_\allowbreak col\_\allowbreak beyond\_\allowbreak geom} \\
-  Proposition~\ref{prop:diagonal} & \texttt{\footnotesize prop\_\allowbreak diagonal\_\allowbreak geom}, \texttt{\footnotesize wDiag\_\allowbreak unique\_\allowbreak max} \\
-  Proposition~\ref{prop:adjacent} & \texttt{\footnotesize prop\_\allowbreak adjacent\_\allowbreak upper}, \texttt{\footnotesize prop\_\allowbreak adjacent\_\allowbreak lower} \\
-  Proposition~\ref{prop:below-diagonal} & \texttt{\footnotesize prop\_\allowbreak below\_\allowbreak diagonal} \\
-  Proposition~\ref{prop:gapK} & \texttt{\footnotesize prop\_\allowbreak gapK\_\allowbreak geom} \\
-  Theorem~\ref{thm:kozlov-matrix}, the classification & \texttt{\footnotesize extremal\_\allowbreak matrix\_\allowbreak iff}, \texttt{\footnotesize extremal\_\allowbreak matrix\_\allowbreak kozlov} \\
-  Theorem~\ref{thm:kozlov-matrix}, the count \eqref{eq:vertex-count-kozlov} & \texttt{\footnotesize card\_\allowbreak vertices}, \texttt{\footnotesize card\_\allowbreak vertices\_\allowbreak kozlov} \\
-  \bottomrule
-\end{longtable}
-\endgroup
-
-The development is about \(3\,300\) lines of Lean in twelve files, and its own \texttt{README} carries the
-declaration-by-declaration correspondence, including every omission listed above; that file rather
-than this table is the authoritative record.
+The file \texttt{lean/CORRESPONDENCE-PART-I.md} of the repository pairs each marked result with the Lean
+declarations that prove it, gives the file and line of each, and says what a partial mark leaves
+out; \texttt{lean/README.md} there has the fuller account, with the definitions. Two general points
+belong here. The development works throughout in the coordinates that keep the degree-\(0\) entry,
+so the \(\proj\) forms of the statements, and the translation \eqref{eq:koz-as-ra}, are not
+formalised. And Theorem \ref{thm-main} is formalised as the combinatorial identity: the dictionary
+between Hilbert functions and \emph{ff}-vectors, the first equality of Proposition \ref{prop-sumset}, is
+outside the formal part. Theorems \ref{conj-ones-hrep} and \ref{conj-kozlov-hrep2} are marked for the
+formal proofs that belong to Part IV. The part of the development that belongs to this paper is
+about \(3\,300\) lines of Lean in twelve files, built with Lean \texttt{v4.34.0-rc2}.
 \subsection{Availability}
 \label{sec-methods-anc}
-Every script named above, together with the recorded output of the runs behind the counts quoted
-and the Lean development, is available in three places.
+The scripts named above, the recorded output of the runs behind the counts quoted, and the Lean
+development are available in three places.
 
 \begin{itemize}
-\item \sloppy \textbf{The repository of the series}, at
+\item \raggedright \textbf{The repository of the series}, at
 \url{https://gitlab.liu.se/jansn19/exterior-convex}, with a mirror at
 \url{https://github.com/JaTaSn/exterior-convex}. It holds the sources of the articles,
 the Lean development (directory \texttt{lean}), the scripts and their recorded output (directory
@@ -2163,18 +2084,12 @@ the Lean development (directory \texttt{lean}), the scripts and their recorded o
 series grows, so its Lean development now covers later parts as well.
 \item \textbf{The Zenodo archive of the series} \autocite{SnellmanZenodoSeries}, DOI
 \href{https://doi.org/10.5281/zenodo.24288404}{10.5281/zenodo.24288404}: a fixed, citable snapshot of
-the Lean development and the verification code for Parts I--V.
+the Lean development and the verification code for Parts I--V. It predates
+\texttt{lean/CORRESPONDENCE-PART-I.md}, which is in the repository only.
 \item \textbf{The ancillary files of the first version of this paper}, arXiv:2609.23605v1, directory \texttt{anc}:
 the scripts, run logs and Lean development exactly as they stood when that version was submitted.
 This version carries no ancillary files of its own.
 \end{itemize}
-
-The two harnesses
-for Section \ref{sec-vertices} are worth distinguishing from each other, because they answer
-different questions: one tests the \emph{statements} against an independent computation of the vertex
-set, the other tests the \emph{proofs}, by constructing the functional each proof specifies and checking
-that it does what the proof says it does. The second caught a proof that was wrong while its
-statement was right, which is the case the first cannot see.
 
 \appendix
 \section{Proofs for the rank-two vertex structure}
@@ -2193,7 +2108,7 @@ because they do different work: the first is about a single polytope presented b
 the second about how such presentations add.
 
 \begin{lemma}
-Let \(S\subseteq\mathbb R^N\) be a finite non-empty set and \(P=\conv(S)\). For \(x\in\mathbb R^N\)
+\leanmark{\leanfull}Let \(S\subseteq\mathbb R^N\) be a finite non-empty set and \(P=\conv(S)\). For \(x\in\mathbb R^N\)
 the following are equivalent:
 \begin{enumerate}
 \item \(x\) is a vertex of \(P\);
@@ -2224,7 +2139,7 @@ Otherwise \(C=\conv(S\setminus\lbrace x\rbrace)\) is a non-empty compact convex 
 \end{proof}
 
 \begin{lemma}
-Let \(P_1,\dots,P_r\subseteq\mathbb R^N\) be polytopes, \(P_p=\conv(V_p)\) with each \(V_p\)
+\leanmark{\leanpartial}Let \(P_1,\dots,P_r\subseteq\mathbb R^N\) be polytopes, \(P_p=\conv(V_p)\) with each \(V_p\)
 finite and non-empty, let \(x_p\in P_p\) for each \(p\), and put \(x=\sum_px_p\).
 \begin{enumerate}
 \item \(x\) is a vertex of \(\sum_pP_p\) if and only if there is a \textbf{single} linear functional
@@ -2474,7 +2389,7 @@ so that \(\rho_s\) is the ratio by which the two summands weight the same shared
 that no proof depends on notation introduced after it.
 
 \begin{lemma}
-Let \(n\ge1\), \(d\ge1\), \(m=n-d\), and let \(\vec a=\kozvec(n)\) be the Kozlov vector, so that
+\leanmark{\leanfull}Let \(n\ge1\), \(d\ge1\), \(m=n-d\), and let \(\vec a=\kozvec(n)\) be the Kozlov vector, so that
 \(\rho_j=\binom n{d+j}\big/\binom nj\) for \(1\le j\le n\), with the convention
 \(\binom ns=0\) for \(s>n\). Then
 \begin{enumerate}
@@ -2523,7 +2438,7 @@ both. Second, it is convenient to record the value of a vertex directly, for \(1
 \(j'\le m\), \eqref{eq:vertval-second} is \(P_{j'}\).
 
 \begin{lemma}
-(\emph{Free shaping of one summand.}) Let \(w_1,\dots,w_n\) be positive reals, let \(1\le p\le n\), and
+\leanmark{\leannone}(\emph{Free shaping of one summand.}) Let \(w_1,\dots,w_n\) be positive reals, let \(1\le p\le n\), and
 let \(\psi_1\in\mathbb R\) be prescribed arbitrarily. Put \(\psi_s=+1\) for \(2\le s\le p\) and
 \(\psi_s=-1\) for \(p<s\le n\), and \(\Sigma_{p'}=\sum_{s\le p'}\psi_sw_s\). Then \(\Sigma_p>\Sigma_{p'}\) for
 every \(p'\in[1,n]\) with \(p'\ne p\).
@@ -2543,7 +2458,7 @@ coordinate the second summand also sees, and for \(j>m\) it is the second summan
 room to spare.
 
 \begin{proposition}[]
-\regionbox{\regones{(0,0.7) rectangle (1,1)}}(\emph{Rows that stop inside the first private block.}) Let \(\vec a\) be any positive leg vector and let
+\leanmark{\leanfull}\regionbox{\regones{(0,0.7) rectangle (1,1)}}(\emph{Rows that stop inside the first private block.}) Let \(\vec a\) be any positive leg vector and let
 \(1\le i\le d\), so that \(t\le0\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le j\le n\).
 \label{prop:row-below}
 \label{prop-row-below}
@@ -2585,7 +2500,7 @@ pushes all of them below zero, while \(-Ma_1\) appears in every \(\langle\varphi
 \end{remark}
 
 \begin{proposition}[]
-\regionbox{\regones{(0.7,0) rectangle (1,1)}}(\emph{Columns that reach the second private block.}) Let \(\vec a\) be any positive leg vector and let
+\leanmark{\leanfull}\regionbox{\regones{(0.7,0) rectangle (1,1)}}(\emph{Columns that reach the second private block.}) Let \(\vec a\) be any positive leg vector and let
 \(m<j\le n\). Then \(\extten(\vec a;d)[i][j]=1\) for every \(1\le i\le n\).
 \label{prop:col-beyond}
 \label{prop-col-beyond}
@@ -2611,7 +2526,7 @@ maximizer, and Lemma \ref{lem-vertexdecomp}(1) applies.
 \end{proof}
 
 \begin{proposition}[]
-\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}(\emph{The diagonal.}) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
+\leanmark{\leanfull}\regionbox{\regdiag \regones{(0,0.7)--(0.09,0.7)--(0.7,0.09)--(0.7,0)--(0.61,0)--(0,0.61)--cycle}}(\emph{The diagonal.}) Let \(\vec a\) be any positive leg vector and let \(1\le t\le m\). Then
 \(\extten(\vec a;d)[d+t][t]=1\); that is, \(\extten(\vec a;d)[i][j]=1\) for \(i=d+t\) and
 \(j=t\).
 \label{prop:diagonal}
@@ -2635,7 +2550,7 @@ exposes \(v_{d+t}\) and \(u_t\) simultaneously. Apply Lemma \ref{lem-vertexdecom
 \end{proof}
 
 \begin{proposition}[]
-\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}(\emph{The two adjacent diagonals.}) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
+\leanmark{\leanfull}\regionbox{\regdiag \regzeros{(0.09,0.7)--(0.21,0.7)--(0.7,0.21)--(0.7,0.09)--cycle} \regzeros{(0,0.61)--(0,0.49)--(0.49,0)--(0.61,0)--cycle}}(\emph{The two adjacent diagonals.}) Let \(\vec a\) be any positive leg vector, and let \(1\le t\le m\)
 and \(1\le j\le m\) with \(j=t+1\) or \(j=t-1\). Then \(\extten(\vec a;d)[i][j]=0\) for
 \(i=d+t\).
 \label{prop:adjacent}
@@ -2666,7 +2581,7 @@ displayed in Section \ref{sec-vertices}
 duly show as a one. Without the hypothesis the two propositions would contradict each other there.
 
 \begin{proposition}[]
-\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}(\emph{Below the diagonal.}) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
+\leanmark{\leanfull}\regionbox{\regdiag \regzeros{(0,0)--(0.61,0)--(0,0.61)--cycle}}(\emph{Below the diagonal.}) Let \(1\le t\le m\) and \(1\le j<t\), and suppose \(\vec a\) is positive with
 \(\rho_1>\rho_2>\cdots>\rho_t\), which by Lemma \ref{lem-binomial-ratio} holds for the Kozlov vector.
 Then \(\extten(\vec a;d)[i][j]=0\) for \(i=d+t\); note \(i>d+j\), so this is the region strictly
 below the diagonal of the overlap block.
@@ -2692,7 +2607,7 @@ The remaining entries are those with \(1\le t\le m\), \(1\le j\le m\) and gap \(
 the substantive case, and we give it in full.
 
 \begin{proposition}[]
-\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}(\emph{Gap at least two.}) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
+\leanmark{\leanfull}\regionbox{\regdiag \regones{(0.21,0.7)--(0.7,0.7)--(0.7,0.21)--cycle}}(\emph{Gap at least two.}) Let \(n\ge2\), \(\vec d=(0,d)\) with \(1\le d\le n-1\), \(m=n-d\), and let
 \(\vec a\) be a positive leg vector. Let \(1\le t\le m\) and \(1\le j\le m\) with \(K:=j-t\ge2\),
 and suppose
 \begin{equation}\label{eq:gapK}
@@ -2858,7 +2773,7 @@ zeros is
 \end{equation}
 \end{proof}
 \section*{Acknowledgements}
-\label{sec:org901f2a0}
+\label{sec:org3571896}
 Aliaksandra Kupreyeva's Bachelor's thesis \emph{Simplices of \(f\)-vectors} (Linköping University, 2019;
 report LiTH-MAT-EX--2019/05--SE), written under my supervision, is where the lattice-point question
 inside the Kozlov simplex was first raised in the form used in Part III. The name given in
@@ -2872,7 +2787,7 @@ Computations were carried out in SageMath and in Macaulay2, the latter using
 Amata and Crupi's own \texttt{ExteriorIdeals} and \texttt{ExteriorModules} packages
 \autocite{AmataCrupi2018ExteriorIdeals,AmataCrupi2021,Macaulay2,SageMath}.
 \section*{Disclosure of AI assistance}
-\label{sec:orgd298439}
+\label{sec:org7db68b8}
 This manuscript was produced with substantial assistance from a large language model, Claude
 (Anthropic), and the extent of it is set out here rather than left to be inferred.
 
@@ -2904,11 +2819,11 @@ of the achievable set, and the algebraic statements against Macaulay2 --- and th
 been checked against primary sources. The author has verified the results to the best of his ability,
 made the final edits, and assumes full responsibility for any errors, mistakes or gaps that remain.
 \section*{Funding}
-\label{sec:org84deb40}
+\label{sec:org9917f87}
 This research received no external funding. It was carried out as part of the author's regular duties
 at Linköping University, within the fraction of that employment allocated to research.
 \section*{Conflicts of interest}
-\label{sec:orgcf7ff2c}
+\label{sec:org7ccc658}
 The author declares no financial or non-financial conflicts of interest. The nature and extent of
 large-language-model assistance in producing this manuscript is disclosed in full in the section
 above.

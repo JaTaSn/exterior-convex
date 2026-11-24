@@ -5,7 +5,7 @@ Prepared 2026-11-24. The version 1 package, with its ancillary files, is in
 
 - `exterior-convex_article1_latest.tex` and `img/`: what is uploaded. pdfLaTeX, bibliography
   inlined, no ancillary files. `arXiv-v2.tar.gz` is exactly these files.
-- `exterior-convex_article1_latest.pdf`: a preview built here with pdfLaTeX (55 pages). arXiv
+- `exterior-convex_article1_latest.pdf`: a preview built here with pdfLaTeX (53 pages). arXiv
   builds its own.
 - `exterior-convex_article1_v2.org`: the Org source of this version, a copy from the working
   home. It does not export here, since its `#+SETUPFILE:` lines point at templates that are not
@@ -26,6 +26,10 @@ from the first version", which lists the changes:
 - Example 53 said `x_1 = 5` where `x_1 = 1` is meant, and a mistaken remark at the end of
   Section 9.4 is removed;
 - "the companion paper" and "Part III" are replaced by references to Parts III, IV and V;
+- Section 10 is rewritten in the form used in Part III: a list of the computations, a mark in the
+  margin for the Lean status of each result, and a pointer to
+  [`lean/CORRESPONDENCE-PART-I.md`](../../../../lean/CORRESPONDENCE-PART-I.md), which pairs each
+  statement with the Lean declarations that prove it;
 - the Availability section points to this repository, its GitHub mirror and the Zenodo archive
   instead of to ancillary files.
 
