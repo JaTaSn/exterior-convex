@@ -28,8 +28,12 @@ Part IV of this series.
 ## Comments
 
 ```
-53 pages. v2: the facet description of the Kozlov simplex is attributed to Kozlov's second proof; the two rank-two facet conjectures are now theorems, proved in Part IV; Section 10 rewritten, with marginal marks for results proved in Lean and for results checked by computation; no change in the numbering of statements. Lean 4 formalization and verification code: https://github.com/JaTaSn/exterior-convex (mirror of https://gitlab.liu.se/jansn19/exterior-convex), archived at https://doi.org/10.5281/zenodo.24288404; ancillary files with v1
+53 pages. v2: facets of the Kozlov simplex attributed to Kozlov's second proof; the two rank-two facet conjectures are now theorems, proved in Part IV; Section 10 rewritten; numbering unchanged. Lean 4 formalization and code: https://github.com/JaTaSn/exterior-convex, archived at https://doi.org/10.5281/zenodo.24288404; ancillary files with v1
 ```
+
+arXiv limits this field to 400 characters; the line above has 345. The first attempt, which
+also named the GitLab repository and described the margin marks, was refused as too long
+(2026-11-24).
 
 ## Report number
 
