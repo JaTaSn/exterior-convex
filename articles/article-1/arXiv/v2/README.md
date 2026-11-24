@@ -6,8 +6,9 @@ Prepared 2026-11-24. The version 1 package, with its ancillary files, is in
 - `exterior-convex_article1_latest.tex` and `img/`: what is uploaded. pdfLaTeX, bibliography
   inlined, no ancillary files. `arXiv-v2.tar.gz` is exactly these files; it is not tracked.
 - `make_tarball.py`: builds `arXiv-v2.tar.gz` from those files. It needs only Python 3, so it
-  runs on any machine with a clone: `python3 make_tarball.py`. The archive is reproducible, and
-  the script prints checksums of the `.tex` and of the archive.
+  runs on any machine with a clone: `python3 make_tarball.py`. It prints checksums of the `.tex` and of the
+  uncompressed archive, which are the same on every machine; the `.tar.gz` itself can differ in
+  bytes between machines, because compression libraries differ.
 - `exterior-convex_article1_latest.pdf`: a preview built here with pdfLaTeX (53 pages). arXiv
   builds its own.
 - `exterior-convex_article1_v2.org`: the Org source of this version, a copy from the working

@@ -13,8 +13,11 @@ and nothing else: no README, no metadata, no preview PDF, no Org source, no anc/
 checks that every figure the .tex includes is present and that no figure is left over, and prints
 the SHA-256 of the .tex so that two machines can compare what they are about to upload.
 
-The archive is reproducible: entries are sorted, and owner, group and modification time are
-fixed, so the same files give the same bytes everywhere.
+Entries are sorted, and owner, group and modification time are fixed, so the same files give the
+same uncompressed archive everywhere; its SHA-256 is printed, and that is the number to compare
+between machines.  The .tar.gz itself is NOT byte-identical across machines: different versions
+of the compression library produce different gzip output from the same input (seen 2026-11-24,
+jts-mini 477832 bytes against jts-pc 473040, with identical contents).
 """
 import gzip, hashlib, io, pathlib, re, sys, tarfile
 
@@ -55,7 +58,12 @@ def main():
     for name in members:
         print("  ", name)
     print("SHA-256 of the .tex:  ", hashlib.sha256(TEX.read_bytes()).hexdigest())
-    print("SHA-256 of the archive:", hashlib.sha256(OUT.read_bytes()).hexdigest())
+    print("SHA-256 of the contents (uncompressed archive; compare THIS between machines):")
+    print("  ", hashlib.sha256(buf.getvalue()).hexdigest())
+    back = gzip.decompress(OUT.read_bytes())
+    if back != buf.getvalue():
+        sys.exit("the written .tar.gz does not decompress to the archive that was built")
+    print("the .tar.gz decompresses to exactly that archive; its own bytes may differ between machines")
 
 
 if __name__ == "__main__":
