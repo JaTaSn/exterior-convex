@@ -26,7 +26,7 @@ rank r.
 
 - **Part I** proves this, self-contained. Along the way it gives a short proof of Kozlov's theorem
   from the local Lubell–Yamamoto–Meshalkin (LYM) inequality, and a facet description of Koz(n)
-  that appears not to be recorded in the literature.
+  that is implicit in Kozlov's own second proof.
 - **Part II** counts the Hilbert functions. For r = 1 the count is Linusson's; at every rank it is
   a product of transfer matrices whose entries come from Linusson's refined counts.
 - **Part III** studies the lattice points of the polytope. Koz(n) is a lecture hall simplex, the
@@ -45,19 +45,28 @@ Amata–Crupi monomial modules, Kozlov polytopes, and r-vectors of simplicial co
   open access through
   [DiVA](https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A2102721), Linköping
   University's publication database.
-- Sources here: [`articles/article-1/`](articles/article-1/).
+- A second arXiv version was submitted on 2026-11-24. It attributes the facet description of the
+  Kozlov simplex to Kozlov's second proof, states the two rank-two facet conjectures as theorems
+  proved in Part IV, and marks in the margin which results are proved in Lean and which were
+  checked by computation; [`lean/CORRESPONDENCE-PART-I.md`](lean/CORRESPONDENCE-PART-I.md) pairs
+  each statement with its Lean declarations. The report is version 1 and is unchanged.
+- Sources here: [`articles/article-1/`](articles/article-1/); the second version's arXiv package is
+  in [`articles/article-1/arXiv/v2/`](articles/article-1/arXiv/v2/).
 
 **Part II.** *Hilbert functions over the exterior algebra and f-vectors in higher rank, II:
 Generalizing Linusson's count to sumsets of f-vectors.*
 
 - arXiv: [2610.14985](https://arxiv.org/abs/2610.14985) (math.CO).
+- Also published as report LiTH-MAT-R 2026:06, DOI
+  [10.3384/LiTH-MAT-R-2026-06](https://doi.org/10.3384/LiTH-MAT-R-2026-06), open access through
+  DiVA (`urn:nbn:se:liu:diva-229412`).
 - Sources here: [`articles/article-2/`](articles/article-2/).
 
 **Part III.** *Hilbert functions over the exterior algebra and f-vectors in higher rank, III:
 Lattice points of the Kozlov polytope.*
 
-- Being submitted to arXiv in November 2026; a report in the LiTH-MAT-R series is to follow. The
-  arXiv number will be added here.
+- arXiv: [2611.26110](https://arxiv.org/abs/2611.26110), submitted 2026-11-19. A report in the
+  LiTH-MAT-R series is to follow.
 - [`articles/article-3/`](articles/article-3/) holds the version prepared for submission (63
   pages), and [`articles/article-3/arxiv-submission/`](articles/article-3/arxiv-submission/) the
   arXiv package made from it.

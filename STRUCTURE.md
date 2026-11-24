@@ -42,8 +42,12 @@ home and copy them over. There are two exceptions:
     Amata–Crupi packages in its `anc/verification-code/` were removed on 2026-11-16 (see "What is
     held back").
   - `arxivcopy.pdf`: the PDF arXiv generated from that package.
+  - `arXiv/v2/`: the package of the second arXiv version, submitted 2026-11-24, from
+    `code/make_arxiv_submission_article1_v2.py` in the working home. No `anc/`. Its own
+    `README.md` lists what changed; `make_tarball.py` there builds the upload with Python alone.
+    `arxiv-submission/` remains the version 1 package and is not regenerated.
   - `ARXIV-SUBMISSION-METADATA.md`: the arXiv form fields and the pre-submission checklist.
-- **`article-2/`**: Part II (arXiv 2610.14985; **not** in the LiTH-MAT-R series, see below).
+- **`article-2/`**: Part II (arXiv 2610.14985; LiTH-MAT-R 2026:06 since 2026-11-20, see below).
   - `exterior-convex_article2_latest.{org,tex,pdf}`: the version prepared for arXiv.
   - `arxiv-submission/`: the package, from `code/make_arxiv_submission_article2.py`. Its `anc/`
     also holds CSV tables of the counts.
@@ -185,9 +189,9 @@ Then, by hand:
   the arXiv id and any report number in `README.md`.
 
 **The report series.** Part I went to the LiTH-MAT-R series first and to arXiv two days later.
-Part II went to arXiv only. The report was meant to follow, but as of 2026-11-14 Part II is
-**not** in the series, and `README.md` must not say it is. If it is added later, the report
-cites the arXiv id, and arXiv's Report-no field can be filled in on a replacement.
+Part II went to arXiv first; its report followed as LiTH-MAT-R 2026:06 (DOI
+10.3384/LiTH-MAT-R-2026-06, in DiVA since 2026-11-20). arXiv's Report-no field for Part II is
+still empty and can be filled in on a replacement.
 
 ## Licences
 
